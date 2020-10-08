@@ -1,5 +1,5 @@
 -- Project:   C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\BLE_RTC_IMU.cyprj
--- Generated: 10/07/2020 16:41:34
+-- Generated: 10/08/2020 12:22:49
 -- PSoC Creator  4.2
 
 ENTITY BLE_RTC_IMU IS
@@ -133,7 +133,6 @@ ARCHITECTURE __DEFAULT__ OF BLE_RTC_IMU IS
     ATTRIBUTE Location OF \RTC:RTC\ : LABEL IS "F(RTC,0)";
     ATTRIBUTE Location OF \RTC:RTC_IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(21)]";
     ATTRIBUTE Location OF SysInt_ImuDataReadyINT : LABEL IS "[IntrContainer=(0)][IntrId=(122)]";
-    ATTRIBUTE Location OF SysInt_1ms : LABEL IS "[IntrContainer=(0)][IntrId=(90)]";
     ATTRIBUTE Location OF \Counter_ms:TCPWM\ : LABEL IS "F(TCPWM,0)";
     COMPONENT CLK_GEN
         PORT (
@@ -1297,15 +1296,6 @@ BEGIN
             int_type => "00")
         PORT MAP(
             interrupt => Net_46,
-            clock => ClockBlock_PeriClk);
-
-    SysInt_1ms:interrupt
-        GENERIC MAP(
-            cy_registers => "",
-            deepsleep_required => 0,
-            int_type => "10")
-        PORT MAP(
-            interrupt => Net_60,
             clock => ClockBlock_PeriClk);
 
     \Counter_ms:TCPWM\:TCPWM

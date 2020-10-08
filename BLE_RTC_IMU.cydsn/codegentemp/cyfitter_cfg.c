@@ -155,7 +155,7 @@ static void ClockInit(void)
 	{
 		CyClockStartupError(CYCLOCKSTART_WCO_ERROR);
 	}
-	Cy_SysClk_ClkLfSetSource(CY_SYSCLK_CLKLF_IN_ILO);
+	Cy_SysClk_ClkLfSetSource(CY_SYSCLK_CLKLF_IN_WCO);
 
 	/* Configure CPU clock dividers */
 	Cy_SysClk_ClkFastSetDivider(0u);

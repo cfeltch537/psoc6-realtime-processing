@@ -1,4 +1,4 @@
-Loading plugins phase: Elapsed time ==> 0s.119ms
+Loading plugins phase: Elapsed time ==> 0s.125ms
 <CYPRESSTAG name="CyDsfit arguments...">
 cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\BLE_RTC_IMU.cyprj -d CY8C6347BZI-BLD53 -s C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\Generated_Source\PSoC6 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 </CYPRESSTAG>
@@ -7,7 +7,7 @@ ADD: fit.M0067: information: Clock Information: (The WCO is enabled. Chip startu
 
 <CYPRESSTAG name="Design elaboration results...">
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 1s.220ms
+Elaboration phase: Elapsed time ==> 1s.247ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
 HDL generation phase: Elapsed time ==> 0s.051ms
@@ -44,7 +44,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Wed Oct 07 16:41:17 2020
+Thu Oct 08 12:22:31 2020
 
 
 ======================================================================
@@ -54,7 +54,7 @@ Options  :    -yv2 -q10 BLE_RTC_IMU.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Wed Oct 07 16:41:17 2020
+Thu Oct 08 12:22:31 2020
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'
@@ -86,7 +86,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Wed Oct 07 16:41:18 2020
+Thu Oct 08 12:22:31 2020
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -113,7 +113,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Wed Oct 07 16:41:18 2020
+Thu Oct 08 12:22:32 2020
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -174,11 +174,11 @@ Removing Rhs of wire zero[31] = \I2C_1:Net_283\[2]
 Removing Lhs of wire \UART_1:clock_wire\[39] = \UART_1:Net_847\[38]
 Removing Lhs of wire \UART_1:rx_wire\[51] = \UART_1:Net_1172\[48]
 Removing Lhs of wire \UART_1:cts_wire\[52] = zero[31]
-Removing Lhs of wire \Counter_ms:capture\[118] = zero[31]
-Removing Lhs of wire \Counter_ms:count\[119] = one[30]
-Removing Lhs of wire \Counter_ms:reload\[120] = zero[31]
-Removing Lhs of wire \Counter_ms:stop\[121] = zero[31]
-Removing Lhs of wire \Counter_ms:start\[122] = zero[31]
+Removing Lhs of wire \Counter_ms:capture\[116] = zero[31]
+Removing Lhs of wire \Counter_ms:count\[117] = one[30]
+Removing Lhs of wire \Counter_ms:reload\[118] = zero[31]
+Removing Lhs of wire \Counter_ms:stop\[119] = zero[31]
+Removing Lhs of wire \Counter_ms:start\[120] = zero[31]
 
 ------------------------------------------------------
 Aliased 0 equations, 15 wires.
@@ -205,14 +205,14 @@ CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\wa
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\bin\warp.exe
 Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\BLE_RTC_IMU.cyprj -dcpsoc3 BLE_RTC_IMU.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 0s.846ms
+Warp synthesis phase: Elapsed time ==> 0s.889ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Wednesday, 07 October 2020 16:41:18
+cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Thursday, 08 October 2020 12:22:32
 Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\BLE_RTC_IMU.cyprj -d CY8C6347BZI-BLD53 BLE_RTC_IMU.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.390ms
+Design parsing phase: Elapsed time ==> 0s.377ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech Mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
@@ -789,16 +789,6 @@ Design Equations
             deepsleep_required = 0
             int_type = "00"
         }
-
-    interrupt: Name =SysInt_1ms
-        PORT MAP (
-            interrupt => Net_60 );
-        Properties:
-        {
-            cy_registers = ""
-            deepsleep_required = 0
-            int_type = "10"
-        }
     </CYPRESSTAG>
 </CYPRESSTAG>
 <CYPRESSTAG name="Technology mapping summary" expanded>
@@ -812,7 +802,7 @@ Resource Type                 : Used : Free :  Max :  % Used
 Digital Clocks                :    0 :    8 :    8 :  0.00 %
 Crypto Accelerator            :    0 :    1 :    1 :  0.00 %
 Interrupts [CM0+]             :    5 :   27 :   32 : 15.63 %
-Interrupts [CM4]              :    5 :  142 :  147 :  3.40 %
+Interrupts [CM4]              :    4 :  143 :  147 :  2.72 %
 IO                            :   12 :   66 :   78 : 15.38 %
 Interprocessor Communication  :    0 :   16 :   16 :  0.00 %
 MCWDT                         :    0 :    2 :    2 :  0.00 %
@@ -843,8 +833,8 @@ Sample and Hold               :    0 :    1 :    1 :  0.00 %
 SAR ADC                       :    0 :    1 :    1 :  0.00 %
 DieTemp Sensor                :    0 :    1 :    1 :  0.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.043ms
-Tech Mapping phase: Elapsed time ==> 0s.106ms
+Technology Mapping: Elapsed time ==> 0s.041ms
+Tech Mapping phase: Elapsed time ==> 0s.107ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 <CYPRESSTAG name="FFB & IO Pre Placement">
@@ -875,13 +865,13 @@ CPUSS                               : CPUSS_[FFB(CPUSS,0)]
 </CYPRESSTAG>
 </CYPRESSTAG>
 <CYPRESSTAG name="Real Analog Placement">
-Elapsed time ==> 0.2336799s
+Elapsed time ==> 0.2478371s
 </CYPRESSTAG>
-Analog Placement phase: Elapsed time ==> 1s.104ms
+Analog Placement phase: Elapsed time ==> 1s.122ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 <CYPRESSTAG name="Analog Routing">
-Route success=True, Iterations=1 Elapsed=0.0023784 secs
+Route success=True, Iterations=1 Elapsed=0.0021922 secs
 </CYPRESSTAG>
 Analog Routing phase: Elapsed time ==> 0s.002ms
 </CYPRESSTAG>
@@ -915,7 +905,7 @@ Analog Code Generation phase: Elapsed time ==> 0s.017ms
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
 I2659: No Constrained paths were found. The placer will run in non-timing driven mode.
-I2076: Total run-time: 0.3 sec.
+I2076: Total run-time: 0.4 sec.
 
 </CYPRESSTAG>
 <CYPRESSTAG name="PLD Packing">
@@ -929,7 +919,7 @@ PLD Packing: Elapsed time ==> 0s.000ms
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.013ms
+Partitioning: Elapsed time ==> 0s.012ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Final Placement Summary">
 
@@ -983,16 +973,6 @@ Intr container @ [IntrContainer=(0)]:
     interrupt: Name =\UART_1:SCB_IRQ\
         PORT MAP (
             interrupt => \UART_1:intr_wire\ );
-        Properties:
-        {
-            cy_registers = ""
-            deepsleep_required = 0
-            int_type = "10"
-        }
-  Intr@ [IntrContainer=(0)][IntrId=(90)] 
-    interrupt: Name =SysInt_1ms
-        PORT MAP (
-            interrupt => Net_60 );
         Properties:
         {
             cy_registers = ""
@@ -1685,32 +1665,32 @@ Port | Pin | Fixed |      Type |       Drive Mode |                       Name |
 </CYPRESSTAG>
 </CYPRESSTAG>
 Digital component placer commit/Report: Elapsed time ==> 0s.019ms
-Digital Placement phase: Elapsed time ==> 4s.833ms
+Digital Placement phase: Elapsed time ==> 5s.106ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\bin/sjrouter.exe" --xml-path "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc6/0/route_arch-rrg.cydata" --vh2-path "BLE_RTC_IMU_r.vh2" --pcf-path "BLE_RTC_IMU.pco" --des-name "BLE_RTC_IMU" --dsf-path "BLE_RTC_IMU.dsf" --sdc-path "BLE_RTC_IMU.sdc" --lib-path "BLE_RTC_IMU_r.lib"
 Routing successful.
-Digital Routing phase: Elapsed time ==> 0s.920ms
+Digital Routing phase: Elapsed time ==> 0s.915ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Generation">
-Bitstream Generation phase: Elapsed time ==> 0s.481ms
+Bitstream Generation phase: Elapsed time ==> 0s.450ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Verification">
 Bitstream Verification phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in BLE_RTC_IMU_timing.html.
-Static timing analysis phase: Elapsed time ==> 8s.641ms
+Static timing analysis phase: Elapsed time ==> 8s.788ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
-Data reporting phase: Elapsed time ==> 0s.000ms
+Data reporting phase: Elapsed time ==> 0s.001ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.170ms
+Design database save phase: Elapsed time ==> 0s.152ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 16s.716ms
+cydsfit: Elapsed time ==> 17s.083ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 16s.717ms
-API generation phase: Elapsed time ==> 0s.805ms
-Dependency generation phase: Elapsed time ==> 0s.014ms
+Fitter phase: Elapsed time ==> 17s.084ms
+API generation phase: Elapsed time ==> 0s.777ms
+Dependency generation phase: Elapsed time ==> 0s.024ms
 Cleanup phase: Elapsed time ==> 0s.000ms

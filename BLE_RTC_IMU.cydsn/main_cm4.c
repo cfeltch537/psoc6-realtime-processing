@@ -42,9 +42,9 @@ int main(void)
 
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
     UART_1_Start();
-    
+    rtcInitialize();
     xTaskCreate(motionTask, "Motion Task", 400, 0, 1, 0);
-    xTaskCreate(rtcTask, "RTC Task", 400, 0, 1, 0);
+    xTaskCreate(rtcTask, "RTC Tick Task", 400, 0, 1, 0);
     vTaskStartScheduler();
     
     for(;;)

@@ -1,5 +1,5 @@
 -- Project:   BLE_RTC_IMU
--- Generated: 10/07/2020 16:41:24
+-- Generated: 10/08/2020 12:22:38
 -- PSoC Creator  4.2
 
 ENTITY BLE_RTC_IMU IS
@@ -1284,15 +1284,6 @@ BEGIN
             int_type => "00")
         PORT MAP(
             interrupt => Net_46,
-            clock => ClockBlock_PeriClk);
-
-    SysInt_1ms:interrupt
-        GENERIC MAP(
-            cy_registers => "",
-            deepsleep_required => 0,
-            int_type => "10")
-        PORT MAP(
-            interrupt => Net_60,
             clock => ClockBlock_PeriClk);
 
     \Counter_ms:TCPWM\:TCPWM

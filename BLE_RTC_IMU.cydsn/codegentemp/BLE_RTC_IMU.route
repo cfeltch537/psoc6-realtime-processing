@@ -420,11 +420,6 @@ net Net_46
 	switch ":UDB_Array:DSI_new3:DOT_Sel8.ot8==>:intc_0:interrupt122.interrupt"
 	term   ":intc_0:interrupt122.interrupt"
 end Net_46
-net Net_60
-	term   ":TCPWMcontainer:TCPWM[0].interrupt"
-	switch ":TCPWMcontainer:TCPWM[0].interrupt==>:intc_0:interrupt90.interrupt"
-	term   ":intc_0:interrupt90.interrupt"
-end Net_60
 net Net_66_ff11
 	term   ":Clockcontainer:Clock[0].ff_div_11"
 	switch ":Clockcontainer:Clock[0].ff_div_11==>:Clockcontainer:ff_permute.ff_div_11"

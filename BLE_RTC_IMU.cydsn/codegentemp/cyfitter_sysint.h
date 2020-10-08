@@ -18,14 +18,6 @@
 #define INCLUDED_CYFITTER_SYSINT_H
 #include "cy_device_headers.h"
 
-/* SysInt_1ms */
-#define SysInt_1ms__INTC_CORTEXM4_ASSIGNED 1
-#define SysInt_1ms__INTC_CORTEXM4_PRIORITY 7u
-#define SysInt_1ms__INTC_NUMBER 90u
-#define SysInt_1ms_INTC_CORTEXM4_ASSIGNED 1
-#define SysInt_1ms_INTC_CORTEXM4_PRIORITY 7u
-#define SysInt_1ms_INTC_NUMBER 90u
-
 /* RTC_RTC_IRQ */
 #define RTC_RTC_IRQ__INTC_CORTEXM4_ASSIGNED 1
 #define RTC_RTC_IRQ__INTC_CORTEXM4_PRIORITY 7u

@@ -13,9 +13,8 @@
 
 #pragma once
 
-uint64_t getCurrentTimeMillisISR();
 uint64_t getCurrentTimeMillis();
-void rtcInitialize(void *arg);
+void rtcInitialize();
 void rtcTask(void *arg);
 
 /* [] END OF FILE */

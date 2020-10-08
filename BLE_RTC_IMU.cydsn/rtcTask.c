@@ -27,11 +27,7 @@
 #define USE_SECONDS         (1u)    /* set to one to use, set to zero to not use */
 #define USE_MINUTES         (0u)    /* use seconds OR minutes, not both  */
 
-/* The interrupt status variable */
-static uint32_t alarmFlag = 0u;
-
 uint64_t unixTimeMillis = 1602004740111;
-TickType_t lastRtcSecondTick = 0;
 
 /* 
     If an En field is set to CY_RTC_ALARM_DISABLE, the alarm
@@ -65,26 +61,15 @@ cy_en_rtc_status_t RtcAlarmConfig(void);
 void RtcInterruptHandler(void);
 void RtcStepAlarm(void);
 
-static SemaphoreHandle_t rtcAlarmSemaphore;
-
-uint32_t pdTICKS_TO_MS( xTicks ){
-    return ( ( ( TickType_t ) ( xTicks ) * 1000u ) / configTICK_RATE_HZ );
-}
-
-uint64_t getCurrentTimeMillisISR(){
-    return unixTimeMillis + Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM);
-}
+static SemaphoreHandle_t rtcAlarmSemaphore = NULL;
 
 uint64_t getCurrentTimeMillis(){
     return unixTimeMillis + Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM);
 }
 
-/* UART task */
-void rtcTask(void *arg)
-{
-    (void)arg;
-    printf("Started Task\r\n");
-
+void rtcInitialize(){
+    printf("Initializing RTC and Counter\r\n");
+    
     /* Init RTC - Configure the time and date */
     if(RtcInit() != CY_RTC_SUCCESS)
     {
@@ -106,31 +91,33 @@ void rtcTask(void *arg)
         }
     }
     
-        
-    /* Create a semaphore. It will be set in the UART ISR when data is available */
-    rtcAlarmSemaphore = xSemaphoreCreateBinary();   
+    Counter_ms_Start();
     
     /* Enable RTC interrupt handler function */
     Cy_SysInt_Init(&RTC_RTC_IRQ_cfg, RtcInterruptHandler);
     NVIC_EnableIRQ(RTC_RTC_IRQ_cfg.intrSrc);
     
-    Counter_ms_Start();
+    /* Create a semaphore. It will be set in the UART ISR when data is available */
+    rtcAlarmSemaphore = xSemaphoreCreateBinary();   
+}
+
+/* UART task */
+void rtcTask(void *arg)
+{
+    (void)arg;
+    printf("Started RTC Second Read Task\r\n");
     
     while(1)
     {
         /* Wait here until the semaphore is given (i.e. set) by the ISR */
         xSemaphoreTake(rtcAlarmSemaphore,portMAX_DELAY);
-
-        /* Get Tick Timer */
-        TickType_t tickCount = xTaskGetTickCount();
         
     	/* A custom processing - toggle the LED (RED) */
     	Cy_GPIO_Inv(LED_R_0_PORT, LED_R_0_NUM);		
         
         cy_stc_rtc_config_t rtc_time;
         Cy_RTC_GetDateAndTime(&rtc_time);
-        printf("%u/%02u/%02u %02u:%02u:%02u %.0f\r\n",rtc_time.year, rtc_time.month, rtc_time.date, rtc_time.hour, rtc_time.min, rtc_time.sec, getCurrentTimeMillis()/1.0);
-        printf("%d\r\n", Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM));
+        printf("%u/%02u/%02u %02u:%02u:%02u %.0f\r\n",rtc_time.year, rtc_time.month, rtc_time.date, rtc_time.hour, rtc_time.min, rtc_time.sec, unixTimeMillis/1.0);
     }
 }
 
@@ -251,11 +238,13 @@ void Cy_RTC_Alarm2Interrupt(void)
     unixTimeMillis += 1000;
     
     // If the semaphore causes a task switch you should yield to that task
-    BaseType_t xHigherPriorityTaskWoken;
-    xHigherPriorityTaskWoken = pdFALSE;
-    xSemaphoreGiveFromISR(rtcAlarmSemaphore,&xHigherPriorityTaskWoken); // Tell the UART thread to process the RX FIFO
-    if(xHigherPriorityTaskWoken != pdFALSE)
-        portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+    if(rtcAlarmSemaphore){
+        BaseType_t xHigherPriorityTaskWoken;
+        xHigherPriorityTaskWoken = pdFALSE;
+        xSemaphoreGiveFromISR(rtcAlarmSemaphore,&xHigherPriorityTaskWoken); // Tell the UART thread to process the RX FIFO
+        if(xHigherPriorityTaskWoken != pdFALSE)
+            portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+    }
 }
 
 /******************************************************************************

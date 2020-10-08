@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="LedBlue" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Blue" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="PWR_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="LedBlue" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="R_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="LED_R" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="SysInt_1ms" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Blue" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock_1khz" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Counter_ms" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="TCPWM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
-  <block name="Clock_1khz" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="SysInt_ImuDataReadyINT" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Pin_ImuDataReady_INT" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="LED_B" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="PWR_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="LedGreen" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="RTC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="RTC_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="RTC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
+  <block name="LED_B" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="I2C_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -46,9 +45,9 @@
     <block name="tx" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="or_sclk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
-  <block name="PWR_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="LedGreen" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PWR_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="LED_G" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PWR_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="LedRed" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="R" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
 </blockRegMap>

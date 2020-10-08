@@ -2,7 +2,7 @@
 --	Conversion of BLE_RTC_IMU.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed Oct 07 16:41:18 2020
+--	Thu Oct 08 12:22:32 2020
 --
 
 USE cypress.cypress.all;
@@ -100,7 +100,6 @@ SIGNAL Net_46 : bit;
 SIGNAL tmpIO_0__Pin_ImuDataReady_INT_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_ImuDataReady_INT_net_0 : bit;
 SIGNAL Net_66 : bit;
-SIGNAL Net_60 : bit;
 SIGNAL \Counter_ms:capture\ : bit;
 SIGNAL \Counter_ms:count\ : bit;
 SIGNAL \Counter_ms:reload\ : bit;
@@ -111,6 +110,7 @@ SIGNAL Net_63 : bit;
 SIGNAL Net_61 : bit;
 SIGNAL \Counter_ms:Net_1\ : bit;
 SIGNAL \Counter_ms:Net_2\ : bit;
+SIGNAL Net_60 : bit;
 BEGIN
 
 one <=  ('1') ;
@@ -521,11 +521,6 @@ Clock_1khz:cy_clock_v1_0
 		is_digital=>'0')
 	PORT MAP(clock_out=>Net_66,
 		dig_domain_out=>open);
-SysInt_1ms:cy_mxs40_isr_v1_0
-	GENERIC MAP(cy_registers=>"",
-		deepsleep_required=>'0',
-		int_type=>"10")
-	PORT MAP(int_signal=>Net_60);
 \Counter_ms:TCPWM\:cy_mxs40_tcpwm_v1_0
 	GENERIC MAP(cy_registers=>"",
 		width=>16,

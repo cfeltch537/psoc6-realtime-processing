@@ -143,12 +143,12 @@ void motionTask(void *arg)
 }
 
 void static ImuDataReady_Interrupt(void)
-{
-    printf("%d\r\n", Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM));
-    
+{    
     /* Read the latest available data time and sample*/
     struct imu_sample sample;
-    sample.time = getCurrentTimeMillisISR();
+    sample.time = getCurrentTimeMillis();
+    bmi160_get_sensor_data(BMI160_BOTH_ACCEL_AND_GYRO, &sample.acc, &sample.gyro, &bmi160Dev);
+    numSamples++;
     
     /* We have not woken a task at the start of the ISR. */
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
@@ -156,9 +156,6 @@ void static ImuDataReady_Interrupt(void)
     /* Clear any pending interrupts */
     Cy_GPIO_ClearInterrupt(Pin_ImuDataReady_INT_PORT, Pin_ImuDataReady_INT_NUM);
     NVIC_ClearPendingIRQ(SysInt_ImuDataReadyINT_cfg.intrSrc);
-    
-    bmi160_get_sensor_data(BMI160_BOTH_ACCEL_AND_GYRO, &sample.acc, &sample.gyro, &bmi160Dev);
-    numSamples++;
     
     /* Send imu sample to queue */
     xQueueSendFromISR(myQueue, (void *) &sample, &xHigherPriorityTaskWoken );
