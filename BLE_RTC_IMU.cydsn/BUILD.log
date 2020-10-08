@@ -1,16 +1,73 @@
---------------- Build Started: 09/24/2020 12:07:56 Project: BLE_RTC_IMU, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 10/07/2020 16:46:35 Project: BLE_RTC_IMU, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 The code generation step is up to date.
 The compile step is up to date, no work needs to be done.
 The link step is up to date, no work needs to be done.
 arm-none-eabi-gcc.exe -mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mthumb -I..\BMI160_driver -I. -IGenerated_Source\PSoC6 -IGenerated_Source\PSoC6\pdl\cmsis/include/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/ip/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/psoc63/include/ -IGenerated_Source\PSoC6\pdl\drivers/peripheral/ -IGenerated_Source\PSoC6\pdl\middleware/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/include/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/portable/GCC/CM4F/ -IGenerated_Source\PSoC6\pdl\utilities/ -Wa,-alh=.\CortexM4\ARM_GCC_541\Debug/imuTask.lst -g -D DEBUG -D CY_CORE_ID=0 -D CY_PSOC_CREATOR_USED=1 -D CY8C6347BZI_BLD53 -Wall -ffunction-sections -ffat-lto-objects -Og -c imuTask.c -o .\CortexM4\ARM_GCC_541\Debug\imuTask.o
-arm-none-eabi-gcc.exe -Wl,--start-group -o C:\Users\codyg\git\PSoC6\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_link.elf .\CortexM4\ARM_GCC_541\Debug\startup_psoc63_cm4.o .\CortexM4\ARM_GCC_541\Debug\main_cm4.o .\CortexM4\ARM_GCC_541\Debug\system_psoc63_cm4.o .\CortexM4\ARM_GCC_541\Debug\imuTask.o .\CortexM4\ARM_GCC_541\Debug\rtcTask.o .\CortexM4\ARM_GCC_541\Debug\bmi160.o .\CortexM4\ARM_GCC_541\Debug\cy_ipc_config.o .\CortexM4\ARM_GCC_541\Debug\stdio_user.o .\CortexM4\ARM_GCC_541\Debug\cyfitter_sysint_cfg.o .\CortexM4\ARM_GCC_541\Debug\cymetadata.o .\CortexM4\ARM_GCC_541\Debug\I2C_1.o .\CortexM4\ARM_GCC_541\Debug\UART_1.o .\CortexM4\ARM_GCC_541\Debug\cy_sysint.o .\CortexM4\ARM_GCC_541\Debug\cy_ipc_drv.o .\CortexM4\ARM_GCC_541\Debug\cy_ipc_sema.o .\CortexM4\ARM_GCC_541\Debug\cy_ipc_pipe.o .\CortexM4\ARM_GCC_541\Debug\cy_sysclk.o .\CortexM4\ARM_GCC_541\Debug\cy_wdt.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_common.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_i2c.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_ezi2c.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_spi.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_uart.o .\CortexM4\ARM_GCC_541\Debug\cy_efuse.o .\CortexM4\ARM_GCC_541\Debug\cy_flash.o .\CortexM4\ARM_GCC_541\Debug\cy_gpio.o .\CortexM4\ARM_GCC_541\Debug\cy_sysanalog.o .\CortexM4\ARM_GCC_541\Debug\cy_syspm.o .\CortexM4\ARM_GCC_541\Debug\cy_syslib.o .\CortexM4\ARM_GCC_541\Debug\cy_syslib_gcc.o .\CortexM4\ARM_GCC_541\Debug\cy_trigmux.o .\CortexM4\ARM_GCC_541\Debug\cy_systick.o .\CortexM4\ARM_GCC_541\Debug\cy_profile.o .\CortexM4\ARM_GCC_541\Debug\cy_prot.o .\CortexM4\ARM_GCC_541\Debug\cy_lvd.o .\CortexM4\ARM_GCC_541\Debug\cy_rtc.o .\CortexM4\ARM_GCC_541\Debug\cy_ble_clk.o .\CortexM4\ARM_GCC_541\Debug\croutine.o .\CortexM4\ARM_GCC_541\Debug\event_groups.o .\CortexM4\ARM_GCC_541\Debug\list.o .\CortexM4\ARM_GCC_541\Debug\queue.o .\CortexM4\ARM_GCC_541\Debug\tasks.o .\CortexM4\ARM_GCC_541\Debug\timers.o .\CortexM4\ARM_GCC_541\Debug\port.o .\CortexM4\ARM_GCC_541\Debug\heap_1.o .\CortexM4\ARM_GCC_541\Debug\retarget.o .\CortexM4\ARM_GCC_541\Debug\RTC.o -mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mthumb -L Generated_Source\PSoC6 -Wl,-Map,.\CortexM4\ARM_GCC_541\Debug/BLE_RTC_IMU.map -T cy8c6xx7_cm4_dual.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
-"C:\Program Files (x86)\Cypress\PDL\3.0.1\tools\win\elf\cymcuelftool.exe" --sign C:\Users\codyg\git\PSoC6\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_link.elf --output C:\Users\codyg\git\PSoC6\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_signed.elf --hex C:\Users\codyg\git\PSoC6\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_signed.hex
+In file included from ..\BMI160_driver/bmi160.h:62:0,
+                 from imuTask.c:18:
+..\BMI160_driver/bmi160_defs.h:122:0: warning: "LITTLE_ENDIAN" redefined
+ #define LITTLE_ENDIAN   1
+ ^
+In file included from c:\program files (x86)\cypress\psoc creator\4.2\psoc creator\import\gnu\arm\5.4.1\arm-none-eabi\include\sys\types.h:67:0,
+                 from c:\program files (x86)\cypress\psoc creator\4.2\psoc creator\import\gnu\arm\5.4.1\arm-none-eabi\include\stdio.h:48,
+                 from imuTask.c:17:
+c:\program files (x86)\cypress\psoc creator\4.2\psoc creator\import\gnu\arm\5.4.1\arm-none-eabi\include\machine\endian.h:17:0: note: this is the location of the previous definition
+ #define LITTLE_ENDIAN _LITTLE_ENDIAN
+ ^
+imuTask.c: In function 'motionTask':
+imuTask.c:119:31: warning: unused variable 'gyro' [-Wunused-variable]
+     struct bmi160_sensor_data gyro;
+                               ^
+imuTask.c:118:31: warning: unused variable 'acc' [-Wunused-variable]
+     struct bmi160_sensor_data acc;
+                               ^
+imuTask.c:114:16: warning: variable 'myLastUnblock' set but not used [-Wunused-but-set-variable]
+     TickType_t myLastUnblock;
+                ^
+imuTask.c: In function 'ImuDataReady_Interrupt':
+imuTask.c:147:12: warning: format '%d' expects argument of type 'int', but argument 2 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+     printf("%d\r\n", Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM));
+            ^
+imuTask.c:147:12: warning: format '%d' expects argument of type 'int', but argument 2 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+arm-none-eabi-gcc.exe -mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mthumb -I..\BMI160_driver -I. -IGenerated_Source\PSoC6 -IGenerated_Source\PSoC6\pdl\cmsis/include/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/ip/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/psoc63/include/ -IGenerated_Source\PSoC6\pdl\drivers/peripheral/ -IGenerated_Source\PSoC6\pdl\middleware/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/include/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/portable/GCC/CM4F/ -IGenerated_Source\PSoC6\pdl\utilities/ -Wa,-alh=.\CortexM4\ARM_GCC_541\Debug/rtcTask.lst -g -D DEBUG -D CY_CORE_ID=0 -D CY_PSOC_CREATOR_USED=1 -D CY8C6347BZI_BLD53 -Wall -ffunction-sections -ffat-lto-objects -Og -c rtcTask.c -o .\CortexM4\ARM_GCC_541\Debug\rtcTask.o
+rtcTask.c: In function 'pdTICKS_TO_MS':
+rtcTask.c:70:10: warning: type of 'xTicks' defaults to 'int' [-Wimplicit-int]
+ uint32_t pdTICKS_TO_MS( xTicks ){
+          ^
+rtcTask.c: In function 'rtcTask':
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+         printf("%u/%02u/%02u %02u:%02u:%02u %.0f\r\n",rtc_time.year, rtc_time.month, rtc_time.date, rtc_time.hour, rtc_time.min, rtc_time.sec, getCurrentTimeMillis()/1.0);
+                ^
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 6 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 7 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 2 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 5 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 6 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:132:16: warning: format '%u' expects argument of type 'unsigned int', but argument 7 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:133:16: warning: format '%d' expects argument of type 'int', but argument 2 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+         printf("%d\r\n", Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM));
+                ^
+rtcTask.c:133:16: warning: format '%d' expects argument of type 'int', but argument 2 has type 'uint32_t {aka long unsigned int}' [-Wformat=]
+rtcTask.c:125:20: warning: unused variable 'tickCount' [-Wunused-variable]
+         TickType_t tickCount = xTaskGetTickCount();
+                    ^
+rtcTask.c: At top level:
+rtcTask.c:31:17: warning: 'alarmFlag' defined but not used [-Wunused-variable]
+ static uint32_t alarmFlag = 0u;
+                 ^
+arm-none-eabi-gcc.exe -Wl,--start-group -o C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_link.elf .\CortexM4\ARM_GCC_541\Debug\startup_psoc63_cm4.o .\CortexM4\ARM_GCC_541\Debug\main_cm4.o .\CortexM4\ARM_GCC_541\Debug\system_psoc63_cm4.o .\CortexM4\ARM_GCC_541\Debug\imuTask.o .\CortexM4\ARM_GCC_541\Debug\rtcTask.o .\CortexM4\ARM_GCC_541\Debug\bmi160.o .\CortexM4\ARM_GCC_541\Debug\cy_ipc_config.o .\CortexM4\ARM_GCC_541\Debug\stdio_user.o .\CortexM4\ARM_GCC_541\Debug\cyfitter_sysint_cfg.o .\CortexM4\ARM_GCC_541\Debug\cymetadata.o .\CortexM4\ARM_GCC_541\Debug\I2C_1.o .\CortexM4\ARM_GCC_541\Debug\UART_1.o .\CortexM4\ARM_GCC_541\Debug\cy_sysint.o .\CortexM4\ARM_GCC_541\Debug\cy_ipc_drv.o .\CortexM4\ARM_GCC_541\Debug\cy_ipc_sema.o .\CortexM4\ARM_GCC_541\Debug\cy_ipc_pipe.o .\CortexM4\ARM_GCC_541\Debug\cy_sysclk.o .\CortexM4\ARM_GCC_541\Debug\cy_wdt.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_common.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_i2c.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_ezi2c.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_spi.o .\CortexM4\ARM_GCC_541\Debug\cy_scb_uart.o .\CortexM4\ARM_GCC_541\Debug\cy_efuse.o .\CortexM4\ARM_GCC_541\Debug\cy_flash.o .\CortexM4\ARM_GCC_541\Debug\cy_gpio.o .\CortexM4\ARM_GCC_541\Debug\cy_sysanalog.o .\CortexM4\ARM_GCC_541\Debug\cy_syspm.o .\CortexM4\ARM_GCC_541\Debug\cy_syslib.o .\CortexM4\ARM_GCC_541\Debug\cy_syslib_gcc.o .\CortexM4\ARM_GCC_541\Debug\cy_trigmux.o .\CortexM4\ARM_GCC_541\Debug\cy_systick.o .\CortexM4\ARM_GCC_541\Debug\cy_profile.o .\CortexM4\ARM_GCC_541\Debug\cy_prot.o .\CortexM4\ARM_GCC_541\Debug\cy_lvd.o .\CortexM4\ARM_GCC_541\Debug\cy_rtc.o .\CortexM4\ARM_GCC_541\Debug\cy_tcpwm_counter.o .\CortexM4\ARM_GCC_541\Debug\cy_tcpwm_pwm.o .\CortexM4\ARM_GCC_541\Debug\cy_tcpwm_quaddec.o .\CortexM4\ARM_GCC_541\Debug\cy_ble_clk.o .\CortexM4\ARM_GCC_541\Debug\croutine.o .\CortexM4\ARM_GCC_541\Debug\event_groups.o .\CortexM4\ARM_GCC_541\Debug\list.o .\CortexM4\ARM_GCC_541\Debug\queue.o .\CortexM4\ARM_GCC_541\Debug\tasks.o .\CortexM4\ARM_GCC_541\Debug\timers.o .\CortexM4\ARM_GCC_541\Debug\port.o .\CortexM4\ARM_GCC_541\Debug\heap_1.o .\CortexM4\ARM_GCC_541\Debug\retarget.o .\CortexM4\ARM_GCC_541\Debug\RTC.o .\CortexM4\ARM_GCC_541\Debug\Counter_ms.o -mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mthumb -L Generated_Source\PSoC6 -Wl,-Map,.\CortexM4\ARM_GCC_541\Debug/BLE_RTC_IMU.map -T cy8c6xx7_cm4_dual.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
+"C:\Program Files (x86)\Cypress\PDL\3.0.1\tools\win\elf\cymcuelftool.exe" --sign C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_link.elf --output C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_signed.elf --hex C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_signed.hex
 No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
-"C:\Program Files (x86)\Cypress\PDL\3.0.1\tools\win\elf\cymcuelftool.exe" --merge C:\Users\codyg\git\PSoC6\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_signed.elf C:\Users\codyg\git\PSoC6\BLE_RTC_IMU.cydsn\CortexM0p\ARM_GCC_541\Debug\BLE_RTC_IMU.elf --output C:\Users\codyg\git\PSoC6\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU.elf --hex C:\Users\codyg\git\PSoC6\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU.hex
+"C:\Program Files (x86)\Cypress\PDL\3.0.1\tools\win\elf\cymcuelftool.exe" --merge C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU_signed.elf C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CortexM0p\ARM_GCC_541\Debug\BLE_RTC_IMU.elf --output C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU.elf --hex C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU.hex
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
-"C:\Program Files (x86)\Cypress\PDL\3.0.1\tools\win\elf\cymcuelftool.exe" -A C:\Users\codyg\git\PSoC6\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU.elf
-code:46792	sram:51804
---------------- Build Succeeded: 09/24/2020 12:07:58 ---------------
+"C:\Program Files (x86)\Cypress\PDL\3.0.1\tools\win\elf\cymcuelftool.exe" -A C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CortexM4\ARM_GCC_541\Debug\BLE_RTC_IMU.elf
+code:61000	sram:51832
+--------------- Build Succeeded: 10/07/2020 16:46:37 ---------------

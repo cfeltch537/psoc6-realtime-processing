@@ -1,5 +1,5 @@
 # BLE_RTC_IMU
-# 2020-09-23 18:04:58Z
+# 2020-10-07 20:41:24Z
 
 dont_use_location p4usbcell -1 -1 0
 dont_use_location USB -1 -1 0
@@ -17,3 +17,4 @@ set_io "\UART_1:rx(0)\" iocell 5 0
 set_io "LED_B(0)" iocell 11 1
 set_io "LED_G(0)" iocell 1 1
 set_io "LED_R(0)" iocell 0 3
+set_io "Pin_ImuDataReady_INT(0)" iocell 13 1

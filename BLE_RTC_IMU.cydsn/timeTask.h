@@ -9,13 +9,13 @@
  *
  * ========================================
 */
-#include <stdio.h>
 
 #pragma once
+#include <stdio.h>
 
-uint64_t getCurrentTimeMillisISR();
-uint64_t getCurrentTimeMillis();
-void rtcInitialize(void *arg);
-void rtcTask(void *arg);
+void timeTask(void *arg);
+void startTimekeeping(void);
+uint64_t getTimestamp(void);
+uint32_t getTick(void);
 
 /* [] END OF FILE */

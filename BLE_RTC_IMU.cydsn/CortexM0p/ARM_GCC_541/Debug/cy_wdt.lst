@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
   29:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** * Initializes the Watchdog timer to its default state.
   30:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** *
   31:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** * The given default setting of the WDT:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 2
 
 
   32:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** * The WDT is unlocked and disabled.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
   86:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** * \endinternal
   87:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** *******************************************************************************/
   88:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** static bool Cy_WDT_Locked(void)
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 3
 
 
   89:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** {
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
   74 000c 8B58     		ldr	r3, [r1, r2]
   75 000e C024     		movs	r4, #192
   76 0010 2406     		lsls	r4, r4, #24
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 4
 
 
   77 0012 2343     		orrs	r3, r4
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  113 0008 C022     		movs	r2, #192
  114 000a 5200     		lsls	r2, r2, #1
  115 000c 8B58     		ldr	r3, [r1, r2]
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 5
 
 
  116 000e 9B00     		lsls	r3, r3, #2
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  130:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** {
  149              		.loc 1 130 0
  150              		.cfi_startproc
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 6
 
 
  151              		@ args = 0, pretend = 0, frame = 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  141:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** *
  142:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** * Configures the number of the most significant bits of the Watchdog timer that 
  143:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** * are not checked against the match. Unlock the Watchdog timer before 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 7
 
 
  144:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** * ignoring the bits setting. Call the Cy_WDT_Unlock() API to unlock the WDT.
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  228              		@ sp needed
  229              	.LVL9:
  230 0026 70BD     		pop	{r4, r5, r6, pc}
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 8
 
 
  231              	.L17:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
    1:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** /***************************************************************************//**
    2:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** * \file cy_wdt.h
    3:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** * \version 1.0.1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 9
 
 
    4:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** *
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
   58:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** *
   59:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** * You can also reduce the entire WDT counter period by 
   60:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** * specifying the number of most significant bits that are ignored in the WDT 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 10
 
 
   61:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** * counter. For example, if the Cy_WDT_SetIgnoreBits() function is called with
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  115:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** * A pending interrupt to the WDT block must be cleared by calling the 
  116:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** * Cy_WDT_ClearInterrupt() function. The call to the function will clear the 
  117:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** * unhandled WDT interrupt counter.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 11
 
 
  118:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** *
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  172:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** *   <tr>
  173:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** *     <td>1.0</td>
  174:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** *     <td>Initial version</td>
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 12
 
 
  175:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** *     <td></td>
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  229:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** 
  230:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** /** \} group_wdt_macros */
  231:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 13
 
 
  232:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.h **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  284 002a 8343     		bics	r3, r0
  285 002c 8B50     		str	r3, [r1, r2]
  286              	.LBE5:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 14
 
 
  287              	.LBE4:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  324              		@ link register save eliminated.
  178:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c ****     SRSS->SRSS_INTR = _VAL2FLD(SRSS_SRSS_INTR_WDT_MATCH, 1u);
  325              		.loc 1 178 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 15
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 15
 
 
  326 0000 034A     		ldr	r2, .L22
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  361              	.LVL17:
  198:Generated_Source\PSoC6\pdl\drivers\peripheral\wdt/cy_wdt.c **** }
  362              		.loc 1 198 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 16
 
 
  363              		@ sp needed
@@ -921,8 +921,8 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  380 000b 01       		.uleb128 0x1
  381 000c 69000000 		.4byte	.LASF107
  382 0010 0C       		.byte	0xc
- 383 0011 E0050000 		.4byte	.LASF108
- 384 0015 26030000 		.4byte	.LASF109
+ 383 0011 B5050000 		.4byte	.LASF108
+ 384 0015 A7060000 		.4byte	.LASF109
  385 0019 00000000 		.4byte	.Ldebug_ranges0+0
  386 001d 00000000 		.4byte	0
  387 0021 00000000 		.4byte	.Ldebug_line0
@@ -933,7 +933,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  392 002c 02       		.uleb128 0x2
  393 002d 01       		.byte	0x1
  394 002e 08       		.byte	0x8
- 395 002f 5E030000 		.4byte	.LASF1
+ 395 002f 33030000 		.4byte	.LASF1
  396 0033 02       		.uleb128 0x2
  397 0034 02       		.byte	0x2
  398 0035 05       		.byte	0x5
@@ -941,7 +941,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  400 003a 02       		.uleb128 0x2
  401 003b 02       		.byte	0x2
  402 003c 07       		.byte	0x7
- 403 003d 55040000 		.4byte	.LASF3
+ 403 003d 2A040000 		.4byte	.LASF3
  404 0041 02       		.uleb128 0x2
  405 0042 04       		.byte	0x4
  406 0043 05       		.byte	0x5
@@ -954,18 +954,18 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  413 0053 02       		.uleb128 0x2
  414 0054 04       		.byte	0x4
  415 0055 07       		.byte	0x7
- 416 0056 67050000 		.4byte	.LASF5
+ 416 0056 3C050000 		.4byte	.LASF5
  417 005a 02       		.uleb128 0x2
  418 005b 08       		.byte	0x8
  419 005c 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 17
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 17
 
 
  420 005d 41020000 		.4byte	.LASF6
  421 0061 02       		.uleb128 0x2
  422 0062 08       		.byte	0x8
  423 0063 07       		.byte	0x7
- 424 0064 C1030000 		.4byte	.LASF7
+ 424 0064 96030000 		.4byte	.LASF7
  425 0068 04       		.uleb128 0x4
  426 0069 04       		.byte	0x4
  427 006a 05       		.byte	0x5
@@ -973,9 +973,9 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  429 006f 02       		.uleb128 0x2
  430 0070 04       		.byte	0x4
  431 0071 07       		.byte	0x7
- 432 0072 F7030000 		.4byte	.LASF8
+ 432 0072 CC030000 		.4byte	.LASF8
  433 0076 03       		.uleb128 0x3
- 434 0077 D8030000 		.4byte	.LASF10
+ 434 0077 AD030000 		.4byte	.LASF10
  435 007b 04       		.byte	0x4
  436 007c 30       		.byte	0x30
  437 007d 48000000 		.4byte	0x48
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  474 00d2 07       		.uleb128 0x7
  475 00d3 8D000000 		.4byte	0x8d
  476 00d7 E2000000 		.4byte	0xe2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 18
 
 
  477 00db 08       		.uleb128 0x8
@@ -1052,7 +1052,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  505 0115 22       		.byte	0x22
  506 0116 AB010000 		.4byte	0x1ab
  507 011a 0A       		.uleb128 0xa
- 508 011b 64060000 		.4byte	.LASF12
+ 508 011b 39060000 		.4byte	.LASF12
  509 011f 05       		.byte	0x5
  510 0120 23       		.byte	0x23
  511 0121 8D000000 		.4byte	0x8d
@@ -1064,7 +1064,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  517 012d 88000000 		.4byte	0x88
  518 0131 04       		.byte	0x4
  519 0132 0A       		.uleb128 0xa
- 520 0133 8B060000 		.4byte	.LASF14
+ 520 0133 60060000 		.4byte	.LASF14
  521 0137 05       		.byte	0x5
  522 0138 25       		.byte	0x25
  523 0139 88000000 		.4byte	0x88
@@ -1076,9 +1076,9 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  529 0145 88000000 		.4byte	0x88
  530 0149 0C       		.byte	0xc
  531 014a 0A       		.uleb128 0xa
- 532 014b 42060000 		.4byte	.LASF16
+ 532 014b 17060000 		.4byte	.LASF16
  533 014f 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 19
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 19
 
 
  534 0150 27       		.byte	0x27
@@ -1091,7 +1091,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  541 015d 88000000 		.4byte	0x88
  542 0161 14       		.byte	0x14
  543 0162 0A       		.uleb128 0xa
- 544 0163 D2060000 		.4byte	.LASF18
+ 544 0163 E6060000 		.4byte	.LASF18
  545 0167 05       		.byte	0x5
  546 0168 29       		.byte	0x29
  547 0169 88000000 		.4byte	0x88
@@ -1115,13 +1115,13 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  565 018d 8D000000 		.4byte	0x8d
  566 0191 24       		.byte	0x24
  567 0192 0A       		.uleb128 0xa
- 568 0193 1B060000 		.4byte	.LASF22
+ 568 0193 F0050000 		.4byte	.LASF22
  569 0197 05       		.byte	0x5
  570 0198 2D       		.byte	0x2d
  571 0199 88000000 		.4byte	0x88
  572 019d 28       		.byte	0x28
  573 019e 0A       		.uleb128 0xa
- 574 019f 18050000 		.4byte	.LASF23
+ 574 019f ED040000 		.4byte	.LASF23
  575 01a3 05       		.byte	0x5
  576 01a4 2E       		.byte	0x2e
  577 01a5 B0010000 		.4byte	0x1b0
@@ -1138,20 +1138,20 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  588 01bc 12010000 		.4byte	0x112
  589 01c0 0B       		.uleb128 0xb
  590 01c1 30FF     		.2byte	0xff30
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 20
 
 
  591 01c3 05       		.byte	0x5
  592 01c4 34       		.byte	0x34
  593 01c5 34050000 		.4byte	0x534
  594 01c9 0A       		.uleb128 0xa
- 595 01ca B9030000 		.4byte	.LASF25
+ 595 01ca 8E030000 		.4byte	.LASF25
  596 01ce 05       		.byte	0x5
  597 01cf 35       		.byte	0x35
  598 01d0 88000000 		.4byte	0x88
  599 01d4 00       		.byte	0
  600 01d5 0A       		.uleb128 0xa
- 601 01d6 26060000 		.4byte	.LASF26
+ 601 01d6 FB050000 		.4byte	.LASF26
  602 01da 05       		.byte	0x5
  603 01db 36       		.byte	0x36
  604 01dc 88000000 		.4byte	0x88
@@ -1163,7 +1163,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  610 01e8 88000000 		.4byte	0x88
  611 01ec 08       		.byte	0x8
  612 01ed 0A       		.uleb128 0xa
- 613 01ee 64060000 		.4byte	.LASF12
+ 613 01ee 39060000 		.4byte	.LASF12
  614 01f2 05       		.byte	0x5
  615 01f3 38       		.byte	0x38
  616 01f4 39050000 		.4byte	0x539
@@ -1175,7 +1175,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  622 0200 88000000 		.4byte	0x88
  623 0204 14       		.byte	0x14
  624 0205 0A       		.uleb128 0xa
- 625 0206 2C040000 		.4byte	.LASF29
+ 625 0206 01040000 		.4byte	.LASF29
  626 020a 05       		.byte	0x5
  627 020b 3A       		.byte	0x3a
  628 020c 88000000 		.4byte	0x88
@@ -1187,22 +1187,22 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  634 0218 8D000000 		.4byte	0x8d
  635 021c 1C       		.byte	0x1c
  636 021d 0A       		.uleb128 0xa
- 637 021e 18050000 		.4byte	.LASF23
+ 637 021e ED040000 		.4byte	.LASF23
  638 0222 05       		.byte	0x5
  639 0223 3C       		.byte	0x3c
  640 0224 53050000 		.4byte	0x553
  641 0228 20       		.byte	0x20
  642 0229 0A       		.uleb128 0xa
- 643 022a 51030000 		.4byte	.LASF31
+ 643 022a 26030000 		.4byte	.LASF31
  644 022e 05       		.byte	0x5
  645 022f 3D       		.byte	0x3d
  646 0230 58050000 		.4byte	0x558
  647 0234 80       		.byte	0x80
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 21
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 21
 
 
  648 0235 0A       		.uleb128 0xa
- 649 0236 22050000 		.4byte	.LASF32
+ 649 0236 F7040000 		.4byte	.LASF32
  650 023a 05       		.byte	0x5
  651 023b 3E       		.byte	0x3e
  652 023c 62050000 		.4byte	0x562
@@ -1214,7 +1214,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  658 0248 88000000 		.4byte	0x88
  659 024c 8001     		.2byte	0x180
  660 024e 0C       		.uleb128 0xc
- 661 024f 10050000 		.4byte	.LASF34
+ 661 024f E5040000 		.4byte	.LASF34
  662 0253 05       		.byte	0x5
  663 0254 40       		.byte	0x40
  664 0255 88000000 		.4byte	0x88
@@ -1232,7 +1232,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  676 026f 6C050000 		.4byte	0x56c
  677 0273 8C01     		.2byte	0x18c
  678 0275 0C       		.uleb128 0xc
- 679 0276 A2050000 		.4byte	.LASF37
+ 679 0276 77050000 		.4byte	.LASF37
  680 027a 05       		.byte	0x5
  681 027b 43       		.byte	0x43
  682 027c 71050000 		.4byte	0x571
@@ -1250,7 +1250,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  694 0296 86050000 		.4byte	0x586
  695 029a 4003     		.2byte	0x340
  696 029c 0C       		.uleb128 0xc
- 697 029d 9F040000 		.4byte	.LASF40
+ 697 029d 74040000 		.4byte	.LASF40
  698 02a1 05       		.byte	0x5
  699 02a2 46       		.byte	0x46
  700 02a3 8B050000 		.4byte	0x58b
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  702 02a9 0C       		.uleb128 0xc
  703 02aa AE010000 		.4byte	.LASF41
  704 02ae 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 22
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 22
 
 
  705 02af 47       		.byte	0x47
@@ -1271,7 +1271,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  712 02bd 88000000 		.4byte	0x88
  713 02c1 0005     		.2byte	0x500
  714 02c3 0C       		.uleb128 0xc
- 715 02c4 AF050000 		.4byte	.LASF43
+ 715 02c4 84050000 		.4byte	.LASF43
  716 02c8 05       		.byte	0x5
  717 02c9 49       		.byte	0x49
  718 02ca 88000000 		.4byte	0x88
@@ -1301,7 +1301,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  742 02fe 88000000 		.4byte	0x88
  743 0302 1405     		.2byte	0x514
  744 0304 0C       		.uleb128 0xc
- 745 0305 B3060000 		.4byte	.LASF48
+ 745 0305 88060000 		.4byte	.LASF48
  746 0309 05       		.byte	0x5
  747 030a 4E       		.byte	0x4e
  748 030b 88000000 		.4byte	0x88
@@ -1313,12 +1313,12 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  754 0318 88000000 		.4byte	0x88
  755 031c 1C05     		.2byte	0x51c
  756 031e 0C       		.uleb128 0xc
- 757 031f 68040000 		.4byte	.LASF50
+ 757 031f 3D040000 		.4byte	.LASF50
  758 0323 05       		.byte	0x5
  759 0324 50       		.byte	0x50
  760 0325 8D000000 		.4byte	0x8d
  761 0329 2005     		.2byte	0x520
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 23
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 23
 
 
  762 032b 0C       		.uleb128 0xc
@@ -1328,7 +1328,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  766 0332 AF050000 		.4byte	0x5af
  767 0336 2405     		.2byte	0x524
  768 0338 0C       		.uleb128 0xc
- 769 0339 A4060000 		.4byte	.LASF52
+ 769 0339 79060000 		.4byte	.LASF52
  770 033d 05       		.byte	0x5
  771 033e 52       		.byte	0x52
  772 033f 88000000 		.4byte	0x88
@@ -1340,19 +1340,19 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  778 034c 8D000000 		.4byte	0x8d
  779 0350 3005     		.2byte	0x530
  780 0352 0C       		.uleb128 0xc
- 781 0353 79050000 		.4byte	.LASF54
+ 781 0353 4E050000 		.4byte	.LASF54
  782 0357 05       		.byte	0x5
  783 0358 54       		.byte	0x54
  784 0359 B9050000 		.4byte	0x5b9
  785 035d 3405     		.2byte	0x534
  786 035f 0C       		.uleb128 0xc
- 787 0360 D0040000 		.4byte	.LASF55
+ 787 0360 A5040000 		.4byte	.LASF55
  788 0364 05       		.byte	0x5
  789 0365 55       		.byte	0x55
  790 0366 88000000 		.4byte	0x88
  791 036a 3C05     		.2byte	0x53c
  792 036c 0C       		.uleb128 0xc
- 793 036d 83050000 		.4byte	.LASF56
+ 793 036d 58050000 		.4byte	.LASF56
  794 0371 05       		.byte	0x5
  795 0372 56       		.byte	0x56
  796 0373 C3050000 		.4byte	0x5c3
@@ -1364,28 +1364,28 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  802 0380 88000000 		.4byte	0x88
  803 0384 8005     		.2byte	0x580
  804 0386 0C       		.uleb128 0xc
- 805 0387 E0040000 		.4byte	.LASF58
+ 805 0387 B5040000 		.4byte	.LASF58
  806 038b 05       		.byte	0x5
  807 038c 58       		.byte	0x58
  808 038d 88000000 		.4byte	0x88
  809 0391 8405     		.2byte	0x584
  810 0393 0C       		.uleb128 0xc
- 811 0394 F0040000 		.4byte	.LASF59
+ 811 0394 C5040000 		.4byte	.LASF59
  812 0398 05       		.byte	0x5
  813 0399 59       		.byte	0x59
  814 039a 88000000 		.4byte	0x88
  815 039e 8805     		.2byte	0x588
  816 03a0 0C       		.uleb128 0xc
- 817 03a1 00050000 		.4byte	.LASF60
+ 817 03a1 D5040000 		.4byte	.LASF60
  818 03a5 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 24
 
 
  819 03a6 5A       		.byte	0x5a
  820 03a7 88000000 		.4byte	0x88
  821 03ab 8C05     		.2byte	0x58c
  822 03ad 0C       		.uleb128 0xc
- 823 03ae 04040000 		.4byte	.LASF61
+ 823 03ae D9030000 		.4byte	.LASF61
  824 03b2 05       		.byte	0x5
  825 03b3 5B       		.byte	0x5b
  826 03b4 88000000 		.4byte	0x88
@@ -1403,7 +1403,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  838 03ce E2050000 		.4byte	0x5e2
  839 03d2 0006     		.2byte	0x600
  840 03d4 0C       		.uleb128 0xc
- 841 03d5 6C030000 		.4byte	.LASF64
+ 841 03d5 41030000 		.4byte	.LASF64
  842 03d9 05       		.byte	0x5
  843 03da 5E       		.byte	0x5e
  844 03db 8D000000 		.4byte	0x8d
@@ -1415,19 +1415,19 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  850 03e8 E7050000 		.4byte	0x5e7
  851 03ec 4006     		.2byte	0x640
  852 03ee 0C       		.uleb128 0xc
- 853 03ef 77030000 		.4byte	.LASF66
+ 853 03ef 4C030000 		.4byte	.LASF66
  854 03f3 05       		.byte	0x5
  855 03f4 60       		.byte	0x60
  856 03f5 01060000 		.4byte	0x601
  857 03f9 7C06     		.2byte	0x67c
  858 03fb 0C       		.uleb128 0xc
- 859 03fc C6040000 		.4byte	.LASF67
+ 859 03fc 9B040000 		.4byte	.LASF67
  860 0400 05       		.byte	0x5
  861 0401 61       		.byte	0x61
  862 0402 88000000 		.4byte	0x88
  863 0406 0007     		.2byte	0x700
  864 0408 0C       		.uleb128 0xc
- 865 0409 34060000 		.4byte	.LASF68
+ 865 0409 09060000 		.4byte	.LASF68
  866 040d 05       		.byte	0x5
  867 040e 62       		.byte	0x62
  868 040f 88000000 		.4byte	0x88
@@ -1438,11 +1438,11 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  873 041b 63       		.byte	0x63
  874 041c 88000000 		.4byte	0x88
  875 0420 0807     		.2byte	0x708
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 25
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 25
 
 
  876 0422 0C       		.uleb128 0xc
- 877 0423 3A040000 		.4byte	.LASF70
+ 877 0423 0F040000 		.4byte	.LASF70
  878 0427 05       		.byte	0x5
  879 0428 64       		.byte	0x64
  880 0429 8D000000 		.4byte	0x8d
@@ -1454,37 +1454,37 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  886 0436 88000000 		.4byte	0x88
  887 043a 1007     		.2byte	0x710
  888 043c 0C       		.uleb128 0xc
- 889 043d 82030000 		.4byte	.LASF72
+ 889 043d 57030000 		.4byte	.LASF72
  890 0441 05       		.byte	0x5
  891 0442 66       		.byte	0x66
  892 0443 1B060000 		.4byte	0x61b
  893 0447 1407     		.2byte	0x714
  894 0449 0C       		.uleb128 0xc
- 895 044a 4B040000 		.4byte	.LASF73
+ 895 044a 20040000 		.4byte	.LASF73
  896 044e 05       		.byte	0x5
  897 044f 67       		.byte	0x67
  898 0450 88000000 		.4byte	0x88
  899 0454 0008     		.2byte	0x800
  900 0456 0C       		.uleb128 0xc
- 901 0457 99060000 		.4byte	.LASF74
+ 901 0457 6E060000 		.4byte	.LASF74
  902 045b 05       		.byte	0x5
  903 045c 68       		.byte	0x68
  904 045d 88000000 		.4byte	0x88
  905 0461 0408     		.2byte	0x804
  906 0463 0C       		.uleb128 0xc
- 907 0464 8D030000 		.4byte	.LASF75
+ 907 0464 62030000 		.4byte	.LASF75
  908 0468 05       		.byte	0x5
  909 0469 69       		.byte	0x69
  910 046a 36060000 		.4byte	0x636
  911 046e 0808     		.2byte	0x808
  912 0470 0C       		.uleb128 0xc
- 913 0471 13040000 		.4byte	.LASF76
+ 913 0471 E8030000 		.4byte	.LASF76
  914 0475 05       		.byte	0x5
  915 0476 6A       		.byte	0x6a
  916 0477 88000000 		.4byte	0x88
  917 047b 007F     		.2byte	0x7f00
  918 047d 0C       		.uleb128 0xc
- 919 047e 7A040000 		.4byte	.LASF77
+ 919 047e 4F040000 		.4byte	.LASF77
  920 0482 05       		.byte	0x5
  921 0483 6B       		.byte	0x6b
  922 0484 88000000 		.4byte	0x88
@@ -1498,14 +1498,14 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  930 0497 0C       		.uleb128 0xc
  931 0498 14030000 		.4byte	.LASF79
  932 049c 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 26
 
 
  933 049d 6D       		.byte	0x6d
  934 049e 88000000 		.4byte	0x88
  935 04a2 0C7F     		.2byte	0x7f0c
  936 04a4 0C       		.uleb128 0xc
- 937 04a5 98030000 		.4byte	.LASF80
+ 937 04a5 6D030000 		.4byte	.LASF80
  938 04a9 05       		.byte	0x5
  939 04aa 6E       		.byte	0x6e
  940 04ab 40060000 		.4byte	0x640
@@ -1517,25 +1517,25 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  946 04b8 88000000 		.4byte	0x88
  947 04bc 307F     		.2byte	0x7f30
  948 04be 0C       		.uleb128 0xc
- 949 04bf A3030000 		.4byte	.LASF82
+ 949 04bf 78030000 		.4byte	.LASF82
  950 04c3 05       		.byte	0x5
  951 04c4 70       		.byte	0x70
  952 04c5 5B060000 		.4byte	0x65b
  953 04c9 347F     		.2byte	0x7f34
  954 04cb 0C       		.uleb128 0xc
- 955 04cc 8E040000 		.4byte	.LASF83
+ 955 04cc 63040000 		.4byte	.LASF83
  956 04d0 05       		.byte	0x5
  957 04d1 71       		.byte	0x71
  958 04d2 88000000 		.4byte	0x88
  959 04d6 10FF     		.2byte	0xff10
  960 04d8 0C       		.uleb128 0xc
- 961 04d9 AE030000 		.4byte	.LASF84
+ 961 04d9 83030000 		.4byte	.LASF84
  962 04dd 05       		.byte	0x5
  963 04de 72       		.byte	0x72
  964 04df 8D000000 		.4byte	0x8d
  965 04e3 14FF     		.2byte	0xff14
  966 04e5 0C       		.uleb128 0xc
- 967 04e6 AF040000 		.4byte	.LASF85
+ 967 04e6 84040000 		.4byte	.LASF85
  968 04ea 05       		.byte	0x5
  969 04eb 73       		.byte	0x73
  970 04ec 88000000 		.4byte	0x88
@@ -1558,17 +1558,17 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  987 0512 76       		.byte	0x76
  988 0513 88000000 		.4byte	0x88
  989 0517 24FF     		.2byte	0xff24
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 27
 
 
  990 0519 0C       		.uleb128 0xc
- 991 051a 41050000 		.4byte	.LASF89
+ 991 051a 16050000 		.4byte	.LASF89
  992 051e 05       		.byte	0x5
  993 051f 77       		.byte	0x77
  994 0520 88000000 		.4byte	0x88
  995 0524 28FF     		.2byte	0xff28
  996 0526 0C       		.uleb128 0xc
- 997 0527 54050000 		.4byte	.LASF90
+ 997 0527 29050000 		.4byte	.LASF90
  998 052b 05       		.byte	0x5
  999 052c 78       		.byte	0x78
  1000 052d 88000000 		.4byte	0x88
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1044 0599 08       		.uleb128 0x8
  1045 059a 81000000 		.4byte	0x81
  1046 059e 4F       		.byte	0x4f
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 28
 
 
  1047 059f 00       		.byte	0
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1101 0620 07       		.uleb128 0x7
  1102 0621 8D000000 		.4byte	0x8d
  1103 0625 31060000 		.4byte	0x631
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 29
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 29
 
 
  1104 0629 0D       		.uleb128 0xd
@@ -1712,7 +1712,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1132 066b 02       		.uleb128 0x2
  1133 066c 01       		.byte	0x1
  1134 066d 08       		.byte	0x8
- 1135 066e 75040000 		.4byte	.LASF92
+ 1135 066e 4A040000 		.4byte	.LASF92
  1136 0672 02       		.uleb128 0x2
  1137 0673 04       		.byte	0x4
  1138 0674 04       		.byte	0x4
@@ -1720,14 +1720,14 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1140 0679 02       		.uleb128 0x2
  1141 067a 08       		.byte	0x8
  1142 067b 04       		.byte	0x4
- 1143 067c 8D050000 		.4byte	.LASF94
+ 1143 067c 62050000 		.4byte	.LASF94
  1144 0680 0E       		.uleb128 0xe
- 1145 0681 C3060000 		.4byte	.LASF110
+ 1145 0681 98060000 		.4byte	.LASF110
  1146 0685 02       		.byte	0x2
  1147 0686 1801     		.2byte	0x118
  1148 0688 03       		.byte	0x3
  1149 0689 0F       		.uleb128 0xf
- 1150 068a BD050000 		.4byte	.LASF111
+ 1150 068a 92050000 		.4byte	.LASF111
  1151 068e 01       		.byte	0x1
  1152 068f 58       		.byte	0x58
  1153 0690 9E060000 		.4byte	0x69e
@@ -1738,10 +1738,10 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1158 069e 02       		.uleb128 0x2
  1159 069f 01       		.byte	0x1
  1160 06a0 02       		.byte	0x2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 30
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 30
 
 
- 1161 06a1 C0040000 		.4byte	.LASF95
+ 1161 06a1 95040000 		.4byte	.LASF95
  1162 06a5 10       		.uleb128 0x10
  1163 06a6 F4020000 		.4byte	.LASF96
  1164 06aa 01       		.byte	0x1
@@ -1752,7 +1752,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1169 06b5 9C       		.byte	0x9c
  1170 06b6 DC060000 		.4byte	0x6dc
  1171 06ba 11       		.uleb128 0x11
- 1172 06bb D1050000 		.4byte	.LASF98
+ 1172 06bb A6050000 		.4byte	.LASF98
  1173 06bf 01       		.byte	0x1
  1174 06c0 46       		.byte	0x46
  1175 06c1 76000000 		.4byte	0x76
@@ -1765,7 +1765,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1182 06d7 20080000 		.4byte	0x820
  1183 06db 00       		.byte	0
  1184 06dc 10       		.uleb128 0x10
- 1185 06dd 94050000 		.4byte	.LASF97
+ 1185 06dd 69050000 		.4byte	.LASF97
  1186 06e1 01       		.byte	0x1
  1187 06e2 66       		.byte	0x66
  1188 06e3 00000000 		.4byte	.LFB46
@@ -1774,7 +1774,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1191 06ec 9C       		.byte	0x9c
  1192 06ed 13070000 		.4byte	0x713
  1193 06f1 11       		.uleb128 0x11
- 1194 06f2 D1050000 		.4byte	.LASF98
+ 1194 06f2 A6050000 		.4byte	.LASF98
  1195 06f6 01       		.byte	0x1
  1196 06f7 68       		.byte	0x68
  1197 06f8 76000000 		.4byte	0x76
@@ -1796,9 +1796,9 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1213 0723 9C       		.byte	0x9c
  1214 0724 41070000 		.4byte	0x741
  1215 0728 13       		.uleb128 0x13
- 1216 0729 CB050000 		.4byte	.LASF101
+ 1216 0729 A0050000 		.4byte	.LASF101
  1217 072d 01       		.byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 31
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 31
 
 
  1218 072e 81       		.byte	0x81
@@ -1809,7 +1809,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1223 073c 89060000 		.4byte	0x689
  1224 0740 00       		.byte	0
  1225 0741 10       		.uleb128 0x10
- 1226 0742 4F060000 		.4byte	.LASF100
+ 1226 0742 24060000 		.4byte	.LASF100
  1227 0746 01       		.byte	0x1
  1228 0747 9E       		.byte	0x9e
  1229 0748 00000000 		.4byte	.LFB48
@@ -1818,7 +1818,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1232 0751 9C       		.byte	0x9c
  1233 0752 6F070000 		.4byte	0x76f
  1234 0756 13       		.uleb128 0x13
- 1235 0757 24040000 		.4byte	.LASF102
+ 1235 0757 F9030000 		.4byte	.LASF102
  1236 075b 01       		.byte	0x1
  1237 075c 9E       		.byte	0x9e
  1238 075d 76000000 		.4byte	0x76
@@ -1837,7 +1837,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1251 077f 9C       		.byte	0x9c
  1252 0780 E4070000 		.4byte	0x7e4
  1253 0784 11       		.uleb128 0x11
- 1254 0785 D1050000 		.4byte	.LASF98
+ 1254 0785 A6050000 		.4byte	.LASF98
  1255 0789 01       		.byte	0x1
  1256 078a 28       		.byte	0x28
  1257 078b 76000000 		.4byte	0x76
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1272 07b8 16       		.uleb128 0x16
  1273 07b9 01       		.uleb128 0x1
  1274 07ba 50       		.byte	0x50
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 32
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 32
 
 
  1275 07bb 03       		.uleb128 0x3
@@ -1887,7 +1887,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1298 07e2 00       		.byte	0
  1299 07e3 00       		.byte	0
  1300 07e4 18       		.uleb128 0x18
- 1301 07e5 E1030000 		.4byte	.LASF112
+ 1301 07e5 B6030000 		.4byte	.LASF112
  1302 07e9 01       		.byte	0x1
  1303 07ea B0       		.byte	0xb0
  1304 07eb 00000000 		.4byte	.LFB49
@@ -1895,7 +1895,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1306 07f3 01       		.uleb128 0x1
  1307 07f4 9C       		.byte	0x9c
  1308 07f5 10       		.uleb128 0x10
- 1309 07f6 2C050000 		.4byte	.LASF104
+ 1309 07f6 01050000 		.4byte	.LASF104
  1310 07fa 01       		.byte	0x1
  1311 07fb C3       		.byte	0xc3
  1312 07fc 00000000 		.4byte	.LFB50
@@ -1913,12 +1913,12 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1324 081d 06       		.byte	0x6
  1325 081e 4D03     		.2byte	0x34d
  1326 0820 19       		.uleb128 0x19
- 1327 0821 6D060000 		.4byte	.LASF106
- 1328 0825 6D060000 		.4byte	.LASF106
+ 1327 0821 42060000 		.4byte	.LASF106
+ 1328 0825 42060000 		.4byte	.LASF106
  1329 0829 06       		.byte	0x6
  1330 082a 5C03     		.2byte	0x35c
  1331 082c 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 33
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 33
 
 
  1332              		.section	.debug_abbrev,"",%progbits
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1386 0034 00       		.byte	0
  1387 0035 00       		.byte	0
  1388 0036 05       		.uleb128 0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 34
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 34
 
 
  1389 0037 35       		.uleb128 0x35
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1443 006d 13       		.uleb128 0x13
  1444 006e 38       		.uleb128 0x38
  1445 006f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 35
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 35
 
 
  1446 0070 00       		.byte	0
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1500 00a6 0F       		.uleb128 0xf
  1501 00a7 2E       		.uleb128 0x2e
  1502 00a8 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 36
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 36
 
 
  1503 00a9 03       		.uleb128 0x3
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1557 00e1 49       		.uleb128 0x49
  1558 00e2 13       		.uleb128 0x13
  1559 00e3 02       		.uleb128 0x2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 37
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 37
 
 
  1560 00e4 17       		.uleb128 0x17
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1614 011e 8A8201   		.uleb128 0x410a
  1615 0121 00       		.byte	0
  1616 0122 02       		.uleb128 0x2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 38
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 38
 
 
  1617 0123 18       		.uleb128 0x18
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1671 015d 00       		.byte	0
  1672              		.section	.debug_loc,"",%progbits
  1673              	.Ldebug_loc0:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 39
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 39
 
 
  1674              	.LLST0:
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1728 0088 50       		.byte	0x50
  1729 0089 16000000 		.4byte	.LVL12
  1730 008d 42000000 		.4byte	.LVL16
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 40
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 40
 
 
  1731 0091 0100     		.2byte	0x1
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1783      00000201 
  1783      FB0E0D00 
  1783      01010101 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 41
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 41
 
 
  1784              	.LASF105:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1804              	.LASF24:
  1805 010a 4D435744 		.ascii	"MCWDT_STRUCT_Type\000"
  1805      545F5354 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 42
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 42
 
 
  1805      52554354 
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1827      3300
  1828              	.LASF41:
  1829 01ae 52455345 		.ascii	"RESERVED4\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 43
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 43
 
 
  1829      52564544 
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1853      206C6F6E 
  1853      6720696E 
  1853      7400
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 44
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 44
 
 
  1854              	.LASF15:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1877      434F4E46 
  1877      494700
  1878              	.LASF96:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 45
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 45
 
 
  1879 02f4 43795F57 		.ascii	"Cy_WDT_Lock\000"
@@ -2656,327 +2656,332 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 1
  1883      5F43434F 
  1883      5F43544C 
  1883      3200
- 1884              	.LASF109:
- 1885 0326 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\PSoC6\\BLE_RTC_IMU.cydsn\000"
- 1885      73657273 
- 1885      5C636F64 
- 1885      79675C67 
- 1885      69745C50 
- 1886              	.LASF31:
- 1887 0351 5057525F 		.ascii	"PWR_HIB_DATA\000"
- 1887      4849425F 
- 1887      44415441 
- 1887      00
- 1888              	.LASF1:
- 1889 035e 756E7369 		.ascii	"unsigned char\000"
- 1889      676E6564 
- 1889      20636861 
- 1889      7200
- 1890              	.LASF64:
- 1891 036c 52455345 		.ascii	"RESERVED10\000"
+ 1884              	.LASF31:
+ 1885 0326 5057525F 		.ascii	"PWR_HIB_DATA\000"
+ 1885      4849425F 
+ 1885      44415441 
+ 1885      00
+ 1886              	.LASF1:
+ 1887 0333 756E7369 		.ascii	"unsigned char\000"
+ 1887      676E6564 
+ 1887      20636861 
+ 1887      7200
+ 1888              	.LASF64:
+ 1889 0341 52455345 		.ascii	"RESERVED10\000"
+ 1889      52564544 
+ 1889      313000
+ 1890              	.LASF66:
+ 1891 034c 52455345 		.ascii	"RESERVED11\000"
  1891      52564544 
- 1891      313000
- 1892              	.LASF66:
- 1893 0377 52455345 		.ascii	"RESERVED11\000"
+ 1891      313100
+ 1892              	.LASF72:
+ 1893 0357 52455345 		.ascii	"RESERVED12\000"
  1893      52564544 
- 1893      313100
- 1894              	.LASF72:
- 1895 0382 52455345 		.ascii	"RESERVED12\000"
+ 1893      313200
+ 1894              	.LASF75:
+ 1895 0362 52455345 		.ascii	"RESERVED13\000"
  1895      52564544 
- 1895      313200
- 1896              	.LASF75:
- 1897 038d 52455345 		.ascii	"RESERVED13\000"
+ 1895      313300
+ 1896              	.LASF80:
+ 1897 036d 52455345 		.ascii	"RESERVED14\000"
  1897      52564544 
- 1897      313300
- 1898              	.LASF80:
- 1899 0398 52455345 		.ascii	"RESERVED14\000"
+ 1897      313400
+ 1898              	.LASF82:
+ 1899 0378 52455345 		.ascii	"RESERVED15\000"
  1899      52564544 
- 1899      313400
- 1900              	.LASF82:
- 1901 03a3 52455345 		.ascii	"RESERVED15\000"
+ 1899      313500
+ 1900              	.LASF84:
+ 1901 0383 52455345 		.ascii	"RESERVED16\000"
  1901      52564544 
- 1901      313500
- 1902              	.LASF84:
- 1903 03ae 52455345 		.ascii	"RESERVED16\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 46
+ 1901      313600
+ 1902              	.LASF25:
+ 1903 038e 5057525F 		.ascii	"PWR_CTL\000"
+ 1903      43544C00 
+ 1904              	.LASF7:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 46
 
 
- 1903      52564544 
- 1903      313600
- 1904              	.LASF25:
- 1905 03b9 5057525F 		.ascii	"PWR_CTL\000"
- 1905      43544C00 
- 1906              	.LASF7:
- 1907 03c1 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1907      206C6F6E 
- 1907      6720756E 
- 1907      7369676E 
- 1907      65642069 
- 1908              	.LASF10:
- 1909 03d8 75696E74 		.ascii	"uint32_t\000"
- 1909      33325F74 
- 1909      00
- 1910              	.LASF112:
- 1911 03e1 43795F57 		.ascii	"Cy_WDT_ClearInterrupt\000"
- 1911      44545F43 
- 1911      6C656172 
- 1911      496E7465 
- 1911      72727570 
- 1912              	.LASF8:
- 1913 03f7 756E7369 		.ascii	"unsigned int\000"
- 1913      676E6564 
- 1913      20696E74 
- 1913      00
- 1914              	.LASF61:
- 1915 0404 434C4B5F 		.ascii	"CLK_FLL_STATUS\000"
- 1915      464C4C5F 
- 1915      53544154 
- 1915      555300
- 1916              	.LASF76:
- 1917 0413 5057525F 		.ascii	"PWR_TRIM_REF_CTL\000"
- 1917      5452494D 
- 1917      5F524546 
- 1917      5F43544C 
- 1917      00
- 1918              	.LASF102:
- 1919 0424 62697473 		.ascii	"bitsNum\000"
- 1919      4E756D00 
- 1920              	.LASF29:
- 1921 042c 5057525F 		.ascii	"PWR_BUCK_CTL2\000"
- 1921      4255434B 
- 1921      5F43544C 
- 1921      3200
- 1922              	.LASF70:
- 1923 043a 53525353 		.ascii	"SRSS_INTR_MASKED\000"
- 1923      5F494E54 
- 1923      525F4D41 
- 1923      534B4544 
- 1923      00
- 1924              	.LASF73:
- 1925 044b 5245535F 		.ascii	"RES_CAUSE\000"
- 1925      43415553 
- 1925      4500
- 1926              	.LASF3:
- 1927 0455 73686F72 		.ascii	"short unsigned int\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 47
+ 1905 0396 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1905      206C6F6E 
+ 1905      6720756E 
+ 1905      7369676E 
+ 1905      65642069 
+ 1906              	.LASF10:
+ 1907 03ad 75696E74 		.ascii	"uint32_t\000"
+ 1907      33325F74 
+ 1907      00
+ 1908              	.LASF112:
+ 1909 03b6 43795F57 		.ascii	"Cy_WDT_ClearInterrupt\000"
+ 1909      44545F43 
+ 1909      6C656172 
+ 1909      496E7465 
+ 1909      72727570 
+ 1910              	.LASF8:
+ 1911 03cc 756E7369 		.ascii	"unsigned int\000"
+ 1911      676E6564 
+ 1911      20696E74 
+ 1911      00
+ 1912              	.LASF61:
+ 1913 03d9 434C4B5F 		.ascii	"CLK_FLL_STATUS\000"
+ 1913      464C4C5F 
+ 1913      53544154 
+ 1913      555300
+ 1914              	.LASF76:
+ 1915 03e8 5057525F 		.ascii	"PWR_TRIM_REF_CTL\000"
+ 1915      5452494D 
+ 1915      5F524546 
+ 1915      5F43544C 
+ 1915      00
+ 1916              	.LASF102:
+ 1917 03f9 62697473 		.ascii	"bitsNum\000"
+ 1917      4E756D00 
+ 1918              	.LASF29:
+ 1919 0401 5057525F 		.ascii	"PWR_BUCK_CTL2\000"
+ 1919      4255434B 
+ 1919      5F43544C 
+ 1919      3200
+ 1920              	.LASF70:
+ 1921 040f 53525353 		.ascii	"SRSS_INTR_MASKED\000"
+ 1921      5F494E54 
+ 1921      525F4D41 
+ 1921      534B4544 
+ 1921      00
+ 1922              	.LASF73:
+ 1923 0420 5245535F 		.ascii	"RES_CAUSE\000"
+ 1923      43415553 
+ 1923      4500
+ 1924              	.LASF3:
+ 1925 042a 73686F72 		.ascii	"short unsigned int\000"
+ 1925      7420756E 
+ 1925      7369676E 
+ 1925      65642069 
+ 1925      6E7400
+ 1926              	.LASF50:
+ 1927 043d 434C4B5F 		.ascii	"CLK_CAL_CNT2\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 47
 
 
- 1927      7420756E 
- 1927      7369676E 
- 1927      65642069 
- 1927      6E7400
- 1928              	.LASF50:
- 1929 0468 434C4B5F 		.ascii	"CLK_CAL_CNT2\000"
- 1929      43414C5F 
- 1929      434E5432 
+ 1927      43414C5F 
+ 1927      434E5432 
+ 1927      00
+ 1928              	.LASF92:
+ 1929 044a 63686172 		.ascii	"char\000"
  1929      00
- 1930              	.LASF92:
- 1931 0475 63686172 		.ascii	"char\000"
- 1931      00
- 1932              	.LASF77:
- 1933 047a 5057525F 		.ascii	"PWR_TRIM_BODOVP_CTL\000"
+ 1930              	.LASF77:
+ 1931 044f 5057525F 		.ascii	"PWR_TRIM_BODOVP_CTL\000"
+ 1931      5452494D 
+ 1931      5F424F44 
+ 1931      4F56505F 
+ 1931      43544C00 
+ 1932              	.LASF83:
+ 1933 0463 5057525F 		.ascii	"PWR_TRIM_LVD_CTL\000"
  1933      5452494D 
- 1933      5F424F44 
- 1933      4F56505F 
- 1933      43544C00 
- 1934              	.LASF83:
- 1935 048e 5057525F 		.ascii	"PWR_TRIM_LVD_CTL\000"
- 1935      5452494D 
- 1935      5F4C5644 
- 1935      5F43544C 
- 1935      00
- 1936              	.LASF40:
- 1937 049f 434C4B5F 		.ascii	"CLK_ROOT_SELECT\000"
- 1937      524F4F54 
- 1937      5F53454C 
- 1937      45435400 
- 1938              	.LASF85:
- 1939 04af 434C4B5F 		.ascii	"CLK_TRIM_ILO_CTL\000"
- 1939      5452494D 
- 1939      5F494C4F 
- 1939      5F43544C 
- 1939      00
- 1940              	.LASF95:
- 1941 04c0 5F426F6F 		.ascii	"_Bool\000"
- 1941      6C00
- 1942              	.LASF67:
- 1943 04c6 53525353 		.ascii	"SRSS_INTR\000"
- 1943      5F494E54 
- 1943      5200
- 1944              	.LASF55:
- 1945 04d0 434C4B5F 		.ascii	"CLK_PILO_CONFIG\000"
- 1945      50494C4F 
- 1945      5F434F4E 
- 1945      46494700 
- 1946              	.LASF58:
- 1947 04e0 434C4B5F 		.ascii	"CLK_FLL_CONFIG2\000"
+ 1933      5F4C5644 
+ 1933      5F43544C 
+ 1933      00
+ 1934              	.LASF40:
+ 1935 0474 434C4B5F 		.ascii	"CLK_ROOT_SELECT\000"
+ 1935      524F4F54 
+ 1935      5F53454C 
+ 1935      45435400 
+ 1936              	.LASF85:
+ 1937 0484 434C4B5F 		.ascii	"CLK_TRIM_ILO_CTL\000"
+ 1937      5452494D 
+ 1937      5F494C4F 
+ 1937      5F43544C 
+ 1937      00
+ 1938              	.LASF95:
+ 1939 0495 5F426F6F 		.ascii	"_Bool\000"
+ 1939      6C00
+ 1940              	.LASF67:
+ 1941 049b 53525353 		.ascii	"SRSS_INTR\000"
+ 1941      5F494E54 
+ 1941      5200
+ 1942              	.LASF55:
+ 1943 04a5 434C4B5F 		.ascii	"CLK_PILO_CONFIG\000"
+ 1943      50494C4F 
+ 1943      5F434F4E 
+ 1943      46494700 
+ 1944              	.LASF58:
+ 1945 04b5 434C4B5F 		.ascii	"CLK_FLL_CONFIG2\000"
+ 1945      464C4C5F 
+ 1945      434F4E46 
+ 1945      49473200 
+ 1946              	.LASF59:
+ 1947 04c5 434C4B5F 		.ascii	"CLK_FLL_CONFIG3\000"
  1947      464C4C5F 
  1947      434F4E46 
- 1947      49473200 
- 1948              	.LASF59:
- 1949 04f0 434C4B5F 		.ascii	"CLK_FLL_CONFIG3\000"
+ 1947      49473300 
+ 1948              	.LASF60:
+ 1949 04d5 434C4B5F 		.ascii	"CLK_FLL_CONFIG4\000"
  1949      464C4C5F 
  1949      434F4E46 
- 1949      49473300 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 48
+ 1949      49473400 
+ 1950              	.LASF34:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 48
 
 
- 1950              	.LASF60:
- 1951 0500 434C4B5F 		.ascii	"CLK_FLL_CONFIG4\000"
- 1951      464C4C5F 
- 1951      434F4E46 
- 1951      49473400 
- 1952              	.LASF34:
- 1953 0510 5744545F 		.ascii	"WDT_CNT\000"
- 1953      434E5400 
- 1954              	.LASF23:
- 1955 0518 52455345 		.ascii	"RESERVED1\000"
+ 1951 04e5 5744545F 		.ascii	"WDT_CNT\000"
+ 1951      434E5400 
+ 1952              	.LASF23:
+ 1953 04ed 52455345 		.ascii	"RESERVED1\000"
+ 1953      52564544 
+ 1953      3100
+ 1954              	.LASF32:
+ 1955 04f7 52455345 		.ascii	"RESERVED2\000"
  1955      52564544 
- 1955      3100
- 1956              	.LASF32:
- 1957 0522 52455345 		.ascii	"RESERVED2\000"
- 1957      52564544 
- 1957      3200
- 1958              	.LASF104:
- 1959 052c 43795F57 		.ascii	"Cy_WDT_ClearWatchdog\000"
- 1959      44545F43 
- 1959      6C656172 
- 1959      57617463 
- 1959      68646F67 
- 1960              	.LASF89:
- 1961 0541 434C4B5F 		.ascii	"CLK_TRIM_PILO_CTL2\000"
+ 1955      3200
+ 1956              	.LASF104:
+ 1957 0501 43795F57 		.ascii	"Cy_WDT_ClearWatchdog\000"
+ 1957      44545F43 
+ 1957      6C656172 
+ 1957      57617463 
+ 1957      68646F67 
+ 1958              	.LASF89:
+ 1959 0516 434C4B5F 		.ascii	"CLK_TRIM_PILO_CTL2\000"
+ 1959      5452494D 
+ 1959      5F50494C 
+ 1959      4F5F4354 
+ 1959      4C3200
+ 1960              	.LASF90:
+ 1961 0529 434C4B5F 		.ascii	"CLK_TRIM_PILO_CTL3\000"
  1961      5452494D 
  1961      5F50494C 
  1961      4F5F4354 
- 1961      4C3200
- 1962              	.LASF90:
- 1963 0554 434C4B5F 		.ascii	"CLK_TRIM_PILO_CTL3\000"
- 1963      5452494D 
- 1963      5F50494C 
- 1963      4F5F4354 
- 1963      4C3300
- 1964              	.LASF5:
- 1965 0567 6C6F6E67 		.ascii	"long unsigned int\000"
- 1965      20756E73 
- 1965      69676E65 
- 1965      6420696E 
- 1965      7400
- 1966              	.LASF54:
- 1967 0579 52455345 		.ascii	"RESERVED7\000"
+ 1961      4C3300
+ 1962              	.LASF5:
+ 1963 053c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1963      20756E73 
+ 1963      69676E65 
+ 1963      6420696E 
+ 1963      7400
+ 1964              	.LASF54:
+ 1965 054e 52455345 		.ascii	"RESERVED7\000"
+ 1965      52564544 
+ 1965      3700
+ 1966              	.LASF56:
+ 1967 0558 52455345 		.ascii	"RESERVED8\000"
  1967      52564544 
- 1967      3700
- 1968              	.LASF56:
- 1969 0583 52455345 		.ascii	"RESERVED8\000"
- 1969      52564544 
- 1969      3800
- 1970              	.LASF94:
- 1971 058d 646F7562 		.ascii	"double\000"
- 1971      6C6500
- 1972              	.LASF97:
- 1973 0594 43795F57 		.ascii	"Cy_WDT_Unlock\000"
- 1973      44545F55 
- 1973      6E6C6F63 
- 1973      6B00
- 1974              	.LASF37:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 49
+ 1967      3800
+ 1968              	.LASF94:
+ 1969 0562 646F7562 		.ascii	"double\000"
+ 1969      6C6500
+ 1970              	.LASF97:
+ 1971 0569 43795F57 		.ascii	"Cy_WDT_Unlock\000"
+ 1971      44545F55 
+ 1971      6E6C6F63 
+ 1971      6B00
+ 1972              	.LASF37:
+ 1973 0577 4D435744 		.ascii	"MCWDT_STRUCT\000"
+ 1973      545F5354 
+ 1973      52554354 
+ 1973      00
+ 1974              	.LASF43:
+ 1975 0584 434C4B5F 		.ascii	"CLK_TIMER_CTL\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 49
 
 
- 1975 05a2 4D435744 		.ascii	"MCWDT_STRUCT\000"
- 1975      545F5354 
- 1975      52554354 
- 1975      00
- 1976              	.LASF43:
- 1977 05af 434C4B5F 		.ascii	"CLK_TIMER_CTL\000"
- 1977      54494D45 
- 1977      525F4354 
- 1977      4C00
- 1978              	.LASF111:
- 1979 05bd 43795F57 		.ascii	"Cy_WDT_Locked\000"
- 1979      44545F4C 
- 1979      6F636B65 
- 1979      6400
- 1980              	.LASF101:
- 1981 05cb 6D617463 		.ascii	"match\000"
- 1981      6800
- 1982              	.LASF98:
- 1983 05d1 696E7465 		.ascii	"interruptState\000"
- 1983      72727570 
- 1983      74537461 
- 1983      746500
- 1984              	.LASF108:
- 1985 05e0 47656E65 		.ascii	"Generated_Source\\PSoC6\\pdl\\drivers\\peripheral\\"
- 1985      72617465 
- 1985      645F536F 
- 1985      75726365 
- 1985      5C50536F 
- 1986 060e 7764745C 		.ascii	"wdt\\cy_wdt.c\000"
- 1986      63795F77 
- 1986      64742E63 
- 1986      00
- 1987              	.LASF22:
- 1988 061b 4D435744 		.ascii	"MCWDT_LOCK\000"
- 1988      545F4C4F 
- 1988      434B00
- 1989              	.LASF26:
- 1990 0626 5057525F 		.ascii	"PWR_HIBERNATE\000"
- 1990      48494245 
- 1990      524E4154 
- 1990      4500
- 1991              	.LASF68:
- 1992 0634 53525353 		.ascii	"SRSS_INTR_SET\000"
- 1992      5F494E54 
- 1992      525F5345 
- 1992      5400
- 1993              	.LASF16:
- 1994 0642 4D435744 		.ascii	"MCWDT_CONFIG\000"
- 1994      545F434F 
- 1994      4E464947 
- 1994      00
- 1995              	.LASF100:
- 1996 064f 43795F57 		.ascii	"Cy_WDT_SetIgnoreBits\000"
- 1996      44545F53 
- 1996      65744967 
- 1996      6E6F7265 
- 1996      42697473 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccup1TwE.s 			page 50
+ 1975      54494D45 
+ 1975      525F4354 
+ 1975      4C00
+ 1976              	.LASF111:
+ 1977 0592 43795F57 		.ascii	"Cy_WDT_Locked\000"
+ 1977      44545F4C 
+ 1977      6F636B65 
+ 1977      6400
+ 1978              	.LASF101:
+ 1979 05a0 6D617463 		.ascii	"match\000"
+ 1979      6800
+ 1980              	.LASF98:
+ 1981 05a6 696E7465 		.ascii	"interruptState\000"
+ 1981      72727570 
+ 1981      74537461 
+ 1981      746500
+ 1982              	.LASF108:
+ 1983 05b5 47656E65 		.ascii	"Generated_Source\\PSoC6\\pdl\\drivers\\peripheral\\"
+ 1983      72617465 
+ 1983      645F536F 
+ 1983      75726365 
+ 1983      5C50536F 
+ 1984 05e3 7764745C 		.ascii	"wdt\\cy_wdt.c\000"
+ 1984      63795F77 
+ 1984      64742E63 
+ 1984      00
+ 1985              	.LASF22:
+ 1986 05f0 4D435744 		.ascii	"MCWDT_LOCK\000"
+ 1986      545F4C4F 
+ 1986      434B00
+ 1987              	.LASF26:
+ 1988 05fb 5057525F 		.ascii	"PWR_HIBERNATE\000"
+ 1988      48494245 
+ 1988      524E4154 
+ 1988      4500
+ 1989              	.LASF68:
+ 1990 0609 53525353 		.ascii	"SRSS_INTR_SET\000"
+ 1990      5F494E54 
+ 1990      525F5345 
+ 1990      5400
+ 1991              	.LASF16:
+ 1992 0617 4D435744 		.ascii	"MCWDT_CONFIG\000"
+ 1992      545F434F 
+ 1992      4E464947 
+ 1992      00
+ 1993              	.LASF100:
+ 1994 0624 43795F57 		.ascii	"Cy_WDT_SetIgnoreBits\000"
+ 1994      44545F53 
+ 1994      65744967 
+ 1994      6E6F7265 
+ 1994      42697473 
+ 1995              	.LASF12:
+ 1996 0639 52455345 		.ascii	"RESERVED\000"
+ 1996      52564544 
+ 1996      00
+ 1997              	.LASF106:
+ 1998 0642 43795F53 		.ascii	"Cy_SysLib_ExitCriticalSection\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6w91Gf.s 			page 50
 
 
- 1997              	.LASF12:
- 1998 0664 52455345 		.ascii	"RESERVED\000"
- 1998      52564544 
- 1998      00
- 1999              	.LASF106:
- 2000 066d 43795F53 		.ascii	"Cy_SysLib_ExitCriticalSection\000"
- 2000      79734C69 
- 2000      625F4578 
- 2000      69744372 
- 2000      69746963 
- 2001              	.LASF14:
- 2002 068b 4D435744 		.ascii	"MCWDT_CNTHIGH\000"
- 2002      545F434E 
- 2002      54484947 
- 2002      4800
- 2003              	.LASF74:
- 2004 0699 5245535F 		.ascii	"RES_CAUSE2\000"
- 2004      43415553 
- 2004      453200
- 2005              	.LASF52:
- 2006 06a4 434C4B5F 		.ascii	"CLK_ECO_CONFIG\000"
- 2006      45434F5F 
- 2006      434F4E46 
- 2006      494700
- 2007              	.LASF48:
- 2008 06b3 434C4B5F 		.ascii	"CLK_OUTPUT_SLOW\000"
- 2008      4F555450 
- 2008      55545F53 
- 2008      4C4F5700 
- 2009              	.LASF110:
- 2010 06c3 43795F57 		.ascii	"Cy_WDT_Disable\000"
- 2010      44545F44 
- 2010      69736162 
- 2010      6C6500
- 2011              	.LASF18:
- 2012 06d2 4D435744 		.ascii	"MCWDT_INTR\000"
- 2012      545F494E 
- 2012      545200
- 2013              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1998      79734C69 
+ 1998      625F4578 
+ 1998      69744372 
+ 1998      69746963 
+ 1999              	.LASF14:
+ 2000 0660 4D435744 		.ascii	"MCWDT_CNTHIGH\000"
+ 2000      545F434E 
+ 2000      54484947 
+ 2000      4800
+ 2001              	.LASF74:
+ 2002 066e 5245535F 		.ascii	"RES_CAUSE2\000"
+ 2002      43415553 
+ 2002      453200
+ 2003              	.LASF52:
+ 2004 0679 434C4B5F 		.ascii	"CLK_ECO_CONFIG\000"
+ 2004      45434F5F 
+ 2004      434F4E46 
+ 2004      494700
+ 2005              	.LASF48:
+ 2006 0688 434C4B5F 		.ascii	"CLK_OUTPUT_SLOW\000"
+ 2006      4F555450 
+ 2006      55545F53 
+ 2006      4C4F5700 
+ 2007              	.LASF110:
+ 2008 0698 43795F57 		.ascii	"Cy_WDT_Disable\000"
+ 2008      44545F44 
+ 2008      69736162 
+ 2008      6C6500
+ 2009              	.LASF109:
+ 2010 06a7 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\psoc6-realtime-processing\\B"
+ 2010      73657273 
+ 2010      5C636F64 
+ 2010      79675C67 
+ 2010      69745C70 
+ 2011 06d5 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\000"
+ 2011      54435F49 
+ 2011      4D552E63 
+ 2011      7964736E 
+ 2011      00
+ 2012              	.LASF18:
+ 2013 06e6 4D435744 		.ascii	"MCWDT_INTR\000"
+ 2013      545F494E 
+ 2013      545200
+ 2014              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

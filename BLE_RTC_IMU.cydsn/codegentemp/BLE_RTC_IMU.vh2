@@ -2,7 +2,7 @@
 --	Conversion of BLE_RTC_IMU.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed Sep 23 14:04:52 2020
+--	Wed Oct 07 16:41:18 2020
 --
 
 USE cypress.cypress.all;
@@ -96,6 +96,21 @@ SIGNAL tmpIO_0__LED_R_net_0 : bit;
 TERMINAL tmpSIOVREF__LED_R_net_0 : bit;
 TERMINAL Net_33 : bit;
 TERMINAL Net_29 : bit;
+SIGNAL Net_46 : bit;
+SIGNAL tmpIO_0__Pin_ImuDataReady_INT_net_0 : bit;
+TERMINAL tmpSIOVREF__Pin_ImuDataReady_INT_net_0 : bit;
+SIGNAL Net_66 : bit;
+SIGNAL Net_60 : bit;
+SIGNAL \Counter_ms:capture\ : bit;
+SIGNAL \Counter_ms:count\ : bit;
+SIGNAL \Counter_ms:reload\ : bit;
+SIGNAL \Counter_ms:stop\ : bit;
+SIGNAL \Counter_ms:start\ : bit;
+SIGNAL Net_62 : bit;
+SIGNAL Net_63 : bit;
+SIGNAL Net_61 : bit;
+SIGNAL \Counter_ms:Net_1\ : bit;
+SIGNAL \Counter_ms:Net_2\ : bit;
 BEGIN
 
 one <=  ('1') ;
@@ -459,5 +474,73 @@ Blue:cy_annotation_universal_v1_0
 		port_names=>"T1, T2",
 		width=>2)
 	PORT MAP(connect=>(Net_27, Net_29));
+SysInt_ImuDataReadyINT:cy_mxs40_isr_v1_0
+	GENERIC MAP(cy_registers=>"",
+		deepsleep_required=>'0',
+		int_type=>"00")
+	PORT MAP(int_signal=>Net_46);
+Pin_ImuDataReady_INT:cy_mxs40_gpio_v1_0
+	GENERIC MAP(cy_registers=>"",
+		width=>1,
+		sio_grp_cnt=>0,
+		id=>"4cca878b-77b5-471d-8aeb-ad6925202455",
+		drive_mode=>"3",
+		ibuf_enabled=>"1",
+		init_dr_st=>"0",
+		input_sync=>"0",
+		intr_mode=>"0",
+		io_voltage=>"",
+		output_conn=>"0",
+		oe_conn=>"0",
+		output_sync=>"0",
+		oe_sync=>"0",
+		drive_strength=>"0",
+		max_frequency=>"100",
+		output_current_cap=>"8",
+		i2c_mode=>"0",
+		pin_aliases=>"",
+		pin_mode=>"I",
+		slew_rate=>"0",
+		vtrip=>"0",
+		use_annotation=>"0",
+		hotswap_needed=>"0")
+	PORT MAP(oe=>(one),
+		y=>(zero),
+		fb=>Net_46,
+		analog=>(open),
+		io=>(tmpIO_0__Pin_ImuDataReady_INT_net_0),
+		annotation=>(open),
+		siovref=>(tmpSIOVREF__Pin_ImuDataReady_INT_net_0));
+Clock_1khz:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"c7fa5914-9695-4556-b765-e6469a51b7f4",
+		source_clock_id=>"2FB4EC85-8328-4C5A-9ED9-8B63060178EB",
+		divisor=>0,
+		period=>"1000000000000",
+		is_direct=>'0',
+		is_digital=>'0')
+	PORT MAP(clock_out=>Net_66,
+		dig_domain_out=>open);
+SysInt_1ms:cy_mxs40_isr_v1_0
+	GENERIC MAP(cy_registers=>"",
+		deepsleep_required=>'0',
+		int_type=>"10")
+	PORT MAP(int_signal=>Net_60);
+\Counter_ms:TCPWM\:cy_mxs40_tcpwm_v1_0
+	GENERIC MAP(cy_registers=>"",
+		width=>16,
+		exact_width=>'0')
+	PORT MAP(clock=>Net_66,
+		capture=>zero,
+		count=>one,
+		reload=>zero,
+		stop=>zero,
+		start=>zero,
+		tr_underflow=>Net_62,
+		tr_compare_match=>Net_63,
+		tr_overflow=>Net_61,
+		line_compl=>\Counter_ms:Net_1\,
+		line=>\Counter_ms:Net_2\,
+		interrupt=>Net_60);
 
 END R_T_L;

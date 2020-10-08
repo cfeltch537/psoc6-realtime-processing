@@ -27,11 +27,14 @@
 #define USE_SECONDS         (1u)    /* set to one to use, set to zero to not use */
 #define USE_MINUTES         (0u)    /* use seconds OR minutes, not both  */
 
-/* The interrupt status variable */
-static uint32_t alarmFlag = 0u;
+#define SYSTICK_MAX_CNT_BITS 24u  
+#define SYSTICK_MAX_CNT (1<<SYSTICK_MAX_CNT_BITS)-1
 
-uint64_t unixTimeMillis = 1602004740111;
-TickType_t lastRtcSecondTick = 0;
+/* The interrupt status variable */
+static SemaphoreHandle_t rtcAlarmSemaphore;
+static uint64_t unixTimeMillis = 1601054056807;
+static uint32_t tickAtLastSecond = 0;
+static uint32_t millis = 0;
 
 /* 
     If an En field is set to CY_RTC_ALARM_DISABLE, the alarm
@@ -65,26 +68,50 @@ cy_en_rtc_status_t RtcAlarmConfig(void);
 void RtcInterruptHandler(void);
 void RtcStepAlarm(void);
 
-static SemaphoreHandle_t rtcAlarmSemaphore;
+// https://community.cypress.com/thread/53511
 
-uint32_t pdTICKS_TO_MS( xTicks ){
-    return ( ( ( TickType_t ) ( xTicks ) * 1000u ) / configTICK_RATE_HZ );
+uint32_t getTick(void){
+    /* Just for testing purposes */
+    return Cy_SysTick_GetValue();
 }
 
-uint64_t getCurrentTimeMillisISR(){
-    return unixTimeMillis + Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM);
+uint64_t getTimestamp(void){
+    uint32_t sysTick = Cy_SysTick_GetValue();
+    uint32_t ticks = tickAtLastSecond-sysTick;
+    uint64_t millis = (uint64_t)ticks*1000/32768;
+    return unixTimeMillis + millis;
 }
 
-uint64_t getCurrentTimeMillis(){
-    return unixTimeMillis + Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM);
-}
-
-/* UART task */
-void rtcTask(void *arg)
+void SysTickISRCallback(void)
 {
-    (void)arg;
-    printf("Started Task\r\n");
+    millis++;
+}
 
+/* timetask task */
+void startTimekeeping(void)
+{
+    printf("Started Timekeeping\r\n");
+
+    /* Init SysTick */
+    /*Initialize and Enable the SysTick resource*/  
+ 
+    //Cy_SysTick_Init(CY_SYSTICK_CLOCK_SOURCE_CLK_LF, SYSTICK_MAX_CNT); // Do not use this. 
+    
+
+    
+    //Cy_SysTick_Init(CY_SYSTICK_CLOCK_SOURCE_CLK_IMO, 8000000/1000 -1);
+    /* Find unused callback slot and assign the callback. */
+    uint32_t i;
+    for (i = 0u; i < CY_SYS_SYST_NUM_OF_CALLBACKS; ++i)
+    {
+        if (Cy_SysTick_GetCallback(i) == NULL)
+        {
+            /* Set callback */
+            Cy_SysTick_SetCallback(i, SysTickISRCallback);
+            break;
+        }
+    }
+    
     /* Init RTC - Configure the time and date */
     if(RtcInit() != CY_RTC_SUCCESS)
     {
@@ -93,6 +120,17 @@ void rtcTask(void *arg)
     }
     else  /* Configures the alarm to enable interrupt */
     {   
+        /*
+            To create a periodic alarm once per minute, enable the seconds match.
+            Do not enable the minutes match, because all that matters is the
+            seconds number. If it's zero, then every time the RTC second wraps
+            around to zero, there is a match, and the alarm goes off.
+        */
+        if( (TICK_INTERVAL == 1u) && (USE_MINUTES == 1u))
+        {
+            alarmConfig.secEn = CY_RTC_ALARM_ENABLE;
+        }
+
         /* Now configure the alarm */
         if(RtcAlarmConfig() != CY_RTC_SUCCESS)
         {
@@ -106,6 +144,13 @@ void rtcTask(void *arg)
         }
     }
     
+}
+
+/* timetask task */
+void timeTask(void *arg)
+{
+    (void)arg;
+    //startTimekeeping();
         
     /* Create a semaphore. It will be set in the UART ISR when data is available */
     rtcAlarmSemaphore = xSemaphoreCreateBinary();   
@@ -114,23 +159,22 @@ void rtcTask(void *arg)
     Cy_SysInt_Init(&RTC_RTC_IRQ_cfg, RtcInterruptHandler);
     NVIC_EnableIRQ(RTC_RTC_IRQ_cfg.intrSrc);
     
-    Counter_ms_Start();
-    
     while(1)
     {
         /* Wait here until the semaphore is given (i.e. set) by the ISR */
         xSemaphoreTake(rtcAlarmSemaphore,portMAX_DELAY);
 
-        /* Get Tick Timer */
-        TickType_t tickCount = xTaskGetTickCount();
-        
     	/* A custom processing - toggle the LED (RED) */
     	Cy_GPIO_Inv(LED_R_0_PORT, LED_R_0_NUM);		
         
         cy_stc_rtc_config_t rtc_time;
         Cy_RTC_GetDateAndTime(&rtc_time);
-        printf("%u/%02u/%02u %02u:%02u:%02u %.0f\r\n",rtc_time.year, rtc_time.month, rtc_time.date, rtc_time.hour, rtc_time.min, rtc_time.sec, getCurrentTimeMillis()/1.0);
-        printf("%d\r\n", Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM));
+        
+        uint64 unixTimeMillis = getTimestamp();
+        uint32 tick = getTick();
+        
+        //printf("Time Task: {Date: %04u/%02u/%02u, Time:%02u:%02u:%02u %, Millis:.0f\r\n",rtc_time.year, rtc_time.month, rtc_time.date, rtc_time.hour, rtc_time.min, rtc_time.sec, unixTimeMillis/1.0);
+        printf("Time Task Tick: %u\r\n", millis);
     }
 }
 
@@ -246,81 +290,16 @@ void RtcInterruptHandler(void)
 ******************************************************************************/
 void Cy_RTC_Alarm2Interrupt(void)
 {
-    /* Restart the counter with the new Compare0 value */
-    Cy_TCPWM_Counter_SetCounter(TCPWM0, Counter_ms_CNT_NUM, 0);
-    unixTimeMillis += 1000;
-    
+    /* the interrupt has fired, meaning time expired on the alarm and one second passed */
+    unixTimeMillis+=1000;
+    //Cy_SysTick_Clear();
     // If the semaphore causes a task switch you should yield to that task
     BaseType_t xHigherPriorityTaskWoken;
     xHigherPriorityTaskWoken = pdFALSE;
-    xSemaphoreGiveFromISR(rtcAlarmSemaphore,&xHigherPriorityTaskWoken); // Tell the UART thread to process the RX FIFO
+    xSemaphoreGiveFromISR(rtcAlarmSemaphore,&xHigherPriorityTaskWoken);
     if(xHigherPriorityTaskWoken != pdFALSE)
         portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
-}
-
-/******************************************************************************
-* Function Name: RtcStepAlarm
-*******************************************************************************
-*
-* Summary: 
-*  This function sets the time for CY_RTC_ALARM_2, and configures the interrupt.
-*  The available periods are one second to sixty seconds and one minute to sixty 
-*  minutes. 
-*
-* Parameters:
-*  None
-*
-* Return:
-*  None
-*
-******************************************************************************/
-void RtcStepAlarm(void)
-{
-    /* Don't set next time, if the interval is one second or one minute */
-    if(TICK_INTERVAL != 1u)
-    {
-        if (USE_MINUTES)  /* match minutes, and advance by minutes */
-    	{
-    		/* 
-                Enable the correct matches. This is a periodic interrupt, but 
-                happens every two or more minutes. Because we are stepping by 
-                minutes, we need to match the minutes number. We also match 
-                the seconds number so the alarm only goes off when both the 
-                seconds and minutes match. Because we are not changing the value
-                of the seconds in the alarm, the alarm happens only once when the
-                minutes match.
-            */
-            alarmConfig.secEn = CY_RTC_ALARM_ENABLE;
-            alarmConfig.minEn = CY_RTC_ALARM_ENABLE;
-
-    		/* advance the minute by the specified interval */
-    		alarmConfig.min += TICK_INTERVAL;
-
-            /* keep it in range, 0-59 */
-            alarmConfig.min = alarmConfig.min % MINUTES_PER_HOUR;
-    	}
-    	else   /* USE_SECONDS, alarm when the seconds match */
-    	{
-    		/* 
-                Enable the correct matches. Because we are stepping by seconds, 
-                we need to match just the seconds number.
-            */
-            alarmConfig.secEn = CY_RTC_ALARM_ENABLE;
-
-    		/* advance the second by the specified interval */
-    		alarmConfig.sec += TICK_INTERVAL;
-
-            /* keep it in range, 0-59 */
-            alarmConfig.sec = alarmConfig.sec % SECONDS_PER_MIN;
-    	}
-    	
-    	/* update the alarm configuration */
-    	if(RtcAlarmConfig() != CY_RTC_SUCCESS)
-    	{
-    	   /* If the operation fails, halt */
-    	   CY_ASSERT(0u);
-    	}
-    }
+    
 }
 
 /* [] END OF FILE */

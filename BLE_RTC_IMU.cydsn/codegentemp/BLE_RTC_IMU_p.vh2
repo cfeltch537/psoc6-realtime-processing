@@ -1,5 +1,5 @@
 -- Project:   BLE_RTC_IMU
--- Generated: 09/23/2020 14:04:58
+-- Generated: 10/07/2020 16:41:24
 -- PSoC Creator  4.2
 
 ENTITY BLE_RTC_IMU IS
@@ -10,7 +10,8 @@ ENTITY BLE_RTC_IMU IS
         \UART_1:rx(0)_PAD\ : IN std_ulogic;
         LED_B(0)_PAD : OUT std_ulogic;
         LED_G(0)_PAD : OUT std_ulogic;
-        LED_R(0)_PAD : OUT std_ulogic);
+        LED_R(0)_PAD : OUT std_ulogic;
+        Pin_ImuDataReady_INT(0)_PAD : IN std_ulogic);
     ATTRIBUTE voltage_VBACKUP OF __DEFAULT__ : ENTITY IS 3.3e0;
     ATTRIBUTE voltage_VDD_NS OF __DEFAULT__ : ENTITY IS 3.3e0;
     ATTRIBUTE voltage_VDDA_CSD OF __DEFAULT__ : ENTITY IS 3.3e0;
@@ -59,6 +60,16 @@ ARCHITECTURE __DEFAULT__ OF BLE_RTC_IMU IS
     SIGNAL Net_2 : bit;
     SIGNAL Net_3 : bit;
     SIGNAL Net_4 : bit;
+    SIGNAL Net_46 : bit;
+    SIGNAL Net_60 : bit;
+    SIGNAL Net_61 : bit;
+    SIGNAL Net_62 : bit;
+    SIGNAL Net_63 : bit;
+    SIGNAL Net_66_ff11 : bit;
+    ATTRIBUTE global_signal OF Net_66_ff11 : SIGNAL IS true;
+    SIGNAL Pin_ImuDataReady_INT(0)__PA : bit;
+    SIGNAL \Counter_ms:Net_1\ : bit;
+    SIGNAL \Counter_ms:Net_2\ : bit;
     SIGNAL \I2C_1:Net_1053\ : bit;
     SIGNAL \I2C_1:Net_1062\ : bit;
     SIGNAL \I2C_1:Net_162\ : bit;
@@ -111,6 +122,8 @@ ARCHITECTURE __DEFAULT__ OF BLE_RTC_IMU IS
     ATTRIBUTE Location OF LED_G(0) : LABEL IS "P1[1]";
     ATTRIBUTE lib_model OF LED_R(0) : LABEL IS "iocell11";
     ATTRIBUTE Location OF LED_R(0) : LABEL IS "P0[3]";
+    ATTRIBUTE lib_model OF Pin_ImuDataReady_INT(0) : LABEL IS "iocell12";
+    ATTRIBUTE Location OF Pin_ImuDataReady_INT(0) : LABEL IS "P13[1]";
     COMPONENT CLK_GEN
         PORT (
             gen_clk_in_0 : IN std_ulogic;
@@ -481,6 +494,21 @@ ARCHITECTURE __DEFAULT__ OF BLE_RTC_IMU IS
             pmic_wakeup_out : OUT std_ulogic;
             hibernate_wakeup : IN std_ulogic);
     END COMPONENT;
+    COMPONENT TCPWM
+        PORT (
+            clock : IN std_ulogic;
+            capture : IN std_ulogic;
+            count : IN std_ulogic;
+            reload : IN std_ulogic;
+            stop : IN std_ulogic;
+            start : IN std_ulogic;
+            tr_underflow : OUT std_ulogic;
+            tr_compare_match : OUT std_ulogic;
+            tr_overflow : OUT std_ulogic;
+            line_compl : OUT std_ulogic;
+            line : OUT std_ulogic;
+            interrupt : OUT std_ulogic);
+    END COMPONENT;
 BEGIN
 
     ClockGenBlock:CLK_GEN;
@@ -506,6 +534,7 @@ BEGIN
             lfclk => ClockBlock_LFClk,
             ff_div_0 => \I2C_1:clock_wire_ff0\,
             ff_div_1 => \UART_1:Net_847_ff1\,
+            ff_div_11 => Net_66_ff11,
             periclk_App => periclk_App);
 
     SRSS:SRSS;
@@ -1110,6 +1139,61 @@ BEGIN
             out_clock_en => open,
             out_reset => open);
 
+    Pin_ImuDataReady_INT:logicalport
+        GENERIC MAP(
+            cy_registers => "",
+            drive_mode => "011",
+            drive_strength => "0",
+            hotswap_needed => "0",
+            i2c_mode => "0",
+            ibuf_enabled => "1",
+            id => "4cca878b-77b5-471d-8aeb-ad6925202455",
+            init_dr_st => "0",
+            input_sync => "0",
+            intr_mode => "00",
+            io_voltage => "",
+            max_frequency => "100",
+            oe_conn => "0",
+            oe_sync => "0",
+            output_conn => "0",
+            output_current_cap => "8",
+            output_sync => "0",
+            pin_aliases => "",
+            pin_mode => "B",
+            sio_grp_cnt => 0,
+            slew_rate => "0",
+            use_annotation => "0",
+            vtrip => "00",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0);
+
+    Pin_ImuDataReady_INT(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "Pin_ImuDataReady_INT",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+        PORT MAP(
+            pa_out => Pin_ImuDataReady_INT(0)__PA,
+            oe => open,
+            fb => Net_46,
+            pad_in => Pin_ImuDataReady_INT(0)_PAD,
+            in_clock => open,
+            in_clock_en => open,
+            in_reset => open,
+            out_clock => open,
+            out_clock_en => open,
+            out_reset => open);
+
     \I2C_1:SCB\:SCB
         GENERIC MAP(
             cy_registers => "",
@@ -1192,5 +1276,42 @@ BEGIN
         PORT MAP(
             interrupt => \RTC:Net_3\,
             clock => ClockBlock_PeriClk);
+
+    SysInt_ImuDataReadyINT:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "00")
+        PORT MAP(
+            interrupt => Net_46,
+            clock => ClockBlock_PeriClk);
+
+    SysInt_1ms:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_60,
+            clock => ClockBlock_PeriClk);
+
+    \Counter_ms:TCPWM\:TCPWM
+        GENERIC MAP(
+            cy_registers => "",
+            exact_width => 0,
+            width => 16)
+        PORT MAP(
+            clock => Net_66_ff11,
+            capture => '0',
+            count => '1',
+            reload => '0',
+            stop => '0',
+            start => '0',
+            tr_underflow => Net_62,
+            tr_compare_match => Net_63,
+            tr_overflow => Net_61,
+            line_compl => \Counter_ms:Net_1\,
+            line => \Counter_ms:Net_2\,
+            interrupt => Net_60);
 
 END __DEFAULT__;

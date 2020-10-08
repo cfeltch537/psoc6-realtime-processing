@@ -10,6 +10,7 @@
       <Data key="1937cc78-9054-4bab-88a8-ebc172e335be/b68e5b9d-7828-482d-a282-930f990e3b3e" value="I2C_1_SCBCLK" />
     </Group>
     <Group key="Pin">
+      <Data key="4cca878b-77b5-471d-8aeb-ad6925202455" value="Pin_Step_INT" />
       <Data key="048caefc-582d-487d-bba0-b188d07b1dd2" value="LED_B" />
       <Data key="52f9e396-aa77-4620-a8e4-9f79958c5b12" value="LED_G" />
       <Data key="494f7ce3-3de2-4c02-b4e0-84f92e791a93/65f3af6c-759b-4ccb-8c66-5c95ba1f5f4f" value="UART_1_tx" />
@@ -129,7 +130,7 @@
         <Data key="sourceClk_plus_acuracy_name" value="10" />
         <Data key="src_clk_id" value="86410BAB-C607-4C16-A245-8987C7D5B200" />
         <Data key="src_clk_name" value="ILO" />
-        <Data key="start_on_reset" value="True" />
+        <Data key="start_on_reset" value="False" />
       </Group>
       <Group key="2A8967C4-B635-4C8A-8C91-90EE65E329AC">
         <Data key="check_tolerance" value="False" />
@@ -300,8 +301,8 @@
       <Group key="43B2A111-B593-448F-A298-491D36F976AF">
         <Data key="check_tolerance" value="False" />
         <Data key="derive_type" value="BUILTIN" />
-        <Data key="desired_freq" value="32" />
-        <Data key="desired_unit" value="3" />
+        <Data key="desired_freq" value="8" />
+        <Data key="desired_unit" value="6" />
         <Data key="divider" value="0" />
         <Data key="enabled" value="True" />
         <Data key="minus_tolerance" value="0" />
@@ -309,10 +310,10 @@
         <Data key="netlist_name" value="AltSysTickClk" />
         <Data key="plus_tolerance" value="0" />
         <Data key="scope" value="BUILTIN" />
-        <Data key="sourceClk_minus_acuracy_name" value="10" />
-        <Data key="sourceClk_plus_acuracy_name" value="10" />
-        <Data key="src_clk_id" value="1BBDCBF8-BEDC-475F-91D6-B7000D3ACFC0" />
-        <Data key="src_clk_name" value="Clk_LF" />
+        <Data key="sourceClk_minus_acuracy_name" value="1" />
+        <Data key="sourceClk_plus_acuracy_name" value="1" />
+        <Data key="src_clk_id" value="0A08FE05-F885-497B-A02E-BF29CD90D1E9" />
+        <Data key="src_clk_name" value="IMO" />
         <Data key="start_on_reset" value="True" />
       </Group>
       <Group key="82BF9508-65AC-4E3C-A121-369F517EB9A1">
@@ -375,7 +376,7 @@
         <Data key="sourceClk_plus_acuracy_name" value="2.4" />
         <Data key="src_clk_id" value="90A0AFF0-F028-4772-9ECA-35D832B188BB" />
         <Data key="src_clk_name" value="PathMux0" />
-        <Data key="start_on_reset" value="True" />
+        <Data key="start_on_reset" value="False" />
       </Group>
       <Group key="627FD272-4308-4363-80FD-BD4E238E9E1E">
         <Data key="check_tolerance" value="False" />
@@ -651,6 +652,11 @@
     </Group>
   </Group>
   <Group key="Pin2">
+    <Group key="4cca878b-77b5-471d-8aeb-ad6925202455">
+      <Group key="0">
+        <Data key="Port Format" value="13,1" />
+      </Group>
+    </Group>
     <Group key="048caefc-582d-487d-bba0-b188d07b1dd2">
       <Group key="0">
         <Data key="Port Format" value="11,1" />

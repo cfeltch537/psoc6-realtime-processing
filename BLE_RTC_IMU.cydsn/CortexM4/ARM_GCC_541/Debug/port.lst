@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
   28:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****      *    robust, strictly quality controlled, supported, and cross          *
   29:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****      *    platform software that is more than just the market leader, it     *
   30:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****      *    is the industry's de facto standard.                               *
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 2
 
 
   31:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****      *                                                                       *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
   85:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     #define portNVIC_SYSTICK_CLK_BIT    ( 1UL << 2UL )
   86:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** #else
   87:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     /* The way the SysTick is clocked is not modified in case it is not the same
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 3
 
 
   88:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     as the core. */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  142:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** debugger. */
  143:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** #ifdef configTASK_RETURN_ADDRESS
  144:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     #define portTASK_RETURN_ADDRESS    configTASK_RETURN_ADDRESS
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 4
 
 
  145:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** #else
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  199:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** /*
  200:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****  * Compensate for the CPU cycles that pass while the SysTick is stopped (low
  201:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****  * power functionality only.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 5
 
 
  202:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****  */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
   29              		.cfi_startproc
   30              		@ Volatile: function does not return.
   31              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 6
 
 
   32              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  269:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     __asm volatile (
  270:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         /* Restore the context. */
  271:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         " ldr    r3, pxCurrentTCBConst2      \n"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 7
 
 
  272:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         /* Use pxCurrentTCBConst to get the pxCurrentTCB address. */
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  306:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         " isb                                \n"
  307:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         /* System call to start first task. */
  308:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         " svc 0                              \n"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 8
 
 
  309:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         " nop                                \n"
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  350:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****             ucMaxPriorityValue <<= ( uint8_t ) 0x01;
  351:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         }
  352:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 9
 
 
  353:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         /* Shift the priority group value back to its position within the AIRCR
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  407:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** 
  408:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     /* This is not the interrupt safe version of the enter critical function so
  409:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     assert() if it is being called from an interrupt context.  Only API
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 10
 
 
  410:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     functions that end in "FromISR" can be used in an interrupt.  Only assert if
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  464:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         "                                    \n"
  465:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         /* The first item in pxCurrentTCB is the task top of stack. */
  466:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         " ldr r1, [r3]                       \n"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 11
 
 
  467:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         " ldr r0, [r1]                       \n"
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  521:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         /* Stop the SysTick momentarily.  The time the SysTick is stopped for
  522:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         is accounted for as best it can be, but using the tickless mode will
  523:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         inevitably result in some tiny drift of the time maintained by the
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 12
 
 
  524:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****         kernel with respect to calendar time. */
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  578:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****             xModifiableIdleTime = xExpectedIdleTime;
  579:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****             configPRE_SLEEP_PROCESSING( xModifiableIdleTime );
  580:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****             if( xModifiableIdleTime > 0 )
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 13
 
 
  581:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****             {
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  635:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****                 was waiting? */
  636:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****                 ulCompleteTickPeriods = ulCompletedSysTickDecrements / ulTimerCountsForOneTick;
  637:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 14
 
 
  638:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****                 /* The reload value is set to whatever fraction of a single tick
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  110              		.loc 1 686 0
  111              		.syntax unified
  112              	@ 686 "Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F\port.c" 1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 15
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 15
 
 
  113 0000 DFF80C00 		 ldr.w r0, =0xE000ED88              
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  152 0012 40F80C3C 		str	r3, [r0, #-12]
  153              	.LVL4:
  240:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 16
 
 
  154              		.loc 1 240 0
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  203              		.thumb
  204              		.syntax unified
  205              		.cfi_endproc
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 17
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 17
 
 
  206              	.LFE131:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  256              		@ link register save eliminated.
  405:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     uxCriticalNesting++;
  257              		.loc 1 405 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 18
 
 
  258              		.syntax unified
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  307              		@ frame_needed = 0, uses_anonymous_args = 0
  308              		@ link register save eliminated.
  422:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     uxCriticalNesting--;
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 19
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 19
 
 
  309              		.loc 1 422 0
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  435:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     (
  358              		.loc 1 435 0
  359              		.syntax unified
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 20
 
 
  360              	@ 435 "Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F\port.c" 1
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  412              		.thumb_func
  413              		.type	SysTick_Handler, %function
  414              	SysTick_Handler:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 21
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 21
 
 
  415              	.LFB138:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  463              		.loc 1 667 0
  464              		.cfi_startproc
  465              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 22
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 22
 
 
  466              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  336:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** 
  516              		.loc 1 336 0
  517 000c FF22     		movs	r2, #255
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 23
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 23
 
 
  518 000e 1A70     		strb	r2, [r3]
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  365:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****     portNVIC_SYSPRI2_REG |= portNVIC_SYSTICK_PRI;
  562              		.loc 1 365 0
  563 005c 0E4B     		ldr	r3, .L42+8
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 24
 
 
  564 005e 1A68     		ldr	r2, [r3]
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  698:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** /*-----------------------------------------------------------*/
  699:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** 
  700:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** #if( configASSERT_DEFINED == 1 )
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 25
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 25
 
 
  701:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** 
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  733:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****             FreeRTOS maintains separate thread and ISR API functions to ensure
  734:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****             interrupt entry is as fast and simple as possible.
  735:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 26
 
 
  736:Generated_Source\PSoC6\pdl\rtos\FreeRTOS\9.0.0\Source\portable\GCC\CM4F/port.c ****             The following links provide detailed information:
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  667 002e 7047     		bx	lr
  668              	.L50:
  669              		.align	2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 27
 
 
  670              	.L49:
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  700              		.thumb
  701              		.syntax unified
  702 0004 40F20B31 		movw	r1, #779
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 28
 
 
  703              	.LVL19:
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  749              		.file 8 "Generated_Source\\PSoC6\\pdl\\cmsis/include/core_cm4.h"
  750              		.file 9 "./system_psoc63.h"
  751              		.section	.debug_info,"",%progbits
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 29
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 29
 
 
  752              	.Ldebug_info0:
@@ -1687,10 +1687,10 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  755 0006 00000000 		.4byte	.Ldebug_abbrev0
  756 000a 04       		.byte	0x4
  757 000b 01       		.uleb128 0x1
- 758 000c FE010000 		.4byte	.LASF55
+ 758 000c 3D020000 		.4byte	.LASF55
  759 0010 0C       		.byte	0xc
- 760 0011 4C040000 		.4byte	.LASF56
- 761 0015 E1020000 		.4byte	.LASF57
+ 760 0011 60040000 		.4byte	.LASF56
+ 761 0015 29000000 		.4byte	.LASF57
  762 0019 00000000 		.4byte	.Ldebug_ranges0+0
  763 001d 00000000 		.4byte	0
  764 0021 00000000 		.4byte	.Ldebug_line0
@@ -1701,19 +1701,19 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  769 002c 03       		.uleb128 0x3
  770 002d 04       		.byte	0x4
  771 002e 07       		.byte	0x7
- 772 002f AC010000 		.4byte	.LASF0
+ 772 002f EB010000 		.4byte	.LASF0
  773 0033 03       		.uleb128 0x3
  774 0034 08       		.byte	0x8
  775 0035 05       		.byte	0x5
- 776 0036 D3020000 		.4byte	.LASF1
+ 776 0036 12030000 		.4byte	.LASF1
  777 003a 03       		.uleb128 0x3
  778 003b 08       		.byte	0x8
  779 003c 04       		.byte	0x4
- 780 003d E5030000 		.4byte	.LASF2
+ 780 003d F9030000 		.4byte	.LASF2
  781 0041 03       		.uleb128 0x3
  782 0042 01       		.byte	0x1
  783 0043 06       		.byte	0x6
- 784 0044 F1030000 		.4byte	.LASF3
+ 784 0044 05040000 		.4byte	.LASF3
  785 0048 04       		.uleb128 0x4
  786 0049 06000000 		.4byte	.LASF7
  787 004d 02       		.byte	0x2
@@ -1722,59 +1722,59 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  790 0053 03       		.uleb128 0x3
  791 0054 01       		.byte	0x1
  792 0055 08       		.byte	0x8
- 793 0056 5F010000 		.4byte	.LASF4
+ 793 0056 9E010000 		.4byte	.LASF4
  794 005a 03       		.uleb128 0x3
  795 005b 02       		.byte	0x2
  796 005c 05       		.byte	0x5
- 797 005d 68000000 		.4byte	.LASF5
+ 797 005d A7000000 		.4byte	.LASF5
  798 0061 03       		.uleb128 0x3
  799 0062 02       		.byte	0x2
  800 0063 07       		.byte	0x7
- 801 0064 31010000 		.4byte	.LASF6
+ 801 0064 70010000 		.4byte	.LASF6
  802 0068 04       		.uleb128 0x4
- 803 0069 5E000000 		.4byte	.LASF8
+ 803 0069 9D000000 		.4byte	.LASF8
  804 006d 02       		.byte	0x2
  805 006e 3F       		.byte	0x3f
  806 006f 73000000 		.4byte	0x73
  807 0073 03       		.uleb128 0x3
  808 0074 04       		.byte	0x4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 30
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 30
 
 
  809 0075 05       		.byte	0x5
- 810 0076 46000000 		.4byte	.LASF9
+ 810 0076 85000000 		.4byte	.LASF9
  811 007a 04       		.uleb128 0x4
- 812 007b 54010000 		.4byte	.LASF10
+ 812 007b 93010000 		.4byte	.LASF10
  813 007f 02       		.byte	0x2
  814 0080 41       		.byte	0x41
  815 0081 85000000 		.4byte	0x85
  816 0085 03       		.uleb128 0x3
  817 0086 04       		.byte	0x4
  818 0087 07       		.byte	0x7
- 819 0088 1F010000 		.4byte	.LASF11
+ 819 0088 5E010000 		.4byte	.LASF11
  820 008c 03       		.uleb128 0x3
  821 008d 08       		.byte	0x8
  822 008e 07       		.byte	0x7
- 823 008f C6000000 		.4byte	.LASF12
+ 823 008f 05010000 		.4byte	.LASF12
  824 0093 04       		.uleb128 0x4
- 825 0094 E4010000 		.4byte	.LASF13
+ 825 0094 23020000 		.4byte	.LASF13
  826 0098 03       		.byte	0x3
  827 0099 18       		.byte	0x18
  828 009a 48000000 		.4byte	0x48
  829 009e 04       		.uleb128 0x4
- 830 009f A9000000 		.4byte	.LASF14
+ 830 009f E8000000 		.4byte	.LASF14
  831 00a3 03       		.byte	0x3
  832 00a4 2C       		.byte	0x2c
  833 00a5 68000000 		.4byte	0x68
  834 00a9 04       		.uleb128 0x4
- 835 00aa B2030000 		.4byte	.LASF15
+ 835 00aa C6030000 		.4byte	.LASF15
  836 00ae 03       		.byte	0x3
  837 00af 30       		.byte	0x30
  838 00b0 7A000000 		.4byte	0x7a
  839 00b4 03       		.uleb128 0x3
  840 00b5 04       		.byte	0x4
  841 00b6 07       		.byte	0x7
- 842 00b7 CA020000 		.4byte	.LASF16
+ 842 00b7 09030000 		.4byte	.LASF16
  843 00bb 05       		.uleb128 0x5
  844 00bc A9000000 		.4byte	0xa9
  845 00c0 05       		.uleb128 0x5
@@ -1782,27 +1782,27 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  847 00c5 06       		.uleb128 0x6
  848 00c6 C0000000 		.4byte	0xc0
  849 00ca 07       		.uleb128 0x7
- 850 00cb 27040000 		.4byte	.LASF17
+ 850 00cb 3B040000 		.4byte	.LASF17
  851 00cf 04       		.byte	0x4
  852 00d0 C401     		.2byte	0x1c4
  853 00d2 D6000000 		.4byte	0xd6
  854 00d6 03       		.uleb128 0x3
  855 00d7 01       		.byte	0x1
  856 00d8 08       		.byte	0x8
- 857 00d9 CA030000 		.4byte	.LASF18
+ 857 00d9 DE030000 		.4byte	.LASF18
  858 00dd 03       		.uleb128 0x3
  859 00de 04       		.byte	0x4
  860 00df 04       		.byte	0x4
- 861 00e0 C0000000 		.4byte	.LASF19
+ 861 00e0 FF000000 		.4byte	.LASF19
  862 00e4 03       		.uleb128 0x3
  863 00e5 08       		.byte	0x8
  864 00e6 04       		.byte	0x4
- 865 00e7 6D010000 		.4byte	.LASF20
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 31
+ 865 00e7 AC010000 		.4byte	.LASF20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 31
 
 
  866 00eb 04       		.uleb128 0x4
- 867 00ec B1000000 		.4byte	.LASF21
+ 867 00ec F0000000 		.4byte	.LASF21
  868 00f0 05       		.byte	0x5
  869 00f1 4D       		.byte	0x4d
  870 00f2 F6000000 		.4byte	0xf6
@@ -1817,22 +1817,22 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  879 0107 0B       		.uleb128 0xb
  880 0108 04       		.byte	0x4
  881 0109 04       		.uleb128 0x4
- 882 010a A0010000 		.4byte	.LASF22
+ 882 010a DF010000 		.4byte	.LASF22
  883 010e 06       		.byte	0x6
  884 010f 61       		.byte	0x61
  885 0110 A9000000 		.4byte	0xa9
  886 0114 04       		.uleb128 0x4
- 887 0115 9B040000 		.4byte	.LASF23
+ 887 0115 AF040000 		.4byte	.LASF23
  888 0119 06       		.byte	0x6
  889 011a 62       		.byte	0x62
  890 011b 73000000 		.4byte	0x73
  891 011f 04       		.uleb128 0x4
- 892 0120 D8010000 		.4byte	.LASF24
+ 892 0120 17020000 		.4byte	.LASF24
  893 0124 06       		.byte	0x6
  894 0125 63       		.byte	0x63
  895 0126 85000000 		.4byte	0x85
  896 012a 04       		.uleb128 0x4
- 897 012b 29000000 		.4byte	.LASF25
+ 897 012b 68000000 		.4byte	.LASF25
  898 012f 07       		.byte	0x7
  899 0130 67       		.byte	0x67
  900 0131 07010000 		.4byte	0x107
@@ -1840,7 +1840,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  902 0136 04       		.byte	0x4
  903 0137 09010000 		.4byte	0x109
  904 013b 0C       		.uleb128 0xc
- 905 013c 85000000 		.4byte	.LASF58
+ 905 013c C4000000 		.4byte	.LASF58
  906 0140 01       		.byte	0x1
  907 0141 FD       		.byte	0xfd
  908 0142 00000000 		.4byte	.LFB130
@@ -1848,7 +1848,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  910 014a 01       		.uleb128 0x1
  911 014b 9C       		.byte	0x9c
  912 014c 0D       		.uleb128 0xd
- 913 014d CF030000 		.4byte	.LASF26
+ 913 014d E3030000 		.4byte	.LASF26
  914 0151 01       		.byte	0x1
  915 0152 2501     		.2byte	0x125
  916 0154 00000000 		.4byte	.LFB132
@@ -1856,9 +1856,9 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  918 015c 01       		.uleb128 0x1
  919 015d 9C       		.byte	0x9c
  920 015e 0D       		.uleb128 0xd
- 921 015f 4F000000 		.4byte	.LASF27
+ 921 015f 8E000000 		.4byte	.LASF27
  922 0163 01       		.byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 32
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 32
 
 
  923 0164 AC02     		.2byte	0x2ac
@@ -1867,7 +1867,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  926 016e 01       		.uleb128 0x1
  927 016f 9C       		.byte	0x9c
  928 0170 0E       		.uleb128 0xe
- 929 0171 29030000 		.4byte	.LASF59
+ 929 0171 3D030000 		.4byte	.LASF59
  930 0175 01       		.byte	0x1
  931 0176 DF       		.byte	0xdf
  932 0177 35010000 		.4byte	0x135
@@ -1877,7 +1877,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  936 0184 9C       		.byte	0x9c
  937 0185 B5010000 		.4byte	0x1b5
  938 0189 0F       		.uleb128 0xf
- 939 018a 73030000 		.4byte	.LASF28
+ 939 018a 87030000 		.4byte	.LASF28
  940 018e 01       		.byte	0x1
  941 018f DF       		.byte	0xdf
  942 0190 35010000 		.4byte	0x135
@@ -1889,7 +1889,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  948 019f EB000000 		.4byte	0xeb
  949 01a3 6D000000 		.4byte	.LLST1
  950 01a7 10       		.uleb128 0x10
- 951 01a8 3F030000 		.4byte	.LASF30
+ 951 01a8 53030000 		.4byte	.LASF30
  952 01ac 01       		.byte	0x1
  953 01ad DF       		.byte	0xdf
  954 01ae 07010000 		.4byte	0x107
@@ -1897,7 +1897,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  956 01b3 52       		.byte	0x52
  957 01b4 00       		.byte	0
  958 01b5 11       		.uleb128 0x11
- 959 01b6 74010000 		.4byte	.LASF31
+ 959 01b6 B3010000 		.4byte	.LASF31
  960 01ba 01       		.byte	0x1
  961 01bb 0B01     		.2byte	0x10b
  962 01bd 00000000 		.4byte	.LFB131
@@ -1913,18 +1913,18 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  972 01d7 01       		.uleb128 0x1
  973 01d8 9C       		.byte	0x9c
  974 01d9 11       		.uleb128 0x11
- 975 01da 14040000 		.4byte	.LASF33
+ 975 01da 28040000 		.4byte	.LASF33
  976 01de 01       		.byte	0x1
  977 01df 9301     		.2byte	0x193
  978 01e1 00000000 		.4byte	.LFB135
  979 01e5 28000000 		.4byte	.LFE135-.LFB135
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 33
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 33
 
 
  980 01e9 01       		.uleb128 0x1
  981 01ea 9C       		.byte	0x9c
  982 01eb 11       		.uleb128 0x11
- 983 01ec A0030000 		.4byte	.LASF34
+ 983 01ec B4030000 		.4byte	.LASF34
  984 01f0 01       		.byte	0x1
  985 01f1 A401     		.2byte	0x1a4
  986 01f3 00000000 		.4byte	.LFB136
@@ -1932,7 +1932,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  988 01fb 01       		.uleb128 0x1
  989 01fc 9C       		.byte	0x9c
  990 01fd 11       		.uleb128 0x11
- 991 01fe BB030000 		.4byte	.LASF35
+ 991 01fe CF030000 		.4byte	.LASF35
  992 0202 01       		.byte	0x1
  993 0203 AF01     		.2byte	0x1af
  994 0205 00000000 		.4byte	.LFB137
@@ -1940,7 +1940,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  996 020d 01       		.uleb128 0x1
  997 020e 9C       		.byte	0x9c
  998 020f 12       		.uleb128 0x12
- 999 0210 36000000 		.4byte	.LASF40
+ 999 0210 75000000 		.4byte	.LASF40
  1000 0214 01       		.byte	0x1
  1001 0215 E801     		.2byte	0x1e8
  1002 0217 00000000 		.4byte	.LFB138
@@ -1953,7 +1953,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1009 022a C1030000 		.4byte	0x3c1
  1010 022e 00       		.byte	0
  1011 022f 11       		.uleb128 0x11
- 1012 0230 B1020000 		.4byte	.LASF36
+ 1012 0230 F0020000 		.4byte	.LASF36
  1013 0234 01       		.byte	0x1
  1014 0235 9A02     		.2byte	0x29a
  1015 0237 00000000 		.4byte	.LFB139
@@ -1961,7 +1961,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1017 023f 01       		.uleb128 0x1
  1018 0240 9C       		.byte	0x9c
  1019 0241 14       		.uleb128 0x14
- 1020 0242 5F030000 		.4byte	.LASF60
+ 1020 0242 73030000 		.4byte	.LASF60
  1021 0246 01       		.byte	0x1
  1022 0247 3A01     		.2byte	0x13a
  1023 0249 14010000 		.4byte	0x114
@@ -1975,10 +1975,10 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1031 0260 58000000 		.4byte	.LBE2-.LBB2
  1032 0264 98020000 		.4byte	0x298
  1033 0268 16       		.uleb128 0x16
- 1034 0269 72000000 		.4byte	.LASF37
+ 1034 0269 B1000000 		.4byte	.LASF37
  1035 026d 01       		.byte	0x1
  1036 026e 4201     		.2byte	0x142
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 34
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 34
 
 
  1037 0270 BB000000 		.4byte	0xbb
@@ -1986,14 +1986,14 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1039 0275 91       		.byte	0x91
  1040 0276 74       		.sleb128 -12
  1041 0277 17       		.uleb128 0x17
- 1042 0278 F0000000 		.4byte	.LASF38
+ 1042 0278 2F010000 		.4byte	.LASF38
  1043 027c 01       		.byte	0x1
  1044 027d 4301     		.2byte	0x143
  1045 027f C3020000 		.4byte	0x2c3
  1046 0283 80C88380 		.sleb128 -536812544
  1046      7E
  1047 0288 16       		.uleb128 0x16
- 1048 0289 96000000 		.4byte	.LASF39
+ 1048 0289 D5000000 		.4byte	.LASF39
  1049 028d 01       		.byte	0x1
  1050 028e 4401     		.2byte	0x144
  1051 0290 C0000000 		.4byte	0xc0
@@ -2020,7 +2020,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1072 02c3 06       		.uleb128 0x6
  1073 02c4 BD020000 		.4byte	0x2bd
  1074 02c8 12       		.uleb128 0x12
- 1075 02c9 B9010000 		.4byte	.LASF41
+ 1075 02c9 F8010000 		.4byte	.LASF41
  1076 02cd 01       		.byte	0x1
  1077 02ce BE02     		.2byte	0x2be
  1078 02d0 00000000 		.4byte	.LFB141
@@ -2029,23 +2029,23 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1081 02d9 9C       		.byte	0x9c
  1082 02da FF020000 		.4byte	0x2ff
  1083 02de 18       		.uleb128 0x18
- 1084 02df 4C030000 		.4byte	.LASF42
+ 1084 02df 60030000 		.4byte	.LASF42
  1085 02e3 01       		.byte	0x1
  1086 02e4 C002     		.2byte	0x2c0
  1087 02e6 A9000000 		.4byte	0xa9
  1088 02ea 8E000000 		.4byte	.LLST2
  1089 02ee 18       		.uleb128 0x18
- 1090 02ef 0D010000 		.4byte	.LASF43
+ 1090 02ef 4C010000 		.4byte	.LASF43
  1091 02f3 01       		.byte	0x1
  1092 02f4 C102     		.2byte	0x2c1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 35
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 35
 
 
  1093 02f6 93000000 		.4byte	0x93
  1094 02fa A1000000 		.4byte	.LLST3
  1095 02fe 00       		.byte	0
  1096 02ff 12       		.uleb128 0x12
- 1097 0300 2E040000 		.4byte	.LASF44
+ 1097 0300 42040000 		.4byte	.LASF44
  1098 0304 01       		.byte	0x1
  1099 0305 0503     		.2byte	0x305
  1100 0307 00000000 		.4byte	.LFB142
@@ -2060,7 +2060,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1109 031d 2A010000 		.4byte	0x12a
  1110 0321 B4000000 		.4byte	.LLST4
  1111 0325 19       		.uleb128 0x19
- 1112 0326 80030000 		.4byte	.LASF46
+ 1112 0326 94030000 		.4byte	.LASF46
  1113 032a 01       		.byte	0x1
  1114 032b 0503     		.2byte	0x305
  1115 032d 50030000 		.4byte	0x350
@@ -2086,7 +2086,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1135 0351 04       		.byte	0x4
  1136 0352 41000000 		.4byte	0x41
  1137 0356 1C       		.uleb128 0x1c
- 1138 0357 EC010000 		.4byte	.LASF47
+ 1138 0357 2B020000 		.4byte	.LASF47
  1139 035b 01       		.byte	0x1
  1140 035c 97       		.byte	0x97
  1141 035d 1F010000 		.4byte	0x11f
@@ -2094,18 +2094,18 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1143 0362 03       		.byte	0x3
  1144 0363 00000000 		.4byte	uxCriticalNesting
  1145 0367 1C       		.uleb128 0x1c
- 1146 0368 8B030000 		.4byte	.LASF48
+ 1146 0368 9F030000 		.4byte	.LASF48
  1147 036c 01       		.byte	0x1
  1148 036d D5       		.byte	0xd5
  1149 036e 93000000 		.4byte	0x93
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 36
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 36
 
 
  1150 0372 05       		.uleb128 0x5
  1151 0373 03       		.byte	0x3
  1152 0374 00000000 		.4byte	ucMaxSysCallPriority
  1153 0378 1C       		.uleb128 0x1c
- 1154 0379 DD000000 		.4byte	.LASF49
+ 1154 0379 1C010000 		.4byte	.LASF49
  1155 037d 01       		.byte	0x1
  1156 037e D6       		.byte	0xd6
  1157 037f A9000000 		.4byte	0xa9
@@ -2113,7 +2113,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1159 0384 03       		.byte	0x3
  1160 0385 04000000 		.4byte	ulMaxPRIGROUPValue
  1161 0389 1D       		.uleb128 0x1d
- 1162 038a 0C030000 		.4byte	.LASF50
+ 1162 038a 20030000 		.4byte	.LASF50
  1163 038e 01       		.byte	0x1
  1164 038f D7       		.byte	0xd7
  1165 0390 9F030000 		.4byte	0x39f
@@ -2125,25 +2125,25 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1170 039f 06       		.uleb128 0x6
  1171 03a0 99030000 		.4byte	0x399
  1172 03a4 1E       		.uleb128 0x1e
- 1173 03a5 93010000 		.4byte	.LASF51
+ 1173 03a5 D2010000 		.4byte	.LASF51
  1174 03a9 08       		.byte	0x8
  1175 03aa EA07     		.2byte	0x7ea
  1176 03ac B0030000 		.4byte	0x3b0
  1177 03b0 05       		.uleb128 0x5
  1178 03b1 9E000000 		.4byte	0x9e
  1179 03b5 1E       		.uleb128 0x1e
- 1180 03b6 44010000 		.4byte	.LASF52
+ 1180 03b6 83010000 		.4byte	.LASF52
  1181 03ba 09       		.byte	0x9
  1182 03bb 2502     		.2byte	0x225
  1183 03bd A9000000 		.4byte	0xa9
  1184 03c1 1F       		.uleb128 0x1f
- 1185 03c2 80010000 		.4byte	.LASF53
- 1186 03c6 80010000 		.4byte	.LASF53
+ 1185 03c2 BF010000 		.4byte	.LASF53
+ 1186 03c6 BF010000 		.4byte	.LASF53
  1187 03ca 07       		.byte	0x7
  1188 03cb 2608     		.2byte	0x826
  1189 03cd 1F       		.uleb128 0x1f
- 1190 03ce FD030000 		.4byte	.LASF54
- 1191 03d2 FD030000 		.4byte	.LASF54
+ 1190 03ce 11040000 		.4byte	.LASF54
+ 1191 03d2 11040000 		.4byte	.LASF54
  1192 03d6 04       		.byte	0x4
  1193 03d7 2A03     		.2byte	0x32a
  1194 03d9 00       		.byte	0
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1203 0006 0B       		.uleb128 0xb
  1204 0007 03       		.uleb128 0x3
  1205 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 37
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 37
 
 
  1206 0009 1B       		.uleb128 0x1b
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1260 003f 00       		.byte	0
  1261 0040 49       		.uleb128 0x49
  1262 0041 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 38
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 38
 
 
  1263 0042 00       		.byte	0
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1317 0078 3B       		.uleb128 0x3b
  1318 0079 0B       		.uleb128 0xb
  1319 007a 27       		.uleb128 0x27
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 39
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 39
 
 
  1320 007b 19       		.uleb128 0x19
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1374 00b4 18       		.uleb128 0x18
  1375 00b5 9742     		.uleb128 0x2117
  1376 00b7 19       		.uleb128 0x19
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 40
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 40
 
 
  1377 00b8 01       		.uleb128 0x1
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1431 00ef 19       		.uleb128 0x19
  1432 00f0 00       		.byte	0
  1433 00f1 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 41
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 41
 
 
  1434 00f2 12       		.uleb128 0x12
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1488 012c 06       		.uleb128 0x6
  1489 012d 40       		.uleb128 0x40
  1490 012e 18       		.uleb128 0x18
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 42
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 42
 
 
  1491 012f 9742     		.uleb128 0x2117
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1545 0166 3B       		.uleb128 0x3b
  1546 0167 05       		.uleb128 0x5
  1547 0168 49       		.uleb128 0x49
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 43
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 43
 
 
  1548 0169 13       		.uleb128 0x13
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1602 01a4 34       		.uleb128 0x34
  1603 01a5 00       		.byte	0
  1604 01a6 03       		.uleb128 0x3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 44
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 44
 
 
  1605 01a7 0E       		.uleb128 0xe
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1659 000f 08000000 		.4byte	.LVL1
  1660 0013 0300     		.2byte	0x3
  1661 0015 70       		.byte	0x70
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 45
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 45
 
 
  1662 0016 7C       		.sleb128 -4
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1716 0092 0C000000 		.4byte	.LVL15
  1717 0096 0100     		.2byte	0x1
  1718 0098 53       		.byte	0x53
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 46
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 46
 
 
  1719 0099 00000000 		.4byte	0
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1773 0034 24000000 		.4byte	.LFE131-.LFB131
  1774 0038 00000000 		.4byte	.LFB134
  1775 003c 14000000 		.4byte	.LFE134-.LFB134
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 47
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 47
 
 
  1776 0040 00000000 		.4byte	.LFB135
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1828      00000201 
  1828      FB0E0D00 
  1828      01010101 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 48
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 48
 
 
  1829              	.LASF45:
@@ -2837,325 +2837,330 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 1
  1836      53636865 
  1836      64756C65 
  1836      7200
- 1837              	.LASF25:
- 1838 0029 5461736B 		.ascii	"TaskHandle_t\000"
- 1838      48616E64 
- 1838      6C655F74 
- 1838      00
- 1839              	.LASF40:
- 1840 0036 53797354 		.ascii	"SysTick_Handler\000"
- 1840      69636B5F 
- 1840      48616E64 
- 1840      6C657200 
- 1841              	.LASF9:
- 1842 0046 6C6F6E67 		.ascii	"long int\000"
- 1842      20696E74 
- 1842      00
- 1843              	.LASF27:
- 1844 004f 76506F72 		.ascii	"vPortEnableVFP\000"
- 1844      74456E61 
- 1844      626C6556 
- 1844      465000
- 1845              	.LASF8:
- 1846 005e 5F5F696E 		.ascii	"__int32_t\000"
- 1846      7433325F 
- 1846      7400
- 1847              	.LASF5:
- 1848 0068 73686F72 		.ascii	"short int\000"
- 1848      7420696E 
- 1848      7400
- 1849              	.LASF37:
- 1850 0072 756C4F72 		.ascii	"ulOriginalPriority\000"
- 1850      6967696E 
- 1850      616C5072 
- 1850      696F7269 
- 1850      747900
- 1851              	.LASF58:
- 1852 0085 70727654 		.ascii	"prvTaskExitError\000"
- 1852      61736B45 
- 1852      78697445 
- 1852      72726F72 
- 1852      00
- 1853              	.LASF39:
- 1854 0096 75634D61 		.ascii	"ucMaxPriorityValue\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 49
+ 1837              	.LASF57:
+ 1838 0029 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\psoc6-realtime-processing\\B"
+ 1838      73657273 
+ 1838      5C636F64 
+ 1838      79675C67 
+ 1838      69745C70 
+ 1839 0057 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\000"
+ 1839      54435F49 
+ 1839      4D552E63 
+ 1839      7964736E 
+ 1839      00
+ 1840              	.LASF25:
+ 1841 0068 5461736B 		.ascii	"TaskHandle_t\000"
+ 1841      48616E64 
+ 1841      6C655F74 
+ 1841      00
+ 1842              	.LASF40:
+ 1843 0075 53797354 		.ascii	"SysTick_Handler\000"
+ 1843      69636B5F 
+ 1843      48616E64 
+ 1843      6C657200 
+ 1844              	.LASF9:
+ 1845 0085 6C6F6E67 		.ascii	"long int\000"
+ 1845      20696E74 
+ 1845      00
+ 1846              	.LASF27:
+ 1847 008e 76506F72 		.ascii	"vPortEnableVFP\000"
+ 1847      74456E61 
+ 1847      626C6556 
+ 1847      465000
+ 1848              	.LASF8:
+ 1849 009d 5F5F696E 		.ascii	"__int32_t\000"
+ 1849      7433325F 
+ 1849      7400
+ 1850              	.LASF5:
+ 1851 00a7 73686F72 		.ascii	"short int\000"
+ 1851      7420696E 
+ 1851      7400
+ 1852              	.LASF37:
+ 1853 00b1 756C4F72 		.ascii	"ulOriginalPriority\000"
+ 1853      6967696E 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 49
 
 
- 1854      78507269 
- 1854      6F726974 
- 1854      7956616C 
- 1854      756500
- 1855              	.LASF14:
- 1856 00a9 696E7433 		.ascii	"int32_t\000"
- 1856      325F7400 
- 1857              	.LASF21:
- 1858 00b1 5461736B 		.ascii	"TaskFunction_t\000"
- 1858      46756E63 
- 1858      74696F6E 
- 1858      5F7400
- 1859              	.LASF19:
- 1860 00c0 666C6F61 		.ascii	"float\000"
- 1860      7400
- 1861              	.LASF12:
- 1862 00c6 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1862      206C6F6E 
- 1862      6720756E 
- 1862      7369676E 
- 1862      65642069 
- 1863              	.LASF49:
- 1864 00dd 756C4D61 		.ascii	"ulMaxPRIGROUPValue\000"
- 1864      78505249 
- 1864      47524F55 
- 1864      5056616C 
- 1864      756500
- 1865              	.LASF38:
- 1866 00f0 70756346 		.ascii	"pucFirstUserPriorityRegister\000"
- 1866      69727374 
- 1866      55736572 
- 1866      5072696F 
- 1866      72697479 
- 1867              	.LASF43:
- 1868 010d 75634375 		.ascii	"ucCurrentPriority\000"
- 1868      7272656E 
- 1868      74507269 
- 1868      6F726974 
- 1868      7900
- 1869              	.LASF11:
- 1870 011f 6C6F6E67 		.ascii	"long unsigned int\000"
- 1870      20756E73 
- 1870      69676E65 
- 1870      6420696E 
- 1870      7400
- 1871              	.LASF6:
- 1872 0131 73686F72 		.ascii	"short unsigned int\000"
- 1872      7420756E 
- 1872      7369676E 
- 1872      65642069 
- 1872      6E7400
- 1873              	.LASF52:
- 1874 0144 53797374 		.ascii	"SystemCoreClock\000"
- 1874      656D436F 
- 1874      7265436C 
- 1874      6F636B00 
- 1875              	.LASF10:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 50
+ 1853      616C5072 
+ 1853      696F7269 
+ 1853      747900
+ 1854              	.LASF58:
+ 1855 00c4 70727654 		.ascii	"prvTaskExitError\000"
+ 1855      61736B45 
+ 1855      78697445 
+ 1855      72726F72 
+ 1855      00
+ 1856              	.LASF39:
+ 1857 00d5 75634D61 		.ascii	"ucMaxPriorityValue\000"
+ 1857      78507269 
+ 1857      6F726974 
+ 1857      7956616C 
+ 1857      756500
+ 1858              	.LASF14:
+ 1859 00e8 696E7433 		.ascii	"int32_t\000"
+ 1859      325F7400 
+ 1860              	.LASF21:
+ 1861 00f0 5461736B 		.ascii	"TaskFunction_t\000"
+ 1861      46756E63 
+ 1861      74696F6E 
+ 1861      5F7400
+ 1862              	.LASF19:
+ 1863 00ff 666C6F61 		.ascii	"float\000"
+ 1863      7400
+ 1864              	.LASF12:
+ 1865 0105 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1865      206C6F6E 
+ 1865      6720756E 
+ 1865      7369676E 
+ 1865      65642069 
+ 1866              	.LASF49:
+ 1867 011c 756C4D61 		.ascii	"ulMaxPRIGROUPValue\000"
+ 1867      78505249 
+ 1867      47524F55 
+ 1867      5056616C 
+ 1867      756500
+ 1868              	.LASF38:
+ 1869 012f 70756346 		.ascii	"pucFirstUserPriorityRegister\000"
+ 1869      69727374 
+ 1869      55736572 
+ 1869      5072696F 
+ 1869      72697479 
+ 1870              	.LASF43:
+ 1871 014c 75634375 		.ascii	"ucCurrentPriority\000"
+ 1871      7272656E 
+ 1871      74507269 
+ 1871      6F726974 
+ 1871      7900
+ 1872              	.LASF11:
+ 1873 015e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1873      20756E73 
+ 1873      69676E65 
+ 1873      6420696E 
+ 1873      7400
+ 1874              	.LASF6:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 50
 
 
- 1876 0154 5F5F7569 		.ascii	"__uint32_t\000"
- 1876      6E743332 
- 1876      5F7400
- 1877              	.LASF4:
- 1878 015f 756E7369 		.ascii	"unsigned char\000"
- 1878      676E6564 
- 1878      20636861 
- 1878      7200
- 1879              	.LASF20:
- 1880 016d 646F7562 		.ascii	"double\000"
- 1880      6C6500
- 1881              	.LASF31:
- 1882 0174 5356435F 		.ascii	"SVC_Handler\000"
- 1882      48616E64 
- 1882      6C657200 
- 1883              	.LASF53:
- 1884 0180 78546173 		.ascii	"xTaskIncrementTick\000"
- 1884      6B496E63 
- 1884      72656D65 
- 1884      6E745469 
- 1884      636B00
- 1885              	.LASF51:
- 1886 0193 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1886      52784275 
- 1886      66666572 
- 1886      00
- 1887              	.LASF22:
- 1888 01a0 53746163 		.ascii	"StackType_t\000"
- 1888      6B547970 
- 1888      655F7400 
- 1889              	.LASF0:
- 1890 01ac 756E7369 		.ascii	"unsigned int\000"
- 1890      676E6564 
- 1890      20696E74 
- 1890      00
- 1891              	.LASF41:
- 1892 01b9 76506F72 		.ascii	"vPortValidateInterruptPriority\000"
- 1892      7456616C 
- 1892      69646174 
- 1892      65496E74 
- 1892      65727275 
- 1893              	.LASF24:
- 1894 01d8 55426173 		.ascii	"UBaseType_t\000"
- 1894      65547970 
- 1894      655F7400 
- 1895              	.LASF13:
- 1896 01e4 75696E74 		.ascii	"uint8_t\000"
- 1896      385F7400 
- 1897              	.LASF47:
- 1898 01ec 75784372 		.ascii	"uxCriticalNesting\000"
- 1898      69746963 
- 1898      616C4E65 
- 1898      7374696E 
- 1898      6700
- 1899              	.LASF55:
- 1900 01fe 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1900      43313120 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 51
+ 1875 0170 73686F72 		.ascii	"short unsigned int\000"
+ 1875      7420756E 
+ 1875      7369676E 
+ 1875      65642069 
+ 1875      6E7400
+ 1876              	.LASF52:
+ 1877 0183 53797374 		.ascii	"SystemCoreClock\000"
+ 1877      656D436F 
+ 1877      7265436C 
+ 1877      6F636B00 
+ 1878              	.LASF10:
+ 1879 0193 5F5F7569 		.ascii	"__uint32_t\000"
+ 1879      6E743332 
+ 1879      5F7400
+ 1880              	.LASF4:
+ 1881 019e 756E7369 		.ascii	"unsigned char\000"
+ 1881      676E6564 
+ 1881      20636861 
+ 1881      7200
+ 1882              	.LASF20:
+ 1883 01ac 646F7562 		.ascii	"double\000"
+ 1883      6C6500
+ 1884              	.LASF31:
+ 1885 01b3 5356435F 		.ascii	"SVC_Handler\000"
+ 1885      48616E64 
+ 1885      6C657200 
+ 1886              	.LASF53:
+ 1887 01bf 78546173 		.ascii	"xTaskIncrementTick\000"
+ 1887      6B496E63 
+ 1887      72656D65 
+ 1887      6E745469 
+ 1887      636B00
+ 1888              	.LASF51:
+ 1889 01d2 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1889      52784275 
+ 1889      66666572 
+ 1889      00
+ 1890              	.LASF22:
+ 1891 01df 53746163 		.ascii	"StackType_t\000"
+ 1891      6B547970 
+ 1891      655F7400 
+ 1892              	.LASF0:
+ 1893 01eb 756E7369 		.ascii	"unsigned int\000"
+ 1893      676E6564 
+ 1893      20696E74 
+ 1893      00
+ 1894              	.LASF41:
+ 1895 01f8 76506F72 		.ascii	"vPortValidateInterruptPriority\000"
+ 1895      7456616C 
+ 1895      69646174 
+ 1895      65496E74 
+ 1895      65727275 
+ 1896              	.LASF24:
+ 1897 0217 55426173 		.ascii	"UBaseType_t\000"
+ 1897      65547970 
+ 1897      655F7400 
+ 1898              	.LASF13:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 51
 
 
- 1900      352E342E 
- 1900      31203230 
- 1900      31363036 
- 1901 0231 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m4 -mfloat-abi=s"
- 1901      20726576 
- 1901      6973696F 
- 1901      6E203233 
- 1901      37373135 
- 1902 0264 6F667466 		.ascii	"oftfp -mfpu=fpv4-sp-d16 -mthumb -g -Og -ffunction-s"
- 1902      70202D6D 
- 1902      6670753D 
- 1902      66707634 
- 1902      2D73702D 
- 1903 0297 65637469 		.ascii	"ections -ffat-lto-objects\000"
- 1903      6F6E7320 
- 1903      2D666661 
- 1903      742D6C74 
- 1903      6F2D6F62 
- 1904              	.LASF36:
- 1905 02b1 76506F72 		.ascii	"vPortSetupTimerInterrupt\000"
- 1905      74536574 
- 1905      75705469 
- 1905      6D657249 
- 1905      6E746572 
- 1906              	.LASF16:
- 1907 02ca 73697A65 		.ascii	"sizetype\000"
- 1907      74797065 
- 1907      00
- 1908              	.LASF1:
- 1909 02d3 6C6F6E67 		.ascii	"long long int\000"
- 1909      206C6F6E 
- 1909      6720696E 
- 1909      7400
- 1910              	.LASF57:
- 1911 02e1 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\PSoC6\\BLE_RTC_IMU.cydsn\000"
- 1911      73657273 
- 1911      5C636F64 
- 1911      79675C67 
- 1911      69745C50 
- 1912              	.LASF50:
- 1913 030c 7063496E 		.ascii	"pcInterruptPriorityRegisters\000"
- 1913      74657272 
- 1913      75707450 
- 1913      72696F72 
- 1913      69747952 
- 1914              	.LASF59:
- 1915 0329 7078506F 		.ascii	"pxPortInitialiseStack\000"
- 1915      7274496E 
- 1915      69746961 
- 1915      6C697365 
- 1915      53746163 
- 1916              	.LASF30:
- 1917 033f 70765061 		.ascii	"pvParameters\000"
- 1917      72616D65 
- 1917      74657273 
- 1917      00
- 1918              	.LASF42:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 52
+ 1899 0223 75696E74 		.ascii	"uint8_t\000"
+ 1899      385F7400 
+ 1900              	.LASF47:
+ 1901 022b 75784372 		.ascii	"uxCriticalNesting\000"
+ 1901      69746963 
+ 1901      616C4E65 
+ 1901      7374696E 
+ 1901      6700
+ 1902              	.LASF55:
+ 1903 023d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1903      43313120 
+ 1903      352E342E 
+ 1903      31203230 
+ 1903      31363036 
+ 1904 0270 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m4 -mfloat-abi=s"
+ 1904      20726576 
+ 1904      6973696F 
+ 1904      6E203233 
+ 1904      37373135 
+ 1905 02a3 6F667466 		.ascii	"oftfp -mfpu=fpv4-sp-d16 -mthumb -g -Og -ffunction-s"
+ 1905      70202D6D 
+ 1905      6670753D 
+ 1905      66707634 
+ 1905      2D73702D 
+ 1906 02d6 65637469 		.ascii	"ections -ffat-lto-objects\000"
+ 1906      6F6E7320 
+ 1906      2D666661 
+ 1906      742D6C74 
+ 1906      6F2D6F62 
+ 1907              	.LASF36:
+ 1908 02f0 76506F72 		.ascii	"vPortSetupTimerInterrupt\000"
+ 1908      74536574 
+ 1908      75705469 
+ 1908      6D657249 
+ 1908      6E746572 
+ 1909              	.LASF16:
+ 1910 0309 73697A65 		.ascii	"sizetype\000"
+ 1910      74797065 
+ 1910      00
+ 1911              	.LASF1:
+ 1912 0312 6C6F6E67 		.ascii	"long long int\000"
+ 1912      206C6F6E 
+ 1912      6720696E 
+ 1912      7400
+ 1913              	.LASF50:
+ 1914 0320 7063496E 		.ascii	"pcInterruptPriorityRegisters\000"
+ 1914      74657272 
+ 1914      75707450 
+ 1914      72696F72 
+ 1914      69747952 
+ 1915              	.LASF59:
+ 1916 033d 7078506F 		.ascii	"pxPortInitialiseStack\000"
+ 1916      7274496E 
+ 1916      69746961 
+ 1916      6C697365 
+ 1916      53746163 
+ 1917              	.LASF30:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 52
 
 
- 1919 034c 756C4375 		.ascii	"ulCurrentInterrupt\000"
- 1919      7272656E 
- 1919      74496E74 
- 1919      65727275 
- 1919      707400
- 1920              	.LASF60:
- 1921 035f 78506F72 		.ascii	"xPortStartScheduler\000"
- 1921      74537461 
- 1921      72745363 
- 1921      68656475 
- 1921      6C657200 
- 1922              	.LASF28:
- 1923 0373 7078546F 		.ascii	"pxTopOfStack\000"
- 1923      704F6653 
- 1923      7461636B 
- 1923      00
- 1924              	.LASF46:
- 1925 0380 70635461 		.ascii	"pcTaskName\000"
- 1925      736B4E61 
- 1925      6D6500
- 1926              	.LASF48:
- 1927 038b 75634D61 		.ascii	"ucMaxSysCallPriority\000"
- 1927      78537973 
- 1927      43616C6C 
- 1927      5072696F 
- 1927      72697479 
- 1928              	.LASF34:
- 1929 03a0 76506F72 		.ascii	"vPortExitCritical\000"
- 1929      74457869 
- 1929      74437269 
- 1929      74696361 
- 1929      6C00
- 1930              	.LASF15:
- 1931 03b2 75696E74 		.ascii	"uint32_t\000"
- 1931      33325F74 
- 1931      00
- 1932              	.LASF35:
- 1933 03bb 50656E64 		.ascii	"PendSV_Handler\000"
- 1933      53565F48 
- 1933      616E646C 
- 1933      657200
- 1934              	.LASF18:
- 1935 03ca 63686172 		.ascii	"char\000"
- 1935      00
- 1936              	.LASF26:
- 1937 03cf 70727650 		.ascii	"prvPortStartFirstTask\000"
- 1937      6F727453 
- 1937      74617274 
- 1937      46697273 
- 1937      74546173 
- 1938              	.LASF2:
- 1939 03e5 6C6F6E67 		.ascii	"long double\000"
- 1939      20646F75 
- 1939      626C6500 
- 1940              	.LASF3:
- 1941 03f1 7369676E 		.ascii	"signed char\000"
- 1941      65642063 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccPsUojd.s 			page 53
+ 1918 0353 70765061 		.ascii	"pvParameters\000"
+ 1918      72616D65 
+ 1918      74657273 
+ 1918      00
+ 1919              	.LASF42:
+ 1920 0360 756C4375 		.ascii	"ulCurrentInterrupt\000"
+ 1920      7272656E 
+ 1920      74496E74 
+ 1920      65727275 
+ 1920      707400
+ 1921              	.LASF60:
+ 1922 0373 78506F72 		.ascii	"xPortStartScheduler\000"
+ 1922      74537461 
+ 1922      72745363 
+ 1922      68656475 
+ 1922      6C657200 
+ 1923              	.LASF28:
+ 1924 0387 7078546F 		.ascii	"pxTopOfStack\000"
+ 1924      704F6653 
+ 1924      7461636B 
+ 1924      00
+ 1925              	.LASF46:
+ 1926 0394 70635461 		.ascii	"pcTaskName\000"
+ 1926      736B4E61 
+ 1926      6D6500
+ 1927              	.LASF48:
+ 1928 039f 75634D61 		.ascii	"ucMaxSysCallPriority\000"
+ 1928      78537973 
+ 1928      43616C6C 
+ 1928      5072696F 
+ 1928      72697479 
+ 1929              	.LASF34:
+ 1930 03b4 76506F72 		.ascii	"vPortExitCritical\000"
+ 1930      74457869 
+ 1930      74437269 
+ 1930      74696361 
+ 1930      6C00
+ 1931              	.LASF15:
+ 1932 03c6 75696E74 		.ascii	"uint32_t\000"
+ 1932      33325F74 
+ 1932      00
+ 1933              	.LASF35:
+ 1934 03cf 50656E64 		.ascii	"PendSV_Handler\000"
+ 1934      53565F48 
+ 1934      616E646C 
+ 1934      657200
+ 1935              	.LASF18:
+ 1936 03de 63686172 		.ascii	"char\000"
+ 1936      00
+ 1937              	.LASF26:
+ 1938 03e3 70727650 		.ascii	"prvPortStartFirstTask\000"
+ 1938      6F727453 
+ 1938      74617274 
+ 1938      46697273 
+ 1938      74546173 
+ 1939              	.LASF2:
+ 1940 03f9 6C6F6E67 		.ascii	"long double\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccQ4Ncs8.s 			page 53
 
 
- 1941      68617200 
- 1942              	.LASF54:
- 1943 03fd 43795F53 		.ascii	"Cy_SysLib_AssertFailed\000"
- 1943      79734C69 
- 1943      625F4173 
- 1943      73657274 
- 1943      4661696C 
- 1944              	.LASF33:
- 1945 0414 76506F72 		.ascii	"vPortEnterCritical\000"
- 1945      74456E74 
- 1945      65724372 
- 1945      69746963 
- 1945      616C00
- 1946              	.LASF17:
- 1947 0427 63686172 		.ascii	"char_t\000"
- 1947      5F7400
- 1948              	.LASF44:
- 1949 042e 76417070 		.ascii	"vApplicationStackOverflowHook\000"
- 1949      6C696361 
- 1949      74696F6E 
- 1949      53746163 
- 1949      6B4F7665 
- 1950              	.LASF56:
- 1951 044c 47656E65 		.ascii	"Generated_Source\\PSoC6\\pdl\\rtos\\FreeRTOS\\9.0.0"
- 1951      72617465 
- 1951      645F536F 
- 1951      75726365 
- 1951      5C50536F 
- 1952 047a 5C536F75 		.ascii	"\\Source\\portable\\GCC\\CM4F\\port.c\000"
- 1952      7263655C 
- 1952      706F7274 
- 1952      61626C65 
- 1952      5C474343 
- 1953              	.LASF23:
- 1954 049b 42617365 		.ascii	"BaseType_t\000"
- 1954      54797065 
- 1954      5F7400
- 1955              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1940      20646F75 
+ 1940      626C6500 
+ 1941              	.LASF3:
+ 1942 0405 7369676E 		.ascii	"signed char\000"
+ 1942      65642063 
+ 1942      68617200 
+ 1943              	.LASF54:
+ 1944 0411 43795F53 		.ascii	"Cy_SysLib_AssertFailed\000"
+ 1944      79734C69 
+ 1944      625F4173 
+ 1944      73657274 
+ 1944      4661696C 
+ 1945              	.LASF33:
+ 1946 0428 76506F72 		.ascii	"vPortEnterCritical\000"
+ 1946      74456E74 
+ 1946      65724372 
+ 1946      69746963 
+ 1946      616C00
+ 1947              	.LASF17:
+ 1948 043b 63686172 		.ascii	"char_t\000"
+ 1948      5F7400
+ 1949              	.LASF44:
+ 1950 0442 76417070 		.ascii	"vApplicationStackOverflowHook\000"
+ 1950      6C696361 
+ 1950      74696F6E 
+ 1950      53746163 
+ 1950      6B4F7665 
+ 1951              	.LASF56:
+ 1952 0460 47656E65 		.ascii	"Generated_Source\\PSoC6\\pdl\\rtos\\FreeRTOS\\9.0.0"
+ 1952      72617465 
+ 1952      645F536F 
+ 1952      75726365 
+ 1952      5C50536F 
+ 1953 048e 5C536F75 		.ascii	"\\Source\\portable\\GCC\\CM4F\\port.c\000"
+ 1953      7263655C 
+ 1953      706F7274 
+ 1953      61626C65 
+ 1953      5C474343 
+ 1954              	.LASF23:
+ 1955 04af 42617365 		.ascii	"BaseType_t\000"
+ 1955      54797065 
+ 1955      5F7400
+ 1956              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

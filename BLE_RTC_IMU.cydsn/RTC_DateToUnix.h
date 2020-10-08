@@ -9,13 +9,9 @@
  *
  * ========================================
 */
-#include <stdio.h>
 
-#pragma once
+#include "time.h"
 
-uint64_t getCurrentTimeMillisISR();
-uint64_t getCurrentTimeMillis();
-void rtcInitialize(void *arg);
-void rtcTask(void *arg);
+int RTC_DateTimeToUnix(struct tm *time);
 
 /* [] END OF FILE */

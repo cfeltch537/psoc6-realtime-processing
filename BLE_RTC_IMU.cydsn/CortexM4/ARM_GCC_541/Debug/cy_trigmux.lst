@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
   27:Generated_Source\PSoC6\pdl\drivers\peripheral\trigmux/cy_trigmux.c **** *
   28:Generated_Source\PSoC6\pdl\drivers\peripheral\trigmux/cy_trigmux.c **** * \param outTrig
   29:Generated_Source\PSoC6\pdl\drivers\peripheral\trigmux/cy_trigmux.c **** * The output of the trigger mux. This refers to the consumer of the trigger mux. 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 2
 
 
   30:Generated_Source\PSoC6\pdl\drivers\peripheral\trigmux/cy_trigmux.c **** * - Bits 11:8 represent the trigger group selection.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
   55:Generated_Source\PSoC6\pdl\drivers\peripheral\trigmux/cy_trigmux.c ****     
   56:Generated_Source\PSoC6\pdl\drivers\peripheral\trigmux/cy_trigmux.c ****     /* inTrig and outTrig should be in the same group */
   57:Generated_Source\PSoC6\pdl\drivers\peripheral\trigmux/cy_trigmux.c ****     if ((inTrig & CY_TR_GROUP_MASK) == (outTrig & CY_TR_GROUP_MASK))
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 3
 
 
   58              		.loc 1 57 0 is_stmt 1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
   96              		.loc 1 69 0
   97 0050 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
   98              	.LVL11:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 4
 
 
   99              	.L8:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  117              		@ args = 0, pretend = 0, frame = 0
  118              		@ frame_needed = 0, uses_anonymous_args = 0
  119              	.LVL12:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 5
 
 
  120 0000 38B5     		push	{r3, r4, r5, lr}
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  160              		.loc 1 119 0
  161 0030 2404     		lsls	r4, r4, #16
  162              	.LVL18:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 6
 
 
  163 0032 04F47F04 		and	r4, r4, #16711680
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  197              		.loc 1 135 0
  198 0066 0020     		movs	r0, #0
  199 0068 38BD     		pop	{r3, r4, r5, pc}
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 7
 
 
  200              	.LVL24:
@@ -418,13 +418,13 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  240 0006 00000000 		.4byte	.Ldebug_abbrev0
  241 000a 04       		.byte	0x4
  242 000b 01       		.uleb128 0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 8
 
 
- 243 000c 68020000 		.4byte	.LASF63
+ 243 000c 3D020000 		.4byte	.LASF63
  244 0010 0C       		.byte	0xc
  245 0011 44000000 		.4byte	.LASF64
- 246 0015 6E010000 		.4byte	.LASF65
+ 246 0015 E6030000 		.4byte	.LASF65
  247 0019 00000000 		.4byte	.Ldebug_ranges0+0
  248 001d 00000000 		.4byte	0
  249 0021 00000000 		.4byte	.Ldebug_line0
@@ -435,17 +435,17 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  254 002c 02       		.uleb128 0x2
  255 002d 01       		.byte	0x1
  256 002e 06       		.byte	0x6
- 257 002f D2010000 		.4byte	.LASF1
+ 257 002f A7010000 		.4byte	.LASF1
  258 0033 02       		.uleb128 0x2
  259 0034 01       		.byte	0x1
  260 0035 08       		.byte	0x8
- 261 0036 C4010000 		.4byte	.LASF2
+ 261 0036 99010000 		.4byte	.LASF2
  262 003a 02       		.uleb128 0x2
  263 003b 02       		.byte	0x2
  264 003c 07       		.byte	0x7
- 265 003d 3B020000 		.4byte	.LASF3
+ 265 003d 10020000 		.4byte	.LASF3
  266 0041 03       		.uleb128 0x3
- 267 0042 B5030000 		.4byte	.LASF5
+ 267 0042 8A030000 		.4byte	.LASF5
  268 0046 02       		.byte	0x2
  269 0047 3F       		.byte	0x3f
  270 0048 4C000000 		.4byte	0x4c
@@ -461,7 +461,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  280 005e 02       		.uleb128 0x2
  281 005f 04       		.byte	0x4
  282 0060 07       		.byte	0x7
- 283 0061 87030000 		.4byte	.LASF7
+ 283 0061 5C030000 		.4byte	.LASF7
  284 0065 02       		.uleb128 0x2
  285 0066 08       		.byte	0x8
  286 0067 05       		.byte	0x5
@@ -469,7 +469,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  288 006c 02       		.uleb128 0x2
  289 006d 08       		.byte	0x8
  290 006e 07       		.byte	0x7
- 291 006f DE010000 		.4byte	.LASF9
+ 291 006f B3010000 		.4byte	.LASF9
  292 0073 04       		.uleb128 0x4
  293 0074 04       		.byte	0x4
  294 0075 05       		.byte	0x5
@@ -477,17 +477,17 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  296 007a 02       		.uleb128 0x2
  297 007b 04       		.byte	0x4
  298 007c 07       		.byte	0x7
- 299 007d 0F020000 		.4byte	.LASF10
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 9
+ 299 007d E4010000 		.4byte	.LASF10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 9
 
 
  300 0081 03       		.uleb128 0x3
- 301 0082 1B030000 		.4byte	.LASF11
+ 301 0082 F0020000 		.4byte	.LASF11
  302 0086 03       		.byte	0x3
  303 0087 2C       		.byte	0x2c
  304 0088 41000000 		.4byte	0x41
  305 008c 03       		.uleb128 0x3
- 306 008d F5010000 		.4byte	.LASF12
+ 306 008d CA010000 		.4byte	.LASF12
  307 0091 03       		.byte	0x3
  308 0092 30       		.byte	0x30
  309 0093 53000000 		.4byte	0x53
@@ -509,11 +509,11 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  325 00b6 91000000 		.4byte	.LASF14
  326 00ba 00       		.byte	0
  327 00bb 08       		.uleb128 0x8
- 328 00bc 4E020000 		.4byte	.LASF15
+ 328 00bc 23020000 		.4byte	.LASF15
  329 00c0 01       		.byte	0x1
  330 00c1 00       		.byte	0
  331 00c2 09       		.uleb128 0x9
- 332 00c3 1C020000 		.4byte	.LASF16
+ 332 00c3 F1010000 		.4byte	.LASF16
  333 00c7 04       		.byte	0x4
  334 00c8 A605     		.2byte	0x5a6
  335 00ca A8000000 		.4byte	0xa8
@@ -530,34 +530,34 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  346 00e1 27       		.byte	0x27
  347 00e2 23010000 		.4byte	0x123
  348 00e6 0D       		.uleb128 0xd
- 349 00e7 F0030000 		.4byte	.LASF17
+ 349 00e7 C5030000 		.4byte	.LASF17
  350 00eb 05       		.byte	0x5
  351 00ec 28       		.byte	0x28
  352 00ed 9E000000 		.4byte	0x9e
  353 00f1 00       		.byte	0
  354 00f2 0D       		.uleb128 0xd
- 355 00f3 DA030000 		.4byte	.LASF18
+ 355 00f3 AF030000 		.4byte	.LASF18
  356 00f7 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 10
 
 
  357 00f8 29       		.byte	0x29
  358 00f9 38010000 		.4byte	0x138
  359 00fd 04       		.byte	0x4
  360 00fe 0D       		.uleb128 0xd
- 361 00ff 11040000 		.4byte	.LASF19
+ 361 00ff 25040000 		.4byte	.LASF19
  362 0103 05       		.byte	0x5
  363 0104 2A       		.byte	0x2a
  364 0105 9E000000 		.4byte	0x9e
  365 0109 20       		.byte	0x20
  366 010a 0D       		.uleb128 0xd
- 367 010b 23030000 		.4byte	.LASF20
+ 367 010b F8020000 		.4byte	.LASF20
  368 010f 05       		.byte	0x5
  369 0110 2B       		.byte	0x2b
  370 0111 9E000000 		.4byte	0x9e
  371 0115 24       		.byte	0x24
  372 0116 0D       		.uleb128 0xd
- 373 0117 5F030000 		.4byte	.LASF21
+ 373 0117 34030000 		.4byte	.LASF21
  374 011b 05       		.byte	0x5
  375 011c 2C       		.byte	0x2c
  376 011d 52010000 		.4byte	0x152
@@ -596,9 +596,9 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  409 0166 32       		.byte	0x32
  410 0167 78010000 		.4byte	0x178
  411 016b 0D       		.uleb128 0xd
- 412 016c CF030000 		.4byte	.LASF23
+ 412 016c A4030000 		.4byte	.LASF23
  413 0170 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 11
 
 
  414 0171 33       		.byte	0x33
@@ -618,7 +618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  428 018b 39       		.byte	0x39
  429 018c D9010000 		.4byte	0x1d9
  430 0190 0D       		.uleb128 0xd
- 431 0191 2F030000 		.4byte	.LASF25
+ 431 0191 04030000 		.4byte	.LASF25
  432 0195 05       		.byte	0x5
  433 0196 3A       		.byte	0x3a
  434 0197 9E000000 		.4byte	0x9e
@@ -630,13 +630,13 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  440 01a3 9E000000 		.4byte	0x9e
  441 01a7 04       		.byte	0x4
  442 01a8 0D       		.uleb128 0xd
- 443 01a9 DA030000 		.4byte	.LASF18
+ 443 01a9 AF030000 		.4byte	.LASF18
  444 01ad 05       		.byte	0x5
  445 01ae 3C       		.byte	0x3c
  446 01af DE010000 		.4byte	0x1de
  447 01b3 08       		.byte	0x8
  448 01b4 0D       		.uleb128 0xd
- 449 01b5 35030000 		.4byte	.LASF27
+ 449 01b5 0A030000 		.4byte	.LASF27
  450 01b9 05       		.byte	0x5
  451 01ba 3D       		.byte	0x3d
  452 01bb A3000000 		.4byte	0xa3
@@ -648,7 +648,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  458 01c7 9E000000 		.4byte	0x9e
  459 01cb 24       		.byte	0x24
  460 01cc 0D       		.uleb128 0xd
- 461 01cd 5F030000 		.4byte	.LASF21
+ 461 01cd 34030000 		.4byte	.LASF21
  462 01d1 05       		.byte	0x5
  463 01d2 3F       		.byte	0x3f
  464 01d3 E8010000 		.4byte	0x1e8
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  468 01da 3D010000 		.4byte	0x13d
  469 01de 06       		.uleb128 0x6
  470 01df D9010000 		.4byte	0x1d9
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 12
 
 
  471 01e3 05       		.uleb128 0x5
@@ -676,7 +676,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  483 01fb 45       		.byte	0x45
  484 01fc 49020000 		.4byte	0x249
  485 0200 0D       		.uleb128 0xd
- 486 0201 2F030000 		.4byte	.LASF25
+ 486 0201 04030000 		.4byte	.LASF25
  487 0205 05       		.byte	0x5
  488 0206 46       		.byte	0x46
  489 0207 A3000000 		.4byte	0xa3
@@ -688,13 +688,13 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  495 0213 9E000000 		.4byte	0x9e
  496 0217 04       		.byte	0x4
  497 0218 0D       		.uleb128 0xd
- 498 0219 DA030000 		.4byte	.LASF18
+ 498 0219 AF030000 		.4byte	.LASF18
  499 021d 05       		.byte	0x5
  500 021e 48       		.byte	0x48
  501 021f 4E020000 		.4byte	0x24e
  502 0223 08       		.byte	0x8
  503 0224 0D       		.uleb128 0xd
- 504 0225 35030000 		.4byte	.LASF27
+ 504 0225 0A030000 		.4byte	.LASF27
  505 0229 05       		.byte	0x5
  506 022a 49       		.byte	0x49
  507 022b A3000000 		.4byte	0xa3
@@ -706,7 +706,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  513 0237 9E000000 		.4byte	0x9e
  514 023b 24       		.byte	0x24
  515 023c 0D       		.uleb128 0xd
- 516 023d 5F030000 		.4byte	.LASF21
+ 516 023d 34030000 		.4byte	.LASF21
  517 0241 05       		.byte	0x5
  518 0242 4B       		.byte	0x4b
  519 0243 58020000 		.4byte	0x258
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  525 024f 49020000 		.4byte	0x249
  526 0253 05       		.uleb128 0x5
  527 0254 3D010000 		.4byte	0x13d
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 13
 
 
  528 0258 06       		.uleb128 0x6
@@ -746,19 +746,19 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  550 0283 9E000000 		.4byte	0x9e
  551 0287 0004     		.2byte	0x400
  552 0289 10       		.uleb128 0x10
- 553 028a DA030000 		.4byte	.LASF18
+ 553 028a AF030000 		.4byte	.LASF18
  554 028e 05       		.byte	0x5
  555 028f 6C       		.byte	0x6c
  556 0290 65030000 		.4byte	0x365
  557 0294 0404     		.2byte	0x404
  558 0296 10       		.uleb128 0x10
- 559 0297 FE010000 		.4byte	.LASF32
+ 559 0297 D3010000 		.4byte	.LASF32
  560 029b 05       		.byte	0x5
  561 029c 6D       		.byte	0x6d
  562 029d 7A030000 		.4byte	0x37a
  563 02a1 0008     		.2byte	0x800
  564 02a3 10       		.uleb128 0x10
- 565 02a4 A0010000 		.4byte	.LASF33
+ 565 02a4 75010000 		.4byte	.LASF33
  566 02a8 05       		.byte	0x5
  567 02a9 6E       		.byte	0x6e
  568 02aa 7F030000 		.4byte	0x37f
@@ -776,34 +776,34 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  580 02c4 99030000 		.4byte	0x399
  581 02c8 000B     		.2byte	0xb00
  582 02ca 10       		.uleb128 0x10
- 583 02cb 5F030000 		.4byte	.LASF21
+ 583 02cb 34030000 		.4byte	.LASF21
  584 02cf 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 14
 
 
  585 02d0 71       		.byte	0x71
  586 02d1 A3000000 		.4byte	0xa3
  587 02d5 FC0B     		.2byte	0xbfc
  588 02d7 10       		.uleb128 0x10
- 589 02d8 F0030000 		.4byte	.LASF17
+ 589 02d8 C5030000 		.4byte	.LASF17
  590 02dc 05       		.byte	0x5
  591 02dd 72       		.byte	0x72
  592 02de 9E030000 		.4byte	0x39e
  593 02e2 000C     		.2byte	0xc00
  594 02e4 10       		.uleb128 0x10
- 595 02e5 69030000 		.4byte	.LASF36
+ 595 02e5 3E030000 		.4byte	.LASF36
  596 02e9 05       		.byte	0x5
  597 02ea 73       		.byte	0x73
  598 02eb B8030000 		.4byte	0x3b8
  599 02ef 000E     		.2byte	0xe00
  600 02f1 10       		.uleb128 0x10
- 601 02f2 34020000 		.4byte	.LASF37
+ 601 02f2 09020000 		.4byte	.LASF37
  602 02f6 05       		.byte	0x5
  603 02f7 74       		.byte	0x74
  604 02f8 9E000000 		.4byte	0x9e
  605 02fc 0010     		.2byte	0x1000
  606 02fe 10       		.uleb128 0x10
- 607 02ff 73030000 		.4byte	.LASF38
+ 607 02ff 48030000 		.4byte	.LASF38
  608 0303 05       		.byte	0x5
  609 0304 75       		.byte	0x75
  610 0305 D3030000 		.4byte	0x3d3
@@ -815,13 +815,13 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  616 0312 D8030000 		.4byte	0x3d8
  617 0316 0020     		.2byte	0x2000
  618 0318 10       		.uleb128 0x10
- 619 0319 08020000 		.4byte	.LASF40
+ 619 0319 DD010000 		.4byte	.LASF40
  620 031d 05       		.byte	0x5
  621 031e 77       		.byte	0x77
  622 031f E8030000 		.4byte	0x3e8
  623 0323 0040     		.2byte	0x4000
  624 0325 10       		.uleb128 0x10
- 625 0326 7D030000 		.4byte	.LASF41
+ 625 0326 52030000 		.4byte	.LASF41
  626 032a 05       		.byte	0x5
  627 032b 78       		.byte	0x78
  628 032c 0E040000 		.4byte	0x40e
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  639 0345 50030000 		.4byte	0x350
  640 0349 0B       		.uleb128 0xb
  641 034a 97000000 		.4byte	0x97
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 15
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 15
 
 
  642 034e 0F       		.byte	0xf
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  696 03cd 00       		.byte	0
  697 03ce 05       		.uleb128 0x5
  698 03cf BD030000 		.4byte	0x3bd
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 16
 
 
  699 03d3 06       		.uleb128 0x6
@@ -956,9 +956,9 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  751 0448 02       		.uleb128 0x2
  752 0449 08       		.byte	0x8
  753 044a 04       		.byte	0x4
- 754 044b 99030000 		.4byte	.LASF47
+ 754 044b 6E030000 		.4byte	.LASF47
  755 044f 12       		.uleb128 0x12
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 17
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 17
 
 
  756 0450 04       		.byte	0x4
@@ -970,14 +970,14 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  762 045c B4000000 		.4byte	.LASF48
  763 0460 00       		.byte	0
  764 0461 13       		.uleb128 0x13
- 765 0462 A0030000 		.4byte	.LASF49
+ 765 0462 75030000 		.4byte	.LASF49
  766 0466 0100CE00 		.4byte	0xce0001
  767 046a 13       		.uleb128 0x13
- 768 046b AB010000 		.4byte	.LASF50
+ 768 046b 80010000 		.4byte	.LASF50
  769 046f 0200CE00 		.4byte	0xce0002
  770 0473 00       		.byte	0
  771 0474 03       		.uleb128 0x3
- 772 0475 48030000 		.4byte	.LASF51
+ 772 0475 1D030000 		.4byte	.LASF51
  773 0479 07       		.byte	0x7
  774 047a CF       		.byte	0xcf
  775 047b 4F040000 		.4byte	0x44f
@@ -992,25 +992,25 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  784 0493 9C       		.byte	0x9c
  785 0494 0C050000 		.4byte	0x50c
  786 0498 15       		.uleb128 0x15
- 787 0499 41030000 		.4byte	.LASF52
+ 787 0499 16030000 		.4byte	.LASF52
  788 049d 01       		.byte	0x1
  789 049e 31       		.byte	0x31
  790 049f 8C000000 		.4byte	0x8c
  791 04a3 00000000 		.4byte	.LLST0
  792 04a7 15       		.uleb128 0x15
- 793 04a8 60020000 		.4byte	.LASF53
+ 793 04a8 35020000 		.4byte	.LASF53
  794 04ac 01       		.byte	0x1
  795 04ad 31       		.byte	0x31
  796 04ae 8C000000 		.4byte	0x8c
  797 04b2 45000000 		.4byte	.LLST1
  798 04b6 15       		.uleb128 0x15
- 799 04b7 99010000 		.4byte	.LASF54
+ 799 04b7 6E010000 		.4byte	.LASF54
  800 04bb 01       		.byte	0x1
  801 04bc 31       		.byte	0x31
  802 04bd 0C050000 		.4byte	0x50c
  803 04c1 8A000000 		.4byte	.LLST2
  804 04c5 15       		.uleb128 0x15
- 805 04c6 BF030000 		.4byte	.LASF55
+ 805 04c6 94030000 		.4byte	.LASF55
  806 04ca 01       		.byte	0x1
  807 04cb 31       		.byte	0x31
  808 04cc C2000000 		.4byte	0xc2
@@ -1018,14 +1018,14 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  810 04d4 16       		.uleb128 0x16
  811 04d5 28010000 		.4byte	.LASF56
  812 04d9 01       		.byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 18
 
 
  813 04da 33       		.byte	0x33
  814 04db 13050000 		.4byte	0x513
  815 04df CC000000 		.4byte	.LLST4
  816 04e3 16       		.uleb128 0x16
- 817 04e4 C8030000 		.4byte	.LASF57
+ 817 04e4 9D030000 		.4byte	.LASF57
  818 04e8 01       		.byte	0x1
  819 04e9 34       		.byte	0x34
  820 04ea 74040000 		.4byte	0x474
@@ -1050,7 +1050,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  839 050c 02       		.uleb128 0x2
  840 050d 01       		.byte	0x1
  841 050e 02       		.byte	0x2
- 842 050f 3B030000 		.4byte	.LASF58
+ 842 050f 10030000 		.4byte	.LASF58
  843 0513 19       		.uleb128 0x19
  844 0514 04       		.byte	0x4
  845 0515 9E000000 		.4byte	0x9e
@@ -1065,7 +1065,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  854 052d 9C       		.byte	0x9c
  855 052e 96050000 		.4byte	0x596
  856 0532 15       		.uleb128 0x15
- 857 0533 2B020000 		.4byte	.LASF61
+ 857 0533 00020000 		.4byte	.LASF61
  858 0537 01       		.byte	0x1
  859 0538 68       		.byte	0x68
  860 0539 8C000000 		.4byte	0x8c
@@ -1077,8 +1077,8 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  866 0548 8C000000 		.4byte	0x8c
  867 054c 7C010000 		.4byte	.LLST7
  868 0550 16       		.uleb128 0x16
- 869 0551 C8030000 		.4byte	.LASF57
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 19
+ 869 0551 9D030000 		.4byte	.LASF57
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 19
 
 
  870 0555 01       		.byte	0x1
@@ -1120,15 +1120,15 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  906 0594 00       		.byte	0
  907 0595 00       		.byte	0
  908 0596 1B       		.uleb128 0x1b
- 909 0597 E3030000 		.4byte	.LASF66
+ 909 0597 B8030000 		.4byte	.LASF66
  910 059b 08       		.byte	0x8
  911 059c EA07     		.2byte	0x7ea
  912 059e A2050000 		.4byte	0x5a2
  913 05a2 05       		.uleb128 0x5
  914 05a3 81000000 		.4byte	0x81
  915 05a7 1C       		.uleb128 0x1c
- 916 05a8 FA030000 		.4byte	.LASF67
- 917 05ac FA030000 		.4byte	.LASF67
+ 916 05a8 CF030000 		.4byte	.LASF67
+ 917 05ac CF030000 		.4byte	.LASF67
  918 05b0 06       		.byte	0x6
  919 05b1 2A03     		.2byte	0x32a
  920 05b3 00       		.byte	0
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  924 0001 11       		.uleb128 0x11
  925 0002 01       		.byte	0x1
  926 0003 25       		.uleb128 0x25
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 20
 
 
  927 0004 0E       		.uleb128 0xe
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  981 003a 13       		.uleb128 0x13
  982 003b 00       		.byte	0
  983 003c 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 21
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 21
 
 
  984 003d 06       		.uleb128 0x6
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1038 0073 21       		.uleb128 0x21
  1039 0074 00       		.byte	0
  1040 0075 49       		.uleb128 0x49
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 22
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 22
 
 
  1041 0076 13       		.uleb128 0x13
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1095 00ac 0B       		.uleb128 0xb
  1096 00ad 49       		.uleb128 0x49
  1097 00ae 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 23
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 23
 
 
  1098 00af 38       		.uleb128 0x38
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1152 00e5 01       		.byte	0x1
  1153 00e6 3F       		.uleb128 0x3f
  1154 00e7 19       		.uleb128 0x19
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 24
 
 
  1155 00e8 03       		.uleb128 0x3
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1209 0121 01       		.byte	0x1
  1210 0122 11       		.uleb128 0x11
  1211 0123 01       		.uleb128 0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 25
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 25
 
 
  1212 0124 31       		.uleb128 0x31
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1266 015f 19       		.uleb128 0x19
  1267 0160 3C       		.uleb128 0x3c
  1268 0161 19       		.uleb128 0x19
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 26
 
 
  1269 0162 6E       		.uleb128 0x6e
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1323 0065 F3       		.byte	0xf3
  1324 0066 01       		.uleb128 0x1
  1325 0067 51       		.byte	0x51
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 27
 
 
  1326 0068 9F       		.byte	0x9f
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1380 00ea 0100CE00 		.4byte	0xce0001
  1381 00ee 9F       		.byte	0x9f
  1382 00ef 4A000000 		.4byte	.LVL8
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 28
 
 
  1383 00f3 4E000000 		.4byte	.LVL9
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1437 0174 00000000 		.4byte	0
  1438 0178 00000000 		.4byte	0
  1439              	.LLST7:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 29
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 29
 
 
  1440 017c 00000000 		.4byte	.LVL12
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1494 0203 0C       		.byte	0xc
  1495 0204 0200CE00 		.4byte	0xce0002
  1496 0208 9F       		.byte	0x9f
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 30
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 30
 
 
  1497 0209 70000000 		.4byte	.LVL26
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1535      00
  1536              	.LASF43:
  1537 003a 50455249 		.ascii	"PERI_Type\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 31
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 31
 
 
  1537      5F547970 
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1560      5F50525F 
  1560      54797065 
  1560      00
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 32
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 32
 
 
  1561              	.LASF46:
@@ -1906,207 +1906,212 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 1
  1582      32345F35 
  1582      5F43544C 
  1582      00
- 1583              	.LASF65:
- 1584 016e 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\PSoC6\\BLE_RTC_IMU.cydsn\000"
- 1584      73657273 
- 1584      5C636F64 
- 1584      79675C67 
- 1584      69745C50 
- 1585              	.LASF54:
- 1586 0199 696E7665 		.ascii	"invert\000"
- 1586      727400
- 1587              	.LASF33:
- 1588 01a0 4449565F 		.ascii	"DIV_16_CTL\000"
- 1588      31365F43 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 33
+ 1583              	.LASF54:
+ 1584 016e 696E7665 		.ascii	"invert\000"
+ 1584      727400
+ 1585              	.LASF33:
+ 1586 0175 4449565F 		.ascii	"DIV_16_CTL\000"
+ 1586      31365F43 
+ 1586      544C00
+ 1587              	.LASF50:
+ 1588 0180 43595F54 		.ascii	"CY_TRIGMUX_INVALID_STATE\000"
+ 1588      5249474D 
+ 1588      55585F49 
+ 1588      4E56414C 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 33
 
 
- 1588      544C00
- 1589              	.LASF50:
- 1590 01ab 43595F54 		.ascii	"CY_TRIGMUX_INVALID_STATE\000"
- 1590      5249474D 
- 1590      55585F49 
- 1590      4E56414C 
- 1590      49445F53 
- 1591              	.LASF2:
- 1592 01c4 756E7369 		.ascii	"unsigned char\000"
- 1592      676E6564 
- 1592      20636861 
- 1592      7200
- 1593              	.LASF1:
- 1594 01d2 7369676E 		.ascii	"signed char\000"
- 1594      65642063 
- 1594      68617200 
- 1595              	.LASF9:
- 1596 01de 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1596      206C6F6E 
- 1596      6720756E 
- 1596      7369676E 
- 1596      65642069 
- 1597              	.LASF12:
- 1598 01f5 75696E74 		.ascii	"uint32_t\000"
- 1598      33325F74 
- 1598      00
- 1599              	.LASF32:
- 1600 01fe 4449565F 		.ascii	"DIV_8_CTL\000"
- 1600      385F4354 
- 1600      4C00
- 1601              	.LASF40:
- 1602 0208 5050555F 		.ascii	"PPU_PR\000"
- 1602      505200
- 1603              	.LASF10:
- 1604 020f 756E7369 		.ascii	"unsigned int\000"
- 1604      676E6564 
- 1604      20696E74 
- 1604      00
- 1605              	.LASF16:
- 1606 021c 656E5F74 		.ascii	"en_trig_type_t\000"
- 1606      7269675F 
- 1606      74797065 
- 1606      5F7400
- 1607              	.LASF61:
- 1608 022b 74726967 		.ascii	"trigLine\000"
- 1608      4C696E65 
- 1608      00
- 1609              	.LASF37:
- 1610 0234 54525F43 		.ascii	"TR_CMD\000"
- 1610      4D4400
- 1611              	.LASF3:
- 1612 023b 73686F72 		.ascii	"short unsigned int\000"
- 1612      7420756E 
- 1612      7369676E 
- 1612      65642069 
- 1612      6E7400
- 1613              	.LASF15:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 34
+ 1588      49445F53 
+ 1589              	.LASF2:
+ 1590 0199 756E7369 		.ascii	"unsigned char\000"
+ 1590      676E6564 
+ 1590      20636861 
+ 1590      7200
+ 1591              	.LASF1:
+ 1592 01a7 7369676E 		.ascii	"signed char\000"
+ 1592      65642063 
+ 1592      68617200 
+ 1593              	.LASF9:
+ 1594 01b3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1594      206C6F6E 
+ 1594      6720756E 
+ 1594      7369676E 
+ 1594      65642069 
+ 1595              	.LASF12:
+ 1596 01ca 75696E74 		.ascii	"uint32_t\000"
+ 1596      33325F74 
+ 1596      00
+ 1597              	.LASF32:
+ 1598 01d3 4449565F 		.ascii	"DIV_8_CTL\000"
+ 1598      385F4354 
+ 1598      4C00
+ 1599              	.LASF40:
+ 1600 01dd 5050555F 		.ascii	"PPU_PR\000"
+ 1600      505200
+ 1601              	.LASF10:
+ 1602 01e4 756E7369 		.ascii	"unsigned int\000"
+ 1602      676E6564 
+ 1602      20696E74 
+ 1602      00
+ 1603              	.LASF16:
+ 1604 01f1 656E5F74 		.ascii	"en_trig_type_t\000"
+ 1604      7269675F 
+ 1604      74797065 
+ 1604      5F7400
+ 1605              	.LASF61:
+ 1606 0200 74726967 		.ascii	"trigLine\000"
+ 1606      4C696E65 
+ 1606      00
+ 1607              	.LASF37:
+ 1608 0209 54525F43 		.ascii	"TR_CMD\000"
+ 1608      4D4400
+ 1609              	.LASF3:
+ 1610 0210 73686F72 		.ascii	"short unsigned int\000"
+ 1610      7420756E 
+ 1610      7369676E 
+ 1610      65642069 
+ 1610      6E7400
+ 1611              	.LASF15:
+ 1612 0223 54524947 		.ascii	"TRIGGER_TYPE_EDGE\000"
+ 1612      4745525F 
+ 1612      54595045 
+ 1612      5F454447 
+ 1612      4500
+ 1613              	.LASF53:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 34
 
 
- 1614 024e 54524947 		.ascii	"TRIGGER_TYPE_EDGE\000"
- 1614      4745525F 
- 1614      54595045 
- 1614      5F454447 
- 1614      4500
- 1615              	.LASF53:
- 1616 0260 6F757454 		.ascii	"outTrig\000"
- 1616      72696700 
- 1617              	.LASF63:
- 1618 0268 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1618      43313120 
- 1618      352E342E 
- 1618      31203230 
- 1618      31363036 
- 1619 029b 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m4 -mfloat-abi=s"
- 1619      20726576 
- 1619      6973696F 
- 1619      6E203233 
- 1619      37373135 
- 1620 02ce 6F667466 		.ascii	"oftfp -mfpu=fpv4-sp-d16 -mthumb -g -Og -ffunction-s"
- 1620      70202D6D 
- 1620      6670753D 
- 1620      66707634 
- 1620      2D73702D 
- 1621 0301 65637469 		.ascii	"ections -ffat-lto-objects\000"
- 1621      6F6E7320 
- 1621      2D666661 
- 1621      742D6C74 
- 1621      6F2D6F62 
- 1622              	.LASF11:
- 1623 031b 696E7433 		.ascii	"int32_t\000"
- 1623      325F7400 
- 1624              	.LASF20:
- 1625 0323 54494D45 		.ascii	"TIMEOUT_CTL\000"
- 1625      4F55545F 
- 1625      43544C00 
- 1626              	.LASF25:
- 1627 032f 41444452 		.ascii	"ADDR0\000"
- 1627      3000
- 1628              	.LASF27:
- 1629 0335 41444452 		.ascii	"ADDR1\000"
- 1629      3100
- 1630              	.LASF58:
- 1631 033b 5F426F6F 		.ascii	"_Bool\000"
- 1631      6C00
- 1632              	.LASF52:
- 1633 0341 696E5472 		.ascii	"inTrig\000"
- 1633      696700
- 1634              	.LASF51:
- 1635 0348 63795F65 		.ascii	"cy_en_trigmux_status_t\000"
- 1635      6E5F7472 
- 1635      69676D75 
- 1635      785F7374 
- 1635      61747573 
- 1636              	.LASF21:
- 1637 035f 52455345 		.ascii	"RESERVED1\000"
+ 1614 0235 6F757454 		.ascii	"outTrig\000"
+ 1614      72696700 
+ 1615              	.LASF63:
+ 1616 023d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1616      43313120 
+ 1616      352E342E 
+ 1616      31203230 
+ 1616      31363036 
+ 1617 0270 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m4 -mfloat-abi=s"
+ 1617      20726576 
+ 1617      6973696F 
+ 1617      6E203233 
+ 1617      37373135 
+ 1618 02a3 6F667466 		.ascii	"oftfp -mfpu=fpv4-sp-d16 -mthumb -g -Og -ffunction-s"
+ 1618      70202D6D 
+ 1618      6670753D 
+ 1618      66707634 
+ 1618      2D73702D 
+ 1619 02d6 65637469 		.ascii	"ections -ffat-lto-objects\000"
+ 1619      6F6E7320 
+ 1619      2D666661 
+ 1619      742D6C74 
+ 1619      6F2D6F62 
+ 1620              	.LASF11:
+ 1621 02f0 696E7433 		.ascii	"int32_t\000"
+ 1621      325F7400 
+ 1622              	.LASF20:
+ 1623 02f8 54494D45 		.ascii	"TIMEOUT_CTL\000"
+ 1623      4F55545F 
+ 1623      43544C00 
+ 1624              	.LASF25:
+ 1625 0304 41444452 		.ascii	"ADDR0\000"
+ 1625      3000
+ 1626              	.LASF27:
+ 1627 030a 41444452 		.ascii	"ADDR1\000"
+ 1627      3100
+ 1628              	.LASF58:
+ 1629 0310 5F426F6F 		.ascii	"_Bool\000"
+ 1629      6C00
+ 1630              	.LASF52:
+ 1631 0316 696E5472 		.ascii	"inTrig\000"
+ 1631      696700
+ 1632              	.LASF51:
+ 1633 031d 63795F65 		.ascii	"cy_en_trigmux_status_t\000"
+ 1633      6E5F7472 
+ 1633      69676D75 
+ 1633      785F7374 
+ 1633      61747573 
+ 1634              	.LASF21:
+ 1635 0334 52455345 		.ascii	"RESERVED1\000"
+ 1635      52564544 
+ 1635      3100
+ 1636              	.LASF36:
+ 1637 033e 52455345 		.ascii	"RESERVED2\000"
  1637      52564544 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 35
+ 1637      3200
+ 1638              	.LASF38:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 35
 
 
- 1637      3100
- 1638              	.LASF36:
- 1639 0369 52455345 		.ascii	"RESERVED2\000"
+ 1639 0348 52455345 		.ascii	"RESERVED3\000"
  1639      52564544 
- 1639      3200
- 1640              	.LASF38:
- 1641 0373 52455345 		.ascii	"RESERVED3\000"
+ 1639      3300
+ 1640              	.LASF41:
+ 1641 0352 52455345 		.ascii	"RESERVED4\000"
  1641      52564544 
- 1641      3300
- 1642              	.LASF41:
- 1643 037d 52455345 		.ascii	"RESERVED4\000"
- 1643      52564544 
- 1643      3400
- 1644              	.LASF7:
- 1645 0387 6C6F6E67 		.ascii	"long unsigned int\000"
- 1645      20756E73 
- 1645      69676E65 
- 1645      6420696E 
- 1645      7400
- 1646              	.LASF47:
- 1647 0399 646F7562 		.ascii	"double\000"
- 1647      6C6500
- 1648              	.LASF49:
- 1649 03a0 43595F54 		.ascii	"CY_TRIGMUX_BAD_PARAM\000"
- 1649      5249474D 
- 1649      55585F42 
- 1649      41445F50 
- 1649      4152414D 
- 1650              	.LASF5:
- 1651 03b5 5F5F696E 		.ascii	"__int32_t\000"
- 1651      7433325F 
- 1651      7400
- 1652              	.LASF55:
- 1653 03bf 74726967 		.ascii	"trigType\000"
- 1653      54797065 
- 1653      00
- 1654              	.LASF57:
- 1655 03c8 72657456 		.ascii	"retVal\000"
- 1655      616C00
- 1656              	.LASF23:
- 1657 03cf 54525F4F 		.ascii	"TR_OUT_CTL\000"
- 1657      55545F43 
- 1657      544C00
- 1658              	.LASF18:
- 1659 03da 52455345 		.ascii	"RESERVED\000"
- 1659      52564544 
+ 1641      3400
+ 1642              	.LASF7:
+ 1643 035c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1643      20756E73 
+ 1643      69676E65 
+ 1643      6420696E 
+ 1643      7400
+ 1644              	.LASF47:
+ 1645 036e 646F7562 		.ascii	"double\000"
+ 1645      6C6500
+ 1646              	.LASF49:
+ 1647 0375 43595F54 		.ascii	"CY_TRIGMUX_BAD_PARAM\000"
+ 1647      5249474D 
+ 1647      55585F42 
+ 1647      41445F50 
+ 1647      4152414D 
+ 1648              	.LASF5:
+ 1649 038a 5F5F696E 		.ascii	"__int32_t\000"
+ 1649      7433325F 
+ 1649      7400
+ 1650              	.LASF55:
+ 1651 0394 74726967 		.ascii	"trigType\000"
+ 1651      54797065 
+ 1651      00
+ 1652              	.LASF57:
+ 1653 039d 72657456 		.ascii	"retVal\000"
+ 1653      616C00
+ 1654              	.LASF23:
+ 1655 03a4 54525F4F 		.ascii	"TR_OUT_CTL\000"
+ 1655      55545F43 
+ 1655      544C00
+ 1656              	.LASF18:
+ 1657 03af 52455345 		.ascii	"RESERVED\000"
+ 1657      52564544 
+ 1657      00
+ 1658              	.LASF66:
+ 1659 03b8 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1659      52784275 
+ 1659      66666572 
  1659      00
- 1660              	.LASF66:
- 1661 03e3 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1661      52784275 
- 1661      66666572 
- 1661      00
- 1662              	.LASF17:
- 1663 03f0 434C4F43 		.ascii	"CLOCK_CTL\000"
- 1663      4B5F4354 
- 1663      4C00
- 1664              	.LASF67:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc27TZ5B.s 			page 36
+ 1660              	.LASF17:
+ 1661 03c5 434C4F43 		.ascii	"CLOCK_CTL\000"
+ 1661      4B5F4354 
+ 1661      4C00
+ 1662              	.LASF67:
+ 1663 03cf 43795F53 		.ascii	"Cy_SysLib_AssertFailed\000"
+ 1663      79734C69 
+ 1663      625F4173 
+ 1663      73657274 
+ 1663      4661696C 
+ 1664              	.LASF65:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccFvfSSO.s 			page 36
 
 
- 1665 03fa 43795F53 		.ascii	"Cy_SysLib_AssertFailed\000"
- 1665      79734C69 
- 1665      625F4173 
- 1665      73657274 
- 1665      4661696C 
- 1666              	.LASF19:
- 1667 0411 534C5F43 		.ascii	"SL_CTL\000"
- 1667      544C00
- 1668              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1665 03e6 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\psoc6-realtime-processing\\B"
+ 1665      73657273 
+ 1665      5C636F64 
+ 1665      79675C67 
+ 1665      69745C70 
+ 1666 0414 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\000"
+ 1666      54435F49 
+ 1666      4D552E63 
+ 1666      7964736E 
+ 1666      00
+ 1667              	.LASF19:
+ 1668 0425 534C5F43 		.ascii	"SL_CTL\000"
+ 1668      544C00
+ 1669              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

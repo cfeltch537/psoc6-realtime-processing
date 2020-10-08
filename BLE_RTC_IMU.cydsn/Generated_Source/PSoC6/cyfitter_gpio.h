@@ -172,4 +172,26 @@
 #define UART_1_tx_SLEWRATE CY_GPIO_SLEW_FAST
 #define UART_1_tx_THRESHOLD_LEVEL CY_GPIO_VTRIP_CMOS
 
+/* Pin_ImuDataReady_INT */
+#define Pin_ImuDataReady_INT_0_DRIVEMODE CY_GPIO_DM_PULLDOWN
+#define Pin_ImuDataReady_INT_0_INBUF_ENABLED 1u
+#define Pin_ImuDataReady_INT_0_INIT_DRIVESTATE 0u
+#define Pin_ImuDataReady_INT_0_INIT_MUXSEL 0u
+#define Pin_ImuDataReady_INT_0_INPUT_SYNC 2u
+#define Pin_ImuDataReady_INT_0_INTERRUPT_MODE CY_GPIO_INTR_DISABLE
+#define Pin_ImuDataReady_INT_0_NUM 1u
+#define Pin_ImuDataReady_INT_0_PORT GPIO_PRT13
+#define Pin_ImuDataReady_INT_0_SLEWRATE CY_GPIO_SLEW_FAST
+#define Pin_ImuDataReady_INT_0_THRESHOLD_LEVEL CY_GPIO_VTRIP_CMOS
+#define Pin_ImuDataReady_INT_DRIVEMODE CY_GPIO_DM_PULLDOWN
+#define Pin_ImuDataReady_INT_INBUF_ENABLED 1u
+#define Pin_ImuDataReady_INT_INIT_DRIVESTATE 0u
+#define Pin_ImuDataReady_INT_INIT_MUXSEL 0u
+#define Pin_ImuDataReady_INT_INPUT_SYNC 2u
+#define Pin_ImuDataReady_INT_INTERRUPT_MODE CY_GPIO_INTR_DISABLE
+#define Pin_ImuDataReady_INT_NUM 1u
+#define Pin_ImuDataReady_INT_PORT GPIO_PRT13
+#define Pin_ImuDataReady_INT_SLEWRATE CY_GPIO_SLEW_FAST
+#define Pin_ImuDataReady_INT_THRESHOLD_LEVEL CY_GPIO_VTRIP_CMOS
+
 #endif /* INCLUDED_CYFITTER_GPIO_H */

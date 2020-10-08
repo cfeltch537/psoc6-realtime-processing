@@ -13,11 +13,33 @@
 #include "project.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "queue.h"
 #include <stdio.h>
 #include "bmi160.h"
 #include "imuTask.h"
+#include "rtcTask.h"
+
+struct imu_sample{
+    struct bmi160_sensor_data acc;
+    struct bmi160_sensor_data gyro;
+    uint64_t time;
+};
+
+// 32768 = 2g
+#define MAXACCEL (32768/2)
+// 32768 = 125dps
+#define MAXGYRO (32768/125)
 
 static struct bmi160_dev bmi160Dev;
+int numSamples = 0;
+QueueHandle_t myQueue;
+
+
+/* These static functions are used by the IMU Task. These are not available 
+   outside this file. See the respective function definitions for more 
+   details */
+void static ImuDataReady_Interrupt(void);
+int8_t static MotionSensor_ConfigDataReadyIntr(void);
 
 static int8_t BMI160BurstWrite(uint8_t dev_addr, uint8_t reg_addr,uint8_t *data, uint16_t len)
 {  
@@ -52,7 +74,7 @@ static int8_t BMI160BurstRead(uint8_t dev_addr, uint8_t reg_addr,uint8_t *data, 
 
 static void bmi160Init(void)
 {
-
+    myQueue = xQueueCreate(25, sizeof(struct imu_sample));
     vTaskDelay(100);
 
     /* BMI160 */
@@ -63,53 +85,130 @@ static void bmi160Init(void)
 
     bmi160_init(&bmi160Dev); // initialize the device
   
-    bmi160Dev.gyro_cfg.odr = BMI160_GYRO_ODR_800HZ;
+    bmi160Dev.gyro_cfg.odr = BMI160_GYRO_ODR_25HZ;
     bmi160Dev.gyro_cfg.range = BMI160_GYRO_RANGE_125_DPS;
     bmi160Dev.gyro_cfg.bw = BMI160_GYRO_BW_OSR4_MODE;
 
     /* Select the power mode of Gyroscope sensor */
     bmi160Dev.gyro_cfg.power = BMI160_GYRO_NORMAL_MODE;
 
-    bmi160Dev.accel_cfg.odr = BMI160_ACCEL_ODR_1600HZ;
+    bmi160Dev.accel_cfg.odr = BMI160_ACCEL_ODR_25HZ;
     bmi160Dev.accel_cfg.range = BMI160_ACCEL_RANGE_2G;
     bmi160Dev.accel_cfg.bw = BMI160_ACCEL_BW_OSR4_AVG1;
+    
+    /* Select the power mode of Accel sensor */
     bmi160Dev.accel_cfg.power = BMI160_ACCEL_NORMAL_MODE;
 
+    /* Configure Data Ready Interrupt */
+    MotionSensor_ConfigDataReadyIntr();
+    
     /* Set the sensor configuration */
     bmi160_set_sens_conf(&bmi160Dev);
     bmi160Dev.delay_ms(50);
+    
 }
-
-// 32768 = 2g
-#define MAXACCEL (32768/2)
-// 32768 = 125dps
-#define MAXGYRO (32768/125)
 
 void motionTask(void *arg)
 {
     (void)arg;
+    TickType_t myLastUnblock;
+    myLastUnblock = xTaskGetTickCount();
     I2C_1_Start();
     bmi160Init();
     struct bmi160_sensor_data acc;
     struct bmi160_sensor_data gyro;
     
     float gx,gy,gz,dpsx,dpsy,dpsz;
+    struct imu_sample sample;
     
     while(1)
     {
-        bmi160_get_sensor_data(BMI160_BOTH_ACCEL_AND_GYRO, &acc, &gyro, &bmi160Dev);
+        //uint64_t time = getCurrentTimeMillis();
+        //bmi160_get_sensor_data(BMI160_BOTH_ACCEL_AND_GYRO, &acc, &gyro, &bmi160Dev);
     
-        gx = (float)acc.x/MAXACCEL;
-        gy = (float)acc.y/MAXACCEL;
-        gz = (float)acc.z/MAXACCEL;
-        dpsx = (float)gyro.x/MAXGYRO;
-        dpsy = (float)gyro.y/MAXGYRO;
-        dpsz = (float)gyro.z/MAXGYRO;
+        if(myQueue != 0){
+            if(xQueueReceive(myQueue, (void*) &sample, (TickType_t) 5)){
+                gx = (float)sample.acc.x/MAXACCEL;
+                gy = (float)sample.acc.y/MAXACCEL;
+                gz = (float)sample.acc.z/MAXACCEL;
+                dpsx = (float)sample.gyro.x/MAXGYRO;
+                dpsy = (float)sample.gyro.y/MAXGYRO;
+                dpsz = (float)sample.gyro.z/MAXGYRO;
+                printf("Accel: {x:%1.2f y:%1.2f z:%1.2f}, Gyro: {x:%1.2f y:%1.2f z:%1.2f}, Time: %.0f, Steps: %d\r\n",gx,gy,gz,dpsx,dpsy,dpsz,sample.time/1.0, numSamples);   
+            }
+        }
         
-        printf("Accel: {x:%1.2f y:%1.2f z:%1.2f}, Gyro: {x:%1.2f y:%1.2f z:%1.2f}\r\n",gx,gy,gz,dpsx,dpsy,dpsz);
-        
-        vTaskDelay(1000);
+        //vTaskDelayUntil(&myLastUnblock, pdMS_TO_TICKS(200));
     }
+}
+
+void static ImuDataReady_Interrupt(void)
+{
+    printf("%d\r\n", Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM));
+    
+    /* Read the latest available data time and sample*/
+    struct imu_sample sample;
+    sample.time = getCurrentTimeMillisISR();
+    
+    /* We have not woken a task at the start of the ISR. */
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    
+    /* Clear any pending interrupts */
+    Cy_GPIO_ClearInterrupt(Pin_ImuDataReady_INT_PORT, Pin_ImuDataReady_INT_NUM);
+    NVIC_ClearPendingIRQ(SysInt_ImuDataReadyINT_cfg.intrSrc);
+    
+    bmi160_get_sensor_data(BMI160_BOTH_ACCEL_AND_GYRO, &sample.acc, &sample.gyro, &bmi160Dev);
+    numSamples++;
+    
+    /* Send imu sample to queue */
+    xQueueSendFromISR(myQueue, (void *) &sample, &xHigherPriorityTaskWoken );
+    
+    /* Now the buffer is empty we can switch context if necessary. */
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken );
+    
+}
+
+int8_t static MotionSensor_ConfigDataReadyIntr(void)
+{
+    struct bmi160_int_settg int_config;
+    uint8_t rslt = BMI160_OK;
+    uint8_t step_enable = 1;
+    
+    /* Map the step interrupt to INT1 pin */
+    int_config.int_channel = BMI160_INT_CHANNEL_1;
+
+    /* Select the Interrupt type Step Detector interrupt */
+    int_config.int_type = BMI160_ACC_GYRO_DATA_RDY_INT;
+    
+    /* Interrupt pin configuration */
+
+    /* Enabling interrupt pins to act as output pin */
+    int_config.int_pin_settg.output_en = BMI160_ENABLE;
+    /* Choosing push-pull mode for interrupt pin */
+    int_config.int_pin_settg.output_mode = BMI160_DISABLE;
+    /* Choosing active High output */
+    int_config.int_pin_settg.output_type = BMI160_ENABLE;
+    /* Choosing edge triggered output */
+    int_config.int_pin_settg.edge_ctrl = BMI160_ENABLE;
+    /* Disabling interrupt pin to act as input */
+    int_config.int_pin_settg.input_en = BMI160_DISABLE;
+    /* non-latched output */
+    int_config.int_pin_settg.latch_dur =BMI160_LATCH_DUR_NONE;
+    
+    /* Set the Step Detector interrupt */
+    rslt = bmi160_set_int_config(&int_config, &bmi160Dev);
+    
+    if(rslt == BMI160_OK) /* Interrupt configuration successful */
+    {
+        /* enable the step counter */
+        rslt = bmi160_set_step_counter(step_enable,  &bmi160Dev);
+    }
+    
+    /* Initialize and enable Step Interrupt */
+    Cy_SysInt_Init(&SysInt_ImuDataReadyINT_cfg, ImuDataReady_Interrupt);
+    NVIC_EnableIRQ(SysInt_ImuDataReadyINT_cfg.intrSrc);
+    
+    return rslt;
 }
 
 /* [] END OF FILE */
