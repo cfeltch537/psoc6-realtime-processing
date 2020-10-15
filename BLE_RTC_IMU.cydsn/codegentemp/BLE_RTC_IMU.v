@@ -1,6 +1,6 @@
 // ======================================================================
 // BLE_RTC_IMU.v generated from TopDesign.cysch
-// 10/08/2020 at 12:22
+// 10/15/2020 at 15:56
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -501,7 +501,7 @@ module SCB_UART_PDL_v2_0_1 (
 
 endmodule
 
-// RTC_PDL_v2_0(DateFormat=0, DaylightSavingsTimeEn=false, DayOfMonth=8, DayOfMonthDstStart=22, DayOfMonthDstStop=22, DayOfWeek=5, DayOfWeekDstStart=1, DayOfWeekDstStop=1, DstDateType=0, EnableRtcInterrupt=true, Hour=12, HoursDstStart=0, HoursDstStop=0, Month=10, MonthDstStart=3, MonthDstStop=10, RemoveIntr=false, TimeFormat=0, TimeResetOnStart=false, WeekOfMonthDstStart=6, WeekOfMonthDstStop=6, Year=20, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=RTC_PDL_v2_0, CY_CONFIG_TITLE=RTC, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=RTC, CY_INSTANCE_SHORT_NAME=RTC, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=0, CY_PDL_DRIVER_NAME=rtc, CY_PDL_DRIVER_REQ_VERSION=2.0.0, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.2, INSTANCE_NAME=RTC, )
+// RTC_PDL_v2_0(DateFormat=0, DaylightSavingsTimeEn=false, DayOfMonth=15, DayOfMonthDstStart=22, DayOfMonthDstStop=22, DayOfWeek=5, DayOfWeekDstStart=1, DayOfWeekDstStop=1, DstDateType=0, EnableRtcInterrupt=true, Hour=15, HoursDstStart=0, HoursDstStop=0, Month=10, MonthDstStart=3, MonthDstStop=10, RemoveIntr=false, TimeFormat=0, TimeResetOnStart=false, WeekOfMonthDstStart=6, WeekOfMonthDstStop=6, Year=20, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=RTC_PDL_v2_0, CY_CONFIG_TITLE=RTC, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=RTC, CY_INSTANCE_SHORT_NAME=RTC, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=0, CY_PDL_DRIVER_NAME=rtc, CY_PDL_DRIVER_REQ_VERSION=2.0.0, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.2, INSTANCE_NAME=RTC, )
 module RTC_PDL_v2_0_2 ;
 
 
@@ -569,20 +569,131 @@ module TCPWM_Counter_PDL_v1_0_3 (
 
 endmodule
 
+// TCPWM_Counter_PDL_v1_0(CaptureInput=7, CaptureInputMasked=3, ClockPrescaler=0, Compare0=16384, Compare1=16384, CompareOrCapture=2, CountDirection=0, CountInput=7, CountInputMasked=3, EnableCompareSwap=false, InterruptSource=1, Period=32768, ReloadInput=7, ReloadInputMasked=3, Resolution=16, RunMode=0, StartInput=7, StartInputMasked=3, StopInput=7, StopInputMasked=3, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=TCPWM_Counter_PDL_v1_0, CY_CONFIG_TITLE=Timer_PPG, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Timer_PPG, CY_INSTANCE_SHORT_NAME=Timer_PPG, CY_MAJOR_VERSION=1, CY_MINOR_VERSION=0, CY_PDL_DRIVER_NAME=tcpwm, CY_PDL_DRIVER_REQ_VERSION=1.0.0, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.2, INSTANCE_NAME=Timer_PPG, )
+module TCPWM_Counter_PDL_v1_0_4 (
+    stop,
+    reload,
+    start,
+    count,
+    capture,
+    interrupt,
+    ovrflw,
+    undrflw,
+    compare,
+    clock);
+    input       stop;
+    input       reload;
+    input       start;
+    input       count;
+    input       capture;
+    output      interrupt;
+    output      ovrflw;
+    output      undrflw;
+    output      compare;
+    input       clock;
+
+
+          wire  Net_2;
+          wire  Net_1;
+
+    cy_mxs40_tcpwm_v1_0 TCPWM (
+        .clock(clock),
+        .capture(capture),
+        .count(count),
+        .reload(reload),
+        .stop(stop),
+        .start(start),
+        .tr_underflow(undrflw),
+        .tr_compare_match(compare),
+        .tr_overflow(ovrflw),
+        .line_compl(Net_1),
+        .line(Net_2),
+        .interrupt(interrupt));
+    defparam TCPWM.exact_width = 0;
+    defparam TCPWM.width = 16;
+
+
+
+endmodule
+
+// TCPWM_Counter_PDL_v1_0(CaptureInput=7, CaptureInputMasked=3, ClockPrescaler=0, Compare0=16384, Compare1=16384, CompareOrCapture=2, CountDirection=0, CountInput=7, CountInputMasked=3, EnableCompareSwap=false, InterruptSource=1, Period=32768, ReloadInput=7, ReloadInputMasked=3, Resolution=16, RunMode=0, StartInput=7, StartInputMasked=3, StopInput=7, StopInputMasked=3, CY_API_CALLBACK_HEADER_INCLUDE=#include "cyapicallbacks.h", CY_COMMENT=, CY_COMPONENT_NAME=TCPWM_Counter_PDL_v1_0, CY_CONFIG_TITLE=Timer_IMU, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=Timer_IMU, CY_INSTANCE_SHORT_NAME=Timer_IMU, CY_MAJOR_VERSION=1, CY_MINOR_VERSION=0, CY_PDL_DRIVER_NAME=tcpwm, CY_PDL_DRIVER_REQ_VERSION=1.0.0, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.2, INSTANCE_NAME=Timer_IMU, )
+module TCPWM_Counter_PDL_v1_0_5 (
+    stop,
+    reload,
+    start,
+    count,
+    capture,
+    interrupt,
+    ovrflw,
+    undrflw,
+    compare,
+    clock);
+    input       stop;
+    input       reload;
+    input       start;
+    input       count;
+    input       capture;
+    output      interrupt;
+    output      ovrflw;
+    output      undrflw;
+    output      compare;
+    input       clock;
+
+
+          wire  Net_2;
+          wire  Net_1;
+
+    cy_mxs40_tcpwm_v1_0 TCPWM (
+        .clock(clock),
+        .capture(capture),
+        .count(count),
+        .reload(reload),
+        .stop(stop),
+        .start(start),
+        .tr_underflow(undrflw),
+        .tr_compare_match(compare),
+        .tr_overflow(ovrflw),
+        .line_compl(Net_1),
+        .line(Net_2),
+        .interrupt(interrupt));
+    defparam TCPWM.exact_width = 0;
+    defparam TCPWM.width = 16;
+
+
+
+endmodule
+
 // top
 module top ;
 
-          wire  Net_63;
-          wire  Net_62;
-          wire  Net_61;
-          wire  Net_60;
-          wire  Net_59;
-          wire  Net_58;
-          wire  Net_57;
-          wire  Net_56;
-          wire  Net_55;
-          wire  Net_54;
-          wire  Net_46;
+          wire  Net_142;
+          wire  Net_141;
+          wire  Net_140;
+          wire  Net_139;
+          wire  Net_138;
+          wire  Net_137;
+          wire  Net_136;
+          wire  Net_135;
+          wire  Net_123;
+          wire  Net_98;
+          wire  Net_97;
+          wire  Net_96;
+          wire  Net_95;
+          wire  Net_94;
+          wire  Net_93;
+          wire  Net_92;
+          wire  Net_91;
+          wire  Net_76;
+          wire  Net_108;
+          wire  Net_107;
+          wire  Net_106;
+          wire  Net_105;
+          wire  Net_104;
+          wire  Net_103;
+          wire  Net_102;
+          wire  Net_101;
+          wire  Net_100;
+          wire  Net_173;
     electrical  Net_29;
     electrical  Net_33;
     electrical  Net_25;
@@ -604,6 +715,7 @@ module top ;
           wire  Net_2;
           wire  Net_1;
           wire  Net_66;
+          wire  Net_82;
     electrical  Net_27;
     electrical  Net_16;
     electrical  Net_23;
@@ -831,7 +943,7 @@ module top ;
 		#(.deepsleep_required(0),
 		  .int_type(2'b00))
 		SysInt_ImuDataReadyINT
-		 (.int_signal(Net_46));
+		 (.int_signal(Net_82));
 
 
 	wire [0:0] tmpIO_0__Pin_ImuDataReady_INT_net;
@@ -864,7 +976,7 @@ module top ;
 		Pin_ImuDataReady_INT
 		 (.oe({1'b1}),
 		  .y({1'b0}),
-		  .fb({Net_46}),
+		  .fb({Net_82}),
 		  .io({tmpIO_0__Pin_ImuDataReady_INT_net[0:0]}),
 		  .siovref(tmpSIOVREF__Pin_ImuDataReady_INT_net));
 
@@ -887,10 +999,50 @@ module top ;
         .start(1'b0),
         .count(1'b1),
         .capture(1'b0),
-        .interrupt(Net_60),
-        .ovrflw(Net_61),
-        .undrflw(Net_62),
-        .compare(Net_63),
+        .interrupt(Net_105),
+        .ovrflw(Net_106),
+        .undrflw(Net_107),
+        .compare(Net_108),
+        .clock(Net_66));
+
+
+	cy_mxs40_isr_v1_0
+		#(.deepsleep_required(0),
+		  .int_type(2'b10))
+		SysInt_TimerPPG_INT
+		 (.int_signal(Net_76));
+
+
+    TCPWM_Counter_PDL_v1_0_4 Timer_PPG (
+        .stop(1'b0),
+        .reload(1'b0),
+        .start(1'b0),
+        .count(1'b1),
+        .capture(1'b0),
+        .interrupt(Net_76),
+        .ovrflw(Net_96),
+        .undrflw(Net_97),
+        .compare(Net_98),
+        .clock(Net_66));
+
+
+	cy_mxs40_isr_v1_0
+		#(.deepsleep_required(0),
+		  .int_type(2'b10))
+		SysInt_TimerIMU_INT
+		 (.int_signal(Net_123));
+
+
+    TCPWM_Counter_PDL_v1_0_5 Timer_IMU (
+        .stop(1'b0),
+        .reload(1'b0),
+        .start(1'b0),
+        .count(1'b1),
+        .capture(1'b0),
+        .interrupt(Net_123),
+        .ovrflw(Net_140),
+        .undrflw(Net_141),
+        .compare(Net_142),
         .clock(Net_66));
 
 

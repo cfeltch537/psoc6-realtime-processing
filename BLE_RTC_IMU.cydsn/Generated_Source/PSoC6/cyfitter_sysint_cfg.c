@@ -38,6 +38,18 @@
         .intrPriority = UART_1_SCB_IRQ__INTC_CORTEXM4_PRIORITY
     };
 
+    /* SysInt_TimerPPG_INT */
+    const cy_stc_sysint_t SysInt_TimerPPG_INT_cfg = {
+        .intrSrc = (IRQn_Type)SysInt_TimerPPG_INT__INTC_NUMBER,
+        .intrPriority = SysInt_TimerPPG_INT__INTC_CORTEXM4_PRIORITY
+    };
+
+    /* SysInt_TimerIMU_INT */
+    const cy_stc_sysint_t SysInt_TimerIMU_INT_cfg = {
+        .intrSrc = (IRQn_Type)SysInt_TimerIMU_INT__INTC_NUMBER,
+        .intrPriority = SysInt_TimerIMU_INT__INTC_CORTEXM4_PRIORITY
+    };
+
     /* SysInt_ImuDataReadyINT */
     const cy_stc_sysint_t SysInt_ImuDataReadyINT_cfg = {
         .intrSrc = (IRQn_Type)SysInt_ImuDataReadyINT__INTC_NUMBER,

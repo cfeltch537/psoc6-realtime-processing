@@ -16,7 +16,6 @@
 #include "queue.h"
 #include <stdio.h>
 #include "bmi160.h"
-#include "imuTask.h"
 #include "rtcTask.h"
 
 struct imu_sample{
@@ -32,7 +31,7 @@ struct imu_sample{
 
 static struct bmi160_dev bmi160Dev;
 int numSamples = 0;
-QueueHandle_t myQueue;
+QueueHandle_t rawImuQueue;
 
 
 /* These static functions are used by the IMU Task. These are not available 
@@ -74,7 +73,7 @@ static int8_t BMI160BurstRead(uint8_t dev_addr, uint8_t reg_addr,uint8_t *data, 
 
 static void bmi160Init(void)
 {
-    myQueue = xQueueCreate(25, sizeof(struct imu_sample));
+    rawImuQueue = xQueueCreate(100, sizeof(struct imu_sample));
     vTaskDelay(100);
 
     /* BMI160 */
@@ -108,26 +107,22 @@ static void bmi160Init(void)
     
 }
 
-void motionTask(void *arg)
+void bmi160Task(void *arg)
 {
     (void)arg;
-    TickType_t myLastUnblock;
-    myLastUnblock = xTaskGetTickCount();
+    
+    printf("Started IMU Read Task\r\n");   
     I2C_1_Start();
     bmi160Init();
-    struct bmi160_sensor_data acc;
-    struct bmi160_sensor_data gyro;
-    
+
     float gx,gy,gz,dpsx,dpsy,dpsz;
     struct imu_sample sample;
     
     while(1)
     {
-        //uint64_t time = getCurrentTimeMillis();
-        //bmi160_get_sensor_data(BMI160_BOTH_ACCEL_AND_GYRO, &acc, &gyro, &bmi160Dev);
     
-        if(myQueue != 0){
-            if(xQueueReceive(myQueue, (void*) &sample, (TickType_t) 5)){
+        if(rawImuQueue != 0){
+            if(xQueueReceive(rawImuQueue, (void*) &sample, (TickType_t) 5)){
                 gx = (float)sample.acc.x/MAXACCEL;
                 gy = (float)sample.acc.y/MAXACCEL;
                 gz = (float)sample.acc.z/MAXACCEL;
@@ -137,8 +132,6 @@ void motionTask(void *arg)
                 printf("Accel: {x:%1.2f y:%1.2f z:%1.2f}, Gyro: {x:%1.2f y:%1.2f z:%1.2f}, Time: %.0f, Steps: %d\r\n",gx,gy,gz,dpsx,dpsy,dpsz,sample.time/1.0, numSamples);   
             }
         }
-        
-        //vTaskDelayUntil(&myLastUnblock, pdMS_TO_TICKS(200));
     }
 }
 
@@ -158,7 +151,7 @@ void static ImuDataReady_Interrupt(void)
     NVIC_ClearPendingIRQ(SysInt_ImuDataReadyINT_cfg.intrSrc);
     
     /* Send imu sample to queue */
-    xQueueSendFromISR(myQueue, (void *) &sample, &xHigherPriorityTaskWoken );
+    xQueueSendFromISR(rawImuQueue, (void *) &sample, &xHigherPriorityTaskWoken );
     
     /* Now the buffer is empty we can switch context if necessary. */
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken );
@@ -194,13 +187,7 @@ int8_t static MotionSensor_ConfigDataReadyIntr(void)
     
     /* Set the Step Detector interrupt */
     rslt = bmi160_set_int_config(&int_config, &bmi160Dev);
-    
-    if(rslt == BMI160_OK) /* Interrupt configuration successful */
-    {
-        /* enable the step counter */
-        rslt = bmi160_set_step_counter(step_enable,  &bmi160Dev);
-    }
-    
+      
     /* Initialize and enable Step Interrupt */
     Cy_SysInt_Init(&SysInt_ImuDataReadyINT_cfg, ImuDataReady_Interrupt);
     NVIC_EnableIRQ(SysInt_ImuDataReadyINT_cfg.intrSrc);

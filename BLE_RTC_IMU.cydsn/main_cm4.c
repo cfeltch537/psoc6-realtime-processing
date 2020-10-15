@@ -13,8 +13,10 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include <stdio.h>
-#include "imuTask.h"
+#include "bmi160Task.h"
 #include "rtcTask.h"
+#include "simulatePPGTask.h"
+#include "simulateIMUTask.h"
 
 
 /******************************************************************************
@@ -42,9 +44,14 @@ int main(void)
 
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
     UART_1_Start();
-    rtcInitialize();
-    xTaskCreate(motionTask, "Motion Task", 400, 0, 1, 0);
-    xTaskCreate(rtcTask, "RTC Tick Task", 400, 0, 1, 0);
+    
+    rtcStart();
+    
+    xTaskCreate(rtcTask, "RTC Task", 400, 0, 1, 0);
+    // xTaskCreate(bmi160Task, "IMU Task", 400, 0, 1, 0);
+    xTaskCreate(taskPPG, "PPG Task", 400, 0, 1, 0);
+    xTaskCreate(taskIMU, "IMU Task", 400, 0, 1, 0);
+    
     vTaskStartScheduler();
     
     for(;;)

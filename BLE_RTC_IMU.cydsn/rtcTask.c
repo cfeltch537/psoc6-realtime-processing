@@ -27,7 +27,6 @@
 #define USE_SECONDS         (1u)    /* set to one to use, set to zero to not use */
 #define USE_MINUTES         (0u)    /* use seconds OR minutes, not both  */
 
-uint64_t unixTimeMillis = 1602004740111;
 
 /* 
     If an En field is set to CY_RTC_ALARM_DISABLE, the alarm
@@ -60,15 +59,19 @@ cy_en_rtc_status_t RtcInit(void);
 cy_en_rtc_status_t RtcAlarmConfig(void);
 void RtcInterruptHandler(void);
 void RtcStepAlarm(void);
+void startCounter(void);
 
 static SemaphoreHandle_t rtcAlarmSemaphore = NULL;
+static uint64_t unixTimeMillis = 1602004740111;
+static bool isRtcRunning = false;
+static bool isMsCounterRunning = false;
 
 uint64_t getCurrentTimeMillis(){
     return unixTimeMillis + Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM);
 }
 
-void rtcInitialize(){
-    printf("Initializing RTC and Counter\r\n");
+void rtcStart(){
+    printf("Starting RTC, enabbling RTC Alarm and ms counter\r\n");
     
     /* Init RTC - Configure the time and date */
     if(RtcInit() != CY_RTC_SUCCESS)
@@ -78,6 +81,7 @@ void rtcInitialize(){
     }
     else  /* Configures the alarm to enable interrupt */
     {   
+        isRtcRunning = true;
         /* Now configure the alarm */
         if(RtcAlarmConfig() != CY_RTC_SUCCESS)
         {
@@ -91,21 +95,48 @@ void rtcInitialize(){
         }
     }
     
-    Counter_ms_Start();
+    /* Create a semaphore. It will be set in the UART ISR when data is available */
+    rtcAlarmSemaphore = xSemaphoreCreateBinary();  
+    
+    //Counter_ms_Start();
+    startCounter();
+    isMsCounterRunning = true;
     
     /* Enable RTC interrupt handler function */
     Cy_SysInt_Init(&RTC_RTC_IRQ_cfg, RtcInterruptHandler);
     NVIC_EnableIRQ(RTC_RTC_IRQ_cfg.intrSrc);
     
-    /* Create a semaphore. It will be set in the UART ISR when data is available */
-    rtcAlarmSemaphore = xSemaphoreCreateBinary();   
 }
 
-/* UART task */
+void startCounter(){
+
+    /* Start the TCPWM component in timer/counter mode. The return value of the
+     * function indicates whether the arguments are valid or not. It is not used
+     * here for simplicity. 
+     */
+    
+    (void)Cy_TCPWM_Counter_Init(Counter_ms_HW, Counter_ms_CNT_NUM, &Counter_ms_config); 
+    Cy_TCPWM_Enable_Multiple(Counter_ms_HW, Counter_ms_CNT_MASK); /* Enable the counter instance */
+    
+    /* Trigger a software start on the counter instance. This is required when 
+     * no other hardware input signal is connected to the component to act as
+     * a trigger source. 
+     */
+    Cy_TCPWM_TriggerStart(Counter_ms_HW, Counter_ms_CNT_MASK);   
+}
+
+void rtcStop(){
+    printf("Stopping RTC 1s interrupt and ms counter\r\n");
+    /* Enable RTC interrupt handler function */
+    Cy_SysInt_Init(&RTC_RTC_IRQ_cfg, NULL);
+    NVIC_DisableIRQ(RTC_RTC_IRQ_cfg.intrSrc);
+    Counter_ms_Disable();
+}
+
 void rtcTask(void *arg)
 {
     (void)arg;
-    printf("Started RTC Second Read Task\r\n");
+    printf("Starting RTC Queue Read Task\r\n");
     
     while(1)
     {

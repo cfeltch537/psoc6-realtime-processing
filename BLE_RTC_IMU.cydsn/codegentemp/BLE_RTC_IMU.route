@@ -14,6 +14,11 @@ net CPUSS_swj_swdio_tms
 	switch ":CPUSS[0]swj_swdio_tms_input_permute.CPUSS[0]swj_swdio_tms==>:CPUSScontainer:CPUSS[0].swj_swdio_tms"
 	term   ":CPUSScontainer:CPUSS[0].swj_swdio_tms"
 end CPUSS_swj_swdio_tms
+net Net_123
+	term   ":TCPWMcontainer:TCPWM[2].interrupt"
+	switch ":TCPWMcontainer:TCPWM[2].interrupt==>:intc_0:interrupt92.interrupt"
+	term   ":intc_0:interrupt92.interrupt"
+end Net_123
 net Net_2
 	term   ":ioport6:pin0.fb"
 	switch ":ioport6:pin0.fb==>:ioport6:smartio_mux_out0.direct_in"
@@ -30,7 +35,30 @@ net Net_3
 	switch ":SCB[3]i2c_sda_input_permute.SCB[3]i2c_sda==>:SCBcontainer:SCB[3].i2c_sda"
 	term   ":SCBcontainer:SCB[3].i2c_sda"
 end Net_3
-net Net_46
+net Net_66_ff11
+	term   ":Clockcontainer:Clock[0].ff_div_11"
+	switch ":Clockcontainer:Clock[0].ff_div_11==>:Clockcontainer:ff_permute.ff_div_11"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_19==>:TCPWMcontainer:TCPWM[0].clock"
+	term   ":TCPWMcontainer:TCPWM[0].clock"
+end Net_66_ff11
+net Net_66_ff12
+	term   ":Clockcontainer:Clock[0].ff_div_13"
+	switch ":Clockcontainer:Clock[0].ff_div_13==>:Clockcontainer:ff_permute.ff_div_13"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_21==>:TCPWMcontainer:TCPWM[2].clock"
+	term   ":TCPWMcontainer:TCPWM[2].clock"
+end Net_66_ff12
+net Net_66_ff13
+	term   ":Clockcontainer:Clock[0].ff_div_12"
+	switch ":Clockcontainer:Clock[0].ff_div_12==>:Clockcontainer:ff_permute.ff_div_12"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_20==>:TCPWMcontainer:TCPWM[1].clock"
+	term   ":TCPWMcontainer:TCPWM[1].clock"
+end Net_66_ff13
+net Net_76
+	term   ":TCPWMcontainer:TCPWM[1].interrupt"
+	switch ":TCPWMcontainer:TCPWM[1].interrupt==>:intc_0:interrupt91.interrupt"
+	term   ":intc_0:interrupt91.interrupt"
+end Net_76
+net Net_82
 	term   ":ioport13:pin1.fb"
 	switch ":ioport13:pin1.fb==>:ioport13:smartio_mux_out1.direct_in"
 	switch ":ioport13:smartio_mux_out1.smartio_mux_out==>:IO[13]_out[1]_input_permute.ioport13_dsiOut1"
@@ -419,13 +447,7 @@ net Net_46
 	switch ":UDB_Array:DSI_new3:LHO_Sel88.lho88==>:UDB_Array:DSI_new3:DOT_Sel8.23"
 	switch ":UDB_Array:DSI_new3:DOT_Sel8.ot8==>:intc_0:interrupt122.interrupt"
 	term   ":intc_0:interrupt122.interrupt"
-end Net_46
-net Net_66_ff11
-	term   ":Clockcontainer:Clock[0].ff_div_11"
-	switch ":Clockcontainer:Clock[0].ff_div_11==>:Clockcontainer:ff_permute.ff_div_11"
-	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_19==>:TCPWMcontainer:TCPWM[0].clock"
-	term   ":TCPWMcontainer:TCPWM[0].clock"
-end Net_66_ff11
+end Net_82
 net \I2C_1:clock_wire_ff0\
 	term   ":Clockcontainer:Clock[0].ff_div_3"
 	switch ":Clockcontainer:Clock[0].ff_div_3==>:Clockcontainer:ff_permute.ff_div_3"

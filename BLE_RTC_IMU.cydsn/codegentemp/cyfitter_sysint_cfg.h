@@ -30,6 +30,12 @@
     #define UART_1_SCB_IRQ__INTC_ASSIGNED 1u
     extern const cy_stc_sysint_t UART_1_SCB_IRQ_cfg;
 
+    #define SysInt_TimerPPG_INT__INTC_ASSIGNED 1u
+    extern const cy_stc_sysint_t SysInt_TimerPPG_INT_cfg;
+
+    #define SysInt_TimerIMU_INT__INTC_ASSIGNED 1u
+    extern const cy_stc_sysint_t SysInt_TimerIMU_INT_cfg;
+
     #define SysInt_ImuDataReadyINT__INTC_ASSIGNED 1u
     extern const cy_stc_sysint_t SysInt_ImuDataReadyINT_cfg;
 

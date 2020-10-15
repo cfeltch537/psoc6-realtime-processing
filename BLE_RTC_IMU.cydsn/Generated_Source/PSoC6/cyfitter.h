@@ -42,6 +42,18 @@
 #define UART_1_SCBCLK__DIV_NUM 1
 #define UART_1_SCBCLK__DIV_TYPE CY_SYSCLK_DIV_8_BIT
 
+/* Timer_IMU */
+#define Timer_IMU_TCPWM__CNT_HW TCPWM0_CNT2
+#define Timer_IMU_TCPWM__CNT_IDX 2u
+#define Timer_IMU_TCPWM__HW TCPWM0
+#define Timer_IMU_TCPWM__IDX 0u
+
+/* Timer_PPG */
+#define Timer_PPG_TCPWM__CNT_HW TCPWM0_CNT1
+#define Timer_PPG_TCPWM__CNT_IDX 1u
+#define Timer_PPG_TCPWM__HW TCPWM0
+#define Timer_PPG_TCPWM__IDX 0u
+
 /* Clock_1khz */
 #define Clock_1khz__DIV_IDX 8
 #define Clock_1khz__DIV_NUM 0

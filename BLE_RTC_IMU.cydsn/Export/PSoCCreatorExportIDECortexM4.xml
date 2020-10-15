@@ -37,15 +37,19 @@
       <Folder BuildType="STRICT" Path="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn">
         <Files Root="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn">
           <File BuildType="BUILD" Toolchain="">FreeRTOSConfig.h</File>
-          <File BuildType="BUILD" Toolchain="">imuTask.h</File>
+          <File BuildType="BUILD" Toolchain="">bmi160Task.h</File>
           <File BuildType="BUILD" Toolchain="">rtcTask.h</File>
+          <File BuildType="BUILD" Toolchain="">simulatePPGTask.h</File>
+          <File BuildType="BUILD" Toolchain="">simulateIMUTask.h</File>
           <File BuildType="BUILD" Toolchain="">main_cm4.c</File>
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">armgcc\startup\startup_psoc63_cm4.S</File>
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">iar\startup\startup_psoc63_cm4.s</File>
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">mdk\startup\startup_psoc63_cm4.s</File>
           <File BuildType="BUILD" Toolchain="">system_psoc63_cm4.c</File>
-          <File BuildType="BUILD" Toolchain="">imuTask.c</File>
+          <File BuildType="BUILD" Toolchain="">bmi160Task.c</File>
           <File BuildType="BUILD" Toolchain="">rtcTask.c</File>
+          <File BuildType="BUILD" Toolchain="">simulatePPGTask.c</File>
+          <File BuildType="BUILD" Toolchain="">simulateIMUTask.c</File>
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">cy8c6xx7_cm4_dual.ld</File>
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">cy8c6xx7_cm4_dual.icf</File>
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">cy8c6xx7_cm4_dual.scat</File>
@@ -90,6 +94,10 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Clock_1khz.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Counter_ms.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Counter_ms.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Timer_IMU.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Timer_IMU.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Timer_PPG.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC6\Timer_PPG.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\Generated_Source\PSoC6\pdl\cmsis\include">

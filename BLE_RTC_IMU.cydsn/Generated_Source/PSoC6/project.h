@@ -93,6 +93,8 @@
 #include "RTC.h"
 #include "Clock_1khz.h"
 #include "Counter_ms.h"
+#include "Timer_PPG.h"
+#include "Timer_IMU.h"
 #include "I2C_1_SCBCLK.h"
 #include "UART_1_SCBCLK.h"
 

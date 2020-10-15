@@ -1,5 +1,5 @@
 -- Project:   BLE_RTC_IMU
--- Generated: 10/08/2020 12:22:39
+-- Generated: 10/15/2020 15:56:22
 -- PSoC Creator  4.2
 
 ENTITY BLE_RTC_IMU IS
@@ -56,17 +56,29 @@ ARCHITECTURE __DEFAULT__ OF BLE_RTC_IMU IS
     SIGNAL LED_G(0)__PA : bit;
     SIGNAL LED_R(0)__PA : bit;
     SIGNAL Net_10 : bit;
+    SIGNAL Net_105 : bit;
+    SIGNAL Net_106 : bit;
+    SIGNAL Net_107 : bit;
+    SIGNAL Net_108 : bit;
     SIGNAL Net_11 : bit;
+    SIGNAL Net_123 : bit;
+    SIGNAL Net_140 : bit;
+    SIGNAL Net_141 : bit;
+    SIGNAL Net_142 : bit;
     SIGNAL Net_2 : bit;
     SIGNAL Net_3 : bit;
     SIGNAL Net_4 : bit;
-    SIGNAL Net_46 : bit;
-    SIGNAL Net_60 : bit;
-    SIGNAL Net_61 : bit;
-    SIGNAL Net_62 : bit;
-    SIGNAL Net_63 : bit;
     SIGNAL Net_66_ff11 : bit;
     ATTRIBUTE global_signal OF Net_66_ff11 : SIGNAL IS true;
+    SIGNAL Net_66_ff12 : bit;
+    ATTRIBUTE global_signal OF Net_66_ff12 : SIGNAL IS true;
+    SIGNAL Net_66_ff13 : bit;
+    ATTRIBUTE global_signal OF Net_66_ff13 : SIGNAL IS true;
+    SIGNAL Net_76 : bit;
+    SIGNAL Net_82 : bit;
+    SIGNAL Net_96 : bit;
+    SIGNAL Net_97 : bit;
+    SIGNAL Net_98 : bit;
     SIGNAL Pin_ImuDataReady_INT(0)__PA : bit;
     SIGNAL \Counter_ms:Net_1\ : bit;
     SIGNAL \Counter_ms:Net_2\ : bit;
@@ -80,6 +92,10 @@ ARCHITECTURE __DEFAULT__ OF BLE_RTC_IMU IS
     SIGNAL \\\I2C_1:scl(0)\\__PA\ : bit;
     SIGNAL \\\I2C_1:sda(0)\\__PA\ : bit;
     SIGNAL \RTC:Net_3\ : bit;
+    SIGNAL \Timer_IMU:Net_1\ : bit;
+    SIGNAL \Timer_IMU:Net_2\ : bit;
+    SIGNAL \Timer_PPG:Net_1\ : bit;
+    SIGNAL \Timer_PPG:Net_2\ : bit;
     SIGNAL \UART_1:Net_1172\ : bit;
     SIGNAL \UART_1:Net_161\ : bit;
     SIGNAL \UART_1:Net_847_ff1\ : bit;
@@ -134,6 +150,10 @@ ARCHITECTURE __DEFAULT__ OF BLE_RTC_IMU IS
     ATTRIBUTE Location OF \RTC:RTC_IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(21)]";
     ATTRIBUTE Location OF SysInt_ImuDataReadyINT : LABEL IS "[IntrContainer=(0)][IntrId=(122)]";
     ATTRIBUTE Location OF \Counter_ms:TCPWM\ : LABEL IS "F(TCPWM,0)";
+    ATTRIBUTE Location OF SysInt_TimerPPG_INT : LABEL IS "[IntrContainer=(0)][IntrId=(91)]";
+    ATTRIBUTE Location OF \Timer_PPG:TCPWM\ : LABEL IS "F(TCPWM,1)";
+    ATTRIBUTE Location OF SysInt_TimerIMU_INT : LABEL IS "[IntrContainer=(0)][IntrId=(92)]";
+    ATTRIBUTE Location OF \Timer_IMU:TCPWM\ : LABEL IS "F(TCPWM,2)";
     COMPONENT CLK_GEN
         PORT (
             gen_clk_in_0 : IN std_ulogic;
@@ -545,6 +565,8 @@ BEGIN
             ff_div_0 => open,
             ff_div_1 => open,
             ff_div_11 => Net_66_ff11,
+            ff_div_12 => Net_66_ff13,
+            ff_div_13 => Net_66_ff12,
             ff_div_3 => \I2C_1:clock_wire_ff0\,
             ff_div_5 => \UART_1:Net_847_ff1\,
             periclk_App => periclk_App);
@@ -1197,7 +1219,7 @@ BEGIN
         PORT MAP(
             pa_out => Pin_ImuDataReady_INT(0)__PA,
             oe => open,
-            fb => Net_46,
+            fb => Net_82,
             pad_in => Pin_ImuDataReady_INT(0)_PAD,
             in_clock => open,
             in_clock_en => open,
@@ -1295,7 +1317,7 @@ BEGIN
             deepsleep_required => 0,
             int_type => "00")
         PORT MAP(
-            interrupt => Net_46,
+            interrupt => Net_82,
             clock => ClockBlock_PeriClk);
 
     \Counter_ms:TCPWM\:TCPWM
@@ -1310,11 +1332,67 @@ BEGIN
             reload => '0',
             stop => '0',
             start => '0',
-            tr_underflow => Net_62,
-            tr_compare_match => Net_63,
-            tr_overflow => Net_61,
+            tr_underflow => Net_107,
+            tr_compare_match => Net_108,
+            tr_overflow => Net_106,
             line_compl => \Counter_ms:Net_1\,
             line => \Counter_ms:Net_2\,
-            interrupt => Net_60);
+            interrupt => Net_105);
+
+    SysInt_TimerPPG_INT:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_76,
+            clock => ClockBlock_PeriClk);
+
+    \Timer_PPG:TCPWM\:TCPWM
+        GENERIC MAP(
+            cy_registers => "",
+            exact_width => 0,
+            width => 16)
+        PORT MAP(
+            clock => Net_66_ff13,
+            capture => '0',
+            count => '1',
+            reload => '0',
+            stop => '0',
+            start => '0',
+            tr_underflow => Net_97,
+            tr_compare_match => Net_98,
+            tr_overflow => Net_96,
+            line_compl => \Timer_PPG:Net_1\,
+            line => \Timer_PPG:Net_2\,
+            interrupt => Net_76);
+
+    SysInt_TimerIMU_INT:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_123,
+            clock => ClockBlock_PeriClk);
+
+    \Timer_IMU:TCPWM\:TCPWM
+        GENERIC MAP(
+            cy_registers => "",
+            exact_width => 0,
+            width => 16)
+        PORT MAP(
+            clock => Net_66_ff12,
+            capture => '0',
+            count => '1',
+            reload => '0',
+            stop => '0',
+            start => '0',
+            tr_underflow => Net_141,
+            tr_compare_match => Net_142,
+            tr_overflow => Net_140,
+            line_compl => \Timer_IMU:Net_1\,
+            line => \Timer_IMU:Net_2\,
+            interrupt => Net_123);
 
 END __DEFAULT__;

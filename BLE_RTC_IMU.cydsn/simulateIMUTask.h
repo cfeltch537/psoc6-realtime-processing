@@ -9,13 +9,9 @@
  *
  * ========================================
 */
-#include <stdio.h>
 
 #pragma once
 
-uint64_t getCurrentTimeMillis();
-void rtcStart();
-void rtcStop();
-void rtcTask(void *arg);
+void taskIMU(void *arg);
 
 /* [] END OF FILE */

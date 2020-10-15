@@ -12,6 +12,6 @@
 
 #pragma once
 
-void motionTask(void *arg);
+void taskPPG(void *arg);
 
 /* [] END OF FILE */

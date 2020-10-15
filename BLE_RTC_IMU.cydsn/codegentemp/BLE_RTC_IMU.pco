@@ -1,5 +1,5 @@
 # BLE_RTC_IMU
-# 2020-10-08 16:22:39Z
+# 2020-10-15 19:56:23Z
 
 dont_use_location p4usbcell -1 -1 0
 dont_use_location USB -1 -1 0
@@ -28,3 +28,7 @@ set_location "\RTC:RTC\" RTC -1 -1 0
 set_location "\RTC:RTC_IRQ\" interrupt -1 -1 21
 set_location "SysInt_ImuDataReadyINT" interrupt -1 -1 122
 set_location "\Counter_ms:TCPWM\" TCPWM -1 -1 0
+set_location "SysInt_TimerPPG_INT" interrupt -1 -1 91
+set_location "\Timer_PPG:TCPWM\" TCPWM -1 -1 1
+set_location "SysInt_TimerIMU_INT" interrupt -1 -1 92
+set_location "\Timer_IMU:TCPWM\" TCPWM -1 -1 2
