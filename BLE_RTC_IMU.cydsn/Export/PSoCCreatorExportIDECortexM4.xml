@@ -6,7 +6,7 @@
     <Toolchain Name="ARM GCC Generic" Selected="True">
       <Tool Name="prebuild" Command="" Options="" />
       <Tool Name="assembler" Command="arm-none-eabi-as.exe" Options="-mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mthumb -I. -IGenerated_Source\PSoC6 -IGenerated_Source\PSoC6\pdl\cmsis/include/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/ip/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/psoc63/include/ -IGenerated_Source\PSoC6\pdl\drivers/peripheral/ -IGenerated_Source\PSoC6\pdl\middleware/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/include/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/portable/GCC/CM4F/ -IGenerated_Source\PSoC6\pdl\utilities/ -alh=${OutputDir}/${CompileFile}.lst -g -W" />
-      <Tool Name="compiler" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mthumb -I..\BMI160_driver -I. -IGenerated_Source\PSoC6 -IGenerated_Source\PSoC6\pdl\cmsis/include/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/ip/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/psoc63/include/ -IGenerated_Source\PSoC6\pdl\drivers/peripheral/ -IGenerated_Source\PSoC6\pdl\middleware/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/include/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/portable/GCC/CM4F/ -IGenerated_Source\PSoC6\pdl\utilities/ -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -D CY_CORE_ID=0 -D CY_PSOC_CREATOR_USED=1 -D CY8C6347BZI_BLD53 -Wall -ffunction-sections -ffat-lto-objects -Og" />
+      <Tool Name="compiler" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mthumb -I..\BMI160_driver -I..\codec -I. -IGenerated_Source\PSoC6 -IGenerated_Source\PSoC6\pdl\cmsis/include/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/ip/ -IGenerated_Source\PSoC6\pdl\devices/psoc6/psoc63/include/ -IGenerated_Source\PSoC6\pdl\drivers/peripheral/ -IGenerated_Source\PSoC6\pdl\middleware/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/include/ -IGenerated_Source\PSoC6\pdl\rtos/FreeRTOS/9.0.0/Source/portable/GCC/CM4F/ -IGenerated_Source\PSoC6\pdl\utilities/ -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -D CY_CORE_ID=0 -D CY_PSOC_CREATOR_USED=1 -D CY8C6347BZI_BLD53 -Wall -ffunction-sections -ffat-lto-objects -Og" />
       <Tool Name="linker" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -mthumb -L Generated_Source\PSoC6 -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T cy8c6xx7_cm4_dual.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects" />
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
@@ -63,6 +63,16 @@
           <File BuildType="BUILD" Toolchain="">stdio_user.h</File>
           <File BuildType="BUILD" Toolchain="">stdio_user.c</File>
           <File BuildType="BUILD" Toolchain="">system_psoc63.h</File>
+        </Files>
+      </Folder>
+      <Folder BuildType="STRICT" Path="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn">
+        <Files Root="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn">
+          <File BuildType="BUILD" Toolchain="">..\codec\decode.c</File>
+          <File BuildType="BUILD" Toolchain="">..\codec\decode.h</File>
+          <File BuildType="BUILD" Toolchain="">..\codec\encode.c</File>
+          <File BuildType="BUILD" Toolchain="">..\codec\encode.h</File>
+          <File BuildType="BUILD" Toolchain="">..\codec\frame.c</File>
+          <File BuildType="BUILD" Toolchain="">..\codec\frame.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\Generated_Source\PSoC6">

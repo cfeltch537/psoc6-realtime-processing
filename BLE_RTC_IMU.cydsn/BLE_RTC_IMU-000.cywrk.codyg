@@ -18,7 +18,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\simulateIMUTask.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\main_cm4.c">
 <ExpandedNodeIds>
 <v>BLE_RTC_IMU-000</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU</v>
@@ -59,6 +59,13 @@
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch\bmi160.c</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch\bmi160.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch\bmi160_defs.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\decode.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\decode.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\encode.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\encode.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\frame.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\frame.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\bmi160Task.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\FreeRTOSConfig.h</v>
@@ -86,10 +93,30 @@
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\stdio_user.c</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\stdio_user.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\system_psoc63.h</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
+<v>BLE_RTC_IMU-000</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\TopDesign</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\BLE_RTC_IMU.cydwr</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\BLE_RTC_IMU.cydwr\Pins</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\BLE_RTC_IMU.cydwr\Analog</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\BLE_RTC_IMU.cydwr\DMA</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\BLE_RTC_IMU.cydwr\Clocks</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\BLE_RTC_IMU.cydwr\Interrupts</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\BLE_RTC_IMU.cydwr\System</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\BLE_RTC_IMU.cydwr\Directives</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\ARM GCC Generic</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\ARM GCC Generic\cy8c6xx7_cm0plus.ld</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\ARM IAR Generic</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\ARM IAR Generic\cy8c6xx7_cm0plus.icf</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\ARM MDK Generic</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\ARM MDK Generic\cy8c6xx7_cm0plus.scat</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\Header Files</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\Source Files</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\Source Files\ARM GCC Generic</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\Source Files\ARM GCC Generic\startup_psoc63_cm0plus.S</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\Source Files\ARM IAR Generic</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM0p (Core 0)\Source Files\ARM IAR Generic\startup_psoc63_cm0plus.s</v>
@@ -108,40 +135,19 @@
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch\bmi160.c</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch\bmi160.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch\bmi160_defs.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\decode.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\decode.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\encode.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\encode.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\frame.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\frame.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\bmi160Task.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\FreeRTOSConfig.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\rtcTask.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\simulateIMUTask.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\simulatePPGTask.h</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM GCC Generic</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM GCC Generic\startup_psoc63_cm4.S</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM IAR Generic</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM IAR Generic\startup_psoc63_cm4.s</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM MDK Generic</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM MDK Generic\startup_psoc63_cm4.s</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\bmi160Task.c</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\main_cm4.c</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\rtcTask.c</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\simulateIMUTask.c</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\simulatePPGTask.c</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\system_psoc63_cm4.c</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\cy_ble_config.h</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\cy_ipc_config.c</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\cy_ipc_config.h</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\cyapicallbacks.h</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\stdio_user.c</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\stdio_user.h</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\system_psoc63.h</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\pdl</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\Clock_1khz</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\Counter_ms</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\I2C_1</v>
-<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\I2C_1_SCBCLK</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -251,7 +257,10 @@
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\cy_wdt.lst</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\cyfitter_sysint_cfg.lst</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\decode.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\encode.lst</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\event_groups.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\frame.lst</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\heap_1.lst</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\I2C_1.lst</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM4\ARM_GCC_541\Debug\Listing Files\list.lst</v>
@@ -396,13 +405,11 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\main_cm4.c" />
-<name v=".\BLE_RTC_IMU.cydwr" />
-<name v=".\TopDesign\TopDesign.cysch" />
 <name v=".\rtcTask.c" />
-<name v=".\rtcTask.h" />
-<name v=".\ppgTask.h" />
-<name v=".\Generated_Source\PSoC6\Counter_ms.c" />
-<name v=".\ppgTask.c" />
+<name v=".\simulateIMUTask.c" />
+<name v="..\codec\frame.h" />
+<name v=".\simulatePPGTask.h" />
+<name v=".\simulatePPGTask.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -410,7 +417,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical"><TabbedMdiContainer Size="557, 697" SelectedTabbedMdiWindow="2c6a95d6-9a02-4c08-bd44-481e00909954"><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\main_cm4.c" Guid="2c6a95d6-9a02-4c08-bd44-481e00909954" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\BLE_RTC_IMU.cydwr" Guid="fe55e634-3566-4a74-985a-570db02f9828" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\TopDesign\TopDesign.cysch" Guid="6f0b45bf-8e8f-4d0c-b0bb-44f0b8b2ce29" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\rtcTask.c" Guid="41ed70d7-00f2-445d-9aaf-85b560c06e18" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\rtcTask.h" Guid="3dd6d9af-b55b-482b-9f7f-9fcad6cc95c2" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\ppgTask.h" Guid="0e453cf0-f4f6-4e09-bb32-98085219e951" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\Generated_Source\PSoC6\Counter_ms.c" Guid="d764e453-a042-4861-8301-32e280096eb8" /></TabbedMdiContainer><TabbedMdiContainer Size="853, 697" SelectedTabbedMdiWindow="de3b19aa-7e6d-4e37-b00d-af3f990351ac"><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\ppgTask.c" Guid="de3b19aa-7e6d-4e37-b00d-af3f990351ac" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1494, 705" SelectedTabbedMdiWindow="e6ad3f58-eef3-41c9-bc9e-d461a41b6220"><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\main_cm4.c" Guid="2c6a95d6-9a02-4c08-bd44-481e00909954" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\rtcTask.c" Guid="d6077e93-4b73-4291-acce-5fa756600a94" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\simulateIMUTask.c" Guid="0244f54c-aedf-44c9-a86e-a9ee8f235312" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\codec\frame.h" Guid="4dd319f4-539d-4eac-a7ad-83b38f9b09e5" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\simulatePPGTask.h" Guid="681228e2-5942-4938-b4ff-0e8388cf412a" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\simulatePPGTask.c" Guid="e6ad3f58-eef3-41c9-bc9e-d461a41b6220" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

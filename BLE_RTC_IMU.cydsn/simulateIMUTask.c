@@ -16,6 +16,7 @@
 #include "queue.h"
 #include <stdio.h>
 #include "rtcTask.h"
+#include "frame.h"
 
 #define TIMER_PERIOD_MSEC   40U   /* Timer period in milliseconds */
 
@@ -31,12 +32,14 @@ struct SampleIMU{
 
 static int numSamplesIMU = 0;
 QueueHandle_t simulatedIMUQueue;
+QueueHandle_t dataframeIMUQueue;
 
 /* These static functions are used by the IMU Task. These are not available 
    outside this file. See the respective function definitions for more 
    details */
 void static IMU_ISR(void);
 void static startIMU(void);
+struct _data_frame_t static sampleToDataFrame(struct SampleIMU);
 
 void startIMU(){
     
@@ -76,6 +79,7 @@ void taskIMU(void *arg)
     
     printf("Starting IMU Read Task\r\n");
     simulatedIMUQueue = xQueueCreate(100, sizeof(struct SampleIMU));
+    dataframeIMUQueue = xQueueCreate(100, sizeof(struct _data_frame_t));
     startIMU();
         
     struct SampleIMU sample;
@@ -84,8 +88,12 @@ void taskIMU(void *arg)
     {
         if(simulatedIMUQueue != 0){
             if(xQueueReceive(simulatedIMUQueue, (void*) &sample, (TickType_t) 5)){
-                printf("Accel: {x:%d y:%d z:%d}, Gyro: {x:%d y:%d z:%d}, Time: %.0f, Steps: %d\r\n",
+                // Print sample data to UART
+                printf("Accel: {x:%lu y:%lu z:%lu}, Gyro: {x:%lu y:%lu z:%lu}, Time: %.0f, Steps: %d\r\n",
                     sample.accX,sample.accY,sample.accZ,sample.gyroX,sample.accY,sample.accZ,sample.time/1.0, numSamplesIMU);   
+                // Convert Sample to DataFrame
+                struct _data_frame_t dataframe = sampleToDataFrame(sample);
+                xQueueSend(dataframeIMUQueue, (void *) &dataframe, (TickType_t) 5); // portMAX_DELAY
             }
         }
     }
@@ -119,6 +127,48 @@ void static IMU_ISR(void)
     /* Now the buffer is empty we can switch context if necessary. */
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken );
     
+}
+
+struct _data_frame_t static sampleToDataFrame(struct SampleIMU sample){
+    
+    struct _data_frame_t dataframe;
+    
+    /* Control fields */
+    dataframe.sensor_status = 0;
+    dataframe.battery_status = 0;
+    dataframe.field_hdr = FRAME_FIELD_TIME | FRAME_FIELD_CAP | FRAME_FIELD_ACCEL | FRAME_FIELD_GYRO;
+    dataframe.seq = numSamplesIMU;
+    dataframe.session = 0;
+
+    /* Data fields */
+    dataframe.time_sec = sample.time/1000;
+    dataframe.time_msec = sample.time%1000;
+    dataframe.last_tick_usec = 0;
+    dataframe.fuel = 99;
+    dataframe.cap[0] = 1;
+    dataframe.cap[1] = 2;
+    dataframe.cap[2] = 3;
+    dataframe.accel[0] = sample.accX;
+    dataframe.accel[1] = sample.accY;
+    dataframe.accel[2] = sample.accZ;
+    dataframe.gyro[0] = sample.gyroX;
+    dataframe.gyro[1] = sample.gyroY;
+    dataframe.gyro[2] = sample.gyroZ;
+
+    /* Sentinel Fields */
+    /*
+    dataframe.led_ir;
+    dataframe.led_red;
+    dataframe.led_green;
+    dataframe.heart_rate;
+    dataframe.blood_oxygen_level;
+    dataframe.confidence_level;
+    dataframe.finger_detected_status;
+    dataframe.temperature;
+    dataframe.sync;
+    */
+
+    return dataframe;
 }
 
 /* [] END OF FILE */

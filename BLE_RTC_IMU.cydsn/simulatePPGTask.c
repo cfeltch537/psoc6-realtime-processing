@@ -16,6 +16,7 @@
 #include "queue.h"
 #include <stdio.h>
 #include "rtcTask.h"
+#include "frame.h"
 
 #define TIMER_PERIOD_MSEC   8U   /* Timer period in milliseconds */
 
@@ -28,12 +29,14 @@ struct SamplePPG{
 
 static int numSamplesPPG = 0;
 QueueHandle_t simulatedPPGQueue;
+QueueHandle_t dataframePPGQueue;
 
 /* These static functions are used by the IMU Task. These are not available 
    outside this file. See the respective function definitions for more 
    details */
 void static PpgDataReady_Interrupt(void);
 void static ppgStart(void);
+struct _data_frame_t static sampleToDataFrame(struct SamplePPG);
 
 void ppgStart(){
     
@@ -71,8 +74,10 @@ void taskPPG(void *arg)
 {
     (void)arg;
     
-    printf("Starting PPG Read Task\r\n");
     simulatedPPGQueue = xQueueCreate(100, sizeof(struct SamplePPG));
+    dataframePPGQueue = xQueueCreate(250, sizeof(struct _data_frame_t));
+    
+    printf("Starting PPG Read Task\r\n");
     ppgStart();
         
     struct SamplePPG sample;
@@ -81,7 +86,11 @@ void taskPPG(void *arg)
     {
         if(simulatedPPGQueue != 0){
             if(xQueueReceive(simulatedPPGQueue, (void*) &sample, (TickType_t) 5)){
+                // Print sample data to UART
                 printf("PPG: {R:%lu G:%d IR:%d}, Time: %.0f, Count: %d\r\n",sample.led_red, sample.led_green, sample.led_ir,sample.time/1.0, numSamplesPPG);
+                // Convert Sample to DataFrame
+                struct _data_frame_t dataframe = sampleToDataFrame(sample);
+                xQueueSend(dataframePPGQueue, (void *) &dataframe, (TickType_t) 5);
             }
         }
     }
@@ -112,6 +121,37 @@ void static PpgDataReady_Interrupt(void)
     /* Now the buffer is empty we can switch context if necessary. */
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken );
     
+}
+
+struct _data_frame_t static sampleToDataFrame(struct SamplePPG sample){
+    
+    struct _data_frame_t dataframe;
+    
+    /* Control fields */
+    dataframe.sensor_status = 0;
+    dataframe.battery_status = 0;
+    dataframe.field_hdr = FRAME_FIELD_TIME | FRAME_FIELD_SENTINEL;
+    dataframe.seq = numSamplesPPG;
+    dataframe.session = 0;
+
+    /* Data fields */
+    dataframe.time_sec = sample.time/1000;
+    dataframe.time_msec = sample.time%1000;
+    dataframe.last_tick_usec = 0;
+    dataframe.fuel = 99;
+
+    /* Sentinel Fields */
+    dataframe.led_ir = sample.led_ir;
+    dataframe.led_red = sample.led_red;
+    dataframe.led_green = sample.led_green;
+    dataframe.heart_rate = 60;
+    dataframe.blood_oxygen_level = 61;
+    dataframe.confidence_level = 62;
+    dataframe.finger_detected_status = 1;
+    dataframe.temperature = 63;
+    dataframe.sync = 64;
+
+    return dataframe;
 }
 
 /* [] END OF FILE */

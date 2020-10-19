@@ -48,9 +48,10 @@ int main(void)
     rtcStart();
     
     xTaskCreate(rtcTask, "RTC Task", 400, 0, 1, 0);
-    // xTaskCreate(bmi160Task, "IMU Task", 400, 0, 1, 0);
     xTaskCreate(taskPPG, "PPG Task", 400, 0, 1, 0);
     xTaskCreate(taskIMU, "IMU Task", 400, 0, 1, 0);
+    
+    // xTaskCreate(bmi160Task, "IMU Task", 400, 0, 1, 0);
     
     vTaskStartScheduler();
     

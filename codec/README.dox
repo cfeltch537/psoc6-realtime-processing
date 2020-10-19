@@ -1,0 +1,25 @@
+/**
+
+@mainpage RestEaZe-OTA
+
+@author Nicholas Haltmeyer <hanicho1@umbc.edu>
+
+Herein contains a reference implementation and testing routines for RestEaZe frames.
+
+\section Installation
+\code{.sh}
+mkdir build
+cd build
+cmake ..
+make
+./test_data
+\endcode
+
+\section Documentation
+\code{.sh}
+doxygen -g
+doxygen Doxyfile
+\endcode
+Resulting documentation can be found in ./html and ./latex.
+
+*/
