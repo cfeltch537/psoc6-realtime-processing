@@ -1,0 +1,1934 @@
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0plus
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main_cm0p.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB418:
+  27              		.file 1 "main_cm0p.c"
+   1:main_cm0p.c   **** /******************************************************************************
+   2:main_cm0p.c   **** * File Name: main_cm0p.c
+   3:main_cm0p.c   **** *
+   4:main_cm0p.c   **** * Version: 1.00
+   5:main_cm0p.c   **** *
+   6:main_cm0p.c   **** * Description: This file contains the Cortex-M0+ BLE controller code
+   7:main_cm0p.c   **** *
+   8:main_cm0p.c   **** * Related Document: CE218138_BLE_Thermometer_RTOS.pdf
+   9:main_cm0p.c   **** *
+  10:main_cm0p.c   **** * Hardware Dependency: CY8CKIT-062-BLE PSoC 6 BLE Pioneer Kit
+  11:main_cm0p.c   **** *
+  12:main_cm0p.c   **** *******************************************************************************
+  13:main_cm0p.c   **** * Copyright (2018), Cypress Semiconductor Corporation. All rights reserved.
+  14:main_cm0p.c   **** *******************************************************************************
+  15:main_cm0p.c   **** * This software, including source code, documentation and related materials
+  16:main_cm0p.c   **** * (“Software”), is owned by Cypress Semiconductor Corporation or one of its
+  17:main_cm0p.c   **** * subsidiaries (“Cypress”) and is protected by and subject to worldwide patent
+  18:main_cm0p.c   **** * protection (United States and foreign), United States copyright laws and
+  19:main_cm0p.c   **** * international treaty provisions. Therefore, you may use this Software only
+  20:main_cm0p.c   **** * as provided in the license agreement accompanying the software package from
+  21:main_cm0p.c   **** * which you obtained this Software (“EULA”).
+  22:main_cm0p.c   **** *
+  23:main_cm0p.c   **** * If no EULA applies, Cypress hereby grants you a personal, nonexclusive,
+  24:main_cm0p.c   **** * non-transferable license to copy, modify, and compile the Software source
+  25:main_cm0p.c   **** * code solely for use in connection with Cypress’s integrated circuit products.
+  26:main_cm0p.c   **** * Any reproduction, modification, translation, compilation, or representation
+  27:main_cm0p.c   **** * of this Software except as specified above is prohibited without the express
+  28:main_cm0p.c   **** * written permission of Cypress.
+  29:main_cm0p.c   **** *
+  30:main_cm0p.c   **** * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND, 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 2
+
+
+  31:main_cm0p.c   **** * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED 
+  32:main_cm0p.c   **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress 
+  33:main_cm0p.c   **** * reserves the right to make changes to the Software without notice. Cypress 
+  34:main_cm0p.c   **** * does not assume any liability arising out of the application or use of the 
+  35:main_cm0p.c   **** * Software or any product or circuit described in the Software. Cypress does 
+  36:main_cm0p.c   **** * not authorize its products for use in any products where a malfunction or 
+  37:main_cm0p.c   **** * failure of the Cypress product may reasonably be expected to result in 
+  38:main_cm0p.c   **** * significant property damage, injury or death (“High Risk Product”). By 
+  39:main_cm0p.c   **** * including Cypress’s product in a High Risk Product, the manufacturer of such 
+  40:main_cm0p.c   **** * system or application assumes all risk of such use and in doing so agrees to 
+  41:main_cm0p.c   **** * indemnify Cypress against all liability.
+  42:main_cm0p.c   **** *******************************************************************************/
+  43:main_cm0p.c   **** /******************************************************************************
+  44:main_cm0p.c   **** * Cortex-M0+ handles the controller portion of BLE. For the host functions, 
+  45:main_cm0p.c   **** * see main_cm4.c
+  46:main_cm0p.c   **** *******************************************************************************/
+  47:main_cm0p.c   **** 
+  48:main_cm0p.c   **** /* Header file includes */
+  49:main_cm0p.c   **** #include "project.h"
+  50:main_cm0p.c   **** #include "uart_debug.h"
+  51:main_cm0p.c   **** 
+  52:main_cm0p.c   **** /*******************************************************************************
+  53:main_cm0p.c   **** * Function Name: main
+  54:main_cm0p.c   **** ********************************************************************************
+  55:main_cm0p.c   **** * Summary:
+  56:main_cm0p.c   **** *  System entrance point. This function enables the Cortex-M4 and continuously 
+  57:main_cm0p.c   **** *  processes BLE controller events
+  58:main_cm0p.c   **** *
+  59:main_cm0p.c   **** * Parameters:
+  60:main_cm0p.c   **** *  void
+  61:main_cm0p.c   **** *
+  62:main_cm0p.c   **** * Return:
+  63:main_cm0p.c   **** *  int
+  64:main_cm0p.c   **** *
+  65:main_cm0p.c   **** *******************************************************************************/
+  66:main_cm0p.c   **** int main(void)
+  67:main_cm0p.c   **** {
+  28              		.loc 1 67 0
+  29              		.cfi_startproc
+  30              		@ Volatile: function does not return.
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 10B5     		push	{r4, lr}
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 4, -8
+  36              		.cfi_offset 14, -4
+  37              	.LBB4:
+  38              	.LBB5:
+  39              		.file 2 "Generated_Source\\PSoC6\\pdl\\cmsis/include/cmsis_gcc.h"
+   1:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** /**************************************************************************//**
+   2:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
+   3:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
+   4:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * @version  V5.0.1
+   5:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * @date     02. February 2017
+   6:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  ******************************************************************************/
+   7:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** /*
+   8:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * Copyright (c) 2009-2017 ARM Limited. All rights reserved.
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 3
+
+
+   9:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  *
+  10:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * SPDX-License-Identifier: Apache-2.0
+  11:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  *
+  12:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  13:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * not use this file except in compliance with the License.
+  14:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * You may obtain a copy of the License at
+  15:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  *
+  16:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * www.apache.org/licenses/LICENSE-2.0
+  17:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  *
+  18:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
+  19:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  20:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  21:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
+  22:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  * limitations under the License.
+  23:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  */
+  24:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** 
+  25:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
+  26:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #define __CMSIS_GCC_H
+  27:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** 
+  28:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** /* ignore some GCC warnings */
+  29:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #pragma GCC diagnostic push
+  30:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
+  31:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
+  32:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wunused-parameter"
+  33:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** 
+  34:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** /* CMSIS compiler specific defines */
+  35:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __ASM
+  36:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __ASM                     __asm
+  37:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  38:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __INLINE
+  39:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __INLINE                  inline
+  40:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  41:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __STATIC_INLINE
+  42:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __STATIC_INLINE           static inline
+  43:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  44:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __NO_RETURN
+  45:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __NO_RETURN               __attribute__((noreturn))
+  46:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  47:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __USED
+  48:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __USED                    __attribute__((used))
+  49:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  50:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __WEAK
+  51:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __WEAK                    __attribute__((weak))
+  52:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  53:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32
+  54:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #pragma GCC diagnostic push
+  55:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wpacked"
+  56:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wattributes"
+  57:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
+  58:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #pragma GCC diagnostic pop
+  59:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)     (((struct T_UINT32 *)(x))->v)
+  60:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  61:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __ALIGNED
+  62:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __ALIGNED(x)              __attribute__((aligned(x)))
+  63:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  64:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __PACKED
+  65:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __PACKED                  __attribute__((packed, aligned(1)))
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 4
+
+
+  66:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  67:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
+  68:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   #define __PACKED_STRUCT           struct __attribute__((packed, aligned(1)))
+  69:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** #endif
+  70:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** 
+  71:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** 
+  72:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** /* ###########################  Core Function Access  ########################### */
+  73:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
+  74:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
+  75:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   @{
+  76:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  */
+  77:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** 
+  78:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** /**
+  79:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   \brief   Enable IRQ Interrupts
+  80:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+  81:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+  82:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****  */
+  83:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** __attribute__((always_inline)) __STATIC_INLINE void __enable_irq(void)
+  84:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h **** {
+  85:Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
+  40              		.loc 2 85 0
+  41              		.syntax divided
+  42              	@ 85 "Generated_Source\PSoC6\pdl\cmsis/include/cmsis_gcc.h" 1
+  43 0002 62B6     		cpsie i
+  44              	@ 0 "" 2
+  45              		.thumb
+  46              		.syntax unified
+  47              	.LBE5:
+  48              	.LBE4:
+  68:main_cm0p.c   ****     /* Enable global interrupts */
+  69:main_cm0p.c   ****     __enable_irq();
+  70:main_cm0p.c   ****     
+  71:main_cm0p.c   ****     /* Initialize the hardware used to send debug messages, if debug is enabled
+  72:main_cm0p.c   ****        in uart_debug.h header file */
+  73:main_cm0p.c   ****     DebugPrintfInit();
+  74:main_cm0p.c   ****     /* \x1b[2J\x1b[;H - ANSI ESC sequence to clear screen */
+  75:main_cm0p.c   ****     DebugPrintf("\x1b[2J\x1b[;H");
+  76:main_cm0p.c   **** 
+  77:main_cm0p.c   ****     /* Start the controller portion of BLE. Host runs on the CM4 */
+  78:main_cm0p.c   ****     if(Cy_BLE_Start(NULL) == CY_BLE_SUCCESS)
+  49              		.loc 1 78 0
+  50 0004 0020     		movs	r0, #0
+  51 0006 FFF7FEFF 		bl	Cy_BLE_Start
+  52              	.LVL0:
+  53 000a 0028     		cmp	r0, #0
+  54 000c 03D1     		bne	.L2
+  79:main_cm0p.c   ****     {
+  80:main_cm0p.c   ****         DebugPrintf("Success  : Cortex-M0+ - BLE controller initialization\r\n");
+  81:main_cm0p.c   ****         
+  82:main_cm0p.c   ****         /* Enable CM4 only if BLE Controller started successfully. 
+  83:main_cm0p.c   ****            CY_CORTEX_M4_APPL_ADDR must be updated if CM4 memory layout 
+  84:main_cm0p.c   ****            is changed. */
+  85:main_cm0p.c   ****         Cy_SysEnableCM4(CY_CORTEX_M4_APPL_ADDR);
+  55              		.loc 1 85 0
+  56 000e 0748     		ldr	r0, .L5
+  57 0010 FFF7FEFF 		bl	Cy_SysEnableCM4
+  58              	.LVL1:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 5
+
+
+  59 0014 03E0     		b	.L4
+  60              	.L2:
+  86:main_cm0p.c   ****     }
+  87:main_cm0p.c   ****     else
+  88:main_cm0p.c   ****     {
+  89:main_cm0p.c   ****         DebugPrintf("Failure! : Cortex-M0+ - BLE controller initialization\r\n");
+  90:main_cm0p.c   ****         
+  91:main_cm0p.c   ****         /* Halt the CPU */
+  92:main_cm0p.c   ****         CY_ASSERT(0u);
+  61              		.loc 1 92 0 discriminator 1
+  62 0016 5C21     		movs	r1, #92
+  63 0018 0548     		ldr	r0, .L5+4
+  64 001a FFF7FEFF 		bl	Cy_SysLib_AssertFailed
+  65              	.LVL2:
+  66              	.L4:
+  93:main_cm0p.c   ****     }
+  94:main_cm0p.c   ****     
+  95:main_cm0p.c   ****     for (;;)
+  96:main_cm0p.c   ****     {
+  97:main_cm0p.c   ****         /* Process the controller portion of the BLE events and wake up the host
+  98:main_cm0p.c   ****            (CM4) and send data to the host via IPC if necessary */
+  99:main_cm0p.c   ****         Cy_BLE_ProcessEvents();
+  67              		.loc 1 99 0 discriminator 1
+  68 001e FFF7FEFF 		bl	Cy_BLE_ProcessEvents
+  69              	.LVL3:
+ 100:main_cm0p.c   ****         
+ 101:main_cm0p.c   ****         /* Put CM0+ to Deep Sleep mode. The BLE hardware automatically wakes
+ 102:main_cm0p.c   ****             up the CPU if processing is required */
+ 103:main_cm0p.c   ****         Cy_SysPm_DeepSleep(CY_SYSPM_WAIT_FOR_INTERRUPT);
+  70              		.loc 1 103 0 discriminator 1
+  71 0022 0020     		movs	r0, #0
+  72 0024 FFF7FEFF 		bl	Cy_SysPm_DeepSleep
+  73              	.LVL4:
+  74 0028 F9E7     		b	.L4
+  75              	.L6:
+  76 002a C046     		.align	2
+  77              	.L5:
+  78 002c 00000810 		.word	268959744
+  79 0030 00000000 		.word	.LC0
+  80              		.cfi_endproc
+  81              	.LFE418:
+  82              		.size	main, .-main
+  83              		.section	.rodata.str1.4,"aMS",%progbits,1
+  84              		.align	2
+  85              	.LC0:
+  86 0000 6D61696E 		.ascii	"main_cm0p.c\000"
+  86      5F636D30 
+  86      702E6300 
+  87              		.text
+  88              	.Letext0:
+  89              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+  90              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+  91              		.file 5 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/syslib/cy_syslib.h"
+  92              		.file 6 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/scb/cy_scb_spi.h"
+  93              		.file 7 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/syspm/cy_syspm.h"
+  94              		.file 8 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/sar/cy_sar.h"
+  95              		.file 9 "Generated_Source\\PSoC6\\pdl\\middleware/ble/cy_ble_stack.h"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 6
+
+
+  96              		.file 10 "Generated_Source\\PSoC6/ADC.h"
+  97              		.file 11 "Generated_Source\\PSoC6/CY_EINK_SPIM.h"
+  98              		.file 12 "Generated_Source\\PSoC6/BLE.h"
+  99              		.file 13 "./system_psoc63.h"
+ 100              		.section	.debug_info,"",%progbits
+ 101              	.Ldebug_info0:
+ 102 0000 18050000 		.4byte	0x518
+ 103 0004 0400     		.2byte	0x4
+ 104 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 105 000a 04       		.byte	0x4
+ 106 000b 01       		.uleb128 0x1
+ 107 000c 48010000 		.4byte	.LASF96
+ 108 0010 0C       		.byte	0xc
+ 109 0011 90070000 		.4byte	.LASF97
+ 110 0015 2D040000 		.4byte	.LASF98
+ 111 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 112 001d 00000000 		.4byte	0
+ 113 0021 00000000 		.4byte	.Ldebug_line0
+ 114 0025 02       		.uleb128 0x2
+ 115 0026 02       		.byte	0x2
+ 116 0027 05       		.byte	0x5
+ 117 0028 F1000000 		.4byte	.LASF0
+ 118 002c 02       		.uleb128 0x2
+ 119 002d 01       		.byte	0x1
+ 120 002e 08       		.byte	0x8
+ 121 002f C4040000 		.4byte	.LASF1
+ 122 0033 02       		.uleb128 0x2
+ 123 0034 01       		.byte	0x1
+ 124 0035 06       		.byte	0x6
+ 125 0036 FC040000 		.4byte	.LASF2
+ 126 003a 02       		.uleb128 0x2
+ 127 003b 02       		.byte	0x2
+ 128 003c 07       		.byte	0x7
+ 129 003d F4050000 		.4byte	.LASF3
+ 130 0041 02       		.uleb128 0x2
+ 131 0042 04       		.byte	0x4
+ 132 0043 05       		.byte	0x5
+ 133 0044 C6070000 		.4byte	.LASF4
+ 134 0048 03       		.uleb128 0x3
+ 135 0049 2C020000 		.4byte	.LASF9
+ 136 004d 03       		.byte	0x3
+ 137 004e 41       		.byte	0x41
+ 138 004f 53000000 		.4byte	0x53
+ 139 0053 02       		.uleb128 0x2
+ 140 0054 04       		.byte	0x4
+ 141 0055 07       		.byte	0x7
+ 142 0056 8F060000 		.4byte	.LASF5
+ 143 005a 02       		.uleb128 0x2
+ 144 005b 08       		.byte	0x8
+ 145 005c 05       		.byte	0x5
+ 146 005d DC060000 		.4byte	.LASF6
+ 147 0061 02       		.uleb128 0x2
+ 148 0062 08       		.byte	0x8
+ 149 0063 07       		.byte	0x7
+ 150 0064 08050000 		.4byte	.LASF7
+ 151 0068 04       		.uleb128 0x4
+ 152 0069 04       		.byte	0x4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 7
+
+
+ 153 006a 05       		.byte	0x5
+ 154 006b 696E7400 		.ascii	"int\000"
+ 155 006f 02       		.uleb128 0x2
+ 156 0070 04       		.byte	0x4
+ 157 0071 07       		.byte	0x7
+ 158 0072 28050000 		.4byte	.LASF8
+ 159 0076 03       		.uleb128 0x3
+ 160 0077 1F050000 		.4byte	.LASF10
+ 161 007b 04       		.byte	0x4
+ 162 007c 30       		.byte	0x30
+ 163 007d 48000000 		.4byte	0x48
+ 164 0081 02       		.uleb128 0x2
+ 165 0082 04       		.byte	0x4
+ 166 0083 07       		.byte	0x7
+ 167 0084 0A010000 		.4byte	.LASF11
+ 168 0088 05       		.uleb128 0x5
+ 169 0089 76000000 		.4byte	0x76
+ 170 008d 02       		.uleb128 0x2
+ 171 008e 08       		.byte	0x8
+ 172 008f 04       		.byte	0x4
+ 173 0090 AE040000 		.4byte	.LASF12
+ 174 0094 06       		.uleb128 0x6
+ 175 0095 26040000 		.4byte	.LASF13
+ 176 0099 05       		.byte	0x5
+ 177 009a C401     		.2byte	0x1c4
+ 178 009c A0000000 		.4byte	0xa0
+ 179 00a0 02       		.uleb128 0x2
+ 180 00a1 01       		.byte	0x1
+ 181 00a2 08       		.byte	0x8
+ 182 00a3 C4050000 		.4byte	.LASF14
+ 183 00a7 02       		.uleb128 0x2
+ 184 00a8 04       		.byte	0x4
+ 185 00a9 04       		.byte	0x4
+ 186 00aa 67030000 		.4byte	.LASF15
+ 187 00ae 02       		.uleb128 0x2
+ 188 00af 08       		.byte	0x8
+ 189 00b0 04       		.byte	0x4
+ 190 00b1 A1060000 		.4byte	.LASF16
+ 191 00b5 07       		.uleb128 0x7
+ 192 00b6 01       		.byte	0x1
+ 193 00b7 2C000000 		.4byte	0x2c
+ 194 00bb 07       		.byte	0x7
+ 195 00bc A503     		.2byte	0x3a5
+ 196 00be CF000000 		.4byte	0xcf
+ 197 00c2 08       		.uleb128 0x8
+ 198 00c3 4E070000 		.4byte	.LASF17
+ 199 00c7 00       		.byte	0
+ 200 00c8 08       		.uleb128 0x8
+ 201 00c9 84050000 		.4byte	.LASF18
+ 202 00cd 01       		.byte	0x1
+ 203 00ce 00       		.byte	0
+ 204 00cf 09       		.uleb128 0x9
+ 205 00d0 04       		.byte	0x4
+ 206 00d1 02       		.uleb128 0x2
+ 207 00d2 01       		.byte	0x1
+ 208 00d3 02       		.byte	0x2
+ 209 00d4 38060000 		.4byte	.LASF19
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 8
+
+
+ 210 00d8 0A       		.uleb128 0xa
+ 211 00d9 04       		.byte	0x4
+ 212 00da DE000000 		.4byte	0xde
+ 213 00de 0B       		.uleb128 0xb
+ 214 00df E9000000 		.4byte	0xe9
+ 215 00e3 0C       		.uleb128 0xc
+ 216 00e4 76000000 		.4byte	0x76
+ 217 00e8 00       		.byte	0
+ 218 00e9 06       		.uleb128 0x6
+ 219 00ea 1C030000 		.4byte	.LASF20
+ 220 00ee 06       		.byte	0x6
+ 221 00ef BF01     		.2byte	0x1bf
+ 222 00f1 D8000000 		.4byte	0xd8
+ 223 00f5 0D       		.uleb128 0xd
+ 224 00f6 9C050000 		.4byte	.LASF99
+ 225 00fa 24       		.byte	0x24
+ 226 00fb 06       		.byte	0x6
+ 227 00fc 4102     		.2byte	0x241
+ 228 00fe 78010000 		.4byte	0x178
+ 229 0102 0E       		.uleb128 0xe
+ 230 0103 45050000 		.4byte	.LASF21
+ 231 0107 06       		.byte	0x6
+ 232 0108 4402     		.2byte	0x244
+ 233 010a 88000000 		.4byte	0x88
+ 234 010e 00       		.byte	0
+ 235 010f 0E       		.uleb128 0xe
+ 236 0110 B3050000 		.4byte	.LASF22
+ 237 0114 06       		.byte	0x6
+ 238 0115 4602     		.2byte	0x246
+ 239 0117 CF000000 		.4byte	0xcf
+ 240 011b 04       		.byte	0x4
+ 241 011c 0E       		.uleb128 0xe
+ 242 011d C9000000 		.4byte	.LASF23
+ 243 0121 06       		.byte	0x6
+ 244 0122 4702     		.2byte	0x247
+ 245 0124 76000000 		.4byte	0x76
+ 246 0128 08       		.byte	0x8
+ 247 0129 0E       		.uleb128 0xe
+ 248 012a 96020000 		.4byte	.LASF24
+ 249 012e 06       		.byte	0x6
+ 250 012f 4802     		.2byte	0x248
+ 251 0131 88000000 		.4byte	0x88
+ 252 0135 0C       		.byte	0xc
+ 253 0136 0E       		.uleb128 0xe
+ 254 0137 9C030000 		.4byte	.LASF25
+ 255 013b 06       		.byte	0x6
+ 256 013c 4A02     		.2byte	0x24a
+ 257 013e CF000000 		.4byte	0xcf
+ 258 0142 10       		.byte	0x10
+ 259 0143 0E       		.uleb128 0xe
+ 260 0144 0F040000 		.4byte	.LASF26
+ 261 0148 06       		.byte	0x6
+ 262 0149 4B02     		.2byte	0x24b
+ 263 014b 76000000 		.4byte	0x76
+ 264 014f 14       		.byte	0x14
+ 265 0150 0E       		.uleb128 0xe
+ 266 0151 E4020000 		.4byte	.LASF27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 9
+
+
+ 267 0155 06       		.byte	0x6
+ 268 0156 4C02     		.2byte	0x24c
+ 269 0158 88000000 		.4byte	0x88
+ 270 015c 18       		.byte	0x18
+ 271 015d 0E       		.uleb128 0xe
+ 272 015e D3050000 		.4byte	.LASF28
+ 273 0162 06       		.byte	0x6
+ 274 0163 5202     		.2byte	0x252
+ 275 0165 E9000000 		.4byte	0xe9
+ 276 0169 1C       		.byte	0x1c
+ 277 016a 0E       		.uleb128 0xe
+ 278 016b 07040000 		.4byte	.LASF29
+ 279 016f 06       		.byte	0x6
+ 280 0170 5502     		.2byte	0x255
+ 281 0172 76000000 		.4byte	0x76
+ 282 0176 20       		.byte	0x20
+ 283 0177 00       		.byte	0
+ 284 0178 06       		.uleb128 0x6
+ 285 0179 DA010000 		.4byte	.LASF30
+ 286 017d 06       		.byte	0x6
+ 287 017e 5802     		.2byte	0x258
+ 288 0180 F5000000 		.4byte	0xf5
+ 289 0184 07       		.uleb128 0x7
+ 290 0185 01       		.byte	0x1
+ 291 0186 2C000000 		.4byte	0x2c
+ 292 018a 08       		.byte	0x8
+ 293 018b 0504     		.2byte	0x405
+ 294 018d AA010000 		.4byte	0x1aa
+ 295 0191 08       		.uleb128 0x8
+ 296 0192 40080000 		.4byte	.LASF31
+ 297 0196 00       		.byte	0
+ 298 0197 08       		.uleb128 0x8
+ 299 0198 03070000 		.4byte	.LASF32
+ 300 019c 01       		.byte	0x1
+ 301 019d 08       		.uleb128 0x8
+ 302 019e DC050000 		.4byte	.LASF33
+ 303 01a2 02       		.byte	0x2
+ 304 01a3 08       		.uleb128 0x8
+ 305 01a4 50000000 		.4byte	.LASF34
+ 306 01a8 03       		.byte	0x3
+ 307 01a9 00       		.byte	0
+ 308 01aa 06       		.uleb128 0x6
+ 309 01ab 37020000 		.4byte	.LASF35
+ 310 01af 08       		.byte	0x8
+ 311 01b0 0A04     		.2byte	0x40a
+ 312 01b2 84010000 		.4byte	0x184
+ 313 01b6 0F       		.uleb128 0xf
+ 314 01b7 78       		.byte	0x78
+ 315 01b8 08       		.byte	0x8
+ 316 01b9 F404     		.2byte	0x4f4
+ 317 01bb 83020000 		.4byte	0x283
+ 318 01bf 0E       		.uleb128 0xe
+ 319 01c0 58080000 		.4byte	.LASF36
+ 320 01c4 08       		.byte	0x8
+ 321 01c5 F604     		.2byte	0x4f6
+ 322 01c7 76000000 		.4byte	0x76
+ 323 01cb 00       		.byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 10
+
+
+ 324 01cc 0E       		.uleb128 0xe
+ 325 01cd 1F010000 		.4byte	.LASF37
+ 326 01d1 08       		.byte	0x8
+ 327 01d2 F704     		.2byte	0x4f7
+ 328 01d4 76000000 		.4byte	0x76
+ 329 01d8 04       		.byte	0x4
+ 330 01d9 0E       		.uleb128 0xe
+ 331 01da 19040000 		.4byte	.LASF38
+ 332 01de 08       		.byte	0x8
+ 333 01df F804     		.2byte	0x4f8
+ 334 01e1 76000000 		.4byte	0x76
+ 335 01e5 08       		.byte	0x8
+ 336 01e6 0E       		.uleb128 0xe
+ 337 01e7 9C070000 		.4byte	.LASF39
+ 338 01eb 08       		.byte	0x8
+ 339 01ec F904     		.2byte	0x4f9
+ 340 01ee 76000000 		.4byte	0x76
+ 341 01f2 0C       		.byte	0xc
+ 342 01f3 0E       		.uleb128 0xe
+ 343 01f4 F3010000 		.4byte	.LASF40
+ 344 01f8 08       		.byte	0x8
+ 345 01f9 FA04     		.2byte	0x4fa
+ 346 01fb 76000000 		.4byte	0x76
+ 347 01ff 10       		.byte	0x10
+ 348 0200 0E       		.uleb128 0xe
+ 349 0201 BA040000 		.4byte	.LASF41
+ 350 0205 08       		.byte	0x8
+ 351 0206 FB04     		.2byte	0x4fb
+ 352 0208 AA010000 		.4byte	0x1aa
+ 353 020c 14       		.byte	0x14
+ 354 020d 0E       		.uleb128 0xe
+ 355 020e 3B070000 		.4byte	.LASF42
+ 356 0212 08       		.byte	0x8
+ 357 0213 FC04     		.2byte	0x4fc
+ 358 0215 76000000 		.4byte	0x76
+ 359 0219 18       		.byte	0x18
+ 360 021a 0E       		.uleb128 0xe
+ 361 021b 1C070000 		.4byte	.LASF43
+ 362 021f 08       		.byte	0x8
+ 363 0220 FD04     		.2byte	0x4fd
+ 364 0222 83020000 		.4byte	0x283
+ 365 0226 1C       		.byte	0x1c
+ 366 0227 0E       		.uleb128 0xe
+ 367 0228 5D080000 		.4byte	.LASF44
+ 368 022c 08       		.byte	0x8
+ 369 022d FE04     		.2byte	0x4fe
+ 370 022f 76000000 		.4byte	0x76
+ 371 0233 5C       		.byte	0x5c
+ 372 0234 0E       		.uleb128 0xe
+ 373 0235 13010000 		.4byte	.LASF45
+ 374 0239 08       		.byte	0x8
+ 375 023a FF04     		.2byte	0x4ff
+ 376 023c 76000000 		.4byte	0x76
+ 377 0240 60       		.byte	0x60
+ 378 0241 0E       		.uleb128 0xe
+ 379 0242 77080000 		.4byte	.LASF46
+ 380 0246 08       		.byte	0x8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 11
+
+
+ 381 0247 0005     		.2byte	0x500
+ 382 0249 76000000 		.4byte	0x76
+ 383 024d 64       		.byte	0x64
+ 384 024e 0E       		.uleb128 0xe
+ 385 024f C9050000 		.4byte	.LASF47
+ 386 0253 08       		.byte	0x8
+ 387 0254 0105     		.2byte	0x501
+ 388 0256 76000000 		.4byte	0x76
+ 389 025a 68       		.byte	0x68
+ 390 025b 0E       		.uleb128 0xe
+ 391 025c 35050000 		.4byte	.LASF48
+ 392 0260 08       		.byte	0x8
+ 393 0261 0205     		.2byte	0x502
+ 394 0263 76000000 		.4byte	0x76
+ 395 0267 6C       		.byte	0x6c
+ 396 0268 0E       		.uleb128 0xe
+ 397 0269 59030000 		.4byte	.LASF49
+ 398 026d 08       		.byte	0x8
+ 399 026e 0305     		.2byte	0x503
+ 400 0270 D1000000 		.4byte	0xd1
+ 401 0274 70       		.byte	0x70
+ 402 0275 0E       		.uleb128 0xe
+ 403 0276 3C010000 		.4byte	.LASF50
+ 404 027a 08       		.byte	0x8
+ 405 027b 0405     		.2byte	0x504
+ 406 027d 76000000 		.4byte	0x76
+ 407 0281 74       		.byte	0x74
+ 408 0282 00       		.byte	0
+ 409 0283 10       		.uleb128 0x10
+ 410 0284 76000000 		.4byte	0x76
+ 411 0288 93020000 		.4byte	0x293
+ 412 028c 11       		.uleb128 0x11
+ 413 028d 81000000 		.4byte	0x81
+ 414 0291 0F       		.byte	0xf
+ 415 0292 00       		.byte	0
+ 416 0293 06       		.uleb128 0x6
+ 417 0294 27070000 		.4byte	.LASF51
+ 418 0298 08       		.byte	0x8
+ 419 0299 0505     		.2byte	0x505
+ 420 029b B6010000 		.4byte	0x1b6
+ 421 029f 07       		.uleb128 0x7
+ 422 02a0 04       		.byte	0x4
+ 423 02a1 6F000000 		.4byte	0x6f
+ 424 02a5 09       		.byte	0x9
+ 425 02a6 B204     		.2byte	0x4b2
+ 426 02a8 B8030000 		.4byte	0x3b8
+ 427 02ac 08       		.uleb128 0x8
+ 428 02ad 9F040000 		.4byte	.LASF52
+ 429 02b1 00       		.byte	0
+ 430 02b2 12       		.uleb128 0x12
+ 431 02b3 BD030000 		.4byte	.LASF53
+ 432 02b7 01001400 		.4byte	0x140001
+ 433 02bb 12       		.uleb128 0x12
+ 434 02bc 00000000 		.4byte	.LASF54
+ 435 02c0 01001600 		.4byte	0x160001
+ 436 02c4 12       		.uleb128 0x12
+ 437 02c5 3A030000 		.4byte	.LASF55
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 12
+
+
+ 438 02c9 02001600 		.4byte	0x160002
+ 439 02cd 12       		.uleb128 0x12
+ 440 02ce 80000000 		.4byte	.LASF56
+ 441 02d2 03001600 		.4byte	0x160003
+ 442 02d6 12       		.uleb128 0x12
+ 443 02d7 14060000 		.4byte	.LASF57
+ 444 02db 04001600 		.4byte	0x160004
+ 445 02df 12       		.uleb128 0x12
+ 446 02e0 1F000000 		.4byte	.LASF58
+ 447 02e4 05001600 		.4byte	0x160005
+ 448 02e8 12       		.uleb128 0x12
+ 449 02e9 64060000 		.4byte	.LASF59
+ 450 02ed 06001600 		.4byte	0x160006
+ 451 02f1 12       		.uleb128 0x12
+ 452 02f2 D3000000 		.4byte	.LASF60
+ 453 02f6 07001600 		.4byte	0x160007
+ 454 02fa 12       		.uleb128 0x12
+ 455 02fb A6000000 		.4byte	.LASF61
+ 456 02ff 08001600 		.4byte	0x160008
+ 457 0303 12       		.uleb128 0x12
+ 458 0304 9F020000 		.4byte	.LASF62
+ 459 0308 09001600 		.4byte	0x160009
+ 460 030c 12       		.uleb128 0x12
+ 461 030d 6A000000 		.4byte	.LASF63
+ 462 0311 0A001600 		.4byte	0x16000a
+ 463 0315 12       		.uleb128 0x12
+ 464 0316 5A020000 		.4byte	.LASF64
+ 465 031a 0B001600 		.4byte	0x16000b
+ 466 031e 12       		.uleb128 0x12
+ 467 031f 6A070000 		.4byte	.LASF65
+ 468 0323 0C001600 		.4byte	0x16000c
+ 469 0327 12       		.uleb128 0x12
+ 470 0328 FF070000 		.4byte	.LASF66
+ 471 032c 0D001600 		.4byte	0x16000d
+ 472 0330 12       		.uleb128 0x12
+ 473 0331 E1030000 		.4byte	.LASF67
+ 474 0335 0E001600 		.4byte	0x16000e
+ 475 0339 12       		.uleb128 0x12
+ 476 033a 6D030000 		.4byte	.LASF68
+ 477 033e 0F001600 		.4byte	0x16000f
+ 478 0342 12       		.uleb128 0x12
+ 479 0343 72020000 		.4byte	.LASF69
+ 480 0347 10001600 		.4byte	0x160010
+ 481 034b 12       		.uleb128 0x12
+ 482 034c A8060000 		.4byte	.LASF70
+ 483 0350 11001600 		.4byte	0x160011
+ 484 0354 12       		.uleb128 0x12
+ 485 0355 BE020000 		.4byte	.LASF71
+ 486 0359 12001600 		.4byte	0x160012
+ 487 035d 12       		.uleb128 0x12
+ 488 035e EA060000 		.4byte	.LASF72
+ 489 0362 13001600 		.4byte	0x160013
+ 490 0366 12       		.uleb128 0x12
+ 491 0367 E2070000 		.4byte	.LASF73
+ 492 036b 14001600 		.4byte	0x160014
+ 493 036f 12       		.uleb128 0x12
+ 494 0370 4C050000 		.4byte	.LASF74
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 13
+
+
+ 495 0374 15001600 		.4byte	0x160015
+ 496 0378 12       		.uleb128 0x12
+ 497 0379 FE010000 		.4byte	.LASF75
+ 498 037d 16001600 		.4byte	0x160016
+ 499 0381 12       		.uleb128 0x12
+ 500 0382 6A050000 		.4byte	.LASF76
+ 501 0386 17001600 		.4byte	0x160017
+ 502 038a 12       		.uleb128 0x12
+ 503 038b 4A060000 		.4byte	.LASF77
+ 504 038f 18001600 		.4byte	0x160018
+ 505 0393 12       		.uleb128 0x12
+ 506 0394 ED020000 		.4byte	.LASF78
+ 507 0398 19001600 		.4byte	0x160019
+ 508 039c 12       		.uleb128 0x12
+ 509 039d A9070000 		.4byte	.LASF79
+ 510 03a1 FE001600 		.4byte	0x1600fe
+ 511 03a5 12       		.uleb128 0x12
+ 512 03a6 A2030000 		.4byte	.LASF80
+ 513 03aa FF001600 		.4byte	0x1600ff
+ 514 03ae 12       		.uleb128 0x12
+ 515 03af 66080000 		.4byte	.LASF81
+ 516 03b3 FFFF1600 		.4byte	0x16ffff
+ 517 03b7 00       		.byte	0
+ 518 03b8 13       		.uleb128 0x13
+ 519 03b9 14       		.byte	0x14
+ 520 03ba 0A       		.byte	0xa
+ 521 03bb 3B       		.byte	0x3b
+ 522 03bc FD030000 		.4byte	0x3fd
+ 523 03c0 14       		.uleb128 0x14
+ 524 03c1 85080000 		.4byte	.LASF82
+ 525 03c5 0A       		.byte	0xa
+ 526 03c6 3D       		.byte	0x3d
+ 527 03c7 76000000 		.4byte	0x76
+ 528 03cb 00       		.byte	0
+ 529 03cc 14       		.uleb128 0x14
+ 530 03cd 42070000 		.4byte	.LASF83
+ 531 03d1 0A       		.byte	0xa
+ 532 03d2 3E       		.byte	0x3e
+ 533 03d3 76000000 		.4byte	0x76
+ 534 03d7 04       		.byte	0x4
+ 535 03d8 14       		.uleb128 0x14
+ 536 03d9 3E060000 		.4byte	.LASF84
+ 537 03dd 0A       		.byte	0xa
+ 538 03de 3F       		.byte	0x3f
+ 539 03df FD030000 		.4byte	0x3fd
+ 540 03e3 08       		.byte	0x8
+ 541 03e4 14       		.uleb128 0x14
+ 542 03e5 B9050000 		.4byte	.LASF85
+ 543 03e9 0A       		.byte	0xa
+ 544 03ea 40       		.byte	0x40
+ 545 03eb 76000000 		.4byte	0x76
+ 546 03ef 0C       		.byte	0xc
+ 547 03f0 14       		.uleb128 0x14
+ 548 03f1 11030000 		.4byte	.LASF86
+ 549 03f5 0A       		.byte	0xa
+ 550 03f6 45       		.byte	0x45
+ 551 03f7 76000000 		.4byte	0x76
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 14
+
+
+ 552 03fb 10       		.byte	0x10
+ 553 03fc 00       		.byte	0
+ 554 03fd 0A       		.uleb128 0xa
+ 555 03fe 04       		.byte	0x4
+ 556 03ff 03040000 		.4byte	0x403
+ 557 0403 15       		.uleb128 0x15
+ 558 0404 93020000 		.4byte	0x293
+ 559 0408 03       		.uleb128 0x3
+ 560 0409 2A010000 		.4byte	.LASF87
+ 561 040d 0A       		.byte	0xa
+ 562 040e 48       		.byte	0x48
+ 563 040f B8030000 		.4byte	0x3b8
+ 564 0413 16       		.uleb128 0x16
+ 565 0414 92040000 		.4byte	.LASF100
+ 566 0418 02       		.byte	0x2
+ 567 0419 53       		.byte	0x53
+ 568 041a 03       		.byte	0x3
+ 569 041b 17       		.uleb128 0x17
+ 570 041c 27020000 		.4byte	.LASF101
+ 571 0420 01       		.byte	0x1
+ 572 0421 42       		.byte	0x42
+ 573 0422 68000000 		.4byte	0x68
+ 574 0426 00000000 		.4byte	.LFB418
+ 575 042a 34000000 		.4byte	.LFE418-.LFB418
+ 576 042e 01       		.uleb128 0x1
+ 577 042f 9C       		.byte	0x9c
+ 578 0430 A3040000 		.4byte	0x4a3
+ 579 0434 18       		.uleb128 0x18
+ 580 0435 13040000 		.4byte	0x413
+ 581 0439 02000000 		.4byte	.LBB4
+ 582 043d 02000000 		.4byte	.LBE4-.LBB4
+ 583 0441 01       		.byte	0x1
+ 584 0442 45       		.byte	0x45
+ 585 0443 19       		.uleb128 0x19
+ 586 0444 0A000000 		.4byte	.LVL0
+ 587 0448 E0040000 		.4byte	0x4e0
+ 588 044c 56040000 		.4byte	0x456
+ 589 0450 1A       		.uleb128 0x1a
+ 590 0451 01       		.uleb128 0x1
+ 591 0452 50       		.byte	0x50
+ 592 0453 01       		.uleb128 0x1
+ 593 0454 30       		.byte	0x30
+ 594 0455 00       		.byte	0
+ 595 0456 19       		.uleb128 0x19
+ 596 0457 14000000 		.4byte	.LVL1
+ 597 045b EB040000 		.4byte	0x4eb
+ 598 045f 6D040000 		.4byte	0x46d
+ 599 0463 1A       		.uleb128 0x1a
+ 600 0464 01       		.uleb128 0x1
+ 601 0465 50       		.byte	0x50
+ 602 0466 05       		.uleb128 0x5
+ 603 0467 0C       		.byte	0xc
+ 604 0468 00000810 		.4byte	0x10080000
+ 605 046c 00       		.byte	0
+ 606 046d 19       		.uleb128 0x19
+ 607 046e 1E000000 		.4byte	.LVL2
+ 608 0472 F7040000 		.4byte	0x4f7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 15
+
+
+ 609 0476 8A040000 		.4byte	0x48a
+ 610 047a 1A       		.uleb128 0x1a
+ 611 047b 01       		.uleb128 0x1
+ 612 047c 50       		.byte	0x50
+ 613 047d 05       		.uleb128 0x5
+ 614 047e 03       		.byte	0x3
+ 615 047f 00000000 		.4byte	.LC0
+ 616 0483 1A       		.uleb128 0x1a
+ 617 0484 01       		.uleb128 0x1
+ 618 0485 51       		.byte	0x51
+ 619 0486 02       		.uleb128 0x2
+ 620 0487 08       		.byte	0x8
+ 621 0488 5C       		.byte	0x5c
+ 622 0489 00       		.byte	0
+ 623 048a 1B       		.uleb128 0x1b
+ 624 048b 22000000 		.4byte	.LVL3
+ 625 048f 03050000 		.4byte	0x503
+ 626 0493 1C       		.uleb128 0x1c
+ 627 0494 28000000 		.4byte	.LVL4
+ 628 0498 0F050000 		.4byte	0x50f
+ 629 049c 1A       		.uleb128 0x1a
+ 630 049d 01       		.uleb128 0x1
+ 631 049e 50       		.byte	0x50
+ 632 049f 01       		.uleb128 0x1
+ 633 04a0 30       		.byte	0x30
+ 634 04a1 00       		.byte	0
+ 635 04a2 00       		.byte	0
+ 636 04a3 1D       		.uleb128 0x1d
+ 637 04a4 E7040000 		.4byte	.LASF88
+ 638 04a8 0B       		.byte	0xb
+ 639 04a9 5E       		.byte	0x5e
+ 640 04aa 78010000 		.4byte	0x178
+ 641 04ae 1E       		.uleb128 0x1e
+ 642 04af 3E000000 		.4byte	.LASF89
+ 643 04b3 0A       		.byte	0xa
+ 644 04b4 6001     		.2byte	0x160
+ 645 04b6 76000000 		.4byte	0x76
+ 646 04ba 10       		.uleb128 0x10
+ 647 04bb CA040000 		.4byte	0x4ca
+ 648 04bf CA040000 		.4byte	0x4ca
+ 649 04c3 11       		.uleb128 0x11
+ 650 04c4 81000000 		.4byte	0x81
+ 651 04c8 00       		.byte	0
+ 652 04c9 00       		.byte	0
+ 653 04ca 15       		.uleb128 0x15
+ 654 04cb 08040000 		.4byte	0x408
+ 655 04cf 1E       		.uleb128 0x1e
+ 656 04d0 FB000000 		.4byte	.LASF90
+ 657 04d4 0A       		.byte	0xa
+ 658 04d5 6401     		.2byte	0x164
+ 659 04d7 DB040000 		.4byte	0x4db
+ 660 04db 15       		.uleb128 0x15
+ 661 04dc BA040000 		.4byte	0x4ba
+ 662 04e0 1F       		.uleb128 0x1f
+ 663 04e1 07060000 		.4byte	.LASF91
+ 664 04e5 07060000 		.4byte	.LASF91
+ 665 04e9 0C       		.byte	0xc
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 16
+
+
+ 666 04ea 24       		.byte	0x24
+ 667 04eb 20       		.uleb128 0x20
+ 668 04ec 7F060000 		.4byte	.LASF92
+ 669 04f0 7F060000 		.4byte	.LASF92
+ 670 04f4 0D       		.byte	0xd
+ 671 04f5 FE01     		.2byte	0x1fe
+ 672 04f7 20       		.uleb128 0x20
+ 673 04f8 29080000 		.4byte	.LASF93
+ 674 04fc 29080000 		.4byte	.LASF93
+ 675 0500 05       		.byte	0x5
+ 676 0501 2A03     		.2byte	0x32a
+ 677 0503 20       		.uleb128 0x20
+ 678 0504 D2040000 		.4byte	.LASF94
+ 679 0508 D2040000 		.4byte	.LASF94
+ 680 050c 09       		.byte	0x9
+ 681 050d A407     		.2byte	0x7a4
+ 682 050f 20       		.uleb128 0x20
+ 683 0510 CF070000 		.4byte	.LASF95
+ 684 0514 CF070000 		.4byte	.LASF95
+ 685 0518 07       		.byte	0x7
+ 686 0519 C404     		.2byte	0x4c4
+ 687 051b 00       		.byte	0
+ 688              		.section	.debug_abbrev,"",%progbits
+ 689              	.Ldebug_abbrev0:
+ 690 0000 01       		.uleb128 0x1
+ 691 0001 11       		.uleb128 0x11
+ 692 0002 01       		.byte	0x1
+ 693 0003 25       		.uleb128 0x25
+ 694 0004 0E       		.uleb128 0xe
+ 695 0005 13       		.uleb128 0x13
+ 696 0006 0B       		.uleb128 0xb
+ 697 0007 03       		.uleb128 0x3
+ 698 0008 0E       		.uleb128 0xe
+ 699 0009 1B       		.uleb128 0x1b
+ 700 000a 0E       		.uleb128 0xe
+ 701 000b 55       		.uleb128 0x55
+ 702 000c 17       		.uleb128 0x17
+ 703 000d 11       		.uleb128 0x11
+ 704 000e 01       		.uleb128 0x1
+ 705 000f 10       		.uleb128 0x10
+ 706 0010 17       		.uleb128 0x17
+ 707 0011 00       		.byte	0
+ 708 0012 00       		.byte	0
+ 709 0013 02       		.uleb128 0x2
+ 710 0014 24       		.uleb128 0x24
+ 711 0015 00       		.byte	0
+ 712 0016 0B       		.uleb128 0xb
+ 713 0017 0B       		.uleb128 0xb
+ 714 0018 3E       		.uleb128 0x3e
+ 715 0019 0B       		.uleb128 0xb
+ 716 001a 03       		.uleb128 0x3
+ 717 001b 0E       		.uleb128 0xe
+ 718 001c 00       		.byte	0
+ 719 001d 00       		.byte	0
+ 720 001e 03       		.uleb128 0x3
+ 721 001f 16       		.uleb128 0x16
+ 722 0020 00       		.byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 17
+
+
+ 723 0021 03       		.uleb128 0x3
+ 724 0022 0E       		.uleb128 0xe
+ 725 0023 3A       		.uleb128 0x3a
+ 726 0024 0B       		.uleb128 0xb
+ 727 0025 3B       		.uleb128 0x3b
+ 728 0026 0B       		.uleb128 0xb
+ 729 0027 49       		.uleb128 0x49
+ 730 0028 13       		.uleb128 0x13
+ 731 0029 00       		.byte	0
+ 732 002a 00       		.byte	0
+ 733 002b 04       		.uleb128 0x4
+ 734 002c 24       		.uleb128 0x24
+ 735 002d 00       		.byte	0
+ 736 002e 0B       		.uleb128 0xb
+ 737 002f 0B       		.uleb128 0xb
+ 738 0030 3E       		.uleb128 0x3e
+ 739 0031 0B       		.uleb128 0xb
+ 740 0032 03       		.uleb128 0x3
+ 741 0033 08       		.uleb128 0x8
+ 742 0034 00       		.byte	0
+ 743 0035 00       		.byte	0
+ 744 0036 05       		.uleb128 0x5
+ 745 0037 35       		.uleb128 0x35
+ 746 0038 00       		.byte	0
+ 747 0039 49       		.uleb128 0x49
+ 748 003a 13       		.uleb128 0x13
+ 749 003b 00       		.byte	0
+ 750 003c 00       		.byte	0
+ 751 003d 06       		.uleb128 0x6
+ 752 003e 16       		.uleb128 0x16
+ 753 003f 00       		.byte	0
+ 754 0040 03       		.uleb128 0x3
+ 755 0041 0E       		.uleb128 0xe
+ 756 0042 3A       		.uleb128 0x3a
+ 757 0043 0B       		.uleb128 0xb
+ 758 0044 3B       		.uleb128 0x3b
+ 759 0045 05       		.uleb128 0x5
+ 760 0046 49       		.uleb128 0x49
+ 761 0047 13       		.uleb128 0x13
+ 762 0048 00       		.byte	0
+ 763 0049 00       		.byte	0
+ 764 004a 07       		.uleb128 0x7
+ 765 004b 04       		.uleb128 0x4
+ 766 004c 01       		.byte	0x1
+ 767 004d 0B       		.uleb128 0xb
+ 768 004e 0B       		.uleb128 0xb
+ 769 004f 49       		.uleb128 0x49
+ 770 0050 13       		.uleb128 0x13
+ 771 0051 3A       		.uleb128 0x3a
+ 772 0052 0B       		.uleb128 0xb
+ 773 0053 3B       		.uleb128 0x3b
+ 774 0054 05       		.uleb128 0x5
+ 775 0055 01       		.uleb128 0x1
+ 776 0056 13       		.uleb128 0x13
+ 777 0057 00       		.byte	0
+ 778 0058 00       		.byte	0
+ 779 0059 08       		.uleb128 0x8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 18
+
+
+ 780 005a 28       		.uleb128 0x28
+ 781 005b 00       		.byte	0
+ 782 005c 03       		.uleb128 0x3
+ 783 005d 0E       		.uleb128 0xe
+ 784 005e 1C       		.uleb128 0x1c
+ 785 005f 0B       		.uleb128 0xb
+ 786 0060 00       		.byte	0
+ 787 0061 00       		.byte	0
+ 788 0062 09       		.uleb128 0x9
+ 789 0063 0F       		.uleb128 0xf
+ 790 0064 00       		.byte	0
+ 791 0065 0B       		.uleb128 0xb
+ 792 0066 0B       		.uleb128 0xb
+ 793 0067 00       		.byte	0
+ 794 0068 00       		.byte	0
+ 795 0069 0A       		.uleb128 0xa
+ 796 006a 0F       		.uleb128 0xf
+ 797 006b 00       		.byte	0
+ 798 006c 0B       		.uleb128 0xb
+ 799 006d 0B       		.uleb128 0xb
+ 800 006e 49       		.uleb128 0x49
+ 801 006f 13       		.uleb128 0x13
+ 802 0070 00       		.byte	0
+ 803 0071 00       		.byte	0
+ 804 0072 0B       		.uleb128 0xb
+ 805 0073 15       		.uleb128 0x15
+ 806 0074 01       		.byte	0x1
+ 807 0075 27       		.uleb128 0x27
+ 808 0076 19       		.uleb128 0x19
+ 809 0077 01       		.uleb128 0x1
+ 810 0078 13       		.uleb128 0x13
+ 811 0079 00       		.byte	0
+ 812 007a 00       		.byte	0
+ 813 007b 0C       		.uleb128 0xc
+ 814 007c 05       		.uleb128 0x5
+ 815 007d 00       		.byte	0
+ 816 007e 49       		.uleb128 0x49
+ 817 007f 13       		.uleb128 0x13
+ 818 0080 00       		.byte	0
+ 819 0081 00       		.byte	0
+ 820 0082 0D       		.uleb128 0xd
+ 821 0083 13       		.uleb128 0x13
+ 822 0084 01       		.byte	0x1
+ 823 0085 03       		.uleb128 0x3
+ 824 0086 0E       		.uleb128 0xe
+ 825 0087 0B       		.uleb128 0xb
+ 826 0088 0B       		.uleb128 0xb
+ 827 0089 3A       		.uleb128 0x3a
+ 828 008a 0B       		.uleb128 0xb
+ 829 008b 3B       		.uleb128 0x3b
+ 830 008c 05       		.uleb128 0x5
+ 831 008d 01       		.uleb128 0x1
+ 832 008e 13       		.uleb128 0x13
+ 833 008f 00       		.byte	0
+ 834 0090 00       		.byte	0
+ 835 0091 0E       		.uleb128 0xe
+ 836 0092 0D       		.uleb128 0xd
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 19
+
+
+ 837 0093 00       		.byte	0
+ 838 0094 03       		.uleb128 0x3
+ 839 0095 0E       		.uleb128 0xe
+ 840 0096 3A       		.uleb128 0x3a
+ 841 0097 0B       		.uleb128 0xb
+ 842 0098 3B       		.uleb128 0x3b
+ 843 0099 05       		.uleb128 0x5
+ 844 009a 49       		.uleb128 0x49
+ 845 009b 13       		.uleb128 0x13
+ 846 009c 38       		.uleb128 0x38
+ 847 009d 0B       		.uleb128 0xb
+ 848 009e 00       		.byte	0
+ 849 009f 00       		.byte	0
+ 850 00a0 0F       		.uleb128 0xf
+ 851 00a1 13       		.uleb128 0x13
+ 852 00a2 01       		.byte	0x1
+ 853 00a3 0B       		.uleb128 0xb
+ 854 00a4 0B       		.uleb128 0xb
+ 855 00a5 3A       		.uleb128 0x3a
+ 856 00a6 0B       		.uleb128 0xb
+ 857 00a7 3B       		.uleb128 0x3b
+ 858 00a8 05       		.uleb128 0x5
+ 859 00a9 01       		.uleb128 0x1
+ 860 00aa 13       		.uleb128 0x13
+ 861 00ab 00       		.byte	0
+ 862 00ac 00       		.byte	0
+ 863 00ad 10       		.uleb128 0x10
+ 864 00ae 01       		.uleb128 0x1
+ 865 00af 01       		.byte	0x1
+ 866 00b0 49       		.uleb128 0x49
+ 867 00b1 13       		.uleb128 0x13
+ 868 00b2 01       		.uleb128 0x1
+ 869 00b3 13       		.uleb128 0x13
+ 870 00b4 00       		.byte	0
+ 871 00b5 00       		.byte	0
+ 872 00b6 11       		.uleb128 0x11
+ 873 00b7 21       		.uleb128 0x21
+ 874 00b8 00       		.byte	0
+ 875 00b9 49       		.uleb128 0x49
+ 876 00ba 13       		.uleb128 0x13
+ 877 00bb 2F       		.uleb128 0x2f
+ 878 00bc 0B       		.uleb128 0xb
+ 879 00bd 00       		.byte	0
+ 880 00be 00       		.byte	0
+ 881 00bf 12       		.uleb128 0x12
+ 882 00c0 28       		.uleb128 0x28
+ 883 00c1 00       		.byte	0
+ 884 00c2 03       		.uleb128 0x3
+ 885 00c3 0E       		.uleb128 0xe
+ 886 00c4 1C       		.uleb128 0x1c
+ 887 00c5 06       		.uleb128 0x6
+ 888 00c6 00       		.byte	0
+ 889 00c7 00       		.byte	0
+ 890 00c8 13       		.uleb128 0x13
+ 891 00c9 13       		.uleb128 0x13
+ 892 00ca 01       		.byte	0x1
+ 893 00cb 0B       		.uleb128 0xb
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 20
+
+
+ 894 00cc 0B       		.uleb128 0xb
+ 895 00cd 3A       		.uleb128 0x3a
+ 896 00ce 0B       		.uleb128 0xb
+ 897 00cf 3B       		.uleb128 0x3b
+ 898 00d0 0B       		.uleb128 0xb
+ 899 00d1 01       		.uleb128 0x1
+ 900 00d2 13       		.uleb128 0x13
+ 901 00d3 00       		.byte	0
+ 902 00d4 00       		.byte	0
+ 903 00d5 14       		.uleb128 0x14
+ 904 00d6 0D       		.uleb128 0xd
+ 905 00d7 00       		.byte	0
+ 906 00d8 03       		.uleb128 0x3
+ 907 00d9 0E       		.uleb128 0xe
+ 908 00da 3A       		.uleb128 0x3a
+ 909 00db 0B       		.uleb128 0xb
+ 910 00dc 3B       		.uleb128 0x3b
+ 911 00dd 0B       		.uleb128 0xb
+ 912 00de 49       		.uleb128 0x49
+ 913 00df 13       		.uleb128 0x13
+ 914 00e0 38       		.uleb128 0x38
+ 915 00e1 0B       		.uleb128 0xb
+ 916 00e2 00       		.byte	0
+ 917 00e3 00       		.byte	0
+ 918 00e4 15       		.uleb128 0x15
+ 919 00e5 26       		.uleb128 0x26
+ 920 00e6 00       		.byte	0
+ 921 00e7 49       		.uleb128 0x49
+ 922 00e8 13       		.uleb128 0x13
+ 923 00e9 00       		.byte	0
+ 924 00ea 00       		.byte	0
+ 925 00eb 16       		.uleb128 0x16
+ 926 00ec 2E       		.uleb128 0x2e
+ 927 00ed 00       		.byte	0
+ 928 00ee 03       		.uleb128 0x3
+ 929 00ef 0E       		.uleb128 0xe
+ 930 00f0 3A       		.uleb128 0x3a
+ 931 00f1 0B       		.uleb128 0xb
+ 932 00f2 3B       		.uleb128 0x3b
+ 933 00f3 0B       		.uleb128 0xb
+ 934 00f4 27       		.uleb128 0x27
+ 935 00f5 19       		.uleb128 0x19
+ 936 00f6 20       		.uleb128 0x20
+ 937 00f7 0B       		.uleb128 0xb
+ 938 00f8 00       		.byte	0
+ 939 00f9 00       		.byte	0
+ 940 00fa 17       		.uleb128 0x17
+ 941 00fb 2E       		.uleb128 0x2e
+ 942 00fc 01       		.byte	0x1
+ 943 00fd 3F       		.uleb128 0x3f
+ 944 00fe 19       		.uleb128 0x19
+ 945 00ff 03       		.uleb128 0x3
+ 946 0100 0E       		.uleb128 0xe
+ 947 0101 3A       		.uleb128 0x3a
+ 948 0102 0B       		.uleb128 0xb
+ 949 0103 3B       		.uleb128 0x3b
+ 950 0104 0B       		.uleb128 0xb
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 21
+
+
+ 951 0105 27       		.uleb128 0x27
+ 952 0106 19       		.uleb128 0x19
+ 953 0107 49       		.uleb128 0x49
+ 954 0108 13       		.uleb128 0x13
+ 955 0109 8701     		.uleb128 0x87
+ 956 010b 19       		.uleb128 0x19
+ 957 010c 11       		.uleb128 0x11
+ 958 010d 01       		.uleb128 0x1
+ 959 010e 12       		.uleb128 0x12
+ 960 010f 06       		.uleb128 0x6
+ 961 0110 40       		.uleb128 0x40
+ 962 0111 18       		.uleb128 0x18
+ 963 0112 9742     		.uleb128 0x2117
+ 964 0114 19       		.uleb128 0x19
+ 965 0115 01       		.uleb128 0x1
+ 966 0116 13       		.uleb128 0x13
+ 967 0117 00       		.byte	0
+ 968 0118 00       		.byte	0
+ 969 0119 18       		.uleb128 0x18
+ 970 011a 1D       		.uleb128 0x1d
+ 971 011b 00       		.byte	0
+ 972 011c 31       		.uleb128 0x31
+ 973 011d 13       		.uleb128 0x13
+ 974 011e 11       		.uleb128 0x11
+ 975 011f 01       		.uleb128 0x1
+ 976 0120 12       		.uleb128 0x12
+ 977 0121 06       		.uleb128 0x6
+ 978 0122 58       		.uleb128 0x58
+ 979 0123 0B       		.uleb128 0xb
+ 980 0124 59       		.uleb128 0x59
+ 981 0125 0B       		.uleb128 0xb
+ 982 0126 00       		.byte	0
+ 983 0127 00       		.byte	0
+ 984 0128 19       		.uleb128 0x19
+ 985 0129 898201   		.uleb128 0x4109
+ 986 012c 01       		.byte	0x1
+ 987 012d 11       		.uleb128 0x11
+ 988 012e 01       		.uleb128 0x1
+ 989 012f 31       		.uleb128 0x31
+ 990 0130 13       		.uleb128 0x13
+ 991 0131 01       		.uleb128 0x1
+ 992 0132 13       		.uleb128 0x13
+ 993 0133 00       		.byte	0
+ 994 0134 00       		.byte	0
+ 995 0135 1A       		.uleb128 0x1a
+ 996 0136 8A8201   		.uleb128 0x410a
+ 997 0139 00       		.byte	0
+ 998 013a 02       		.uleb128 0x2
+ 999 013b 18       		.uleb128 0x18
+ 1000 013c 9142     		.uleb128 0x2111
+ 1001 013e 18       		.uleb128 0x18
+ 1002 013f 00       		.byte	0
+ 1003 0140 00       		.byte	0
+ 1004 0141 1B       		.uleb128 0x1b
+ 1005 0142 898201   		.uleb128 0x4109
+ 1006 0145 00       		.byte	0
+ 1007 0146 11       		.uleb128 0x11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 22
+
+
+ 1008 0147 01       		.uleb128 0x1
+ 1009 0148 31       		.uleb128 0x31
+ 1010 0149 13       		.uleb128 0x13
+ 1011 014a 00       		.byte	0
+ 1012 014b 00       		.byte	0
+ 1013 014c 1C       		.uleb128 0x1c
+ 1014 014d 898201   		.uleb128 0x4109
+ 1015 0150 01       		.byte	0x1
+ 1016 0151 11       		.uleb128 0x11
+ 1017 0152 01       		.uleb128 0x1
+ 1018 0153 31       		.uleb128 0x31
+ 1019 0154 13       		.uleb128 0x13
+ 1020 0155 00       		.byte	0
+ 1021 0156 00       		.byte	0
+ 1022 0157 1D       		.uleb128 0x1d
+ 1023 0158 34       		.uleb128 0x34
+ 1024 0159 00       		.byte	0
+ 1025 015a 03       		.uleb128 0x3
+ 1026 015b 0E       		.uleb128 0xe
+ 1027 015c 3A       		.uleb128 0x3a
+ 1028 015d 0B       		.uleb128 0xb
+ 1029 015e 3B       		.uleb128 0x3b
+ 1030 015f 0B       		.uleb128 0xb
+ 1031 0160 49       		.uleb128 0x49
+ 1032 0161 13       		.uleb128 0x13
+ 1033 0162 3F       		.uleb128 0x3f
+ 1034 0163 19       		.uleb128 0x19
+ 1035 0164 3C       		.uleb128 0x3c
+ 1036 0165 19       		.uleb128 0x19
+ 1037 0166 00       		.byte	0
+ 1038 0167 00       		.byte	0
+ 1039 0168 1E       		.uleb128 0x1e
+ 1040 0169 34       		.uleb128 0x34
+ 1041 016a 00       		.byte	0
+ 1042 016b 03       		.uleb128 0x3
+ 1043 016c 0E       		.uleb128 0xe
+ 1044 016d 3A       		.uleb128 0x3a
+ 1045 016e 0B       		.uleb128 0xb
+ 1046 016f 3B       		.uleb128 0x3b
+ 1047 0170 05       		.uleb128 0x5
+ 1048 0171 49       		.uleb128 0x49
+ 1049 0172 13       		.uleb128 0x13
+ 1050 0173 3F       		.uleb128 0x3f
+ 1051 0174 19       		.uleb128 0x19
+ 1052 0175 3C       		.uleb128 0x3c
+ 1053 0176 19       		.uleb128 0x19
+ 1054 0177 00       		.byte	0
+ 1055 0178 00       		.byte	0
+ 1056 0179 1F       		.uleb128 0x1f
+ 1057 017a 2E       		.uleb128 0x2e
+ 1058 017b 00       		.byte	0
+ 1059 017c 3F       		.uleb128 0x3f
+ 1060 017d 19       		.uleb128 0x19
+ 1061 017e 3C       		.uleb128 0x3c
+ 1062 017f 19       		.uleb128 0x19
+ 1063 0180 6E       		.uleb128 0x6e
+ 1064 0181 0E       		.uleb128 0xe
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 23
+
+
+ 1065 0182 03       		.uleb128 0x3
+ 1066 0183 0E       		.uleb128 0xe
+ 1067 0184 3A       		.uleb128 0x3a
+ 1068 0185 0B       		.uleb128 0xb
+ 1069 0186 3B       		.uleb128 0x3b
+ 1070 0187 0B       		.uleb128 0xb
+ 1071 0188 00       		.byte	0
+ 1072 0189 00       		.byte	0
+ 1073 018a 20       		.uleb128 0x20
+ 1074 018b 2E       		.uleb128 0x2e
+ 1075 018c 00       		.byte	0
+ 1076 018d 3F       		.uleb128 0x3f
+ 1077 018e 19       		.uleb128 0x19
+ 1078 018f 3C       		.uleb128 0x3c
+ 1079 0190 19       		.uleb128 0x19
+ 1080 0191 6E       		.uleb128 0x6e
+ 1081 0192 0E       		.uleb128 0xe
+ 1082 0193 03       		.uleb128 0x3
+ 1083 0194 0E       		.uleb128 0xe
+ 1084 0195 3A       		.uleb128 0x3a
+ 1085 0196 0B       		.uleb128 0xb
+ 1086 0197 3B       		.uleb128 0x3b
+ 1087 0198 05       		.uleb128 0x5
+ 1088 0199 00       		.byte	0
+ 1089 019a 00       		.byte	0
+ 1090 019b 00       		.byte	0
+ 1091              		.section	.debug_aranges,"",%progbits
+ 1092 0000 1C000000 		.4byte	0x1c
+ 1093 0004 0200     		.2byte	0x2
+ 1094 0006 00000000 		.4byte	.Ldebug_info0
+ 1095 000a 04       		.byte	0x4
+ 1096 000b 00       		.byte	0
+ 1097 000c 0000     		.2byte	0
+ 1098 000e 0000     		.2byte	0
+ 1099 0010 00000000 		.4byte	.LFB418
+ 1100 0014 34000000 		.4byte	.LFE418-.LFB418
+ 1101 0018 00000000 		.4byte	0
+ 1102 001c 00000000 		.4byte	0
+ 1103              		.section	.debug_ranges,"",%progbits
+ 1104              	.Ldebug_ranges0:
+ 1105 0000 00000000 		.4byte	.LFB418
+ 1106 0004 34000000 		.4byte	.LFE418
+ 1107 0008 00000000 		.4byte	0
+ 1108 000c 00000000 		.4byte	0
+ 1109              		.section	.debug_line,"",%progbits
+ 1110              	.Ldebug_line0:
+ 1111 0000 19030000 		.section	.debug_str,"MS",%progbits,1
+ 1111      0200E902 
+ 1111      00000201 
+ 1111      FB0E0D00 
+ 1111      01010101 
+ 1112              	.LASF54:
+ 1113 0000 43595F42 		.ascii	"CY_BLE_ERROR_INVALID_PARAMETER\000"
+ 1113      4C455F45 
+ 1113      52524F52 
+ 1113      5F494E56 
+ 1113      414C4944 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 24
+
+
+ 1114              	.LASF58:
+ 1115 001f 43595F42 		.ascii	"CY_BLE_ERROR_OOB_NOT_AVAILABLE\000"
+ 1115      4C455F45 
+ 1115      52524F52 
+ 1115      5F4F4F42 
+ 1115      5F4E4F54 
+ 1116              	.LASF89:
+ 1117 003e 4144435F 		.ascii	"ADC_currentConfig\000"
+ 1117      63757272 
+ 1117      656E7443 
+ 1117      6F6E6669 
+ 1117      6700
+ 1118              	.LASF34:
+ 1119 0050 43595F53 		.ascii	"CY_SAR_RANGE_COND_OUTSIDE\000"
+ 1119      41525F52 
+ 1119      414E4745 
+ 1119      5F434F4E 
+ 1119      445F4F55 
+ 1120              	.LASF63:
+ 1121 006a 43595F42 		.ascii	"CY_BLE_ERROR_GAP_ROLE\000"
+ 1121      4C455F45 
+ 1121      52524F52 
+ 1121      5F474150 
+ 1121      5F524F4C 
+ 1122              	.LASF56:
+ 1123 0080 43595F42 		.ascii	"CY_BLE_ERROR_MEMORY_ALLOCATION_FAILED\000"
+ 1123      4C455F45 
+ 1123      52524F52 
+ 1123      5F4D454D 
+ 1123      4F52595F 
+ 1124              	.LASF61:
+ 1125 00a6 43595F42 		.ascii	"CY_BLE_ERROR_DEVICE_ALREADY_EXISTS\000"
+ 1125      4C455F45 
+ 1125      52524F52 
+ 1125      5F444556 
+ 1125      4943455F 
+ 1126              	.LASF23:
+ 1127 00c9 72784275 		.ascii	"rxBufSize\000"
+ 1127      6653697A 
+ 1127      6500
+ 1128              	.LASF60:
+ 1129 00d3 43595F42 		.ascii	"CY_BLE_ERROR_NO_DEVICE_ENTITY\000"
+ 1129      4C455F45 
+ 1129      52524F52 
+ 1129      5F4E4F5F 
+ 1129      44455649 
+ 1130              	.LASF0:
+ 1131 00f1 73686F72 		.ascii	"short int\000"
+ 1131      7420696E 
+ 1131      7400
+ 1132              	.LASF90:
+ 1133 00fb 4144435F 		.ascii	"ADC_allConfigs\000"
+ 1133      616C6C43 
+ 1133      6F6E6669 
+ 1133      677300
+ 1134              	.LASF11:
+ 1135 010a 73697A65 		.ascii	"sizetype\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 25
+
+
+ 1135      74797065 
+ 1135      00
+ 1136              	.LASF45:
+ 1137 0113 73617449 		.ascii	"satIntrMask\000"
+ 1137      6E74724D 
+ 1137      61736B00 
+ 1138              	.LASF37:
+ 1139 011f 73616D70 		.ascii	"sampleCtrl\000"
+ 1139      6C654374 
+ 1139      726C00
+ 1140              	.LASF87:
+ 1141 012a 4144435F 		.ascii	"ADC_CONFIG_STRUCT\000"
+ 1141      434F4E46 
+ 1141      49475F53 
+ 1141      54525543 
+ 1141      5400
+ 1142              	.LASF50:
+ 1143 013c 76726566 		.ascii	"vrefMvValue\000"
+ 1143      4D765661 
+ 1143      6C756500 
+ 1144              	.LASF96:
+ 1145 0148 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1145      43313120 
+ 1145      352E342E 
+ 1145      31203230 
+ 1145      31363036 
+ 1146 017b 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0plus -mthumb -"
+ 1146      20726576 
+ 1146      6973696F 
+ 1146      6E203233 
+ 1146      37373135 
+ 1147 01ae 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 1147      67202D66 
+ 1147      66756E63 
+ 1147      74696F6E 
+ 1147      2D736563 
+ 1148              	.LASF30:
+ 1149 01da 63795F73 		.ascii	"cy_stc_scb_spi_context_t\000"
+ 1149      74635F73 
+ 1149      63625F73 
+ 1149      70695F63 
+ 1149      6F6E7465 
+ 1150              	.LASF40:
+ 1151 01f3 72616E67 		.ascii	"rangeThres\000"
+ 1151      65546872 
+ 1151      657300
+ 1152              	.LASF75:
+ 1153 01fe 43595F42 		.ascii	"CY_BLE_ERROR_GATT_DB_INVALID_ATTR_HANDLE\000"
+ 1153      4C455F45 
+ 1153      52524F52 
+ 1153      5F474154 
+ 1153      545F4442 
+ 1154              	.LASF101:
+ 1155 0227 6D61696E 		.ascii	"main\000"
+ 1155      00
+ 1156              	.LASF9:
+ 1157 022c 5F5F7569 		.ascii	"__uint32_t\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 26
+
+
+ 1157      6E743332 
+ 1157      5F7400
+ 1158              	.LASF35:
+ 1159 0237 63795F65 		.ascii	"cy_en_sar_range_detect_condition_t\000"
+ 1159      6E5F7361 
+ 1159      725F7261 
+ 1159      6E67655F 
+ 1159      64657465 
+ 1160              	.LASF64:
+ 1161 025a 43595F42 		.ascii	"CY_BLE_ERROR_SEC_FAILED\000"
+ 1161      4C455F45 
+ 1161      52524F52 
+ 1161      5F534543 
+ 1161      5F464149 
+ 1162              	.LASF69:
+ 1163 0272 43595F42 		.ascii	"CY_BLE_ERROR_L2CAP_PSM_NOT_IN_RANGE\000"
+ 1163      4C455F45 
+ 1163      52524F52 
+ 1163      5F4C3243 
+ 1163      41505F50 
+ 1164              	.LASF24:
+ 1165 0296 72784275 		.ascii	"rxBufIdx\000"
+ 1165      66496478 
+ 1165      00
+ 1166              	.LASF62:
+ 1167 029f 43595F42 		.ascii	"CY_BLE_ERROR_REPEATED_ATTEMPTS\000"
+ 1167      4C455F45 
+ 1167      52524F52 
+ 1167      5F524550 
+ 1167      45415445 
+ 1168              	.LASF71:
+ 1169 02be 43595F42 		.ascii	"CY_BLE_ERROR_FLASH_WRITE_NOT_PERMITED\000"
+ 1169      4C455F45 
+ 1169      52524F52 
+ 1169      5F464C41 
+ 1169      53485F57 
+ 1170              	.LASF27:
+ 1171 02e4 74784275 		.ascii	"txBufIdx\000"
+ 1171      66496478 
+ 1171      00
+ 1172              	.LASF78:
+ 1173 02ed 43595F42 		.ascii	"CY_BLE_ERROR_CHAR_IS_NOT_DISCOVERED\000"
+ 1173      4C455F45 
+ 1173      52524F52 
+ 1173      5F434841 
+ 1173      525F4953 
+ 1174              	.LASF86:
+ 1175 0311 636C6B44 		.ascii	"clkDivider\000"
+ 1175      69766964 
+ 1175      657200
+ 1176              	.LASF20:
+ 1177 031c 63795F63 		.ascii	"cy_cb_scb_spi_handle_events_t\000"
+ 1177      625F7363 
+ 1177      625F7370 
+ 1177      695F6861 
+ 1177      6E646C65 
+ 1178              	.LASF55:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 27
+
+
+ 1179 033a 43595F42 		.ascii	"CY_BLE_ERROR_INVALID_OPERATION\000"
+ 1179      4C455F45 
+ 1179      52524F52 
+ 1179      5F494E56 
+ 1179      414C4944 
+ 1180              	.LASF49:
+ 1181 0359 636F6E66 		.ascii	"configRouting\000"
+ 1181      6967526F 
+ 1181      7574696E 
+ 1181      6700
+ 1182              	.LASF15:
+ 1183 0367 666C6F61 		.ascii	"float\000"
+ 1183      7400
+ 1184              	.LASF68:
+ 1185 036d 43595F42 		.ascii	"CY_BLE_ERROR_L2CAP_CONNECTION_ENTITY_NOT_FOUND\000"
+ 1185      4C455F45 
+ 1185      52524F52 
+ 1185      5F4C3243 
+ 1185      41505F43 
+ 1186              	.LASF25:
+ 1187 039c 74784275 		.ascii	"txBuf\000"
+ 1187      6600
+ 1188              	.LASF80:
+ 1189 03a2 43595F42 		.ascii	"CY_BLE_ERROR_INVALID_STATE\000"
+ 1189      4C455F45 
+ 1189      52524F52 
+ 1189      5F494E56 
+ 1189      414C4944 
+ 1190              	.LASF53:
+ 1191 03bd 43595F42 		.ascii	"CY_BLE_INFO_FLASH_WRITE_IN_PROGRESS\000"
+ 1191      4C455F49 
+ 1191      4E464F5F 
+ 1191      464C4153 
+ 1191      485F5752 
+ 1192              	.LASF67:
+ 1193 03e1 43595F42 		.ascii	"CY_BLE_ERROR_L2CAP_PSM_NOT_REGISTERED\000"
+ 1193      4C455F45 
+ 1193      52524F52 
+ 1193      5F4C3243 
+ 1193      41505F50 
+ 1194              	.LASF29:
+ 1195 0407 696E6974 		.ascii	"initKey\000"
+ 1195      4B657900 
+ 1196              	.LASF26:
+ 1197 040f 74784275 		.ascii	"txBufSize\000"
+ 1197      6653697A 
+ 1197      6500
+ 1198              	.LASF38:
+ 1199 0419 73616D70 		.ascii	"sampleTime01\000"
+ 1199      6C655469 
+ 1199      6D653031 
+ 1199      00
+ 1200              	.LASF13:
+ 1201 0426 63686172 		.ascii	"char_t\000"
+ 1201      5F7400
+ 1202              	.LASF98:
+ 1203 042d 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\psoc6-realtime-processing\\B"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 28
+
+
+ 1203      73657273 
+ 1203      5C636F64 
+ 1203      79675C67 
+ 1203      69745C70 
+ 1204 045b 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\\CE218138_BLE_Thermometer_RTOS01.c"
+ 1204      54435F49 
+ 1204      4D552E63 
+ 1204      7964736E 
+ 1204      5C434532 
+ 1205 048d 7964736E 		.ascii	"ydsn\000"
+ 1205      00
+ 1206              	.LASF100:
+ 1207 0492 5F5F656E 		.ascii	"__enable_irq\000"
+ 1207      61626C65 
+ 1207      5F697271 
+ 1207      00
+ 1208              	.LASF52:
+ 1209 049f 43595F42 		.ascii	"CY_BLE_SUCCESS\000"
+ 1209      4C455F53 
+ 1209      55434345 
+ 1209      535300
+ 1210              	.LASF12:
+ 1211 04ae 6C6F6E67 		.ascii	"long double\000"
+ 1211      20646F75 
+ 1211      626C6500 
+ 1212              	.LASF41:
+ 1213 04ba 72616E67 		.ascii	"rangeCond\000"
+ 1213      65436F6E 
+ 1213      6400
+ 1214              	.LASF1:
+ 1215 04c4 756E7369 		.ascii	"unsigned char\000"
+ 1215      676E6564 
+ 1215      20636861 
+ 1215      7200
+ 1216              	.LASF94:
+ 1217 04d2 43795F42 		.ascii	"Cy_BLE_ProcessEvents\000"
+ 1217      4C455F50 
+ 1217      726F6365 
+ 1217      73734576 
+ 1217      656E7473 
+ 1218              	.LASF88:
+ 1219 04e7 43595F45 		.ascii	"CY_EINK_SPIM_context\000"
+ 1219      494E4B5F 
+ 1219      5350494D 
+ 1219      5F636F6E 
+ 1219      74657874 
+ 1220              	.LASF2:
+ 1221 04fc 7369676E 		.ascii	"signed char\000"
+ 1221      65642063 
+ 1221      68617200 
+ 1222              	.LASF7:
+ 1223 0508 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1223      206C6F6E 
+ 1223      6720756E 
+ 1223      7369676E 
+ 1223      65642069 
+ 1224              	.LASF10:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 29
+
+
+ 1225 051f 75696E74 		.ascii	"uint32_t\000"
+ 1225      33325F74 
+ 1225      00
+ 1226              	.LASF8:
+ 1227 0528 756E7369 		.ascii	"unsigned int\000"
+ 1227      676E6564 
+ 1227      20696E74 
+ 1227      00
+ 1228              	.LASF48:
+ 1229 0535 6D757853 		.ascii	"muxSwitchSqCtrl\000"
+ 1229      77697463 
+ 1229      68537143 
+ 1229      74726C00 
+ 1230              	.LASF21:
+ 1231 0545 73746174 		.ascii	"status\000"
+ 1231      757300
+ 1232              	.LASF74:
+ 1233 054c 43595F42 		.ascii	"CY_BLE_ERROR_HARDWARE_FAILURE\000"
+ 1233      4C455F45 
+ 1233      52524F52 
+ 1233      5F484152 
+ 1233      44574152 
+ 1234              	.LASF76:
+ 1235 056a 43595F42 		.ascii	"CY_BLE_ERROR_NTF_DISABLED\000"
+ 1235      4C455F45 
+ 1235      52524F52 
+ 1235      5F4E5446 
+ 1235      5F444953 
+ 1236              	.LASF18:
+ 1237 0584 43595F53 		.ascii	"CY_SYSPM_WAIT_FOR_EVENT\000"
+ 1237      5953504D 
+ 1237      5F574149 
+ 1237      545F464F 
+ 1237      525F4556 
+ 1238              	.LASF99:
+ 1239 059c 63795F73 		.ascii	"cy_stc_scb_spi_context\000"
+ 1239      74635F73 
+ 1239      63625F73 
+ 1239      70695F63 
+ 1239      6F6E7465 
+ 1240              	.LASF22:
+ 1241 05b3 72784275 		.ascii	"rxBuf\000"
+ 1241      6600
+ 1242              	.LASF85:
+ 1243 05b9 6D697363 		.ascii	"miscConfig\000"
+ 1243      436F6E66 
+ 1243      696700
+ 1244              	.LASF14:
+ 1245 05c4 63686172 		.ascii	"char\000"
+ 1245      00
+ 1246              	.LASF47:
+ 1247 05c9 6D757853 		.ascii	"muxSwitch\000"
+ 1247      77697463 
+ 1247      6800
+ 1248              	.LASF28:
+ 1249 05d3 63624576 		.ascii	"cbEvents\000"
+ 1249      656E7473 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 30
+
+
+ 1249      00
+ 1250              	.LASF33:
+ 1251 05dc 43595F53 		.ascii	"CY_SAR_RANGE_COND_ABOVE\000"
+ 1251      41525F52 
+ 1251      414E4745 
+ 1251      5F434F4E 
+ 1251      445F4142 
+ 1252              	.LASF3:
+ 1253 05f4 73686F72 		.ascii	"short unsigned int\000"
+ 1253      7420756E 
+ 1253      7369676E 
+ 1253      65642069 
+ 1253      6E7400
+ 1254              	.LASF91:
+ 1255 0607 43795F42 		.ascii	"Cy_BLE_Start\000"
+ 1255      4C455F53 
+ 1255      74617274 
+ 1255      00
+ 1256              	.LASF57:
+ 1257 0614 43595F42 		.ascii	"CY_BLE_ERROR_INSUFFICIENT_RESOURCES\000"
+ 1257      4C455F45 
+ 1257      52524F52 
+ 1257      5F494E53 
+ 1257      55464649 
+ 1258              	.LASF19:
+ 1259 0638 5F426F6F 		.ascii	"_Bool\000"
+ 1259      6C00
+ 1260              	.LASF84:
+ 1261 063e 6877436F 		.ascii	"hwConfigStc\000"
+ 1261      6E666967 
+ 1261      53746300 
+ 1262              	.LASF77:
+ 1263 064a 43595F42 		.ascii	"CY_BLE_ERROR_IND_DISABLED\000"
+ 1263      4C455F45 
+ 1263      52524F52 
+ 1263      5F494E44 
+ 1263      5F444953 
+ 1264              	.LASF59:
+ 1265 0664 43595F42 		.ascii	"CY_BLE_ERROR_NO_CONNECTION\000"
+ 1265      4C455F45 
+ 1265      52524F52 
+ 1265      5F4E4F5F 
+ 1265      434F4E4E 
+ 1266              	.LASF92:
+ 1267 067f 43795F53 		.ascii	"Cy_SysEnableCM4\000"
+ 1267      7973456E 
+ 1267      61626C65 
+ 1267      434D3400 
+ 1268              	.LASF5:
+ 1269 068f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1269      20756E73 
+ 1269      69676E65 
+ 1269      6420696E 
+ 1269      7400
+ 1270              	.LASF16:
+ 1271 06a1 646F7562 		.ascii	"double\000"
+ 1271      6C6500
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 31
+
+
+ 1272              	.LASF70:
+ 1273 06a8 43595F42 		.ascii	"CY_BLE_ERROR_UNSUPPORTED_FEATURE_OR_PARAMETER_VALUE"
+ 1273      4C455F45 
+ 1273      52524F52 
+ 1273      5F554E53 
+ 1273      5550504F 
+ 1274 06db 00       		.ascii	"\000"
+ 1275              	.LASF6:
+ 1276 06dc 6C6F6E67 		.ascii	"long long int\000"
+ 1276      206C6F6E 
+ 1276      6720696E 
+ 1276      7400
+ 1277              	.LASF72:
+ 1278 06ea 43595F42 		.ascii	"CY_BLE_ERROR_FLASH_WRITE\000"
+ 1278      4C455F45 
+ 1278      52524F52 
+ 1278      5F464C41 
+ 1278      53485F57 
+ 1279              	.LASF32:
+ 1280 0703 43595F53 		.ascii	"CY_SAR_RANGE_COND_INSIDE\000"
+ 1280      41525F52 
+ 1280      414E4745 
+ 1280      5F434F4E 
+ 1280      445F494E 
+ 1281              	.LASF43:
+ 1282 071c 6368616E 		.ascii	"chanConfig\000"
+ 1282      436F6E66 
+ 1282      696700
+ 1283              	.LASF51:
+ 1284 0727 63795F73 		.ascii	"cy_stc_sar_config_t\000"
+ 1284      74635F73 
+ 1284      61725F63 
+ 1284      6F6E6669 
+ 1284      675F7400 
+ 1285              	.LASF42:
+ 1286 073b 6368616E 		.ascii	"chanEn\000"
+ 1286      456E00
+ 1287              	.LASF83:
+ 1288 0742 6E756D43 		.ascii	"numChannels\000"
+ 1288      68616E6E 
+ 1288      656C7300 
+ 1289              	.LASF17:
+ 1290 074e 43595F53 		.ascii	"CY_SYSPM_WAIT_FOR_INTERRUPT\000"
+ 1290      5953504D 
+ 1290      5F574149 
+ 1290      545F464F 
+ 1290      525F494E 
+ 1291              	.LASF65:
+ 1292 076a 43595F42 		.ascii	"CY_BLE_ERROR_L2CAP_PSM_WRONG_ENCODING\000"
+ 1292      4C455F45 
+ 1292      52524F52 
+ 1292      5F4C3243 
+ 1292      41505F50 
+ 1293              	.LASF97:
+ 1294 0790 6D61696E 		.ascii	"main_cm0p.c\000"
+ 1294      5F636D30 
+ 1294      702E6300 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 32
+
+
+ 1295              	.LASF39:
+ 1296 079c 73616D70 		.ascii	"sampleTime23\000"
+ 1296      6C655469 
+ 1296      6D653233 
+ 1296      00
+ 1297              	.LASF79:
+ 1298 07a9 43595F42 		.ascii	"CY_BLE_ERROR_CONTROLLER_BUSY\000"
+ 1298      4C455F45 
+ 1298      52524F52 
+ 1298      5F434F4E 
+ 1298      54524F4C 
+ 1299              	.LASF4:
+ 1300 07c6 6C6F6E67 		.ascii	"long int\000"
+ 1300      20696E74 
+ 1300      00
+ 1301              	.LASF95:
+ 1302 07cf 43795F53 		.ascii	"Cy_SysPm_DeepSleep\000"
+ 1302      7973506D 
+ 1302      5F446565 
+ 1302      70536C65 
+ 1302      657000
+ 1303              	.LASF73:
+ 1304 07e2 43595F42 		.ascii	"CY_BLE_ERROR_MIC_AUTH_FAILED\000"
+ 1304      4C455F45 
+ 1304      52524F52 
+ 1304      5F4D4943 
+ 1304      5F415554 
+ 1305              	.LASF66:
+ 1306 07ff 43595F42 		.ascii	"CY_BLE_ERROR_L2CAP_PSM_ALREADY_REGISTERED\000"
+ 1306      4C455F45 
+ 1306      52524F52 
+ 1306      5F4C3243 
+ 1306      41505F50 
+ 1307              	.LASF93:
+ 1308 0829 43795F53 		.ascii	"Cy_SysLib_AssertFailed\000"
+ 1308      79734C69 
+ 1308      625F4173 
+ 1308      73657274 
+ 1308      4661696C 
+ 1309              	.LASF31:
+ 1310 0840 43595F53 		.ascii	"CY_SAR_RANGE_COND_BELOW\000"
+ 1310      41525F52 
+ 1310      414E4745 
+ 1310      5F434F4E 
+ 1310      445F4245 
+ 1311              	.LASF36:
+ 1312 0858 6374726C 		.ascii	"ctrl\000"
+ 1312      00
+ 1313              	.LASF44:
+ 1314 085d 696E7472 		.ascii	"intrMask\000"
+ 1314      4D61736B 
+ 1314      00
+ 1315              	.LASF81:
+ 1316 0866 43595F42 		.ascii	"CY_BLE_ERROR_MAX\000"
+ 1316      4C455F45 
+ 1316      52524F52 
+ 1316      5F4D4158 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc0M87mc.s 			page 33
+
+
+ 1316      00
+ 1317              	.LASF46:
+ 1318 0877 72616E67 		.ascii	"rangeIntrMask\000"
+ 1318      65496E74 
+ 1318      724D6173 
+ 1318      6B00
+ 1319              	.LASF82:
+ 1320 0885 6368616E 		.ascii	"channelBase\000"
+ 1320      6E656C42 
+ 1320      61736500 
+ 1321              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
