@@ -49,6 +49,7 @@
 #include <math.h>
 #include "ble_task.h"
 #include "temperature_task.h"
+#include "imu_task.h"
 #include "status_led_task.h"
 #include "ble_thermometer_config.h"
 #include "uart_debug.h"
@@ -64,6 +65,7 @@ void static StackEventHandler(uint32_t eventType, void *eventParam);
 void static DisconnectEventHandler(void);
 void static AdvertisementEventHandler(void);
 void static SendTemperatureIndication (float temperature);
+void static SendIMUIndication (float temperature);
 void CallBackHts(uint32 event, void *eventParam);
 
 /* Variable that stores the BLE connection parameters */
@@ -71,6 +73,8 @@ cy_stc_ble_conn_handle_t static connectionHandle;
 
 /* Static flag used to request HTS indications */
 bool static requestHtsIndication    =   false;
+/* Static flag used to request IMU ACC indications */
+bool static requestImuAccIndication    =   false;
 
 /* Queue handle used for commands to BLE Task */
 QueueHandle_t bleCommandQ; 
@@ -152,6 +156,12 @@ void Task_Ble(void *pvParameters)
                 case SEND_TEMPERATURE_INDICATION:
                     /* Send temperature data over BLE HTS notification */
                     SendTemperatureIndication(bleCommand.temperatureData);
+                    break;    
+                    
+            /*~~~~~~~~~~~~~~ Command to send temperature indication ~~~~~~~~~~*/            
+                case SEND_IMU_INDICATION:
+                    /* Send temperature data over BLE HTS notification */
+                    SendIMUIndication(bleCommand.temperatureData);
                     break;    
                     
             /*~~~~~~~~~~~~~~ Command to process GPIO interrupt ~~~~~~~~~~~~~~~*/               
@@ -285,7 +295,7 @@ void static StackEventHandler(uint32_t eventType, void *eventParam)
     (void)eventParam;
     
     /* Take an action based on the current event */
-    switch ((cy_en_ble_event_t)eventType)
+    switch (eventType)
     {
         /*~~~~~~~~~~~~~~~~~~~~~~ GENERAL  EVENTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
         
@@ -342,6 +352,26 @@ void static StackEventHandler(uint32_t eventType, void *eventParam)
                               0u);
             break;
         }
+        
+        /* This event is received when indication are enabled by the central */
+        case CY_BLE_EVT_GATTS_INDICATION_ENABLED:
+            /* Set the requestHtsIndication flag */
+            requestHtsIndication = true;
+             /* Request periodic temperature data */
+            //temperatureCommand = SEND_TEMPERATURE;
+            //xQueueOverwrite(temperatureCommandQ, &temperatureCommand);
+            Task_DebugPrintf("Info     : BLE - GATT IMU Accel Indication Enabled ", 0u);
+            break;
+
+        /* This event is received when indication are disabled by the central */
+        case CY_BLE_EVT_GATTS_INDICATION_DISABLED:
+            /* Reset the requestHtsIndication flag */
+            requestHtsIndication = false;
+            /* Request Temperature Task not to send any data */
+            //temperatureCommand  = SEND_NONE;
+            //xQueueOverwrite(temperatureCommandQ, &temperatureCommand);
+            Task_DebugPrintf("Info     : BLE - GATT IMU Accel Indication Disabled ", 0u);
+            break;
         
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~ GAP EVENTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -588,6 +618,56 @@ void static DisconnectEventHandler(void)
 *
 *******************************************************************************/
 void static SendTemperatureIndication (float temperature)
+{   
+    /* Check if BLE is in connected state and the HTS indication is
+       enabled */
+	if((Cy_BLE_GetConnectionState(connectionHandle) 
+        == CY_BLE_CONN_STATE_CONNECTED) && requestHtsIndication)
+	{      
+        /* Temporary array to hold Health Thermometer Characteristic 
+           information */
+        uint8 valueArray[HTS_CHARACTERISTIC_SIZE];
+        temperature_data_t tempData;
+
+        /* Convert from IEEE-754 single precision floating point format to
+           IEEE-11073 FLOAT, which is mandated by the health thermometer
+           characteristic */
+        tempData.temeratureValue = (int32_t)(roundf(temperature*
+                                            IEEE_11073_MANTISSA_SCALER));
+        tempData.temperatureArray[IEEE_11073_EXPONENT_INDEX] = 
+                                            IEEE_11073_EXPONENT_VALUE;         
+        
+        /* Read Health Thermometer Characteristic from GATT DB */
+        if(CY_BLE_SUCCESS == Cy_BLE_HTSS_GetCharacteristicValue
+                             (CY_BLE_HTS_TEMP_MEASURE,
+                              HTS_CHARACTERISTIC_SIZE, valueArray))
+        { 
+            /* Update temperature value in the characteristic */
+            memcpy(&valueArray[HTS_TEMPERATURE_DATA_INDEX],
+                   tempData.temperatureArray, HTS_TEMPERATURE_DATA_SIZE);
+
+            /* Send indication to the central */
+            Cy_BLE_HTSS_SendIndication(connectionHandle, 
+                                       CY_BLE_HTS_TEMP_MEASURE,
+                                       HTS_CHARACTERISTIC_SIZE, valueArray);   
+        }
+    }
+}
+
+/*******************************************************************************
+* Function Name: void static SendTemperatureIndication (float temperature)
+********************************************************************************
+* Summary:
+*  This functions handles the HTS indication
+*
+* Parameters:
+*  float temperature : temperature data 
+*
+* Return:
+*  void
+*
+*******************************************************************************/
+void static SendIMUIndication (float temperature)
 {   
     /* Check if BLE is in connected state and the HTS indication is
        enabled */
