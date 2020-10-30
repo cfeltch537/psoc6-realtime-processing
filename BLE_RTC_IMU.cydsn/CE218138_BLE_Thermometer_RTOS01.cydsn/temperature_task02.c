@@ -1,9 +1,9 @@
 /******************************************************************************
-* File Name: temperature_task.c
+* File Name: imu_task.c
 *
 * Version: 1.00
 *
-* Description: This file contains the task that handles temperature sensing
+* Description: This file contains the task that handles imu sensing
 *
 * Related Document: CE218138_BLE_Thermometer_RTOS.pdf
 *
@@ -41,12 +41,12 @@
 * indemnify Cypress against all liability.
 *******************************************************************************/
 /******************************************************************************
-* This file contains the task that handles temperature sensing 
+* This file contains the task that handles IMU sensing 
 *******************************************************************************/
 
 /* Header file includes */
 #include <math.h>
-#include "temperature_task.h"
+#include "temperature_task02.h"
 #include "uart_debug.h"
 #include "ble_task.h"
 #include "task.h" 
@@ -76,11 +76,11 @@
 /* Zero Kelvin in degree C */
 #define ABSOLUTE_ZERO       (float)(-273.15)
 
-/* Queue handles used for temperature commands and data */
-QueueHandle_t temperatureCommandQ;
-QueueHandle_t temperatureDataQ;
+/* Queue handles used for imu commands and data */
+QueueHandle_t imuCommandQ;
+QueueHandle_t imuDataQ;
 
-/* Timer handles used to control temperature scanning interval */
+/* Timer handles used to control imu scanning interval */
 TimerHandle_t xTimer_Temperature;
 
 /* ADC interrupt handler */
@@ -95,7 +95,7 @@ void static TemperatureTimerUpdate(TickType_t period);
 * Function Name: void Task_Temperature(void *pvParameters)   
 ********************************************************************************
 * Summary:
-*  Task that reads temperature data from thermistor circuit  
+*  Task that reads imu data from thermistor circuit  
 *
 * Parameters:
 *  void *pvParameters : Task parameter defined during task creation (unused)                            
@@ -104,21 +104,21 @@ void static TemperatureTimerUpdate(TickType_t period);
 *  void
 *
 *******************************************************************************/
-void Task_Temperature(void *pvParameters)    
+void Task_Temperature2(void *pvParameters)    
 { 
     /* Variable that stores commands received  */
-    temperature_command_t temperatureCommand;
+    imu_command_t imuCommand;
     
     /* Variable used to store the return values of RTOS APIs */
     BaseType_t rtosApiResult;
        
-    /* Flag that indicate temperature data need to be sent at 
+    /* Flag that indicate imu data need to be sent at 
        fast intervals */
     bool sendTemperatureDataFast = false;
     
-    /* Variables used to calculate temperature */
+    /* Variables used to calculate imu */
     int16_t countThermistor, countReference;
-    float rThermistor, temperature;
+    float rThermistor, imu;
     
     /* Variable used to send commands and data to BLE task */
     ble_command_t bleCommandAndData;
@@ -138,15 +138,15 @@ void Task_Temperature(void *pvParameters)
     for(;;)
     {
         /* Block until a command has been received over 
-           temperatureCommandQ */
-        rtosApiResult = xQueueReceive(temperatureCommandQ, 
-                                      &temperatureCommand, portMAX_DELAY);
+           imuCommandQ */
+        rtosApiResult = xQueueReceive(imuCommandQ, 
+                                      &imuCommand, portMAX_DELAY);
         
-         /* Command has been received from temperatureCommandQ */ 
+         /* Command has been received from imuCommandQ */ 
         if(rtosApiResult == pdTRUE)
         {   
             /* Take an action based on the command received */
-            switch (temperatureCommand)
+            switch (imuCommand)
             {
                 /* Temperature data need to be sent */
                 case SEND_TEMPERATURE:
@@ -155,13 +155,13 @@ void Task_Temperature(void *pvParameters)
                     TemperatureTimerUpdate(FAST_SCAN_INTERVAL);
                     break;
                  
-                /* No temperature data need to be sent */
+                /* No imu data need to be sent */
                 case SEND_NONE:
                     sendTemperatureDataFast = false;
                     /* Disable periodic scan */
                     TemperatureTimerUpdate(SLOW_SCAN_INTERVAL);
                     break;
-                /* Process temperature data from CapSense widgets */
+                /* Process imu data from CapSense widgets */
                 case HANDLE_ADC_INTERRUPT:
                     /* Read the ADC count values */
                     countReference  = ADC_GetResult16(REFERENCE_CHANNEL);
@@ -176,25 +176,25 @@ void Task_Temperature(void *pvParameters)
                     Cy_GPIO_Clr(THER_VDD_0_PORT,THER_VDD_0_NUM);
                     
                     /* Calculate the thermistor resistance and the corresponding
-                       temperature */
+                       imu */
                     rThermistor = (R_REFERENCE*countThermistor)/countReference;    
-                    temperature = (B_CONSTANT/(logf(rThermistor/R_INFINITY)))+
+                    imu = (B_CONSTANT/(logf(rThermistor/R_INFINITY)))+
                                                                 ABSOLUTE_ZERO;
                     
                     processingComplete = true;
 
-                    /* Send the processed temperature data */
+                    /* Send the processed imu data */
                     if(sendTemperatureDataFast)
                     {
-                        /* Pack the temperature data, respective command and send 
+                        /* Pack the imu data, respective command and send 
                            to the queue */
                         bleCommandAndData.command = SEND_TEMPERATURE_INDICATION;
-                        bleCommandAndData.temperatureData = temperature;
+                        bleCommandAndData.temperatureData = imu;
                         xQueueSend(bleCommandQ, &bleCommandAndData,0u);
                     }
                     else
                     {
-                        xQueueOverwrite(temperatureDataQ, &temperature);
+                        xQueueOverwrite(imuDataQ, &imu);
                     }
                     break;
                 /* Start the next scan */                    
@@ -215,7 +215,7 @@ void Task_Temperature(void *pvParameters)
                 /* Invalid task notification value received */    
                 default:
                     Task_DebugPrintf("Error!   : Temperature - Invalid command "\
-                                "received .Error Code:", temperatureCommand);
+                                "received .Error Code:", imuCommand);
                     break;
             }
         }            
@@ -241,7 +241,7 @@ void Task_Temperature(void *pvParameters)
 *  void
 *
 *******************************************************************************/
-void isrADC(void)
+void isrADC2(void)
 {
     /* Variable used to store the return values of RTOS APIs */
     BaseType_t rtosApiResult;
@@ -259,15 +259,15 @@ void isrADC(void)
        buffered writes */
     (void)Cy_SAR_GetInterruptStatus(ADC_SAR__HW);
     
-    /* Send command to process temperature */
-    temperature_command_t temperatureCommand = HANDLE_ADC_INTERRUPT;
-    rtosApiResult = xQueueSendFromISR(temperatureCommandQ,
-                                      &temperatureCommand,0u);
+    /* Send command to process imu */
+    imu_command_t imuCommand = HANDLE_ADC_INTERRUPT;
+    rtosApiResult = xQueueSendFromISR(imuCommandQ,
+                                      &imuCommand,0u);
     
     /* Check if the operation has been successful */
     if(rtosApiResult != pdTRUE)
     {
-        Task_DebugPrintf("Failure! : Temperature  - Sending data to temperature"\
+        Task_DebugPrintf("Failure! : Temperature  - Sending data to imu"\
                     "queue", 0u);    
     }  
 }
@@ -276,7 +276,7 @@ void isrADC(void)
 * Function Name: void static TemperatureTimerCallback(TimerHandle_t xTimer)                          
 ********************************************************************************
 * Summary:
-*  This function is called when the temperature timer expires
+*  This function is called when the imu timer expires
 *
 * Parameters:
 *  TimerHandle_t xTimer :  Current timer value (unused)
@@ -293,15 +293,15 @@ void static TemperatureTimerCallback(TimerHandle_t xTimer)
     /* Remove warning for unused parameter */
     (void)xTimer;
     
-    /* Send command to process temperature */
-    temperature_command_t temperatureCommand = TEMPERATURE_TIMER_EXPIRED;
-    rtosApiResult = xQueueSend(temperatureCommandQ, 
-                               &temperatureCommand,0u);
+    /* Send command to process imu */
+    imu_command_t imuCommand = TEMPERATURE_TIMER_EXPIRED;
+    rtosApiResult = xQueueSend(imuCommandQ, 
+                               &imuCommand,0u);
     
     /* Check if the operation has been successful */
     if(rtosApiResult != pdTRUE)
     {
-        Task_DebugPrintf("Failure! : Temperature  - Sending data to temperature"\
+        Task_DebugPrintf("Failure! : Temperature  - Sending data to imu"\
                          "queue", 0u);    
     }
 }
@@ -311,7 +311,7 @@ void static TemperatureTimerCallback(TimerHandle_t xTimer)
 ********************************************************************************
 * Summary:
 *  This function starts the timer that provides timing to periodic
-*  temperature processing
+*  imu processing
 *
 * Parameters:
 *  void

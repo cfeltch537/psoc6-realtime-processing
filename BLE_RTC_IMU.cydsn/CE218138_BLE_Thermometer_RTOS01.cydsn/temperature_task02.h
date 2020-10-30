@@ -1,9 +1,9 @@
 /******************************************************************************
-* File Name: IMU_task.h
+* File Name: imu_task.h
 *
 * Version: 1.00
 *
-* Description: This file is the public interface of IMU_task.c source file
+* Description: This file is the public interface of imu_task.c source file
 *
 * Related Document: CE218138_BLE_Thermometer_RTOS.pdf
 *
@@ -41,34 +41,34 @@
 * indemnify Cypress against all liability.
 *******************************************************************************/
 /******************************************************************************
-* This file contains the declaration of task and used for IMU sensing
+* This file contains the declaration of task and used for imu sensing
 ********************************************************************************/
 
 /* Include guard */
-#ifndef NAMESPACE_TEMPERATURE_TASK
-#define NAMESPACE_TEMPERATURE_TASK
+#ifndef TEMPERATURE_TASK2_H
+#define TEMPERATURE_TASK2_H
 
 /* Header file includes */ 
 #include "project.h"
 #include "FreeRTOS.h"     
 #include "queue.h"    
 
-/* Data-type that's used to send commands to IMU task */    
+/* Data-type that's used to send commands to imu task */    
 typedef enum
 {
     SEND_TEMPERATURE, 
     SEND_NONE,
     HANDLE_ADC_INTERRUPT,
     TEMPERATURE_TIMER_EXPIRED
-}   IMU_command_t;    
+}   imu_command_t;    
 
-/* Handles for the Queues that contain IMU command and data */ 
-extern QueueHandle_t IMUCommandQ;
-extern QueueHandle_t IMUDataQ;
+/* Handles for the Queues that contain imu command and data */ 
+extern QueueHandle_t imuCommandQ;
+extern QueueHandle_t imuDataQ;
 
-/* Task_Temperature reads IMU from a thermistor circuit and sends it 
+/* Task_IMU reads imu from a thermistor circuit and sends it 
    to Task_Ble */    
-void Task_Temperature(void *pvParameters);    
+void Task_Temperature2(void *pvParameters);    
 
-#endif
+#endif /* TEMPERATURE_TASK_H */
 /* [] END OF FILE */
