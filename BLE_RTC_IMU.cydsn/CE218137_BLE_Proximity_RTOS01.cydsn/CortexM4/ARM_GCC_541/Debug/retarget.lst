@@ -1,0 +1,2066 @@
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.syntax unified
+  16              		.file	"retarget.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.syntax unified
+  21              		.global _printf_float
+  22              		.global _scanf_float
+  23              		.thumb
+  24              		.syntax unified
+  25              		.section	.text._write,"ax",%progbits
+  26              		.align	2
+  27              		.weak	_write
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	_write, %function
+  31              	_write:
+  32              	.LFB528:
+  33              		.file 1 "Generated_Source\\PSoC6\\pdl\\utilities\\retarget_io\\retarget.c"
+   1:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** * \file retarget.c
+   3:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** * \version 1.10
+   4:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** *
+   5:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** * \brief
+   6:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** * 'Retarget' layer for target-dependent low level function.
+   7:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** *
+   8:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** ********************************************************************************
+   9:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** * \copyright
+  10:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** * Copyright 2016-2018, Cypress Semiconductor Corporation. All rights reserved.
+  11:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** * You may use this file only in accordance with the license, terms, conditions,
+  12:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  13:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** * the software package with which this file was provided.
+  14:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** *******************************************************************************/
+  15:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** 
+  16:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #include <stdio.h>
+  17:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #include "stdio_user.h"
+  18:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** 
+  19:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #if defined(__cplusplus)
+  20:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** extern "C" {
+  21:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #endif
+  22:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** 
+  23:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #ifdef IO_STDOUT_ENABLE
+  24:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 2
+
+
+  25:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #if defined(__ARMCC_VERSION) /* ARM-MDK */
+  26:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     /***************************************************************************
+  27:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     * Function Name: fputc
+  28:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     ***************************************************************************/
+  29:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     __attribute__((weak)) int fputc(int ch, FILE *f)
+  30:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     {
+  31:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         (void)f;
+  32:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     #if (STDOUT_CR_LF != 0)
+  33:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         if ((char)ch == '\n')
+  34:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         {
+  35:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             STDIO_PutChar('\r');
+  36:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         }
+  37:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     #endif /* STDOUT_CR_LF != 0 */
+  38:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         STDIO_PutChar(ch);
+  39:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         return (ch);
+  40:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     }
+  41:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #elif defined (__ICCARM__) /* IAR */
+  42:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     #include <yfuns.h>
+  43:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** 
+  44:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     /***************************************************************************
+  45:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     * Function Name: __write
+  46:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     ***************************************************************************/
+  47:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     __weak size_t __write(int handle, const unsigned char * buffer, size_t size)
+  48:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     {
+  49:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         size_t nChars = 0;
+  50:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         /* This template only writes to "standard out", for all other file
+  51:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         * handles it returns failure. */
+  52:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         if (handle != _LLIO_STDOUT)
+  53:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         {
+  54:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             return (_LLIO_ERROR);
+  55:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         }
+  56:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         if (buffer != NULL)
+  57:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         {
+  58:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             for (/* Empty */; nChars < size; ++nChars)
+  59:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             {
+  60:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             #if (STDOUT_CR_LF != 0)
+  61:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 if(*buffer == '\n')
+  62:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 {
+  63:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                     STDIO_PutChar('\r');
+  64:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 }
+  65:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             #endif /* STDOUT_CR_LF != 0 */
+  66:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 STDIO_PutChar(*buffer);
+  67:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 ++buffer;
+  68:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             }
+  69:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         }
+  70:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         return (nChars);
+  71:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     }
+  72:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #else /* (__GNUC__)  GCC */    
+  73:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     /* Add an explicit reference to the floating point printf library to allow
+  74:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     the usage of floating point conversion specifier. */
+  75:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     __asm (".global _printf_float");
+  76:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     /***************************************************************************
+  77:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     * Function Name: _write
+  78:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     ***************************************************************************/
+  79:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     __attribute__((weak)) int _write (int fd, const char *ptr, int len)
+  80:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     {
+  34              		.loc 1 80 0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 3
+
+
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38              	.LVL0:
+  39 0000 70B5     		push	{r4, r5, r6, lr}
+  40              		.cfi_def_cfa_offset 16
+  41              		.cfi_offset 4, -16
+  42              		.cfi_offset 5, -12
+  43              		.cfi_offset 6, -8
+  44              		.cfi_offset 14, -4
+  45              	.LVL1:
+  81:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         int nChars = 0;
+  82:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         (void)fd;
+  83:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         if (ptr != NULL)
+  46              		.loc 1 83 0
+  47 0002 39B9     		cbnz	r1, .L5
+  81:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         int nChars = 0;
+  48              		.loc 1 81 0
+  49 0004 0024     		movs	r4, #0
+  50 0006 0AE0     		b	.L3
+  51              	.LVL2:
+  52              	.L4:
+  84:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         {
+  85:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             for (/* Empty */; nChars < len; ++nChars)
+  86:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             {
+  87:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             #if (STDOUT_CR_LF != 0)
+  88:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 if(*ptr == '\n')
+  89:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 {
+  90:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                     STDIO_PutChar('\r');
+  91:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 }
+  92:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             #endif /* STDOUT_CR_LF != 0 */
+  93:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 STDIO_PutChar((uint32_t)*ptr);
+  53              		.loc 1 93 0 discriminator 2
+  54 0008 15F8010B 		ldrb	r0, [r5], #1	@ zero_extendqisi2
+  55              	.LVL3:
+  56 000c FFF7FEFF 		bl	STDIO_PutChar
+  57              	.LVL4:
+  85:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             {
+  58              		.loc 1 85 0 discriminator 2
+  59 0010 0134     		adds	r4, r4, #1
+  60              	.LVL5:
+  61 0012 02E0     		b	.L2
+  62              	.LVL6:
+  63              	.L5:
+  64 0014 1646     		mov	r6, r2
+  65 0016 0D46     		mov	r5, r1
+  66 0018 0024     		movs	r4, #0
+  67              	.LVL7:
+  68              	.L2:
+  85:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             {
+  69              		.loc 1 85 0 is_stmt 0 discriminator 1
+  70 001a B442     		cmp	r4, r6
+  71 001c F4DB     		blt	.L4
+  72              	.LVL8:
+  73              	.L3:
+  94:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 ++ptr;
+  95:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             }
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 4
+
+
+  96:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         }
+  97:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         return (nChars);
+  98:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     }
+  74              		.loc 1 98 0 is_stmt 1
+  75 001e 2046     		mov	r0, r4
+  76 0020 70BD     		pop	{r4, r5, r6, pc}
+  77              		.cfi_endproc
+  78              	.LFE528:
+  79              		.size	_write, .-_write
+  80 0022 00BF     		.section	.text._read,"ax",%progbits
+  81              		.align	2
+  82              		.weak	_read
+  83              		.thumb
+  84              		.thumb_func
+  85              		.type	_read, %function
+  86              	_read:
+  87              	.LFB529:
+  99:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #endif
+ 100:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** 
+ 101:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #endif /* IO_STDOUT_ENABLE */
+ 102:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** 
+ 103:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #if defined(IO_STDIN_ENABLE)
+ 104:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** 
+ 105:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #if defined(__ARMCC_VERSION) /* ARM-MDK */
+ 106:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     /***************************************************************************
+ 107:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     * Function Name: fgetc
+ 108:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     ***************************************************************************/
+ 109:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     __attribute__((weak)) int fgetc(FILE *f) 
+ 110:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     {
+ 111:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         (void)f;
+ 112:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         return (STDIO_GetChar());
+ 113:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     }
+ 114:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #elif defined (__ICCARM__) /* IAR */
+ 115:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     __weak size_t __read(int handle, unsigned char * buffer, size_t size)
+ 116:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     {
+ 117:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         /* This template only reads from "standard in", for all other file
+ 118:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         handles it returns failure. */
+ 119:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         if ((handle != _LLIO_STDIN) || (buffer == NULL))
+ 120:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         {
+ 121:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             return (_LLIO_ERROR);
+ 122:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         }
+ 123:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         else
+ 124:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         {
+ 125:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             *buffer = STDIO_GetChar();
+ 126:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             return (1);
+ 127:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         }
+ 128:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     }
+ 129:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c **** #else /* (__GNUC__)  GCC */
+ 130:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     /* Add an explicit reference to the floating point scanf library to allow
+ 131:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     the usage of floating point conversion specifier. */
+ 132:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     __asm (".global _scanf_float");
+ 133:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     __attribute__((weak)) int _read (int fd, char *ptr, int len)
+ 134:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     {
+  88              		.loc 1 134 0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 0
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 5
+
+
+  92              	.LVL9:
+  93 0000 70B5     		push	{r4, r5, r6, lr}
+  94              		.cfi_def_cfa_offset 16
+  95              		.cfi_offset 4, -16
+  96              		.cfi_offset 5, -12
+  97              		.cfi_offset 6, -8
+  98              		.cfi_offset 14, -4
+  99              	.LVL10:
+ 135:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         int nChars = 0;
+ 136:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         (void)fd;
+ 137:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         if (ptr != NULL)
+ 100              		.loc 1 137 0
+ 101 0002 51B9     		cbnz	r1, .L11
+ 135:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         int nChars = 0;
+ 102              		.loc 1 135 0
+ 103 0004 0024     		movs	r4, #0
+ 104 0006 0DE0     		b	.L9
+ 105              	.LVL11:
+ 106              	.L10:
+ 138:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         {
+ 139:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             for(/* Empty */;nChars < len;++ptr)
+ 140:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             {
+ 141:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 *ptr = (char)STDIO_GetChar();
+ 107              		.loc 1 141 0
+ 108 0008 FFF7FEFF 		bl	STDIO_GetChar
+ 109              	.LVL12:
+ 110 000c C0B2     		uxtb	r0, r0
+ 111 000e 2870     		strb	r0, [r5]
+ 142:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 ++nChars;
+ 112              		.loc 1 142 0
+ 113 0010 0134     		adds	r4, r4, #1
+ 114              	.LVL13:
+ 143:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 if(*ptr == '\n')
+ 115              		.loc 1 143 0
+ 116 0012 0A28     		cmp	r0, #10
+ 117 0014 06D0     		beq	.L9
+ 139:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             {
+ 118              		.loc 1 139 0
+ 119 0016 0135     		adds	r5, r5, #1
+ 120              	.LVL14:
+ 121 0018 02E0     		b	.L8
+ 122              	.LVL15:
+ 123              	.L11:
+ 124 001a 1646     		mov	r6, r2
+ 125 001c 0D46     		mov	r5, r1
+ 126 001e 0024     		movs	r4, #0
+ 127              	.LVL16:
+ 128              	.L8:
+ 139:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             {
+ 129              		.loc 1 139 0 is_stmt 0 discriminator 1
+ 130 0020 B442     		cmp	r4, r6
+ 131 0022 F1DB     		blt	.L10
+ 132              	.LVL17:
+ 133              	.L9:
+ 144:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 {
+ 145:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                     break;
+ 146:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****                 }
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 6
+
+
+ 147:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****             }
+ 148:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         }
+ 149:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****         return (nChars);
+ 150:Generated_Source\PSoC6\pdl\utilities\retarget_io/retarget.c ****     }
+ 134              		.loc 1 150 0 is_stmt 1
+ 135 0024 2046     		mov	r0, r4
+ 136 0026 70BD     		pop	{r4, r5, r6, pc}
+ 137              		.cfi_endproc
+ 138              	.LFE529:
+ 139              		.size	_read, .-_read
+ 140              		.text
+ 141              	.Letext0:
+ 142              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 143              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 144              		.file 4 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/scb/cy_scb_spi.h"
+ 145              		.file 5 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/sar/cy_sar.h"
+ 146              		.file 6 "Generated_Source\\PSoC6\\pdl\\middleware/ble/cy_ble_stack_host_main.h"
+ 147              		.file 7 "Generated_Source\\PSoC6\\pdl\\middleware/ble/cy_ble_gap.h"
+ 148              		.file 8 "Generated_Source\\PSoC6/ADC.h"
+ 149              		.file 9 "Generated_Source\\PSoC6\\pdl\\cmsis/include/core_cm4.h"
+ 150              		.file 10 "Generated_Source\\PSoC6/CY_EINK_SPIM.h"
+ 151              		.file 11 "./stdio_user.h"
+ 152              		.section	.debug_info,"",%progbits
+ 153              	.Ldebug_info0:
+ 154 0000 1A050000 		.4byte	0x51a
+ 155 0004 0400     		.2byte	0x4
+ 156 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 157 000a 04       		.byte	0x4
+ 158 000b 01       		.uleb128 0x1
+ 159 000c 6F010000 		.4byte	.LASF88
+ 160 0010 0C       		.byte	0xc
+ 161 0011 A6060000 		.4byte	.LASF89
+ 162 0015 00000000 		.4byte	.LASF90
+ 163 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 164 001d 00000000 		.4byte	0
+ 165 0021 00000000 		.4byte	.Ldebug_line0
+ 166 0025 02       		.uleb128 0x2
+ 167 0026 01       		.byte	0x1
+ 168 0027 06       		.byte	0x6
+ 169 0028 A6040000 		.4byte	.LASF0
+ 170 002c 03       		.uleb128 0x3
+ 171 002d FE030000 		.4byte	.LASF4
+ 172 0031 02       		.byte	0x2
+ 173 0032 1D       		.byte	0x1d
+ 174 0033 37000000 		.4byte	0x37
+ 175 0037 02       		.uleb128 0x2
+ 176 0038 01       		.byte	0x1
+ 177 0039 08       		.byte	0x8
+ 178 003a 63040000 		.4byte	.LASF1
+ 179 003e 02       		.uleb128 0x2
+ 180 003f 02       		.byte	0x2
+ 181 0040 05       		.byte	0x5
+ 182 0041 D7000000 		.4byte	.LASF2
+ 183 0045 02       		.uleb128 0x2
+ 184 0046 02       		.byte	0x2
+ 185 0047 07       		.byte	0x7
+ 186 0048 FC040000 		.4byte	.LASF3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 7
+
+
+ 187 004c 03       		.uleb128 0x3
+ 188 004d DF050000 		.4byte	.LASF5
+ 189 0051 02       		.byte	0x2
+ 190 0052 3F       		.byte	0x3f
+ 191 0053 57000000 		.4byte	0x57
+ 192 0057 02       		.uleb128 0x2
+ 193 0058 04       		.byte	0x4
+ 194 0059 05       		.byte	0x5
+ 195 005a 73060000 		.4byte	.LASF6
+ 196 005e 03       		.uleb128 0x3
+ 197 005f 3B020000 		.4byte	.LASF7
+ 198 0063 02       		.byte	0x2
+ 199 0064 41       		.byte	0x41
+ 200 0065 69000000 		.4byte	0x69
+ 201 0069 02       		.uleb128 0x2
+ 202 006a 04       		.byte	0x4
+ 203 006b 07       		.byte	0x7
+ 204 006c A9050000 		.4byte	.LASF8
+ 205 0070 02       		.uleb128 0x2
+ 206 0071 08       		.byte	0x8
+ 207 0072 05       		.byte	0x5
+ 208 0073 80030000 		.4byte	.LASF9
+ 209 0077 02       		.uleb128 0x2
+ 210 0078 08       		.byte	0x8
+ 211 0079 07       		.byte	0x7
+ 212 007a B2040000 		.4byte	.LASF10
+ 213 007e 04       		.uleb128 0x4
+ 214 007f 04       		.byte	0x4
+ 215 0080 05       		.byte	0x5
+ 216 0081 696E7400 		.ascii	"int\000"
+ 217 0085 02       		.uleb128 0x2
+ 218 0086 04       		.byte	0x4
+ 219 0087 07       		.byte	0x7
+ 220 0088 D2040000 		.4byte	.LASF11
+ 221 008c 02       		.uleb128 0x2
+ 222 008d 08       		.byte	0x8
+ 223 008e 04       		.byte	0x4
+ 224 008f 2C040000 		.4byte	.LASF12
+ 225 0093 05       		.uleb128 0x5
+ 226 0094 04       		.byte	0x4
+ 227 0095 02       		.uleb128 0x2
+ 228 0096 04       		.byte	0x4
+ 229 0097 07       		.byte	0x7
+ 230 0098 EF000000 		.4byte	.LASF13
+ 231 009c 06       		.uleb128 0x6
+ 232 009d 04       		.byte	0x4
+ 233 009e A2000000 		.4byte	0xa2
+ 234 00a2 02       		.uleb128 0x2
+ 235 00a3 01       		.byte	0x1
+ 236 00a4 08       		.byte	0x8
+ 237 00a5 20050000 		.4byte	.LASF14
+ 238 00a9 06       		.uleb128 0x6
+ 239 00aa 04       		.byte	0x4
+ 240 00ab AF000000 		.4byte	0xaf
+ 241 00af 07       		.uleb128 0x7
+ 242 00b0 A2000000 		.4byte	0xa2
+ 243 00b4 03       		.uleb128 0x3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 8
+
+
+ 244 00b5 DE020000 		.4byte	.LASF15
+ 245 00b9 03       		.byte	0x3
+ 246 00ba 18       		.byte	0x18
+ 247 00bb 2C000000 		.4byte	0x2c
+ 248 00bf 03       		.uleb128 0x3
+ 249 00c0 50050000 		.4byte	.LASF16
+ 250 00c4 03       		.byte	0x3
+ 251 00c5 2C       		.byte	0x2c
+ 252 00c6 4C000000 		.4byte	0x4c
+ 253 00ca 03       		.uleb128 0x3
+ 254 00cb C9040000 		.4byte	.LASF17
+ 255 00cf 03       		.byte	0x3
+ 256 00d0 30       		.byte	0x30
+ 257 00d1 5E000000 		.4byte	0x5e
+ 258 00d5 08       		.uleb128 0x8
+ 259 00d6 CA000000 		.4byte	0xca
+ 260 00da 02       		.uleb128 0x2
+ 261 00db 04       		.byte	0x4
+ 262 00dc 04       		.byte	0x4
+ 263 00dd 5C030000 		.4byte	.LASF18
+ 264 00e1 02       		.uleb128 0x2
+ 265 00e2 08       		.byte	0x8
+ 266 00e3 04       		.byte	0x4
+ 267 00e4 BB050000 		.4byte	.LASF19
+ 268 00e8 02       		.uleb128 0x2
+ 269 00e9 01       		.byte	0x1
+ 270 00ea 02       		.byte	0x2
+ 271 00eb 67050000 		.4byte	.LASF20
+ 272 00ef 06       		.uleb128 0x6
+ 273 00f0 04       		.byte	0x4
+ 274 00f1 F5000000 		.4byte	0xf5
+ 275 00f5 09       		.uleb128 0x9
+ 276 00f6 00010000 		.4byte	0x100
+ 277 00fa 0A       		.uleb128 0xa
+ 278 00fb CA000000 		.4byte	0xca
+ 279 00ff 00       		.byte	0
+ 280 0100 0B       		.uleb128 0xb
+ 281 0101 01030000 		.4byte	.LASF21
+ 282 0105 04       		.byte	0x4
+ 283 0106 BF01     		.2byte	0x1bf
+ 284 0108 EF000000 		.4byte	0xef
+ 285 010c 0C       		.uleb128 0xc
+ 286 010d C2050000 		.4byte	.LASF91
+ 287 0111 24       		.byte	0x24
+ 288 0112 04       		.byte	0x4
+ 289 0113 4102     		.2byte	0x241
+ 290 0115 8F010000 		.4byte	0x18f
+ 291 0119 0D       		.uleb128 0xd
+ 292 011a F5040000 		.4byte	.LASF22
+ 293 011e 04       		.byte	0x4
+ 294 011f 4402     		.2byte	0x244
+ 295 0121 D5000000 		.4byte	0xd5
+ 296 0125 00       		.byte	0
+ 297 0126 0D       		.uleb128 0xd
+ 298 0127 0F050000 		.4byte	.LASF23
+ 299 012b 04       		.byte	0x4
+ 300 012c 4602     		.2byte	0x246
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 9
+
+
+ 301 012e 93000000 		.4byte	0x93
+ 302 0132 04       		.byte	0x4
+ 303 0133 0D       		.uleb128 0xd
+ 304 0134 B7000000 		.4byte	.LASF24
+ 305 0138 04       		.byte	0x4
+ 306 0139 4702     		.2byte	0x247
+ 307 013b CA000000 		.4byte	0xca
+ 308 013f 08       		.byte	0x8
+ 309 0140 0D       		.uleb128 0xd
+ 310 0141 CB020000 		.4byte	.LASF25
+ 311 0145 04       		.byte	0x4
+ 312 0146 4802     		.2byte	0x248
+ 313 0148 D5000000 		.4byte	0xd5
+ 314 014c 0C       		.byte	0xc
+ 315 014d 0D       		.uleb128 0xd
+ 316 014e 62030000 		.4byte	.LASF26
+ 317 0152 04       		.byte	0x4
+ 318 0153 4A02     		.2byte	0x24a
+ 319 0155 93000000 		.4byte	0x93
+ 320 0159 10       		.byte	0x10
+ 321 015a 0D       		.uleb128 0xd
+ 322 015b DD030000 		.4byte	.LASF27
+ 323 015f 04       		.byte	0x4
+ 324 0160 4B02     		.2byte	0x24b
+ 325 0162 CA000000 		.4byte	0xca
+ 326 0166 14       		.byte	0x14
+ 327 0167 0D       		.uleb128 0xd
+ 328 0168 F5030000 		.4byte	.LASF28
+ 329 016c 04       		.byte	0x4
+ 330 016d 4C02     		.2byte	0x24c
+ 331 016f D5000000 		.4byte	0xd5
+ 332 0173 18       		.byte	0x18
+ 333 0174 0D       		.uleb128 0xd
+ 334 0175 2F050000 		.4byte	.LASF29
+ 335 0179 04       		.byte	0x4
+ 336 017a 5202     		.2byte	0x252
+ 337 017c 00010000 		.4byte	0x100
+ 338 0180 1C       		.byte	0x1c
+ 339 0181 0D       		.uleb128 0xd
+ 340 0182 D5030000 		.4byte	.LASF30
+ 341 0186 04       		.byte	0x4
+ 342 0187 5502     		.2byte	0x255
+ 343 0189 CA000000 		.4byte	0xca
+ 344 018d 20       		.byte	0x20
+ 345 018e 00       		.byte	0
+ 346 018f 0B       		.uleb128 0xb
+ 347 0190 4B010000 		.4byte	.LASF31
+ 348 0194 04       		.byte	0x4
+ 349 0195 5802     		.2byte	0x258
+ 350 0197 0C010000 		.4byte	0x10c
+ 351 019b 0E       		.uleb128 0xe
+ 352 019c 01       		.byte	0x1
+ 353 019d 37000000 		.4byte	0x37
+ 354 01a1 05       		.byte	0x5
+ 355 01a2 0504     		.2byte	0x405
+ 356 01a4 C1010000 		.4byte	0x1c1
+ 357 01a8 0F       		.uleb128 0xf
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 10
+
+
+ 358 01a9 68030000 		.4byte	.LASF32
+ 359 01ad 00       		.byte	0
+ 360 01ae 0F       		.uleb128 0xf
+ 361 01af E9050000 		.4byte	.LASF33
+ 362 01b3 01       		.byte	0x1
+ 363 01b4 0F       		.uleb128 0xf
+ 364 01b5 38050000 		.4byte	.LASF34
+ 365 01b9 02       		.byte	0x2
+ 366 01ba 0F       		.uleb128 0xf
+ 367 01bb 75000000 		.4byte	.LASF35
+ 368 01bf 03       		.byte	0x3
+ 369 01c0 00       		.byte	0
+ 370 01c1 0B       		.uleb128 0xb
+ 371 01c2 46020000 		.4byte	.LASF36
+ 372 01c6 05       		.byte	0x5
+ 373 01c7 0A04     		.2byte	0x40a
+ 374 01c9 9B010000 		.4byte	0x19b
+ 375 01cd 10       		.uleb128 0x10
+ 376 01ce 78       		.byte	0x78
+ 377 01cf 05       		.byte	0x5
+ 378 01d0 F404     		.2byte	0x4f4
+ 379 01d2 9A020000 		.4byte	0x29a
+ 380 01d6 0D       		.uleb128 0xd
+ 381 01d7 E2060000 		.4byte	.LASF37
+ 382 01db 05       		.byte	0x5
+ 383 01dc F604     		.2byte	0x4f6
+ 384 01de CA000000 		.4byte	0xca
+ 385 01e2 00       		.byte	0
+ 386 01e3 0D       		.uleb128 0xd
+ 387 01e4 04010000 		.4byte	.LASF38
+ 388 01e8 05       		.byte	0x5
+ 389 01e9 F704     		.2byte	0x4f7
+ 390 01eb CA000000 		.4byte	0xca
+ 391 01ef 04       		.byte	0x4
+ 392 01f0 0D       		.uleb128 0xd
+ 393 01f1 02060000 		.4byte	.LASF39
+ 394 01f5 05       		.byte	0x5
+ 395 01f6 F804     		.2byte	0x4f8
+ 396 01f8 CA000000 		.4byte	0xca
+ 397 01fc 08       		.byte	0x8
+ 398 01fd 0D       		.uleb128 0xd
+ 399 01fe 4D060000 		.4byte	.LASF40
+ 400 0202 05       		.byte	0x5
+ 401 0203 F904     		.2byte	0x4f9
+ 402 0205 CA000000 		.4byte	0xca
+ 403 0209 0C       		.byte	0xc
+ 404 020a 0D       		.uleb128 0xd
+ 405 020b 64010000 		.4byte	.LASF41
+ 406 020f 05       		.byte	0x5
+ 407 0210 FA04     		.2byte	0x4fa
+ 408 0212 CA000000 		.4byte	0xca
+ 409 0216 10       		.byte	0x10
+ 410 0217 0D       		.uleb128 0xd
+ 411 0218 D4020000 		.4byte	.LASF42
+ 412 021c 05       		.byte	0x5
+ 413 021d FB04     		.2byte	0x4fb
+ 414 021f C1010000 		.4byte	0x1c1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 11
+
+
+ 415 0223 14       		.byte	0x14
+ 416 0224 0D       		.uleb128 0xd
+ 417 0225 23060000 		.4byte	.LASF43
+ 418 0229 05       		.byte	0x5
+ 419 022a FC04     		.2byte	0x4fc
+ 420 022c CA000000 		.4byte	0xca
+ 421 0230 18       		.byte	0x18
+ 422 0231 0D       		.uleb128 0xd
+ 423 0232 8E030000 		.4byte	.LASF44
+ 424 0236 05       		.byte	0x5
+ 425 0237 FD04     		.2byte	0x4fd
+ 426 0239 9A020000 		.4byte	0x29a
+ 427 023d 1C       		.byte	0x1c
+ 428 023e 0D       		.uleb128 0xd
+ 429 023f E7060000 		.4byte	.LASF45
+ 430 0243 05       		.byte	0x5
+ 431 0244 FE04     		.2byte	0x4fe
+ 432 0246 CA000000 		.4byte	0xca
+ 433 024a 5C       		.byte	0x5c
+ 434 024b 0D       		.uleb128 0xd
+ 435 024c F8000000 		.4byte	.LASF46
+ 436 0250 05       		.byte	0x5
+ 437 0251 FF04     		.2byte	0x4ff
+ 438 0253 CA000000 		.4byte	0xca
+ 439 0257 60       		.byte	0x60
+ 440 0258 0D       		.uleb128 0xd
+ 441 0259 F0060000 		.4byte	.LASF47
+ 442 025d 05       		.byte	0x5
+ 443 025e 0005     		.2byte	0x500
+ 444 0260 CA000000 		.4byte	0xca
+ 445 0264 64       		.byte	0x64
+ 446 0265 0D       		.uleb128 0xd
+ 447 0266 25050000 		.4byte	.LASF48
+ 448 026a 05       		.byte	0x5
+ 449 026b 0105     		.2byte	0x501
+ 450 026d CA000000 		.4byte	0xca
+ 451 0271 68       		.byte	0x68
+ 452 0272 0D       		.uleb128 0xd
+ 453 0273 DF040000 		.4byte	.LASF49
+ 454 0277 05       		.byte	0x5
+ 455 0278 0205     		.2byte	0x502
+ 456 027a CA000000 		.4byte	0xca
+ 457 027e 6C       		.byte	0x6c
+ 458 027f 0D       		.uleb128 0xd
+ 459 0280 4E030000 		.4byte	.LASF50
+ 460 0284 05       		.byte	0x5
+ 461 0285 0305     		.2byte	0x503
+ 462 0287 E8000000 		.4byte	0xe8
+ 463 028b 70       		.byte	0x70
+ 464 028c 0D       		.uleb128 0xd
+ 465 028d 2A060000 		.4byte	.LASF51
+ 466 0291 05       		.byte	0x5
+ 467 0292 0405     		.2byte	0x504
+ 468 0294 CA000000 		.4byte	0xca
+ 469 0298 74       		.byte	0x74
+ 470 0299 00       		.byte	0
+ 471 029a 11       		.uleb128 0x11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 12
+
+
+ 472 029b CA000000 		.4byte	0xca
+ 473 029f AA020000 		.4byte	0x2aa
+ 474 02a3 12       		.uleb128 0x12
+ 475 02a4 95000000 		.4byte	0x95
+ 476 02a8 0F       		.byte	0xf
+ 477 02a9 00       		.byte	0
+ 478 02aa 0B       		.uleb128 0xb
+ 479 02ab 0F060000 		.4byte	.LASF52
+ 480 02af 05       		.byte	0x5
+ 481 02b0 0505     		.2byte	0x505
+ 482 02b2 CD010000 		.4byte	0x1cd
+ 483 02b6 10       		.uleb128 0x10
+ 484 02b7 02       		.byte	0x2
+ 485 02b8 06       		.byte	0x6
+ 486 02b9 5B01     		.2byte	0x15b
+ 487 02bb DA020000 		.4byte	0x2da
+ 488 02bf 0D       		.uleb128 0xd
+ 489 02c0 45030000 		.4byte	.LASF53
+ 490 02c4 06       		.byte	0x6
+ 491 02c5 6501     		.2byte	0x165
+ 492 02c7 B4000000 		.4byte	0xb4
+ 493 02cb 00       		.byte	0
+ 494 02cc 0D       		.uleb128 0xd
+ 495 02cd EF040000 		.4byte	.LASF54
+ 496 02d1 06       		.byte	0x6
+ 497 02d2 6901     		.2byte	0x169
+ 498 02d4 B4000000 		.4byte	0xb4
+ 499 02d8 01       		.byte	0x1
+ 500 02d9 00       		.byte	0
+ 501 02da 0B       		.uleb128 0xb
+ 502 02db 5A060000 		.4byte	.LASF55
+ 503 02df 06       		.byte	0x6
+ 504 02e0 6B01     		.2byte	0x16b
+ 505 02e2 B6020000 		.4byte	0x2b6
+ 506 02e6 13       		.uleb128 0x13
+ 507 02e7 01       		.byte	0x1
+ 508 02e8 37000000 		.4byte	0x37
+ 509 02ec 07       		.byte	0x7
+ 510 02ed 7E       		.byte	0x7e
+ 511 02ee 0B030000 		.4byte	0x30b
+ 512 02f2 0F       		.uleb128 0xf
+ 513 02f3 22020000 		.4byte	.LASF56
+ 514 02f7 00       		.byte	0
+ 515 02f8 0F       		.uleb128 0xf
+ 516 02f9 8A050000 		.4byte	.LASF57
+ 517 02fd 01       		.byte	0x1
+ 518 02fe 0F       		.uleb128 0xf
+ 519 02ff 89060000 		.4byte	.LASF58
+ 520 0303 02       		.byte	0x2
+ 521 0304 0F       		.uleb128 0xf
+ 522 0305 71040000 		.4byte	.LASF59
+ 523 0309 03       		.byte	0x3
+ 524 030a 00       		.byte	0
+ 525 030b 03       		.uleb128 0x3
+ 526 030c C1000000 		.4byte	.LASF60
+ 527 0310 07       		.byte	0x7
+ 528 0311 83       		.byte	0x83
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 13
+
+
+ 529 0312 E6020000 		.4byte	0x2e6
+ 530 0316 13       		.uleb128 0x13
+ 531 0317 01       		.byte	0x1
+ 532 0318 37000000 		.4byte	0x37
+ 533 031c 07       		.byte	0x7
+ 534 031d 87       		.byte	0x87
+ 535 031e 53030000 		.4byte	0x353
+ 536 0322 0F       		.uleb128 0xf
+ 537 0323 1F030000 		.4byte	.LASF61
+ 538 0327 00       		.byte	0
+ 539 0328 0F       		.uleb128 0xf
+ 540 0329 70020000 		.4byte	.LASF62
+ 541 032d 01       		.byte	0x1
+ 542 032e 0F       		.uleb128 0xf
+ 543 032f 9B000000 		.4byte	.LASF63
+ 544 0333 02       		.byte	0x2
+ 545 0334 0F       		.uleb128 0xf
+ 546 0335 21010000 		.4byte	.LASF64
+ 547 0339 03       		.byte	0x3
+ 548 033a 0F       		.uleb128 0xf
+ 549 033b AB030000 		.4byte	.LASF65
+ 550 033f 04       		.byte	0x4
+ 551 0340 0F       		.uleb128 0xf
+ 552 0341 A1020000 		.4byte	.LASF66
+ 553 0345 05       		.byte	0x5
+ 554 0346 0F       		.uleb128 0xf
+ 555 0347 38040000 		.4byte	.LASF67
+ 556 034b 06       		.byte	0x6
+ 557 034c 0F       		.uleb128 0xf
+ 558 034d 08040000 		.4byte	.LASF68
+ 559 0351 07       		.byte	0x7
+ 560 0352 00       		.byte	0
+ 561 0353 03       		.uleb128 0x3
+ 562 0354 36060000 		.4byte	.LASF69
+ 563 0358 07       		.byte	0x7
+ 564 0359 90       		.byte	0x90
+ 565 035a 16030000 		.4byte	0x316
+ 566 035e 14       		.uleb128 0x14
+ 567 035f 14       		.byte	0x14
+ 568 0360 08       		.byte	0x8
+ 569 0361 3B       		.byte	0x3b
+ 570 0362 A3030000 		.4byte	0x3a3
+ 571 0366 15       		.uleb128 0x15
+ 572 0367 FE060000 		.4byte	.LASF70
+ 573 036b 08       		.byte	0x8
+ 574 036c 3D       		.byte	0x3d
+ 575 036d CA000000 		.4byte	0xca
+ 576 0371 00       		.byte	0
+ 577 0372 15       		.uleb128 0x15
+ 578 0373 8F000000 		.4byte	.LASF71
+ 579 0377 08       		.byte	0x8
+ 580 0378 3E       		.byte	0x3e
+ 581 0379 CA000000 		.4byte	0xca
+ 582 037d 04       		.byte	0x4
+ 583 037e 15       		.uleb128 0x15
+ 584 037f 6D050000 		.4byte	.LASF72
+ 585 0383 08       		.byte	0x8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 14
+
+
+ 586 0384 3F       		.byte	0x3f
+ 587 0385 A3030000 		.4byte	0x3a3
+ 588 0389 08       		.byte	0x8
+ 589 038a 15       		.uleb128 0x15
+ 590 038b 15050000 		.4byte	.LASF73
+ 591 038f 08       		.byte	0x8
+ 592 0390 40       		.byte	0x40
+ 593 0391 CA000000 		.4byte	0xca
+ 594 0395 0C       		.byte	0xc
+ 595 0396 15       		.uleb128 0x15
+ 596 0397 F6020000 		.4byte	.LASF74
+ 597 039b 08       		.byte	0x8
+ 598 039c 45       		.byte	0x45
+ 599 039d CA000000 		.4byte	0xca
+ 600 03a1 10       		.byte	0x10
+ 601 03a2 00       		.byte	0
+ 602 03a3 06       		.uleb128 0x6
+ 603 03a4 04       		.byte	0x4
+ 604 03a5 A9030000 		.4byte	0x3a9
+ 605 03a9 07       		.uleb128 0x7
+ 606 03aa AA020000 		.4byte	0x2aa
+ 607 03ae 03       		.uleb128 0x3
+ 608 03af 0F010000 		.4byte	.LASF75
+ 609 03b3 08       		.byte	0x8
+ 610 03b4 48       		.byte	0x48
+ 611 03b5 5E030000 		.4byte	0x35e
+ 612 03b9 16       		.uleb128 0x16
+ 613 03ba 3E030000 		.4byte	.LASF76
+ 614 03be 01       		.byte	0x1
+ 615 03bf 4F       		.byte	0x4f
+ 616 03c0 7E000000 		.4byte	0x7e
+ 617 03c4 00000000 		.4byte	.LFB528
+ 618 03c8 22000000 		.4byte	.LFE528-.LFB528
+ 619 03cc 01       		.uleb128 0x1
+ 620 03cd 9C       		.byte	0x9c
+ 621 03ce 17040000 		.4byte	0x417
+ 622 03d2 17       		.uleb128 0x17
+ 623 03d3 666400   		.ascii	"fd\000"
+ 624 03d6 01       		.byte	0x1
+ 625 03d7 4F       		.byte	0x4f
+ 626 03d8 7E000000 		.4byte	0x7e
+ 627 03dc 00000000 		.4byte	.LLST0
+ 628 03e0 17       		.uleb128 0x17
+ 629 03e1 70747200 		.ascii	"ptr\000"
+ 630 03e5 01       		.byte	0x1
+ 631 03e6 4F       		.byte	0x4f
+ 632 03e7 A9000000 		.4byte	0xa9
+ 633 03eb 3A000000 		.4byte	.LLST1
+ 634 03ef 17       		.uleb128 0x17
+ 635 03f0 6C656E00 		.ascii	"len\000"
+ 636 03f4 01       		.byte	0x1
+ 637 03f5 4F       		.byte	0x4f
+ 638 03f6 7E000000 		.4byte	0x7e
+ 639 03fa 86000000 		.4byte	.LLST2
+ 640 03fe 18       		.uleb128 0x18
+ 641 03ff 69020000 		.4byte	.LASF78
+ 642 0403 01       		.byte	0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 15
+
+
+ 643 0404 51       		.byte	0x51
+ 644 0405 7E000000 		.4byte	0x7e
+ 645 0409 C8000000 		.4byte	.LLST3
+ 646 040d 19       		.uleb128 0x19
+ 647 040e 10000000 		.4byte	.LVL4
+ 648 0412 07050000 		.4byte	0x507
+ 649 0416 00       		.byte	0
+ 650 0417 16       		.uleb128 0x16
+ 651 0418 D9050000 		.4byte	.LASF77
+ 652 041c 01       		.byte	0x1
+ 653 041d 85       		.byte	0x85
+ 654 041e 7E000000 		.4byte	0x7e
+ 655 0422 00000000 		.4byte	.LFB529
+ 656 0426 28000000 		.4byte	.LFE529-.LFB529
+ 657 042a 01       		.uleb128 0x1
+ 658 042b 9C       		.byte	0x9c
+ 659 042c 75040000 		.4byte	0x475
+ 660 0430 17       		.uleb128 0x17
+ 661 0431 666400   		.ascii	"fd\000"
+ 662 0434 01       		.byte	0x1
+ 663 0435 85       		.byte	0x85
+ 664 0436 7E000000 		.4byte	0x7e
+ 665 043a FE000000 		.4byte	.LLST4
+ 666 043e 17       		.uleb128 0x17
+ 667 043f 70747200 		.ascii	"ptr\000"
+ 668 0443 01       		.byte	0x1
+ 669 0444 85       		.byte	0x85
+ 670 0445 9C000000 		.4byte	0x9c
+ 671 0449 38010000 		.4byte	.LLST5
+ 672 044d 17       		.uleb128 0x17
+ 673 044e 6C656E00 		.ascii	"len\000"
+ 674 0452 01       		.byte	0x1
+ 675 0453 85       		.byte	0x85
+ 676 0454 7E000000 		.4byte	0x7e
+ 677 0458 6C010000 		.4byte	.LLST6
+ 678 045c 18       		.uleb128 0x18
+ 679 045d 69020000 		.4byte	.LASF78
+ 680 0461 01       		.byte	0x1
+ 681 0462 87       		.byte	0x87
+ 682 0463 7E000000 		.4byte	0x7e
+ 683 0467 AE010000 		.4byte	.LLST7
+ 684 046b 19       		.uleb128 0x19
+ 685 046c 0C000000 		.4byte	.LVL12
+ 686 0470 12050000 		.4byte	0x512
+ 687 0474 00       		.byte	0
+ 688 0475 1A       		.uleb128 0x1a
+ 689 0476 7C060000 		.4byte	.LASF79
+ 690 047a 09       		.byte	0x9
+ 691 047b EA07     		.2byte	0x7ea
+ 692 047d 81040000 		.4byte	0x481
+ 693 0481 08       		.uleb128 0x8
+ 694 0482 BF000000 		.4byte	0xbf
+ 695 0486 1A       		.uleb128 0x1a
+ 696 0487 E6020000 		.4byte	.LASF80
+ 697 048b 07       		.byte	0x7
+ 698 048c 2202     		.2byte	0x222
+ 699 048e 0B030000 		.4byte	0x30b
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 16
+
+
+ 700 0492 11       		.uleb128 0x11
+ 701 0493 DA020000 		.4byte	0x2da
+ 702 0497 A2040000 		.4byte	0x4a2
+ 703 049b 12       		.uleb128 0x12
+ 704 049c 95000000 		.4byte	0x95
+ 705 04a0 00       		.byte	0
+ 706 04a1 00       		.byte	0
+ 707 04a2 1A       		.uleb128 0x1a
+ 708 04a3 99030000 		.4byte	.LASF81
+ 709 04a7 07       		.byte	0x7
+ 710 04a8 2C02     		.2byte	0x22c
+ 711 04aa 92040000 		.4byte	0x492
+ 712 04ae 11       		.uleb128 0x11
+ 713 04af 53030000 		.4byte	0x353
+ 714 04b3 BE040000 		.4byte	0x4be
+ 715 04b7 12       		.uleb128 0x12
+ 716 04b8 95000000 		.4byte	0x95
+ 717 04bc 00       		.byte	0
+ 718 04bd 00       		.byte	0
+ 719 04be 1A       		.uleb128 0x1a
+ 720 04bf 79050000 		.4byte	.LASF82
+ 721 04c3 07       		.byte	0x7
+ 722 04c4 2D02     		.2byte	0x22d
+ 723 04c6 AE040000 		.4byte	0x4ae
+ 724 04ca 1B       		.uleb128 0x1b
+ 725 04cb 91040000 		.4byte	.LASF83
+ 726 04cf 0A       		.byte	0xa
+ 727 04d0 5E       		.byte	0x5e
+ 728 04d1 8F010000 		.4byte	0x18f
+ 729 04d5 1A       		.uleb128 0x1a
+ 730 04d6 63000000 		.4byte	.LASF84
+ 731 04da 08       		.byte	0x8
+ 732 04db 6001     		.2byte	0x160
+ 733 04dd CA000000 		.4byte	0xca
+ 734 04e1 11       		.uleb128 0x11
+ 735 04e2 F1040000 		.4byte	0x4f1
+ 736 04e6 F1040000 		.4byte	0x4f1
+ 737 04ea 12       		.uleb128 0x12
+ 738 04eb 95000000 		.4byte	0x95
+ 739 04ef 00       		.byte	0
+ 740 04f0 00       		.byte	0
+ 741 04f1 07       		.uleb128 0x7
+ 742 04f2 AE030000 		.4byte	0x3ae
+ 743 04f6 1A       		.uleb128 0x1a
+ 744 04f7 58050000 		.4byte	.LASF85
+ 745 04fb 08       		.byte	0x8
+ 746 04fc 6401     		.2byte	0x164
+ 747 04fe 02050000 		.4byte	0x502
+ 748 0502 07       		.uleb128 0x7
+ 749 0503 E1040000 		.4byte	0x4e1
+ 750 0507 1C       		.uleb128 0x1c
+ 751 0508 E7030000 		.4byte	.LASF86
+ 752 050c E7030000 		.4byte	.LASF86
+ 753 0510 0B       		.byte	0xb
+ 754 0511 9E       		.byte	0x9e
+ 755 0512 1C       		.uleb128 0x1c
+ 756 0513 E1000000 		.4byte	.LASF87
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 17
+
+
+ 757 0517 E1000000 		.4byte	.LASF87
+ 758 051b 0B       		.byte	0xb
+ 759 051c A2       		.byte	0xa2
+ 760 051d 00       		.byte	0
+ 761              		.section	.debug_abbrev,"",%progbits
+ 762              	.Ldebug_abbrev0:
+ 763 0000 01       		.uleb128 0x1
+ 764 0001 11       		.uleb128 0x11
+ 765 0002 01       		.byte	0x1
+ 766 0003 25       		.uleb128 0x25
+ 767 0004 0E       		.uleb128 0xe
+ 768 0005 13       		.uleb128 0x13
+ 769 0006 0B       		.uleb128 0xb
+ 770 0007 03       		.uleb128 0x3
+ 771 0008 0E       		.uleb128 0xe
+ 772 0009 1B       		.uleb128 0x1b
+ 773 000a 0E       		.uleb128 0xe
+ 774 000b 55       		.uleb128 0x55
+ 775 000c 17       		.uleb128 0x17
+ 776 000d 11       		.uleb128 0x11
+ 777 000e 01       		.uleb128 0x1
+ 778 000f 10       		.uleb128 0x10
+ 779 0010 17       		.uleb128 0x17
+ 780 0011 00       		.byte	0
+ 781 0012 00       		.byte	0
+ 782 0013 02       		.uleb128 0x2
+ 783 0014 24       		.uleb128 0x24
+ 784 0015 00       		.byte	0
+ 785 0016 0B       		.uleb128 0xb
+ 786 0017 0B       		.uleb128 0xb
+ 787 0018 3E       		.uleb128 0x3e
+ 788 0019 0B       		.uleb128 0xb
+ 789 001a 03       		.uleb128 0x3
+ 790 001b 0E       		.uleb128 0xe
+ 791 001c 00       		.byte	0
+ 792 001d 00       		.byte	0
+ 793 001e 03       		.uleb128 0x3
+ 794 001f 16       		.uleb128 0x16
+ 795 0020 00       		.byte	0
+ 796 0021 03       		.uleb128 0x3
+ 797 0022 0E       		.uleb128 0xe
+ 798 0023 3A       		.uleb128 0x3a
+ 799 0024 0B       		.uleb128 0xb
+ 800 0025 3B       		.uleb128 0x3b
+ 801 0026 0B       		.uleb128 0xb
+ 802 0027 49       		.uleb128 0x49
+ 803 0028 13       		.uleb128 0x13
+ 804 0029 00       		.byte	0
+ 805 002a 00       		.byte	0
+ 806 002b 04       		.uleb128 0x4
+ 807 002c 24       		.uleb128 0x24
+ 808 002d 00       		.byte	0
+ 809 002e 0B       		.uleb128 0xb
+ 810 002f 0B       		.uleb128 0xb
+ 811 0030 3E       		.uleb128 0x3e
+ 812 0031 0B       		.uleb128 0xb
+ 813 0032 03       		.uleb128 0x3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 18
+
+
+ 814 0033 08       		.uleb128 0x8
+ 815 0034 00       		.byte	0
+ 816 0035 00       		.byte	0
+ 817 0036 05       		.uleb128 0x5
+ 818 0037 0F       		.uleb128 0xf
+ 819 0038 00       		.byte	0
+ 820 0039 0B       		.uleb128 0xb
+ 821 003a 0B       		.uleb128 0xb
+ 822 003b 00       		.byte	0
+ 823 003c 00       		.byte	0
+ 824 003d 06       		.uleb128 0x6
+ 825 003e 0F       		.uleb128 0xf
+ 826 003f 00       		.byte	0
+ 827 0040 0B       		.uleb128 0xb
+ 828 0041 0B       		.uleb128 0xb
+ 829 0042 49       		.uleb128 0x49
+ 830 0043 13       		.uleb128 0x13
+ 831 0044 00       		.byte	0
+ 832 0045 00       		.byte	0
+ 833 0046 07       		.uleb128 0x7
+ 834 0047 26       		.uleb128 0x26
+ 835 0048 00       		.byte	0
+ 836 0049 49       		.uleb128 0x49
+ 837 004a 13       		.uleb128 0x13
+ 838 004b 00       		.byte	0
+ 839 004c 00       		.byte	0
+ 840 004d 08       		.uleb128 0x8
+ 841 004e 35       		.uleb128 0x35
+ 842 004f 00       		.byte	0
+ 843 0050 49       		.uleb128 0x49
+ 844 0051 13       		.uleb128 0x13
+ 845 0052 00       		.byte	0
+ 846 0053 00       		.byte	0
+ 847 0054 09       		.uleb128 0x9
+ 848 0055 15       		.uleb128 0x15
+ 849 0056 01       		.byte	0x1
+ 850 0057 27       		.uleb128 0x27
+ 851 0058 19       		.uleb128 0x19
+ 852 0059 01       		.uleb128 0x1
+ 853 005a 13       		.uleb128 0x13
+ 854 005b 00       		.byte	0
+ 855 005c 00       		.byte	0
+ 856 005d 0A       		.uleb128 0xa
+ 857 005e 05       		.uleb128 0x5
+ 858 005f 00       		.byte	0
+ 859 0060 49       		.uleb128 0x49
+ 860 0061 13       		.uleb128 0x13
+ 861 0062 00       		.byte	0
+ 862 0063 00       		.byte	0
+ 863 0064 0B       		.uleb128 0xb
+ 864 0065 16       		.uleb128 0x16
+ 865 0066 00       		.byte	0
+ 866 0067 03       		.uleb128 0x3
+ 867 0068 0E       		.uleb128 0xe
+ 868 0069 3A       		.uleb128 0x3a
+ 869 006a 0B       		.uleb128 0xb
+ 870 006b 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 19
+
+
+ 871 006c 05       		.uleb128 0x5
+ 872 006d 49       		.uleb128 0x49
+ 873 006e 13       		.uleb128 0x13
+ 874 006f 00       		.byte	0
+ 875 0070 00       		.byte	0
+ 876 0071 0C       		.uleb128 0xc
+ 877 0072 13       		.uleb128 0x13
+ 878 0073 01       		.byte	0x1
+ 879 0074 03       		.uleb128 0x3
+ 880 0075 0E       		.uleb128 0xe
+ 881 0076 0B       		.uleb128 0xb
+ 882 0077 0B       		.uleb128 0xb
+ 883 0078 3A       		.uleb128 0x3a
+ 884 0079 0B       		.uleb128 0xb
+ 885 007a 3B       		.uleb128 0x3b
+ 886 007b 05       		.uleb128 0x5
+ 887 007c 01       		.uleb128 0x1
+ 888 007d 13       		.uleb128 0x13
+ 889 007e 00       		.byte	0
+ 890 007f 00       		.byte	0
+ 891 0080 0D       		.uleb128 0xd
+ 892 0081 0D       		.uleb128 0xd
+ 893 0082 00       		.byte	0
+ 894 0083 03       		.uleb128 0x3
+ 895 0084 0E       		.uleb128 0xe
+ 896 0085 3A       		.uleb128 0x3a
+ 897 0086 0B       		.uleb128 0xb
+ 898 0087 3B       		.uleb128 0x3b
+ 899 0088 05       		.uleb128 0x5
+ 900 0089 49       		.uleb128 0x49
+ 901 008a 13       		.uleb128 0x13
+ 902 008b 38       		.uleb128 0x38
+ 903 008c 0B       		.uleb128 0xb
+ 904 008d 00       		.byte	0
+ 905 008e 00       		.byte	0
+ 906 008f 0E       		.uleb128 0xe
+ 907 0090 04       		.uleb128 0x4
+ 908 0091 01       		.byte	0x1
+ 909 0092 0B       		.uleb128 0xb
+ 910 0093 0B       		.uleb128 0xb
+ 911 0094 49       		.uleb128 0x49
+ 912 0095 13       		.uleb128 0x13
+ 913 0096 3A       		.uleb128 0x3a
+ 914 0097 0B       		.uleb128 0xb
+ 915 0098 3B       		.uleb128 0x3b
+ 916 0099 05       		.uleb128 0x5
+ 917 009a 01       		.uleb128 0x1
+ 918 009b 13       		.uleb128 0x13
+ 919 009c 00       		.byte	0
+ 920 009d 00       		.byte	0
+ 921 009e 0F       		.uleb128 0xf
+ 922 009f 28       		.uleb128 0x28
+ 923 00a0 00       		.byte	0
+ 924 00a1 03       		.uleb128 0x3
+ 925 00a2 0E       		.uleb128 0xe
+ 926 00a3 1C       		.uleb128 0x1c
+ 927 00a4 0B       		.uleb128 0xb
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 20
+
+
+ 928 00a5 00       		.byte	0
+ 929 00a6 00       		.byte	0
+ 930 00a7 10       		.uleb128 0x10
+ 931 00a8 13       		.uleb128 0x13
+ 932 00a9 01       		.byte	0x1
+ 933 00aa 0B       		.uleb128 0xb
+ 934 00ab 0B       		.uleb128 0xb
+ 935 00ac 3A       		.uleb128 0x3a
+ 936 00ad 0B       		.uleb128 0xb
+ 937 00ae 3B       		.uleb128 0x3b
+ 938 00af 05       		.uleb128 0x5
+ 939 00b0 01       		.uleb128 0x1
+ 940 00b1 13       		.uleb128 0x13
+ 941 00b2 00       		.byte	0
+ 942 00b3 00       		.byte	0
+ 943 00b4 11       		.uleb128 0x11
+ 944 00b5 01       		.uleb128 0x1
+ 945 00b6 01       		.byte	0x1
+ 946 00b7 49       		.uleb128 0x49
+ 947 00b8 13       		.uleb128 0x13
+ 948 00b9 01       		.uleb128 0x1
+ 949 00ba 13       		.uleb128 0x13
+ 950 00bb 00       		.byte	0
+ 951 00bc 00       		.byte	0
+ 952 00bd 12       		.uleb128 0x12
+ 953 00be 21       		.uleb128 0x21
+ 954 00bf 00       		.byte	0
+ 955 00c0 49       		.uleb128 0x49
+ 956 00c1 13       		.uleb128 0x13
+ 957 00c2 2F       		.uleb128 0x2f
+ 958 00c3 0B       		.uleb128 0xb
+ 959 00c4 00       		.byte	0
+ 960 00c5 00       		.byte	0
+ 961 00c6 13       		.uleb128 0x13
+ 962 00c7 04       		.uleb128 0x4
+ 963 00c8 01       		.byte	0x1
+ 964 00c9 0B       		.uleb128 0xb
+ 965 00ca 0B       		.uleb128 0xb
+ 966 00cb 49       		.uleb128 0x49
+ 967 00cc 13       		.uleb128 0x13
+ 968 00cd 3A       		.uleb128 0x3a
+ 969 00ce 0B       		.uleb128 0xb
+ 970 00cf 3B       		.uleb128 0x3b
+ 971 00d0 0B       		.uleb128 0xb
+ 972 00d1 01       		.uleb128 0x1
+ 973 00d2 13       		.uleb128 0x13
+ 974 00d3 00       		.byte	0
+ 975 00d4 00       		.byte	0
+ 976 00d5 14       		.uleb128 0x14
+ 977 00d6 13       		.uleb128 0x13
+ 978 00d7 01       		.byte	0x1
+ 979 00d8 0B       		.uleb128 0xb
+ 980 00d9 0B       		.uleb128 0xb
+ 981 00da 3A       		.uleb128 0x3a
+ 982 00db 0B       		.uleb128 0xb
+ 983 00dc 3B       		.uleb128 0x3b
+ 984 00dd 0B       		.uleb128 0xb
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 21
+
+
+ 985 00de 01       		.uleb128 0x1
+ 986 00df 13       		.uleb128 0x13
+ 987 00e0 00       		.byte	0
+ 988 00e1 00       		.byte	0
+ 989 00e2 15       		.uleb128 0x15
+ 990 00e3 0D       		.uleb128 0xd
+ 991 00e4 00       		.byte	0
+ 992 00e5 03       		.uleb128 0x3
+ 993 00e6 0E       		.uleb128 0xe
+ 994 00e7 3A       		.uleb128 0x3a
+ 995 00e8 0B       		.uleb128 0xb
+ 996 00e9 3B       		.uleb128 0x3b
+ 997 00ea 0B       		.uleb128 0xb
+ 998 00eb 49       		.uleb128 0x49
+ 999 00ec 13       		.uleb128 0x13
+ 1000 00ed 38       		.uleb128 0x38
+ 1001 00ee 0B       		.uleb128 0xb
+ 1002 00ef 00       		.byte	0
+ 1003 00f0 00       		.byte	0
+ 1004 00f1 16       		.uleb128 0x16
+ 1005 00f2 2E       		.uleb128 0x2e
+ 1006 00f3 01       		.byte	0x1
+ 1007 00f4 3F       		.uleb128 0x3f
+ 1008 00f5 19       		.uleb128 0x19
+ 1009 00f6 03       		.uleb128 0x3
+ 1010 00f7 0E       		.uleb128 0xe
+ 1011 00f8 3A       		.uleb128 0x3a
+ 1012 00f9 0B       		.uleb128 0xb
+ 1013 00fa 3B       		.uleb128 0x3b
+ 1014 00fb 0B       		.uleb128 0xb
+ 1015 00fc 27       		.uleb128 0x27
+ 1016 00fd 19       		.uleb128 0x19
+ 1017 00fe 49       		.uleb128 0x49
+ 1018 00ff 13       		.uleb128 0x13
+ 1019 0100 11       		.uleb128 0x11
+ 1020 0101 01       		.uleb128 0x1
+ 1021 0102 12       		.uleb128 0x12
+ 1022 0103 06       		.uleb128 0x6
+ 1023 0104 40       		.uleb128 0x40
+ 1024 0105 18       		.uleb128 0x18
+ 1025 0106 9742     		.uleb128 0x2117
+ 1026 0108 19       		.uleb128 0x19
+ 1027 0109 01       		.uleb128 0x1
+ 1028 010a 13       		.uleb128 0x13
+ 1029 010b 00       		.byte	0
+ 1030 010c 00       		.byte	0
+ 1031 010d 17       		.uleb128 0x17
+ 1032 010e 05       		.uleb128 0x5
+ 1033 010f 00       		.byte	0
+ 1034 0110 03       		.uleb128 0x3
+ 1035 0111 08       		.uleb128 0x8
+ 1036 0112 3A       		.uleb128 0x3a
+ 1037 0113 0B       		.uleb128 0xb
+ 1038 0114 3B       		.uleb128 0x3b
+ 1039 0115 0B       		.uleb128 0xb
+ 1040 0116 49       		.uleb128 0x49
+ 1041 0117 13       		.uleb128 0x13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 22
+
+
+ 1042 0118 02       		.uleb128 0x2
+ 1043 0119 17       		.uleb128 0x17
+ 1044 011a 00       		.byte	0
+ 1045 011b 00       		.byte	0
+ 1046 011c 18       		.uleb128 0x18
+ 1047 011d 34       		.uleb128 0x34
+ 1048 011e 00       		.byte	0
+ 1049 011f 03       		.uleb128 0x3
+ 1050 0120 0E       		.uleb128 0xe
+ 1051 0121 3A       		.uleb128 0x3a
+ 1052 0122 0B       		.uleb128 0xb
+ 1053 0123 3B       		.uleb128 0x3b
+ 1054 0124 0B       		.uleb128 0xb
+ 1055 0125 49       		.uleb128 0x49
+ 1056 0126 13       		.uleb128 0x13
+ 1057 0127 02       		.uleb128 0x2
+ 1058 0128 17       		.uleb128 0x17
+ 1059 0129 00       		.byte	0
+ 1060 012a 00       		.byte	0
+ 1061 012b 19       		.uleb128 0x19
+ 1062 012c 898201   		.uleb128 0x4109
+ 1063 012f 00       		.byte	0
+ 1064 0130 11       		.uleb128 0x11
+ 1065 0131 01       		.uleb128 0x1
+ 1066 0132 31       		.uleb128 0x31
+ 1067 0133 13       		.uleb128 0x13
+ 1068 0134 00       		.byte	0
+ 1069 0135 00       		.byte	0
+ 1070 0136 1A       		.uleb128 0x1a
+ 1071 0137 34       		.uleb128 0x34
+ 1072 0138 00       		.byte	0
+ 1073 0139 03       		.uleb128 0x3
+ 1074 013a 0E       		.uleb128 0xe
+ 1075 013b 3A       		.uleb128 0x3a
+ 1076 013c 0B       		.uleb128 0xb
+ 1077 013d 3B       		.uleb128 0x3b
+ 1078 013e 05       		.uleb128 0x5
+ 1079 013f 49       		.uleb128 0x49
+ 1080 0140 13       		.uleb128 0x13
+ 1081 0141 3F       		.uleb128 0x3f
+ 1082 0142 19       		.uleb128 0x19
+ 1083 0143 3C       		.uleb128 0x3c
+ 1084 0144 19       		.uleb128 0x19
+ 1085 0145 00       		.byte	0
+ 1086 0146 00       		.byte	0
+ 1087 0147 1B       		.uleb128 0x1b
+ 1088 0148 34       		.uleb128 0x34
+ 1089 0149 00       		.byte	0
+ 1090 014a 03       		.uleb128 0x3
+ 1091 014b 0E       		.uleb128 0xe
+ 1092 014c 3A       		.uleb128 0x3a
+ 1093 014d 0B       		.uleb128 0xb
+ 1094 014e 3B       		.uleb128 0x3b
+ 1095 014f 0B       		.uleb128 0xb
+ 1096 0150 49       		.uleb128 0x49
+ 1097 0151 13       		.uleb128 0x13
+ 1098 0152 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 23
+
+
+ 1099 0153 19       		.uleb128 0x19
+ 1100 0154 3C       		.uleb128 0x3c
+ 1101 0155 19       		.uleb128 0x19
+ 1102 0156 00       		.byte	0
+ 1103 0157 00       		.byte	0
+ 1104 0158 1C       		.uleb128 0x1c
+ 1105 0159 2E       		.uleb128 0x2e
+ 1106 015a 00       		.byte	0
+ 1107 015b 3F       		.uleb128 0x3f
+ 1108 015c 19       		.uleb128 0x19
+ 1109 015d 3C       		.uleb128 0x3c
+ 1110 015e 19       		.uleb128 0x19
+ 1111 015f 6E       		.uleb128 0x6e
+ 1112 0160 0E       		.uleb128 0xe
+ 1113 0161 03       		.uleb128 0x3
+ 1114 0162 0E       		.uleb128 0xe
+ 1115 0163 3A       		.uleb128 0x3a
+ 1116 0164 0B       		.uleb128 0xb
+ 1117 0165 3B       		.uleb128 0x3b
+ 1118 0166 0B       		.uleb128 0xb
+ 1119 0167 00       		.byte	0
+ 1120 0168 00       		.byte	0
+ 1121 0169 00       		.byte	0
+ 1122              		.section	.debug_loc,"",%progbits
+ 1123              	.Ldebug_loc0:
+ 1124              	.LLST0:
+ 1125 0000 00000000 		.4byte	.LVL0
+ 1126 0004 08000000 		.4byte	.LVL2
+ 1127 0008 0100     		.2byte	0x1
+ 1128 000a 50       		.byte	0x50
+ 1129 000b 08000000 		.4byte	.LVL2
+ 1130 000f 14000000 		.4byte	.LVL6
+ 1131 0013 0400     		.2byte	0x4
+ 1132 0015 F3       		.byte	0xf3
+ 1133 0016 01       		.uleb128 0x1
+ 1134 0017 50       		.byte	0x50
+ 1135 0018 9F       		.byte	0x9f
+ 1136 0019 14000000 		.4byte	.LVL6
+ 1137 001d 1A000000 		.4byte	.LVL7
+ 1138 0021 0100     		.2byte	0x1
+ 1139 0023 50       		.byte	0x50
+ 1140 0024 1A000000 		.4byte	.LVL7
+ 1141 0028 22000000 		.4byte	.LFE528
+ 1142 002c 0400     		.2byte	0x4
+ 1143 002e F3       		.byte	0xf3
+ 1144 002f 01       		.uleb128 0x1
+ 1145 0030 50       		.byte	0x50
+ 1146 0031 9F       		.byte	0x9f
+ 1147 0032 00000000 		.4byte	0
+ 1148 0036 00000000 		.4byte	0
+ 1149              	.LLST1:
+ 1150 003a 00000000 		.4byte	.LVL0
+ 1151 003e 08000000 		.4byte	.LVL2
+ 1152 0042 0100     		.2byte	0x1
+ 1153 0044 51       		.byte	0x51
+ 1154 0045 08000000 		.4byte	.LVL2
+ 1155 0049 0C000000 		.4byte	.LVL3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 24
+
+
+ 1156 004d 0100     		.2byte	0x1
+ 1157 004f 55       		.byte	0x55
+ 1158 0050 0C000000 		.4byte	.LVL3
+ 1159 0054 10000000 		.4byte	.LVL4
+ 1160 0058 0300     		.2byte	0x3
+ 1161 005a 75       		.byte	0x75
+ 1162 005b 7F       		.sleb128 -1
+ 1163 005c 9F       		.byte	0x9f
+ 1164 005d 10000000 		.4byte	.LVL4
+ 1165 0061 14000000 		.4byte	.LVL6
+ 1166 0065 0100     		.2byte	0x1
+ 1167 0067 55       		.byte	0x55
+ 1168 0068 14000000 		.4byte	.LVL6
+ 1169 006c 1A000000 		.4byte	.LVL7
+ 1170 0070 0100     		.2byte	0x1
+ 1171 0072 51       		.byte	0x51
+ 1172 0073 1A000000 		.4byte	.LVL7
+ 1173 0077 1E000000 		.4byte	.LVL8
+ 1174 007b 0100     		.2byte	0x1
+ 1175 007d 55       		.byte	0x55
+ 1176 007e 00000000 		.4byte	0
+ 1177 0082 00000000 		.4byte	0
+ 1178              	.LLST2:
+ 1179 0086 00000000 		.4byte	.LVL0
+ 1180 008a 08000000 		.4byte	.LVL2
+ 1181 008e 0100     		.2byte	0x1
+ 1182 0090 52       		.byte	0x52
+ 1183 0091 08000000 		.4byte	.LVL2
+ 1184 0095 14000000 		.4byte	.LVL6
+ 1185 0099 0100     		.2byte	0x1
+ 1186 009b 56       		.byte	0x56
+ 1187 009c 14000000 		.4byte	.LVL6
+ 1188 00a0 1A000000 		.4byte	.LVL7
+ 1189 00a4 0100     		.2byte	0x1
+ 1190 00a6 52       		.byte	0x52
+ 1191 00a7 1A000000 		.4byte	.LVL7
+ 1192 00ab 1E000000 		.4byte	.LVL8
+ 1193 00af 0100     		.2byte	0x1
+ 1194 00b1 56       		.byte	0x56
+ 1195 00b2 1E000000 		.4byte	.LVL8
+ 1196 00b6 22000000 		.4byte	.LFE528
+ 1197 00ba 0400     		.2byte	0x4
+ 1198 00bc F3       		.byte	0xf3
+ 1199 00bd 01       		.uleb128 0x1
+ 1200 00be 52       		.byte	0x52
+ 1201 00bf 9F       		.byte	0x9f
+ 1202 00c0 00000000 		.4byte	0
+ 1203 00c4 00000000 		.4byte	0
+ 1204              	.LLST3:
+ 1205 00c8 02000000 		.4byte	.LVL1
+ 1206 00cc 08000000 		.4byte	.LVL2
+ 1207 00d0 0200     		.2byte	0x2
+ 1208 00d2 30       		.byte	0x30
+ 1209 00d3 9F       		.byte	0x9f
+ 1210 00d4 08000000 		.4byte	.LVL2
+ 1211 00d8 14000000 		.4byte	.LVL6
+ 1212 00dc 0100     		.2byte	0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 25
+
+
+ 1213 00de 54       		.byte	0x54
+ 1214 00df 14000000 		.4byte	.LVL6
+ 1215 00e3 1A000000 		.4byte	.LVL7
+ 1216 00e7 0200     		.2byte	0x2
+ 1217 00e9 30       		.byte	0x30
+ 1218 00ea 9F       		.byte	0x9f
+ 1219 00eb 1A000000 		.4byte	.LVL7
+ 1220 00ef 22000000 		.4byte	.LFE528
+ 1221 00f3 0100     		.2byte	0x1
+ 1222 00f5 54       		.byte	0x54
+ 1223 00f6 00000000 		.4byte	0
+ 1224 00fa 00000000 		.4byte	0
+ 1225              	.LLST4:
+ 1226 00fe 00000000 		.4byte	.LVL9
+ 1227 0102 08000000 		.4byte	.LVL11
+ 1228 0106 0100     		.2byte	0x1
+ 1229 0108 50       		.byte	0x50
+ 1230 0109 08000000 		.4byte	.LVL11
+ 1231 010d 1A000000 		.4byte	.LVL15
+ 1232 0111 0400     		.2byte	0x4
+ 1233 0113 F3       		.byte	0xf3
+ 1234 0114 01       		.uleb128 0x1
+ 1235 0115 50       		.byte	0x50
+ 1236 0116 9F       		.byte	0x9f
+ 1237 0117 1A000000 		.4byte	.LVL15
+ 1238 011b 20000000 		.4byte	.LVL16
+ 1239 011f 0100     		.2byte	0x1
+ 1240 0121 50       		.byte	0x50
+ 1241 0122 20000000 		.4byte	.LVL16
+ 1242 0126 28000000 		.4byte	.LFE529
+ 1243 012a 0400     		.2byte	0x4
+ 1244 012c F3       		.byte	0xf3
+ 1245 012d 01       		.uleb128 0x1
+ 1246 012e 50       		.byte	0x50
+ 1247 012f 9F       		.byte	0x9f
+ 1248 0130 00000000 		.4byte	0
+ 1249 0134 00000000 		.4byte	0
+ 1250              	.LLST5:
+ 1251 0138 00000000 		.4byte	.LVL9
+ 1252 013c 08000000 		.4byte	.LVL11
+ 1253 0140 0100     		.2byte	0x1
+ 1254 0142 51       		.byte	0x51
+ 1255 0143 08000000 		.4byte	.LVL11
+ 1256 0147 1A000000 		.4byte	.LVL15
+ 1257 014b 0100     		.2byte	0x1
+ 1258 014d 55       		.byte	0x55
+ 1259 014e 1A000000 		.4byte	.LVL15
+ 1260 0152 20000000 		.4byte	.LVL16
+ 1261 0156 0100     		.2byte	0x1
+ 1262 0158 51       		.byte	0x51
+ 1263 0159 20000000 		.4byte	.LVL16
+ 1264 015d 24000000 		.4byte	.LVL17
+ 1265 0161 0100     		.2byte	0x1
+ 1266 0163 55       		.byte	0x55
+ 1267 0164 00000000 		.4byte	0
+ 1268 0168 00000000 		.4byte	0
+ 1269              	.LLST6:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 26
+
+
+ 1270 016c 00000000 		.4byte	.LVL9
+ 1271 0170 08000000 		.4byte	.LVL11
+ 1272 0174 0100     		.2byte	0x1
+ 1273 0176 52       		.byte	0x52
+ 1274 0177 08000000 		.4byte	.LVL11
+ 1275 017b 1A000000 		.4byte	.LVL15
+ 1276 017f 0100     		.2byte	0x1
+ 1277 0181 56       		.byte	0x56
+ 1278 0182 1A000000 		.4byte	.LVL15
+ 1279 0186 20000000 		.4byte	.LVL16
+ 1280 018a 0100     		.2byte	0x1
+ 1281 018c 52       		.byte	0x52
+ 1282 018d 20000000 		.4byte	.LVL16
+ 1283 0191 24000000 		.4byte	.LVL17
+ 1284 0195 0100     		.2byte	0x1
+ 1285 0197 56       		.byte	0x56
+ 1286 0198 24000000 		.4byte	.LVL17
+ 1287 019c 28000000 		.4byte	.LFE529
+ 1288 01a0 0400     		.2byte	0x4
+ 1289 01a2 F3       		.byte	0xf3
+ 1290 01a3 01       		.uleb128 0x1
+ 1291 01a4 52       		.byte	0x52
+ 1292 01a5 9F       		.byte	0x9f
+ 1293 01a6 00000000 		.4byte	0
+ 1294 01aa 00000000 		.4byte	0
+ 1295              	.LLST7:
+ 1296 01ae 02000000 		.4byte	.LVL10
+ 1297 01b2 08000000 		.4byte	.LVL11
+ 1298 01b6 0200     		.2byte	0x2
+ 1299 01b8 30       		.byte	0x30
+ 1300 01b9 9F       		.byte	0x9f
+ 1301 01ba 08000000 		.4byte	.LVL11
+ 1302 01be 1A000000 		.4byte	.LVL15
+ 1303 01c2 0100     		.2byte	0x1
+ 1304 01c4 54       		.byte	0x54
+ 1305 01c5 1A000000 		.4byte	.LVL15
+ 1306 01c9 20000000 		.4byte	.LVL16
+ 1307 01cd 0200     		.2byte	0x2
+ 1308 01cf 30       		.byte	0x30
+ 1309 01d0 9F       		.byte	0x9f
+ 1310 01d1 20000000 		.4byte	.LVL16
+ 1311 01d5 28000000 		.4byte	.LFE529
+ 1312 01d9 0100     		.2byte	0x1
+ 1313 01db 54       		.byte	0x54
+ 1314 01dc 00000000 		.4byte	0
+ 1315 01e0 00000000 		.4byte	0
+ 1316              		.section	.debug_aranges,"",%progbits
+ 1317 0000 24000000 		.4byte	0x24
+ 1318 0004 0200     		.2byte	0x2
+ 1319 0006 00000000 		.4byte	.Ldebug_info0
+ 1320 000a 04       		.byte	0x4
+ 1321 000b 00       		.byte	0
+ 1322 000c 0000     		.2byte	0
+ 1323 000e 0000     		.2byte	0
+ 1324 0010 00000000 		.4byte	.LFB528
+ 1325 0014 22000000 		.4byte	.LFE528-.LFB528
+ 1326 0018 00000000 		.4byte	.LFB529
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 27
+
+
+ 1327 001c 28000000 		.4byte	.LFE529-.LFB529
+ 1328 0020 00000000 		.4byte	0
+ 1329 0024 00000000 		.4byte	0
+ 1330              		.section	.debug_ranges,"",%progbits
+ 1331              	.Ldebug_ranges0:
+ 1332 0000 00000000 		.4byte	.LFB528
+ 1333 0004 22000000 		.4byte	.LFE528
+ 1334 0008 00000000 		.4byte	.LFB529
+ 1335 000c 28000000 		.4byte	.LFE529
+ 1336 0010 00000000 		.4byte	0
+ 1337 0014 00000000 		.4byte	0
+ 1338              		.section	.debug_line,"",%progbits
+ 1339              	.Ldebug_line0:
+ 1340 0000 F0020000 		.section	.debug_str,"MS",%progbits,1
+ 1340      0200A002 
+ 1340      00000201 
+ 1340      FB0E0D00 
+ 1340      01010101 
+ 1341              	.LASF90:
+ 1342 0000 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\psoc6-realtime-processing\\B"
+ 1342      73657273 
+ 1342      5C636F64 
+ 1342      79675C67 
+ 1342      69745C70 
+ 1343 002e 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\\CE218137_BLE_Proximity_RTOS01.cyd"
+ 1343      54435F49 
+ 1343      4D552E63 
+ 1343      7964736E 
+ 1343      5C434532 
+ 1344 0060 736E00   		.ascii	"sn\000"
+ 1345              	.LASF84:
+ 1346 0063 4144435F 		.ascii	"ADC_currentConfig\000"
+ 1346      63757272 
+ 1346      656E7443 
+ 1346      6F6E6669 
+ 1346      6700
+ 1347              	.LASF35:
+ 1348 0075 43595F53 		.ascii	"CY_SAR_RANGE_COND_OUTSIDE\000"
+ 1348      41525F52 
+ 1348      414E4745 
+ 1348      5F434F4E 
+ 1348      445F4F55 
+ 1349              	.LASF71:
+ 1350 008f 6E756D43 		.ascii	"numChannels\000"
+ 1350      68616E6E 
+ 1350      656C7300 
+ 1351              	.LASF63:
+ 1352 009b 43595F42 		.ascii	"CY_BLE_CONN_STATE_CONNECTED\000"
+ 1352      4C455F43 
+ 1352      4F4E4E5F 
+ 1352      53544154 
+ 1352      455F434F 
+ 1353              	.LASF24:
+ 1354 00b7 72784275 		.ascii	"rxBufSize\000"
+ 1354      6653697A 
+ 1354      6500
+ 1355              	.LASF60:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 28
+
+
+ 1356 00c1 63795F65 		.ascii	"cy_en_ble_adv_state_t\000"
+ 1356      6E5F626C 
+ 1356      655F6164 
+ 1356      765F7374 
+ 1356      6174655F 
+ 1357              	.LASF2:
+ 1358 00d7 73686F72 		.ascii	"short int\000"
+ 1358      7420696E 
+ 1358      7400
+ 1359              	.LASF87:
+ 1360 00e1 53544449 		.ascii	"STDIO_GetChar\000"
+ 1360      4F5F4765 
+ 1360      74436861 
+ 1360      7200
+ 1361              	.LASF13:
+ 1362 00ef 73697A65 		.ascii	"sizetype\000"
+ 1362      74797065 
+ 1362      00
+ 1363              	.LASF46:
+ 1364 00f8 73617449 		.ascii	"satIntrMask\000"
+ 1364      6E74724D 
+ 1364      61736B00 
+ 1365              	.LASF38:
+ 1366 0104 73616D70 		.ascii	"sampleCtrl\000"
+ 1366      6C654374 
+ 1366      726C00
+ 1367              	.LASF75:
+ 1368 010f 4144435F 		.ascii	"ADC_CONFIG_STRUCT\000"
+ 1368      434F4E46 
+ 1368      49475F53 
+ 1368      54525543 
+ 1368      5400
+ 1369              	.LASF64:
+ 1370 0121 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_SRVC_DISCOVERING\000"
+ 1370      4C455F43 
+ 1370      4F4E4E5F 
+ 1370      53544154 
+ 1370      455F434C 
+ 1371              	.LASF31:
+ 1372 014b 63795F73 		.ascii	"cy_stc_scb_spi_context_t\000"
+ 1372      74635F73 
+ 1372      63625F73 
+ 1372      70695F63 
+ 1372      6F6E7465 
+ 1373              	.LASF41:
+ 1374 0164 72616E67 		.ascii	"rangeThres\000"
+ 1374      65546872 
+ 1374      657300
+ 1375              	.LASF88:
+ 1376 016f 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1376      43313120 
+ 1376      352E342E 
+ 1376      31203230 
+ 1376      31363036 
+ 1377 01a2 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m4 -mfloat-abi=s"
+ 1377      20726576 
+ 1377      6973696F 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 29
+
+
+ 1377      6E203233 
+ 1377      37373135 
+ 1378 01d5 6F667466 		.ascii	"oftfp -mfpu=fpv4-sp-d16 -mthumb -g -Og -ffunction-s"
+ 1378      70202D6D 
+ 1378      6670753D 
+ 1378      66707634 
+ 1378      2D73702D 
+ 1379 0208 65637469 		.ascii	"ections -ffat-lto-objects\000"
+ 1379      6F6E7320 
+ 1379      2D666661 
+ 1379      742D6C74 
+ 1379      6F2D6F62 
+ 1380              	.LASF56:
+ 1381 0222 43595F42 		.ascii	"CY_BLE_ADV_STATE_STOPPED\000"
+ 1381      4C455F41 
+ 1381      44565F53 
+ 1381      54415445 
+ 1381      5F53544F 
+ 1382              	.LASF7:
+ 1383 023b 5F5F7569 		.ascii	"__uint32_t\000"
+ 1383      6E743332 
+ 1383      5F7400
+ 1384              	.LASF36:
+ 1385 0246 63795F65 		.ascii	"cy_en_sar_range_detect_condition_t\000"
+ 1385      6E5F7361 
+ 1385      725F7261 
+ 1385      6E67655F 
+ 1385      64657465 
+ 1386              	.LASF78:
+ 1387 0269 6E436861 		.ascii	"nChars\000"
+ 1387      727300
+ 1388              	.LASF62:
+ 1389 0270 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_DISCONNECTED_DISCOVERED\000"
+ 1389      4C455F43 
+ 1389      4F4E4E5F 
+ 1389      53544154 
+ 1389      455F434C 
+ 1390              	.LASF66:
+ 1391 02a1 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_CHAR_DISCOVERING\000"
+ 1391      4C455F43 
+ 1391      4F4E4E5F 
+ 1391      53544154 
+ 1391      455F434C 
+ 1392              	.LASF25:
+ 1393 02cb 72784275 		.ascii	"rxBufIdx\000"
+ 1393      66496478 
+ 1393      00
+ 1394              	.LASF42:
+ 1395 02d4 72616E67 		.ascii	"rangeCond\000"
+ 1395      65436F6E 
+ 1395      6400
+ 1396              	.LASF15:
+ 1397 02de 75696E74 		.ascii	"uint8_t\000"
+ 1397      385F7400 
+ 1398              	.LASF80:
+ 1399 02e6 63795F62 		.ascii	"cy_ble_advState\000"
+ 1399      6C655F61 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 30
+
+
+ 1399      64765374 
+ 1399      61746500 
+ 1400              	.LASF74:
+ 1401 02f6 636C6B44 		.ascii	"clkDivider\000"
+ 1401      69766964 
+ 1401      657200
+ 1402              	.LASF21:
+ 1403 0301 63795F63 		.ascii	"cy_cb_scb_spi_handle_events_t\000"
+ 1403      625F7363 
+ 1403      625F7370 
+ 1403      695F6861 
+ 1403      6E646C65 
+ 1404              	.LASF61:
+ 1405 031f 43595F42 		.ascii	"CY_BLE_CONN_STATE_DISCONNECTED\000"
+ 1405      4C455F43 
+ 1405      4F4E4E5F 
+ 1405      53544154 
+ 1405      455F4449 
+ 1406              	.LASF76:
+ 1407 033e 5F777269 		.ascii	"_write\000"
+ 1407      746500
+ 1408              	.LASF53:
+ 1409 0345 62644861 		.ascii	"bdHandle\000"
+ 1409      6E646C65 
+ 1409      00
+ 1410              	.LASF50:
+ 1411 034e 636F6E66 		.ascii	"configRouting\000"
+ 1411      6967526F 
+ 1411      7574696E 
+ 1411      6700
+ 1412              	.LASF18:
+ 1413 035c 666C6F61 		.ascii	"float\000"
+ 1413      7400
+ 1414              	.LASF26:
+ 1415 0362 74784275 		.ascii	"txBuf\000"
+ 1415      6600
+ 1416              	.LASF32:
+ 1417 0368 43595F53 		.ascii	"CY_SAR_RANGE_COND_BELOW\000"
+ 1417      41525F52 
+ 1417      414E4745 
+ 1417      5F434F4E 
+ 1417      445F4245 
+ 1418              	.LASF9:
+ 1419 0380 6C6F6E67 		.ascii	"long long int\000"
+ 1419      206C6F6E 
+ 1419      6720696E 
+ 1419      7400
+ 1420              	.LASF44:
+ 1421 038e 6368616E 		.ascii	"chanConfig\000"
+ 1421      436F6E66 
+ 1421      696700
+ 1422              	.LASF81:
+ 1423 0399 63795F62 		.ascii	"cy_ble_connHandle\000"
+ 1423      6C655F63 
+ 1423      6F6E6E48 
+ 1423      616E646C 
+ 1423      6500
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 31
+
+
+ 1424              	.LASF65:
+ 1425 03ab 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_INCL_DISCOVERING\000"
+ 1425      4C455F43 
+ 1425      4F4E4E5F 
+ 1425      53544154 
+ 1425      455F434C 
+ 1426              	.LASF30:
+ 1427 03d5 696E6974 		.ascii	"initKey\000"
+ 1427      4B657900 
+ 1428              	.LASF27:
+ 1429 03dd 74784275 		.ascii	"txBufSize\000"
+ 1429      6653697A 
+ 1429      6500
+ 1430              	.LASF86:
+ 1431 03e7 53544449 		.ascii	"STDIO_PutChar\000"
+ 1431      4F5F5075 
+ 1431      74436861 
+ 1431      7200
+ 1432              	.LASF28:
+ 1433 03f5 74784275 		.ascii	"txBufIdx\000"
+ 1433      66496478 
+ 1433      00
+ 1434              	.LASF4:
+ 1435 03fe 5F5F7569 		.ascii	"__uint8_t\000"
+ 1435      6E74385F 
+ 1435      7400
+ 1436              	.LASF68:
+ 1437 0408 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_DISCOVERED\000"
+ 1437      4C455F43 
+ 1437      4F4E4E5F 
+ 1437      53544154 
+ 1437      455F434C 
+ 1438              	.LASF12:
+ 1439 042c 6C6F6E67 		.ascii	"long double\000"
+ 1439      20646F75 
+ 1439      626C6500 
+ 1440              	.LASF67:
+ 1441 0438 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_DESCR_DISCOVERING\000"
+ 1441      4C455F43 
+ 1441      4F4E4E5F 
+ 1441      53544154 
+ 1441      455F434C 
+ 1442              	.LASF1:
+ 1443 0463 756E7369 		.ascii	"unsigned char\000"
+ 1443      676E6564 
+ 1443      20636861 
+ 1443      7200
+ 1444              	.LASF59:
+ 1445 0471 43595F42 		.ascii	"CY_BLE_ADV_STATE_STOP_INITIATED\000"
+ 1445      4C455F41 
+ 1445      44565F53 
+ 1445      54415445 
+ 1445      5F53544F 
+ 1446              	.LASF83:
+ 1447 0491 43595F45 		.ascii	"CY_EINK_SPIM_context\000"
+ 1447      494E4B5F 
+ 1447      5350494D 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 32
+
+
+ 1447      5F636F6E 
+ 1447      74657874 
+ 1448              	.LASF0:
+ 1449 04a6 7369676E 		.ascii	"signed char\000"
+ 1449      65642063 
+ 1449      68617200 
+ 1450              	.LASF10:
+ 1451 04b2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1451      206C6F6E 
+ 1451      6720756E 
+ 1451      7369676E 
+ 1451      65642069 
+ 1452              	.LASF17:
+ 1453 04c9 75696E74 		.ascii	"uint32_t\000"
+ 1453      33325F74 
+ 1453      00
+ 1454              	.LASF11:
+ 1455 04d2 756E7369 		.ascii	"unsigned int\000"
+ 1455      676E6564 
+ 1455      20696E74 
+ 1455      00
+ 1456              	.LASF49:
+ 1457 04df 6D757853 		.ascii	"muxSwitchSqCtrl\000"
+ 1457      77697463 
+ 1457      68537143 
+ 1457      74726C00 
+ 1458              	.LASF54:
+ 1459 04ef 61747449 		.ascii	"attId\000"
+ 1459      6400
+ 1460              	.LASF22:
+ 1461 04f5 73746174 		.ascii	"status\000"
+ 1461      757300
+ 1462              	.LASF3:
+ 1463 04fc 73686F72 		.ascii	"short unsigned int\000"
+ 1463      7420756E 
+ 1463      7369676E 
+ 1463      65642069 
+ 1463      6E7400
+ 1464              	.LASF23:
+ 1465 050f 72784275 		.ascii	"rxBuf\000"
+ 1465      6600
+ 1466              	.LASF73:
+ 1467 0515 6D697363 		.ascii	"miscConfig\000"
+ 1467      436F6E66 
+ 1467      696700
+ 1468              	.LASF14:
+ 1469 0520 63686172 		.ascii	"char\000"
+ 1469      00
+ 1470              	.LASF48:
+ 1471 0525 6D757853 		.ascii	"muxSwitch\000"
+ 1471      77697463 
+ 1471      6800
+ 1472              	.LASF29:
+ 1473 052f 63624576 		.ascii	"cbEvents\000"
+ 1473      656E7473 
+ 1473      00
+ 1474              	.LASF34:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 33
+
+
+ 1475 0538 43595F53 		.ascii	"CY_SAR_RANGE_COND_ABOVE\000"
+ 1475      41525F52 
+ 1475      414E4745 
+ 1475      5F434F4E 
+ 1475      445F4142 
+ 1476              	.LASF16:
+ 1477 0550 696E7433 		.ascii	"int32_t\000"
+ 1477      325F7400 
+ 1478              	.LASF85:
+ 1479 0558 4144435F 		.ascii	"ADC_allConfigs\000"
+ 1479      616C6C43 
+ 1479      6F6E6669 
+ 1479      677300
+ 1480              	.LASF20:
+ 1481 0567 5F426F6F 		.ascii	"_Bool\000"
+ 1481      6C00
+ 1482              	.LASF72:
+ 1483 056d 6877436F 		.ascii	"hwConfigStc\000"
+ 1483      6E666967 
+ 1483      53746300 
+ 1484              	.LASF82:
+ 1485 0579 63795F62 		.ascii	"cy_ble_connState\000"
+ 1485      6C655F63 
+ 1485      6F6E6E53 
+ 1485      74617465 
+ 1485      00
+ 1486              	.LASF57:
+ 1487 058a 43595F42 		.ascii	"CY_BLE_ADV_STATE_ADV_INITIATED\000"
+ 1487      4C455F41 
+ 1487      44565F53 
+ 1487      54415445 
+ 1487      5F414456 
+ 1488              	.LASF8:
+ 1489 05a9 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1489      20756E73 
+ 1489      69676E65 
+ 1489      6420696E 
+ 1489      7400
+ 1490              	.LASF19:
+ 1491 05bb 646F7562 		.ascii	"double\000"
+ 1491      6C6500
+ 1492              	.LASF91:
+ 1493 05c2 63795F73 		.ascii	"cy_stc_scb_spi_context\000"
+ 1493      74635F73 
+ 1493      63625F73 
+ 1493      70695F63 
+ 1493      6F6E7465 
+ 1494              	.LASF77:
+ 1495 05d9 5F726561 		.ascii	"_read\000"
+ 1495      6400
+ 1496              	.LASF5:
+ 1497 05df 5F5F696E 		.ascii	"__int32_t\000"
+ 1497      7433325F 
+ 1497      7400
+ 1498              	.LASF33:
+ 1499 05e9 43595F53 		.ascii	"CY_SAR_RANGE_COND_INSIDE\000"
+ 1499      41525F52 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 34
+
+
+ 1499      414E4745 
+ 1499      5F434F4E 
+ 1499      445F494E 
+ 1500              	.LASF39:
+ 1501 0602 73616D70 		.ascii	"sampleTime01\000"
+ 1501      6C655469 
+ 1501      6D653031 
+ 1501      00
+ 1502              	.LASF52:
+ 1503 060f 63795F73 		.ascii	"cy_stc_sar_config_t\000"
+ 1503      74635F73 
+ 1503      61725F63 
+ 1503      6F6E6669 
+ 1503      675F7400 
+ 1504              	.LASF43:
+ 1505 0623 6368616E 		.ascii	"chanEn\000"
+ 1505      456E00
+ 1506              	.LASF51:
+ 1507 062a 76726566 		.ascii	"vrefMvValue\000"
+ 1507      4D765661 
+ 1507      6C756500 
+ 1508              	.LASF69:
+ 1509 0636 63795F65 		.ascii	"cy_en_ble_conn_state_t\000"
+ 1509      6E5F626C 
+ 1509      655F636F 
+ 1509      6E6E5F73 
+ 1509      74617465 
+ 1510              	.LASF40:
+ 1511 064d 73616D70 		.ascii	"sampleTime23\000"
+ 1511      6C655469 
+ 1511      6D653233 
+ 1511      00
+ 1512              	.LASF55:
+ 1513 065a 63795F73 		.ascii	"cy_stc_ble_conn_handle_t\000"
+ 1513      74635F62 
+ 1513      6C655F63 
+ 1513      6F6E6E5F 
+ 1513      68616E64 
+ 1514              	.LASF6:
+ 1515 0673 6C6F6E67 		.ascii	"long int\000"
+ 1515      20696E74 
+ 1515      00
+ 1516              	.LASF79:
+ 1517 067c 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1517      52784275 
+ 1517      66666572 
+ 1517      00
+ 1518              	.LASF58:
+ 1519 0689 43595F42 		.ascii	"CY_BLE_ADV_STATE_ADVERTISING\000"
+ 1519      4C455F41 
+ 1519      44565F53 
+ 1519      54415445 
+ 1519      5F414456 
+ 1520              	.LASF89:
+ 1521 06a6 47656E65 		.ascii	"Generated_Source\\PSoC6\\pdl\\utilities\\retarget_i"
+ 1521      72617465 
+ 1521      645F536F 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccRjvytV.s 			page 35
+
+
+ 1521      75726365 
+ 1521      5C50536F 
+ 1522 06d5 6F5C7265 		.ascii	"o\\retarget.c\000"
+ 1522      74617267 
+ 1522      65742E63 
+ 1522      00
+ 1523              	.LASF37:
+ 1524 06e2 6374726C 		.ascii	"ctrl\000"
+ 1524      00
+ 1525              	.LASF45:
+ 1526 06e7 696E7472 		.ascii	"intrMask\000"
+ 1526      4D61736B 
+ 1526      00
+ 1527              	.LASF47:
+ 1528 06f0 72616E67 		.ascii	"rangeIntrMask\000"
+ 1528      65496E74 
+ 1528      724D6173 
+ 1528      6B00
+ 1529              	.LASF70:
+ 1530 06fe 6368616E 		.ascii	"channelBase\000"
+ 1530      6E656C42 
+ 1530      61736500 
+ 1531              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

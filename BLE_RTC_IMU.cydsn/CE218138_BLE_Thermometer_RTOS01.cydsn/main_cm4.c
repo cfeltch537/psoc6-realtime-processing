@@ -55,6 +55,7 @@
 #include "ble_task.h"
 #include "status_led_task.h"  
 #include "temperature_task.h"
+#include "imu_task.h"
 #include "display_task.h"
 #include "rtc_task.h"
 #include "uart_debug.h"  
@@ -102,6 +103,8 @@ int main()
     bleCommandQ         = xQueueCreate(BLE_COMMAND_QUEUE_LEN, sizeof(ble_command_t));
     temperatureCommandQ = xQueueCreate(TEMP_COMMAND_QUEUE_LEN, sizeof(temperature_command_t));
     temperatureDataQ    = xQueueCreate(TEMP_DATA_QUEUE_LEN, sizeof(float));
+    imuCommandQ = xQueueCreate(TEMP_COMMAND_QUEUE_LEN, sizeof(imu_command_t));
+    imuDataQ    = xQueueCreate(TEMP_DATA_QUEUE_LEN, sizeof(float));
     statusLedDataQ      = xQueueCreate(STATUS_LED_QUEUE_LEN, sizeof(status_led_data_t));
          
     /* Create the user Tasks. See the respective Task definition for more
@@ -111,6 +114,8 @@ int main()
     xTaskCreate(Task_RTC, "RTC task", 400,
                 NULL, TASK_DISPLAY_PRIORITY, NULL);
     xTaskCreate(Task_Temperature, "Temperature Task", TASK_TEMPERATURE_STACK_SIZE,
+                NULL, TASK_TEMPERATURE_PRIORITY, NULL);
+    xTaskCreate(Task_IMU, "IMU Task", TASK_TEMPERATURE_STACK_SIZE,
                 NULL, TASK_TEMPERATURE_PRIORITY, NULL);
     xTaskCreate(Task_StatusLed, "Status LED Task", TASK_STATUS_LED_STACK_SIZE,
                 NULL, TASK_STATUS_LED_PRIORITY, NULL);

@@ -61,7 +61,7 @@ typedef enum
     PROCESS_BLE_EVENTS,
     HANDLE_GPIO_INTERRUPT,
     SEND_TEMPERATURE_INDICATION,
-    SEND_IMU_INDICATION,
+    SEND_IMU_NOTIFICATION
 }   ble_commands_list_t;
 
 /* Data-type of BLE commands and data */
@@ -69,6 +69,7 @@ typedef struct
 {   
     ble_commands_list_t command;
     float               temperatureData;
+    uint32_t              imuData;
 }   ble_command_t;
 
 /* Handle for the Queue that contains BLE commands */

@@ -65,7 +65,8 @@ void static StackEventHandler(uint32_t eventType, void *eventParam);
 void static DisconnectEventHandler(void);
 void static AdvertisementEventHandler(void);
 void static SendTemperatureIndication (float temperature);
-void static SendIMUIndication (float temperature);
+void static SendIMUNotification (uint32 accX);
+void static SendBleNotification (cy_ble_gatt_db_attr_handle_t charHandle, uint8_t* value, uint16_t len);
 void CallBackHts(uint32 event, void *eventParam);
 
 /* Variable that stores the BLE connection parameters */
@@ -73,8 +74,10 @@ cy_stc_ble_conn_handle_t static connectionHandle;
 
 /* Static flag used to request HTS indications */
 bool static requestHtsIndication    =   false;
+
 /* Static flag used to request IMU ACC indications */
 bool static requestImuAccIndication    =   false;
+bool static requestImuAccNotification    =   false;
 
 /* Queue handle used for commands to BLE Task */
 QueueHandle_t bleCommandQ; 
@@ -159,9 +162,9 @@ void Task_Ble(void *pvParameters)
                     break;    
                     
             /*~~~~~~~~~~~~~~ Command to send temperature indication ~~~~~~~~~~*/            
-                case SEND_IMU_INDICATION:
+                case SEND_IMU_NOTIFICATION:
                     /* Send temperature data over BLE HTS notification */
-                    SendIMUIndication(bleCommand.temperatureData);
+                    SendIMUNotification(bleCommand.imuData);
                     break;    
                     
             /*~~~~~~~~~~~~~~ Command to process GPIO interrupt ~~~~~~~~~~~~~~~*/               
@@ -291,8 +294,8 @@ void static StackEventHandler(uint32_t eventType, void *eventParam)
     
     /* Variable used to store the return values of RTOS APIs */
     BaseType_t rtosApiResult;
-    
-    (void)eventParam;
+        
+    cy_stc_ble_gatts_write_cmd_req_param_t *writeReqParameter;
     
     /* Take an action based on the current event */
     switch (eventType)
@@ -354,24 +357,43 @@ void static StackEventHandler(uint32_t eventType, void *eventParam)
         }
         
         /* This event is received when indication are enabled by the central */
-        case CY_BLE_EVT_GATTS_INDICATION_ENABLED:
-            /* Set the requestHtsIndication flag */
-            requestHtsIndication = true;
-             /* Request periodic temperature data */
-            //temperatureCommand = SEND_TEMPERATURE;
-            //xQueueOverwrite(temperatureCommandQ, &temperatureCommand);
-            Task_DebugPrintf("Info     : BLE - GATT IMU Accel Indication Enabled ", 0u);
-            break;
+        case CY_BLE_EVT_GATTS_WRITE_REQ:
+        {
+            writeReqParameter = (cy_stc_ble_gatts_write_cmd_req_param_t *) eventParam;
 
-        /* This event is received when indication are disabled by the central */
-        case CY_BLE_EVT_GATTS_INDICATION_DISABLED:
-            /* Reset the requestHtsIndication flag */
-            requestHtsIndication = false;
-            /* Request Temperature Task not to send any data */
-            //temperatureCommand  = SEND_NONE;
-            //xQueueOverwrite(temperatureCommandQ, &temperatureCommand);
-            Task_DebugPrintf("Info     : BLE - GATT IMU Accel Indication Disabled ", 0u);
+            if(writeReqParameter->handleValPair.attrHandle == CY_BLE_SENSOR_DATA_IMU_CCCD_DESC_HANDLE){
+                
+                /* Store data in the database */
+                 cy_en_ble_gatt_err_code_t gattErr = Cy_BLE_GATTS_WriteAttributeValuePeer( &writeReqParameter->connHandle, &writeReqParameter->handleValPair);
+                 if(gattErr != CY_BLE_GATT_ERR_NONE)
+                 {
+                     /* Send an Error Response */
+                     cy_stc_ble_gatt_err_info_t errInfo =
+                     {
+                         .opCode = CY_BLE_GATT_WRITE_REQ,
+                         .attrHandle = writeReqParameter->handleValPair.attrHandle,
+                         .errorCode = gattErr
+                     };
+                    Cy_BLE_GATTS_SendErrorRsp(&writeReqParameter->connHandle, &errInfo);
+                    break;
+                }else{
+                    requestImuAccNotification = writeReqParameter->handleValPair.value.val[0] & 0x01;
+                    requestImuAccIndication = writeReqParameter->handleValPair.value.val[0] & 0x02;
+                    Task_DebugPrintf("Info     : BLE - GATT Write Sensor Data IMU CCCD Notify: ", requestImuAccNotification);
+                    Task_DebugPrintf("Info     : BLE - GATT Write Sensor Data IMU CCCD Indicate: ", requestImuAccIndication);
+                    imu_command_t command;
+                    if(requestImuAccNotification){
+                        command = SEND_IMU_START;
+                    }else{
+                        command = SEND_IMU_STOP;
+                    }
+                    xQueueOverwrite(imuCommandQ, &command);
+                    //Cy_BLE_GATTS_WriteRsp(writeReqParameter->connHandle);
+                }
+            }
+            Cy_BLE_GATTS_WriteRsp(writeReqParameter->connHandle);
             break;
+        }
         
         /*~~~~~~~~~~~~~~~~~~~~~~~~~~~ GAP EVENTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -667,41 +689,88 @@ void static SendTemperatureIndication (float temperature)
 *  void
 *
 *******************************************************************************/
-void static SendIMUIndication (float temperature)
+void static SendIMUNotification (uint32_t accX)
 {   
     /* Check if BLE is in connected state and the HTS indication is
        enabled */
 	if((Cy_BLE_GetConnectionState(connectionHandle) 
-        == CY_BLE_CONN_STATE_CONNECTED) && requestHtsIndication)
+        == CY_BLE_CONN_STATE_CONNECTED) && requestImuAccNotification)
 	{      
-        /* Temporary array to hold Health Thermometer Characteristic 
-           information */
-        uint8 valueArray[HTS_CHARACTERISTIC_SIZE];
-        temperature_data_t tempData;
-
-        /* Convert from IEEE-754 single precision floating point format to
-           IEEE-11073 FLOAT, which is mandated by the health thermometer
-           characteristic */
-        tempData.temeratureValue = (int32_t)(roundf(temperature*
-                                            IEEE_11073_MANTISSA_SCALER));
-        tempData.temperatureArray[IEEE_11073_EXPONENT_INDEX] = 
-                                            IEEE_11073_EXPONENT_VALUE;         
         
-        /* Read Health Thermometer Characteristic from GATT DB */
-        if(CY_BLE_SUCCESS == Cy_BLE_HTSS_GetCharacteristicValue
-                             (CY_BLE_HTS_TEMP_MEASURE,
-                              HTS_CHARACTERISTIC_SIZE, valueArray))
-        { 
-            /* Update temperature value in the characteristic */
-            memcpy(&valueArray[HTS_TEMPERATURE_DATA_INDEX],
-                   tempData.temperatureArray, HTS_TEMPERATURE_DATA_SIZE);
+        Task_DebugPrintf("Info  : BLE - Sending IMU Notification", 0u); 
+        
+        uint8_t* tempArray;
+        memcpy(tempArray, &accX, sizeof(accX));
+        
+       /* Local variable that stores handle value pair */  
+        cy_stc_ble_gatt_handle_value_pair_t  locHandleValuePair =   
+        {  
+            .attrHandle = CY_BLE_SENSOR_DATA_IMU_CHAR_HANDLE,  
+            .value.len  = 4,  
+            .value.val  = tempArray
+        };  
+        Cy_BLE_GATTS_WriteAttributeValueLocal(&locHandleValuePair);  
+        
+        SendBleNotification (CY_BLE_SENSOR_DATA_IMU_CHAR_HANDLE, tempArray, 4);
 
-            /* Send indication to the central */
-            Cy_BLE_HTSS_SendIndication(connectionHandle, 
-                                       CY_BLE_HTS_TEMP_MEASURE,
-                                       HTS_CHARACTERISTIC_SIZE, valueArray);   
+    }else{
+        Task_DebugPrintf("Warning!  : BLE - Sending IMU Notification when not connected or requested", 0u); 
+    }
+}
+
+/*******************************************************************************
+* Function Name: void static SendBleNotification 
+*                      (cy_ble_gatt_db_attr_handle_t charHandle, uint8_t* value)                           
+********************************************************************************
+* Summary:
+*  This function sends BLE notifications
+*
+* Parameters:
+*  cy_ble_gatt_db_attr_handle_t :  Characteristic handle of the service
+*  uint8_t*                     :  Pointer to the notification value 
+*
+* Return:
+*  void
+*
+*******************************************************************************/
+void static SendBleNotification (cy_ble_gatt_db_attr_handle_t charHandle,
+                                 uint8_t* value, uint16_t len)
+{
+    /* Flag used to check if the characteristics handle is valid */
+    bool handleValid = true;
+    
+    /* Variable used to store the return values of BLE APIs */
+    cy_en_ble_api_result_t bleApiResult;
+    
+    /* Local variable that stores notification data parameters */
+    cy_stc_ble_gatt_handle_value_pair_t  handleValuePair = 
+    {
+        .attrHandle = charHandle,
+        .value.val = value,
+        .value.len = len
+    };
+    
+    /* Check if the BLE stack is free */
+    if (Cy_BLE_GATT_GetBusyStatus(connectionHandle.attId) 
+         == CY_BLE_STACK_STATE_FREE)
+    {
+        /* Send BLE notification */
+        bleApiResult = Cy_BLE_GATTS_SendNotification(&connectionHandle,
+                       &handleValuePair);
+        
+        /* Check if the operation has been successful */
+        if(bleApiResult != CY_BLE_SUCCESS)
+        {
+            Task_DebugPrintf("Failure! : BLE - Sending notification. "\
+                        "Error Code:", bleApiResult);
         }
     }
+    /* Stack is busy, the current notification data will be dropped */ 
+    else
+    {
+        Task_DebugPrintf("Info     : BLE - Stack busy to send notification", 0u);
+    }
+
 }
 
 /* [] END OF FILE */

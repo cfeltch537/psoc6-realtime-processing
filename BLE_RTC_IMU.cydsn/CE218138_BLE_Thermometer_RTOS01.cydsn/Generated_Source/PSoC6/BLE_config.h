@@ -263,8 +263,8 @@ extern "C" {
 
 #define CY_BLE_ADV_PKT_0_INDEX_FLAGS   (0x00u)
 #define CY_BLE_ADV_PKT_0_INDEX_LOCAL_NAME   (0x03u)
-#define CY_BLE_ADV_PKT_0_INDEX_SERVICE_UUID_16   (0x14u)
-#define CY_BLE_ADV_PKT_0_INDEX_APPEARANCE   (0x1Au)
+#define CY_BLE_ADV_PKT_0_INDEX_SERVICE_UUID_16   (0x0Du)
+#define CY_BLE_ADV_PKT_0_INDEX_APPEARANCE   (0x13u)
 #define CY_BLE_SCN_PKT_0_INDEX_TX_POWER_LEVEL   (0x00u)
 #define CY_BLE_PERIPHERAL_CONFIGURATION_0_INDEX   (0x00u)
 
@@ -384,17 +384,17 @@ extern "C" {
  * Below are the indexes and handles of the defined Custom Services and 
  * their characteristics.
  */
-#define CY_BLE_IMU_SERVICE_INDEX   (0x00u) /* Index of IMU service in the cy_ble_customs array */
-#define CY_BLE_IMU_ACC_CHAR_INDEX   (0x00u) /* Index of Acc characteristic */
-#define CY_BLE_IMU_ACC_CLIENT_CHARACTERISTIC_CONFIGURATION_DESC_INDEX   (0x00u) /* Index of Client Characteristic Configuration descriptor */
-#define CY_BLE_IMU_ACC_CHARACTERISTIC_USER_DESCRIPTION_DESC_INDEX   (0x01u) /* Index of Characteristic User Description descriptor */
+#define CY_BLE_SENSOR_DATA_SERVICE_INDEX   (0x00u) /* Index of Sensor Data service in the cy_ble_customs array */
+#define CY_BLE_SENSOR_DATA_IMU_CHAR_INDEX   (0x00u) /* Index of IMU characteristic */
+#define CY_BLE_SENSOR_DATA_IMU_CCCD_DESC_INDEX   (0x00u) /* Index of CCCD descriptor */
+#define CY_BLE_SENSOR_DATA_IMU_CHARACTERISTIC_USER_DESCRIPTION_DESC_INDEX   (0x01u) /* Index of Characteristic User Description descriptor */
 
 
-#define CY_BLE_IMU_SERVICE_HANDLE   (0x002Cu) /* Handle of IMU service */
-#define CY_BLE_IMU_ACC_DECL_HANDLE   (0x002Du) /* Handle of Acc characteristic declaration */
-#define CY_BLE_IMU_ACC_CHAR_HANDLE   (0x002Eu) /* Handle of Acc characteristic */
-#define CY_BLE_IMU_ACC_CLIENT_CHARACTERISTIC_CONFIGURATION_DESC_HANDLE   (0x002Fu) /* Handle of Client Characteristic Configuration descriptor */
-#define CY_BLE_IMU_ACC_CHARACTERISTIC_USER_DESCRIPTION_DESC_HANDLE   (0x0030u) /* Handle of Characteristic User Description descriptor */
+#define CY_BLE_SENSOR_DATA_SERVICE_HANDLE   (0x002Cu) /* Handle of Sensor Data service */
+#define CY_BLE_SENSOR_DATA_IMU_DECL_HANDLE   (0x002Du) /* Handle of IMU characteristic declaration */
+#define CY_BLE_SENSOR_DATA_IMU_CHAR_HANDLE   (0x002Eu) /* Handle of IMU characteristic */
+#define CY_BLE_SENSOR_DATA_IMU_CCCD_DESC_HANDLE   (0x002Fu) /* Handle of CCCD descriptor */
+#define CY_BLE_SENSOR_DATA_IMU_CHARACTERISTIC_USER_DESCRIPTION_DESC_HANDLE   (0x0030u) /* Handle of Characteristic User Description descriptor */
 
 
 

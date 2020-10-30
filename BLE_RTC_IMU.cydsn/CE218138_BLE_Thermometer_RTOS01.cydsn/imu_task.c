@@ -69,7 +69,11 @@ QueueHandle_t imuCommandQ;
 QueueHandle_t imuDataQ;
 
 bool static processingComplete = false;
-bool static sendIMUData = false;
+
+/* Bool for IMU Write State */
+bool static indicateDataIMU = false;
+bool static notifyDataIMU = false;
+
 uint32_t numSamplesIMU = 0;
 uint64_t lastInterruptMillis;
 
@@ -121,43 +125,50 @@ void Task_IMU(void *pvParameters){
             {
                 /* IMU data need to be sent */
                 case SEND_IMU_START:
-                    sendIMUData = true;
-                    // START
+                    Task_DebugPrintf("Info     : IMU - Starting IMU Sampling ", 0u);
+                    notifyDataIMU = true;
                     break;
-                 
                 /* No imu data need to be sent */
                 case SEND_IMU_STOP:
-                    sendIMUData = false;
-                    /* STOP */
+                    notifyDataIMU = false;
                     break;
                 /* Process imu data from CapSense widgets */
                 case HANDLE_IMU_INTERRUPT:
-                    processingComplete = false;
-                    /* Read the latest available data time and sample*/
-                    struct SampleIMU sample;
-                    sample.time = 0; // getCurrentTimeMillis();
-                    sample.accX = numSamplesIMU % 2;
-                	sample.accY = numSamplesIMU % 4;
-                	sample.accZ = numSamplesIMU % 8;
-                    sample.gyroX = numSamplesIMU % 16;
-                	sample.gyroY = numSamplesIMU % 32;
-                	sample.gyroZ = numSamplesIMU % 64;
-                    numSamplesIMU++;
-                   
-                    /* Send the processed imu data */
-                    if(sendIMUData)
                     {
-                        /* Pack the imu data, respective command and send 
-                           to the queue */
-                        bleCommandAndData.command = SEND_IMU_INDICATION;
-                        bleCommandAndData.temperatureData = 5;
-                        xQueueSend(bleCommandQ, &bleCommandAndData,0u);
-                    }
-                    else
-                    {
-                        /* Send imu sample to queue */
-                        xQueueSend(imuDataQ, (void *) &sample, 0u);
-                        processingComplete = true;
+                        /* Read the latest available data time and sample*/
+                        // struct SampleIMU sample;
+                        // sample.time = 0; // getCurrentTimeMillis();
+                        // sample.accX = numSamplesIMU % 2;
+                    	// sample.accY = numSamplesIMU % 4;
+                    	// sample.accZ = numSamplesIMU % 8;
+                        // sample.gyroX = numSamplesIMU % 16;
+                    	// sample.gyroY = numSamplesIMU % 32;
+                    	// sample.gyroZ = numSamplesIMU % 64;
+                        numSamplesIMU++;
+                       
+                        /* Send the processed imu data */
+                        if(notifyDataIMU)
+                        {
+                            Task_DebugPrintf("Info     : IMU - Queueing IMU Sample ", 0u);
+                            /* Pack the imu data, respective command and send 
+                               to the queue */
+                            bleCommandAndData.command = SEND_TEMPERATURE_INDICATION;
+                            bleCommandAndData.imuData = 6;
+                            //xQueueSend(bleCommandQ, &bleCommandAndData, 0u);
+                            if( xQueueSendToBack( bleCommandQ, ( void * ) &bleCommandAndData, ( TickType_t ) 10 ) != pdPASS )
+                            {
+                                // Failed to post the message, even after 10 ticks.
+                                Task_DebugPrintf("Warning!  : IMU - Failed to Queue IMU Sample after 10 ticks", 0u);
+                            }else{
+                                Task_DebugPrintf("Info      : IMU - Queued IMU Sample ", 0u);
+                            }
+                        }
+                        else
+                        {
+                            /* Send imu sample to queue */
+                            //xQueueSend(imuDataQ, (void *) &sample, 0u);
+                            processingComplete = true;
+                        }
                     }
                     break;
 

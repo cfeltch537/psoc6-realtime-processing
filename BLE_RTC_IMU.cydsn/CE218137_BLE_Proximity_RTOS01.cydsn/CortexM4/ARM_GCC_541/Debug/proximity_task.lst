@@ -1,0 +1,5007 @@
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.syntax unified
+  16              		.file	"proximity_task.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.ProximityTimerCallback,"ax",%progbits
+  21              		.align	2
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	ProximityTimerCallback, %function
+  25              	ProximityTimerCallback:
+  26              	.LFB529:
+  27              		.file 1 "proximity_task.c"
+   1:proximity_task.c **** /******************************************************************************
+   2:proximity_task.c **** * File Name: proximity_task.c
+   3:proximity_task.c **** *
+   4:proximity_task.c **** * Version: 1.00
+   5:proximity_task.c **** *
+   6:proximity_task.c **** * Description: This file contains the task that handles proximity sensing
+   7:proximity_task.c **** *
+   8:proximity_task.c **** * Related Document: CE218137_BLE_Proximity_RTOS.pdf
+   9:proximity_task.c **** *
+  10:proximity_task.c **** * Hardware Dependency: CY8CKIT-062-BLE PSoC 6 BLE Pioneer Kit
+  11:proximity_task.c **** *
+  12:proximity_task.c **** ******************************************************************************
+  13:proximity_task.c **** * Copyright (2017), Cypress Semiconductor Corporation.
+  14:proximity_task.c **** ******************************************************************************
+  15:proximity_task.c **** * This software, including source code, documentation and related materials
+  16:proximity_task.c **** * ("Software") is owned by Cypress Semiconductor Corporation (Cypress) and is
+  17:proximity_task.c **** * protected by and subject to worldwide patent protection (United States and 
+  18:proximity_task.c **** * foreign), United States copyright laws and international treaty provisions. 
+  19:proximity_task.c **** * Cypress hereby grants to licensee a personal, non-exclusive, non-transferable
+  20:proximity_task.c **** * license to copy, use, modify, create derivative works of, and compile the 
+  21:proximity_task.c **** * Cypress source code and derivative works for the sole purpose of creating 
+  22:proximity_task.c **** * custom software in support of licensee product, such licensee product to be
+  23:proximity_task.c **** * used only in conjunction with Cypress's integrated circuit as specified in the
+  24:proximity_task.c **** * applicable agreement. Any reproduction, modification, translation, compilation,
+  25:proximity_task.c **** * or representation of this Software except as specified above is prohibited 
+  26:proximity_task.c **** * without the express written permission of Cypress.
+  27:proximity_task.c **** * 
+  28:proximity_task.c **** * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND, 
+  29:proximity_task.c **** * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED 
+  30:proximity_task.c **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 2
+
+
+  31:proximity_task.c **** * Cypress reserves the right to make changes to the Software without notice. 
+  32:proximity_task.c **** * Cypress does not assume any liability arising out of the application or use
+  33:proximity_task.c **** * of Software or any product or circuit described in the Software. Cypress does
+  34:proximity_task.c **** * not authorize its products for use as critical components in any products 
+  35:proximity_task.c **** * where a malfunction or failure may reasonably be expected to result in 
+  36:proximity_task.c **** * significant injury or death ("ACTIVE Risk Product"). By including Cypress's 
+  37:proximity_task.c **** * product in a ACTIVE Risk Product, the manufacturer of such system or application
+  38:proximity_task.c **** * assumes all risk of such use and in doing so indemnifies Cypress against all
+  39:proximity_task.c **** * liability. Use of this Software may be limited by and subject to the applicable
+  40:proximity_task.c **** * Cypress software license agreement.
+  41:proximity_task.c **** *****************************************************************************/
+  42:proximity_task.c **** /*******************************************************************************
+  43:proximity_task.c **** * This file contains the task that handles proximity sensing 
+  44:proximity_task.c **** *******************************************************************************/
+  45:proximity_task.c **** 
+  46:proximity_task.c **** /* Header file includes */
+  47:proximity_task.c **** #include "proximity_task.h"
+  48:proximity_task.c **** #include "ble_task.h"
+  49:proximity_task.c **** #include "uart_debug.h"
+  50:proximity_task.c **** #include "task.h" 
+  51:proximity_task.c **** #include "timers.h"
+  52:proximity_task.c **** 
+  53:proximity_task.c **** /* Scanning interval of 33ms is used when repeatedly scanning proximity widget 
+  54:proximity_task.c ****    to get a scan rate of ~30 scans per second */
+  55:proximity_task.c **** #define PROXIMITY_SCAN_INTERVAL  (pdMS_TO_TICKS(33u))
+  56:proximity_task.c **** /* Idle interval is used for when no proximity data is required */
+  57:proximity_task.c **** #define PROXIMITY_IDLE_INTERVAL  (portMAX_DELAY)
+  58:proximity_task.c **** 
+  59:proximity_task.c **** /* Queue handles used for proximity commands and data */
+  60:proximity_task.c **** QueueHandle_t proximityCommandQ;
+  61:proximity_task.c **** 
+  62:proximity_task.c **** /* Timer handles used to control proximity scanning interval */
+  63:proximity_task.c **** TimerHandle_t xTimer_Proximity;
+  64:proximity_task.c **** 
+  65:proximity_task.c **** /* Functions that start and control the timer */
+  66:proximity_task.c **** void static ProximityTimerStart(void);
+  67:proximity_task.c **** void static ProximityTimerUpdate(TickType_t period);
+  68:proximity_task.c **** 
+  69:proximity_task.c **** /*******************************************************************************
+  70:proximity_task.c **** * Function Name: void Task_Proximity(void *pvParameters)   
+  71:proximity_task.c **** ********************************************************************************
+  72:proximity_task.c **** * Summary:
+  73:proximity_task.c **** *  Task that reads and processes proximity data    
+  74:proximity_task.c **** *
+  75:proximity_task.c **** * Parameters:
+  76:proximity_task.c **** *  void *pvParameters : Task parameter defined during task creation (unused)                       
+  77:proximity_task.c **** *
+  78:proximity_task.c **** * Return:
+  79:proximity_task.c **** *  void
+  80:proximity_task.c **** *
+  81:proximity_task.c **** *******************************************************************************/
+  82:proximity_task.c **** void Task_Proximity(void *pvParameters)    
+  83:proximity_task.c **** {
+  84:proximity_task.c ****     /* Variable that stores CapSense API results */
+  85:proximity_task.c ****     cy_status capSenseApiResult;
+  86:proximity_task.c ****     
+  87:proximity_task.c ****     /* Variable that stores command values received  */
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 3
+
+
+  88:proximity_task.c ****     proximity_command_t proximityCommand;
+  89:proximity_task.c ****     
+  90:proximity_task.c ****     /* Variable used to store the return values of RTOS APIs */
+  91:proximity_task.c ****     BaseType_t rtosApiResult;
+  92:proximity_task.c ****        
+  93:proximity_task.c ****     /* Flags that indicate if proximity data need to be sent */
+  94:proximity_task.c ****     bool    sendProximityData = false;
+  95:proximity_task.c **** 
+  96:proximity_task.c ****     /* Variables that store the previous and the current proximity data */
+  97:proximity_task.c ****     uint8_t  currentProxData = 0u;
+  98:proximity_task.c ****     uint8_t  prevProxData = UINT8_MAX;
+  99:proximity_task.c ****     
+ 100:proximity_task.c ****     /* Flags that indicate if the proximity data has been updated */
+ 101:proximity_task.c ****     bool proximityDataUpdated;
+ 102:proximity_task.c **** 
+ 103:proximity_task.c ****     /* Start the timer that controls the processing interval */
+ 104:proximity_task.c ****     ProximityTimerStart();
+ 105:proximity_task.c **** 
+ 106:proximity_task.c ****     /* Remove warning for unused parameter */
+ 107:proximity_task.c ****     (void)pvParameters ;
+ 108:proximity_task.c **** 
+ 109:proximity_task.c ****     /* Start the CapSense component and initialize the baselines */
+ 110:proximity_task.c ****     capSenseApiResult = CapSense_Start();
+ 111:proximity_task.c ****     
+ 112:proximity_task.c ****     /* Check if the operation has been successful */
+ 113:proximity_task.c ****     if (capSenseApiResult== CY_RET_SUCCESS)
+ 114:proximity_task.c ****     {
+ 115:proximity_task.c ****         Task_DebugPrintf("Success  : Proximity - CapSense initialization", 0u);
+ 116:proximity_task.c ****     }
+ 117:proximity_task.c ****     else
+ 118:proximity_task.c ****     {
+ 119:proximity_task.c ****         Task_DebugPrintf("Failure! : Proximity - CapSense initialization, Error Code:"
+ 120:proximity_task.c ****                     , capSenseApiResult);
+ 121:proximity_task.c ****     }
+ 122:proximity_task.c ****     
+ 123:proximity_task.c ****     /* Repeatedly running part of the task */
+ 124:proximity_task.c ****     for(;;)
+ 125:proximity_task.c ****     {
+ 126:proximity_task.c ****         /* Block until a command has been received over proximityCommandQ */
+ 127:proximity_task.c ****         rtosApiResult = xQueueReceive(proximityCommandQ, &proximityCommand,
+ 128:proximity_task.c ****                         portMAX_DELAY);
+ 129:proximity_task.c ****          /* Command has been received from proximityCommandQ */ 
+ 130:proximity_task.c ****         if(rtosApiResult == pdTRUE)
+ 131:proximity_task.c ****         {   
+ 132:proximity_task.c ****             /* Take an action based on the command received */
+ 133:proximity_task.c ****             switch (proximityCommand)
+ 134:proximity_task.c ****             {
+ 135:proximity_task.c ****                 /* Both the slider and the button data need to be sent */
+ 136:proximity_task.c ****                 case SEND_PROXIMITY:
+ 137:proximity_task.c ****                     sendProximityData = true;
+ 138:proximity_task.c ****                     /* Enable periodic scan */
+ 139:proximity_task.c ****                     ProximityTimerUpdate(PROXIMITY_SCAN_INTERVAL);
+ 140:proximity_task.c ****                     break;
+ 141:proximity_task.c ****                  
+ 142:proximity_task.c ****                 /* No proximity data need to be sent */
+ 143:proximity_task.c ****                 case SEND_NONE:
+ 144:proximity_task.c ****                     sendProximityData = false;
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 4
+
+
+ 145:proximity_task.c ****                     /* Disable periodic scan */
+ 146:proximity_task.c ****                     ProximityTimerUpdate(PROXIMITY_IDLE_INTERVAL);
+ 147:proximity_task.c ****                     break;
+ 148:proximity_task.c ****                 /* Process proximity data from proximity sensor */
+ 149:proximity_task.c ****                 case PROXIMITY_TIMER_EXPIRED:
+ 150:proximity_task.c ****                     proximityDataUpdated = false;
+ 151:proximity_task.c ****                     
+ 152:proximity_task.c ****                     /* Do this only when CapSense isn't busy with an 
+ 153:proximity_task.c ****                        ongoing scan */
+ 154:proximity_task.c ****                     if (CapSense_IsBusy() == CapSense_NOT_BUSY)
+ 155:proximity_task.c ****                     {
+ 156:proximity_task.c ****                         /* Process data from the widget */
+ 157:proximity_task.c ****                 		CapSense_ProcessAllWidgets();
+ 158:proximity_task.c ****                         
+ 159:proximity_task.c ****                         /* Check if the signal is greater than the finger threshold */
+ 160:proximity_task.c ****                         if(CapSense_PROXIMITY0_SNS0_DIFF_VALUE > 
+ 161:proximity_task.c ****                            CapSense_PROXIMITY0_FINGER_TH_VALUE)
+ 162:proximity_task.c ****                         {
+ 163:proximity_task.c ****                             /*If proximity value is not within the range, cap the value */
+ 164:proximity_task.c ****                     		if((CapSense_PROXIMITY0_SNS0_DIFF_VALUE -
+ 165:proximity_task.c ****                                 CapSense_PROXIMITY0_FINGER_TH_VALUE) 
+ 166:proximity_task.c ****                                 <= UINT8_MAX)
+ 167:proximity_task.c ****                     		{
+ 168:proximity_task.c ****                                 /* Store the proximity data */
+ 169:proximity_task.c ****                     	         currentProxData =  (uint8_t)(CapSense_PROXIMITY0_SNS0_DIFF_VALUE - 
+ 170:proximity_task.c ****                                                         CapSense_PROXIMITY0_FINGER_TH_VALUE);
+ 171:proximity_task.c ****                     		}
+ 172:proximity_task.c ****                             /* Store the maximum value otherwise */
+ 173:proximity_task.c ****                             else
+ 174:proximity_task.c ****                             {
+ 175:proximity_task.c ****                                 currentProxData = (uint8_t)UINT8_MAX;
+ 176:proximity_task.c ****                             }
+ 177:proximity_task.c ****                         }
+ 178:proximity_task.c ****                         /* Clear the value if the signal is less than the finger threshold */
+ 179:proximity_task.c ****                         else
+ 180:proximity_task.c ****                         {
+ 181:proximity_task.c ****                            currentProxData = 0u; 
+ 182:proximity_task.c ****                         }
+ 183:proximity_task.c ****                                             
+ 184:proximity_task.c ****                         /* Start the next CapSense scan */
+ 185:proximity_task.c ****                         CapSense_ScanAllWidgets();
+ 186:proximity_task.c ****                     }
+ 187:proximity_task.c ****             
+ 188:proximity_task.c ****                     /* Check if slider data needs to be sent and the proximity  
+ 189:proximity_task.c ****                        position on the slider has changed */
+ 190:proximity_task.c ****                     if ((currentProxData != prevProxData)
+ 191:proximity_task.c ****                         && sendProximityData)
+ 192:proximity_task.c ****                     {
+ 193:proximity_task.c ****                         prevProxData = currentProxData;
+ 194:proximity_task.c ****                         
+ 195:proximity_task.c ****                         proximityDataUpdated = true;
+ 196:proximity_task.c ****                     }
+ 197:proximity_task.c ****                    
+ 198:proximity_task.c ****                     /* Check if there is any data to be sent, then create the  
+ 199:proximity_task.c ****                        data header based on the type of data that has been
+ 200:proximity_task.c ****                        updated */            
+ 201:proximity_task.c ****                     if(proximityDataUpdated)
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 5
+
+
+ 202:proximity_task.c ****                     {
+ 203:proximity_task.c ****                         ble_command_t bleCommandProximity =
+ 204:proximity_task.c ****                         {   
+ 205:proximity_task.c ****                             .command = SEND_PROXIMITY_NOTIFICATION,
+ 206:proximity_task.c ****                         };
+ 207:proximity_task.c ****                         
+ 208:proximity_task.c ****                         bleCommandProximity.proximityData = currentProxData;
+ 209:proximity_task.c ****                         
+ 210:proximity_task.c ****                         /* Send the processed proximity data */
+ 211:proximity_task.c ****                         xQueueSend(bleCommandQ, &bleCommandProximity, 0u);
+ 212:proximity_task.c ****                     }
+ 213:proximity_task.c ****                     
+ 214:proximity_task.c ****                     /* Periodic processing request received when no proximity data 
+ 215:proximity_task.c ****                        needs to be sent */
+ 216:proximity_task.c ****                     if(!sendProximityData)
+ 217:proximity_task.c ****                     {
+ 218:proximity_task.c ****                         Task_DebugPrintf("Error!   : Proximity - periodic process "\
+ 219:proximity_task.c ****                                     " request during invalid state" , 0u);  
+ 220:proximity_task.c ****                     }
+ 221:proximity_task.c ****                     break;
+ 222:proximity_task.c ****                         
+ 223:proximity_task.c ****                         
+ 224:proximity_task.c ****                 /* Invalid task notification value received */    
+ 225:proximity_task.c ****                 default:
+ 226:proximity_task.c ****                     Task_DebugPrintf("Error!   : Proximity - Invalid command received ."\
+ 227:proximity_task.c ****                                 "Error Code:", proximityCommand);
+ 228:proximity_task.c ****                     break;
+ 229:proximity_task.c ****             }
+ 230:proximity_task.c ****         }            
+ 231:proximity_task.c ****         /* Task has timed out and received no commands during an interval of 
+ 232:proximity_task.c ****         portMAXDELAY ticks */
+ 233:proximity_task.c ****         else
+ 234:proximity_task.c ****         {
+ 235:proximity_task.c ****             Task_DebugPrintf("Warning! : Proximity - Task Timed out ", 0u);   
+ 236:proximity_task.c ****         }
+ 237:proximity_task.c ****     }
+ 238:proximity_task.c **** }
+ 239:proximity_task.c **** 
+ 240:proximity_task.c **** /*******************************************************************************
+ 241:proximity_task.c **** * Function Name: void static ProximityTimerCallback(TimerHandle_t xTimer)                          
+ 242:proximity_task.c **** ********************************************************************************
+ 243:proximity_task.c **** * Summary:
+ 244:proximity_task.c **** *  This function is called when the proximity timer expires
+ 245:proximity_task.c **** *
+ 246:proximity_task.c **** * Parameters:
+ 247:proximity_task.c **** *  TimerHandle_t xTimer :  Current timer value (unused)
+ 248:proximity_task.c **** *
+ 249:proximity_task.c **** * Return:
+ 250:proximity_task.c **** *  void
+ 251:proximity_task.c **** *
+ 252:proximity_task.c **** *******************************************************************************/
+ 253:proximity_task.c **** void static ProximityTimerCallback(TimerHandle_t xTimer)
+ 254:proximity_task.c **** {
+  28              		.loc 1 254 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 6
+
+
+  32              	.LVL0:
+  33 0000 00B5     		push	{lr}
+  34              		.cfi_def_cfa_offset 4
+  35              		.cfi_offset 14, -4
+  36 0002 83B0     		sub	sp, sp, #12
+  37              		.cfi_def_cfa_offset 16
+ 255:proximity_task.c ****     /* Variable used to store the return values of RTOS APIs */
+ 256:proximity_task.c ****     BaseType_t rtosApiResult;
+ 257:proximity_task.c ****     
+ 258:proximity_task.c ****     /* Remove warning for unused parameter */
+ 259:proximity_task.c ****     (void)xTimer;
+ 260:proximity_task.c ****     
+ 261:proximity_task.c ****     /* Send command to process proximity */
+ 262:proximity_task.c ****     proximity_command_t proximityCommand = PROXIMITY_TIMER_EXPIRED;
+  38              		.loc 1 262 0
+  39 0004 02A9     		add	r1, sp, #8
+  40 0006 0223     		movs	r3, #2
+  41 0008 01F8013D 		strb	r3, [r1, #-1]!
+ 263:proximity_task.c ****     rtosApiResult = xQueueSend(proximityCommandQ, &proximityCommand,0u);
+  42              		.loc 1 263 0
+  43 000c 0023     		movs	r3, #0
+  44 000e 1A46     		mov	r2, r3
+  45 0010 0348     		ldr	r0, .L3
+  46              	.LVL1:
+  47 0012 0068     		ldr	r0, [r0]
+  48 0014 FFF7FEFF 		bl	xQueueGenericSend
+  49              	.LVL2:
+ 264:proximity_task.c ****     
+ 265:proximity_task.c ****     /* Check if the operation has been successful */
+ 266:proximity_task.c ****     if(rtosApiResult != pdTRUE)
+ 267:proximity_task.c ****     {
+ 268:proximity_task.c ****         Task_DebugPrintf("Failure! : Proximity  - Sending data to proximity queue", 0u);    
+ 269:proximity_task.c ****     }
+ 270:proximity_task.c **** }
+  50              		.loc 1 270 0
+  51 0018 03B0     		add	sp, sp, #12
+  52              		.cfi_def_cfa_offset 4
+  53              		@ sp needed
+  54 001a 5DF804FB 		ldr	pc, [sp], #4
+  55              	.L4:
+  56 001e 00BF     		.align	2
+  57              	.L3:
+  58 0020 00000000 		.word	proximityCommandQ
+  59              		.cfi_endproc
+  60              	.LFE529:
+  61              		.size	ProximityTimerCallback, .-ProximityTimerCallback
+  62              		.section	.text.ProximityTimerStart,"ax",%progbits
+  63              		.align	2
+  64              		.thumb
+  65              		.thumb_func
+  66              		.type	ProximityTimerStart, %function
+  67              	ProximityTimerStart:
+  68              	.LFB530:
+ 271:proximity_task.c **** 
+ 272:proximity_task.c **** /*******************************************************************************
+ 273:proximity_task.c **** * Function Name: void static ProximityTimerStart(void)                  
+ 274:proximity_task.c **** ********************************************************************************
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 7
+
+
+ 275:proximity_task.c **** * Summary:
+ 276:proximity_task.c **** *  This function starts the timer that provides timing to periodic
+ 277:proximity_task.c **** *  proximity processing
+ 278:proximity_task.c **** *
+ 279:proximity_task.c **** * Parameters:
+ 280:proximity_task.c **** *  void
+ 281:proximity_task.c **** *
+ 282:proximity_task.c **** * Return:
+ 283:proximity_task.c **** *  void
+ 284:proximity_task.c **** *
+ 285:proximity_task.c **** *******************************************************************************/
+ 286:proximity_task.c **** void static ProximityTimerStart(void)
+ 287:proximity_task.c **** {
+  69              		.loc 1 287 0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 0, uses_anonymous_args = 0
+  73 0000 10B5     		push	{r4, lr}
+  74              		.cfi_def_cfa_offset 8
+  75              		.cfi_offset 4, -8
+  76              		.cfi_offset 14, -4
+  77 0002 82B0     		sub	sp, sp, #8
+  78              		.cfi_def_cfa_offset 16
+ 288:proximity_task.c ****     /* Variable used to store the return values of RTOS APIs */
+ 289:proximity_task.c ****     BaseType_t rtosApiResult;
+ 290:proximity_task.c ****     
+ 291:proximity_task.c ****     /* Create an RTOS timer */
+ 292:proximity_task.c ****     xTimer_Proximity =  xTimerCreate ("Proximity Timer", PROXIMITY_IDLE_INTERVAL, pdTRUE,  
+  79              		.loc 1 292 0
+  80 0004 0B4B     		ldr	r3, .L8
+  81 0006 0093     		str	r3, [sp]
+  82 0008 0023     		movs	r3, #0
+  83 000a 0122     		movs	r2, #1
+  84 000c 4FF0FF31 		mov	r1, #-1
+  85 0010 0948     		ldr	r0, .L8+4
+  86 0012 FFF7FEFF 		bl	xTimerCreate
+  87              	.LVL3:
+  88 0016 094B     		ldr	r3, .L8+8
+  89 0018 1860     		str	r0, [r3]
+ 293:proximity_task.c ****                                   NULL, ProximityTimerCallback);
+ 294:proximity_task.c ****     
+ 295:proximity_task.c ****     /* Make sure that timer handle is valid */
+ 296:proximity_task.c ****     if (xTimer_Proximity != NULL)
+  90              		.loc 1 296 0
+  91 001a 48B1     		cbz	r0, .L5
+  92 001c 0446     		mov	r4, r0
+ 297:proximity_task.c ****     {
+ 298:proximity_task.c ****         /* Start the timer */
+ 299:proximity_task.c ****         rtosApiResult = xTimerStart(xTimer_Proximity,0u);
+  93              		.loc 1 299 0
+  94 001e FFF7FEFF 		bl	xTaskGetTickCount
+  95              	.LVL4:
+  96 0022 0023     		movs	r3, #0
+  97 0024 0093     		str	r3, [sp]
+  98 0026 0246     		mov	r2, r0
+  99 0028 0121     		movs	r1, #1
+ 100 002a 2046     		mov	r0, r4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 8
+
+
+ 101 002c FFF7FEFF 		bl	xTimerGenericCommand
+ 102              	.LVL5:
+ 103              	.L5:
+ 300:proximity_task.c ****         
+ 301:proximity_task.c ****         /* Check if the operation has been successful */
+ 302:proximity_task.c ****         if(rtosApiResult != pdPASS)
+ 303:proximity_task.c ****         {
+ 304:proximity_task.c ****             Task_DebugPrintf("Failure! : Proximity  - Timer initialization", 0u);    
+ 305:proximity_task.c ****         }
+ 306:proximity_task.c ****     }
+ 307:proximity_task.c ****     else
+ 308:proximity_task.c ****     {
+ 309:proximity_task.c ****         Task_DebugPrintf("Failure! : Proximity  - Timer creation", 0u); 
+ 310:proximity_task.c ****     }
+ 311:proximity_task.c **** }
+ 104              		.loc 1 311 0
+ 105 0030 02B0     		add	sp, sp, #8
+ 106              		.cfi_def_cfa_offset 8
+ 107              		@ sp needed
+ 108 0032 10BD     		pop	{r4, pc}
+ 109              	.L9:
+ 110              		.align	2
+ 111              	.L8:
+ 112 0034 00000000 		.word	ProximityTimerCallback
+ 113 0038 00000000 		.word	.LC0
+ 114 003c 00000000 		.word	xTimer_Proximity
+ 115              		.cfi_endproc
+ 116              	.LFE530:
+ 117              		.size	ProximityTimerStart, .-ProximityTimerStart
+ 118              		.section	.text.ProximityTimerUpdate,"ax",%progbits
+ 119              		.align	2
+ 120              		.thumb
+ 121              		.thumb_func
+ 122              		.type	ProximityTimerUpdate, %function
+ 123              	ProximityTimerUpdate:
+ 124              	.LFB531:
+ 312:proximity_task.c **** 
+ 313:proximity_task.c **** /*******************************************************************************
+ 314:proximity_task.c **** * Function Name: void static ProximityTimerUpdate(TickType_t period))                 
+ 315:proximity_task.c **** ********************************************************************************
+ 316:proximity_task.c **** * Summary:
+ 317:proximity_task.c **** *  This function updates the timer period per the parameter
+ 318:proximity_task.c **** *
+ 319:proximity_task.c **** * Parameters:
+ 320:proximity_task.c **** *  TickType_t period :  Period of the timer in ticks
+ 321:proximity_task.c **** *
+ 322:proximity_task.c **** * Return:
+ 323:proximity_task.c **** *  void
+ 324:proximity_task.c **** *
+ 325:proximity_task.c **** *******************************************************************************/
+ 326:proximity_task.c **** void static ProximityTimerUpdate(TickType_t period)
+ 327:proximity_task.c **** {
+ 125              		.loc 1 327 0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ 129              	.LVL6:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 9
+
+
+ 130 0000 10B5     		push	{r4, lr}
+ 131              		.cfi_def_cfa_offset 8
+ 132              		.cfi_offset 4, -8
+ 133              		.cfi_offset 14, -4
+ 134 0002 82B0     		sub	sp, sp, #8
+ 135              		.cfi_def_cfa_offset 16
+ 328:proximity_task.c ****     /* Variable used to store the return values of RTOS APIs */
+ 329:proximity_task.c ****     BaseType_t rtosApiResult;
+ 330:proximity_task.c ****     
+ 331:proximity_task.c ****     /* Change the timer period */
+ 332:proximity_task.c ****     rtosApiResult = xTimerChangePeriod(xTimer_Proximity, period, 0u);
+ 136              		.loc 1 332 0
+ 137 0004 054B     		ldr	r3, .L12
+ 138 0006 1C68     		ldr	r4, [r3]
+ 139 0008 0023     		movs	r3, #0
+ 140 000a 0093     		str	r3, [sp]
+ 141 000c 0246     		mov	r2, r0
+ 142 000e 0421     		movs	r1, #4
+ 143 0010 2046     		mov	r0, r4
+ 144              	.LVL7:
+ 145 0012 FFF7FEFF 		bl	xTimerGenericCommand
+ 146              	.LVL8:
+ 333:proximity_task.c **** 
+ 334:proximity_task.c ****     /* Check if the operation has been successful */
+ 335:proximity_task.c ****     if(rtosApiResult != pdPASS)
+ 336:proximity_task.c ****     {
+ 337:proximity_task.c ****         Task_DebugPrintf("Failure! : Proximity - Timer update ", 0u);   
+ 338:proximity_task.c ****     }
+ 339:proximity_task.c **** }
+ 147              		.loc 1 339 0
+ 148 0016 02B0     		add	sp, sp, #8
+ 149              		.cfi_def_cfa_offset 8
+ 150              		@ sp needed
+ 151 0018 10BD     		pop	{r4, pc}
+ 152              	.L13:
+ 153 001a 00BF     		.align	2
+ 154              	.L12:
+ 155 001c 00000000 		.word	xTimer_Proximity
+ 156              		.cfi_endproc
+ 157              	.LFE531:
+ 158              		.size	ProximityTimerUpdate, .-ProximityTimerUpdate
+ 159              		.section	.text.Task_Proximity,"ax",%progbits
+ 160              		.align	2
+ 161              		.global	Task_Proximity
+ 162              		.thumb
+ 163              		.thumb_func
+ 164              		.type	Task_Proximity, %function
+ 165              	Task_Proximity:
+ 166              	.LFB528:
+  83:proximity_task.c ****     /* Variable that stores CapSense API results */
+ 167              		.loc 1 83 0
+ 168              		.cfi_startproc
+ 169              		@ args = 0, pretend = 0, frame = 8
+ 170              		@ frame_needed = 0, uses_anonymous_args = 0
+ 171              	.LVL9:
+ 172 0000 70B5     		push	{r4, r5, r6, lr}
+ 173              		.cfi_def_cfa_offset 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 10
+
+
+ 174              		.cfi_offset 4, -16
+ 175              		.cfi_offset 5, -12
+ 176              		.cfi_offset 6, -8
+ 177              		.cfi_offset 14, -4
+ 178 0002 82B0     		sub	sp, sp, #8
+ 179              		.cfi_def_cfa_offset 24
+ 180              	.LVL10:
+ 104:proximity_task.c **** 
+ 181              		.loc 1 104 0
+ 182 0004 FFF7FEFF 		bl	ProximityTimerStart
+ 183              	.LVL11:
+ 110:proximity_task.c ****     
+ 184              		.loc 1 110 0
+ 185 0008 FFF7FEFF 		bl	CapSense_Start
+ 186              	.LVL12:
+  98:proximity_task.c ****     
+ 187              		.loc 1 98 0
+ 188 000c FF26     		movs	r6, #255
+  97:proximity_task.c ****     uint8_t  prevProxData = UINT8_MAX;
+ 189              		.loc 1 97 0
+ 190 000e 0024     		movs	r4, #0
+  94:proximity_task.c **** 
+ 191              		.loc 1 94 0
+ 192 0010 2546     		mov	r5, r4
+ 193              	.LVL13:
+ 194              	.L15:
+ 127:proximity_task.c ****                         portMAX_DELAY);
+ 195              		.loc 1 127 0
+ 196 0012 0023     		movs	r3, #0
+ 197 0014 4FF0FF32 		mov	r2, #-1
+ 198 0018 0DF10701 		add	r1, sp, #7
+ 199 001c 2348     		ldr	r0, .L29
+ 200 001e 0068     		ldr	r0, [r0]
+ 201 0020 FFF7FEFF 		bl	xQueueGenericReceive
+ 202              	.LVL14:
+ 130:proximity_task.c ****         {   
+ 203              		.loc 1 130 0
+ 204 0024 0128     		cmp	r0, #1
+ 205 0026 F4D1     		bne	.L15
+ 133:proximity_task.c ****             {
+ 206              		.loc 1 133 0
+ 207 0028 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 208 002c 012B     		cmp	r3, #1
+ 209 002e 08D0     		beq	.L17
+ 210 0030 13B1     		cbz	r3, .L18
+ 211 0032 022B     		cmp	r3, #2
+ 212 0034 0BD0     		beq	.L19
+ 213 0036 ECE7     		b	.L15
+ 214              	.L18:
+ 215              	.LVL15:
+ 139:proximity_task.c ****                     break;
+ 216              		.loc 1 139 0
+ 217 0038 2120     		movs	r0, #33
+ 218              	.LVL16:
+ 219 003a FFF7FEFF 		bl	ProximityTimerUpdate
+ 220              	.LVL17:
+ 137:proximity_task.c ****                     /* Enable periodic scan */
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 11
+
+
+ 221              		.loc 1 137 0
+ 222 003e 0125     		movs	r5, #1
+ 140:proximity_task.c ****                  
+ 223              		.loc 1 140 0
+ 224 0040 E7E7     		b	.L15
+ 225              	.LVL18:
+ 226              	.L17:
+ 146:proximity_task.c ****                     break;
+ 227              		.loc 1 146 0
+ 228 0042 4FF0FF30 		mov	r0, #-1
+ 229              	.LVL19:
+ 230 0046 FFF7FEFF 		bl	ProximityTimerUpdate
+ 231              	.LVL20:
+ 144:proximity_task.c ****                     /* Disable periodic scan */
+ 232              		.loc 1 144 0
+ 233 004a 0025     		movs	r5, #0
+ 147:proximity_task.c ****                 /* Process proximity data from proximity sensor */
+ 234              		.loc 1 147 0
+ 235 004c E1E7     		b	.L15
+ 236              	.LVL21:
+ 237              	.L19:
+ 154:proximity_task.c ****                     {
+ 238              		.loc 1 154 0
+ 239 004e FFF7FEFF 		bl	CapSense_IsBusy
+ 240              	.LVL22:
+ 241 0052 98B9     		cbnz	r0, .L20
+ 157:proximity_task.c ****                         
+ 242              		.loc 1 157 0
+ 243 0054 FFF7FEFF 		bl	CapSense_ProcessAllWidgets
+ 244              	.LVL23:
+ 160:proximity_task.c ****                            CapSense_PROXIMITY0_FINGER_TH_VALUE)
+ 245              		.loc 1 160 0
+ 246 0058 154A     		ldr	r2, .L29+4
+ 247 005a 138F     		ldrh	r3, [r2, #56]
+ 161:proximity_task.c ****                         {
+ 248              		.loc 1 161 0
+ 249 005c 128C     		ldrh	r2, [r2, #32]
+ 160:proximity_task.c ****                            CapSense_PROXIMITY0_FINGER_TH_VALUE)
+ 250              		.loc 1 160 0
+ 251 005e 9342     		cmp	r3, r2
+ 252 0060 07D9     		bls	.L24
+ 164:proximity_task.c ****                                 CapSense_PROXIMITY0_FINGER_TH_VALUE) 
+ 253              		.loc 1 164 0
+ 254 0062 991A     		subs	r1, r3, r2
+ 255 0064 FF29     		cmp	r1, #255
+ 256 0066 06DC     		bgt	.L25
+ 169:proximity_task.c ****                                                         CapSense_PROXIMITY0_FINGER_TH_VALUE);
+ 257              		.loc 1 169 0
+ 258 0068 DBB2     		uxtb	r3, r3
+ 259 006a D4B2     		uxtb	r4, r2
+ 260              	.LVL24:
+ 261 006c 1C1B     		subs	r4, r3, r4
+ 262 006e E4B2     		uxtb	r4, r4
+ 263              	.LVL25:
+ 264 0070 02E0     		b	.L21
+ 265              	.L24:
+ 181:proximity_task.c ****                         }
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 12
+
+
+ 266              		.loc 1 181 0
+ 267 0072 0024     		movs	r4, #0
+ 268              	.LVL26:
+ 269 0074 00E0     		b	.L21
+ 270              	.LVL27:
+ 271              	.L25:
+ 175:proximity_task.c ****                             }
+ 272              		.loc 1 175 0
+ 273 0076 FF24     		movs	r4, #255
+ 274              	.LVL28:
+ 275              	.L21:
+ 185:proximity_task.c ****                     }
+ 276              		.loc 1 185 0
+ 277 0078 FFF7FEFF 		bl	CapSense_ScanAllWidgets
+ 278              	.LVL29:
+ 279              	.L20:
+ 190:proximity_task.c ****                         && sendProximityData)
+ 280              		.loc 1 190 0
+ 281 007c B442     		cmp	r4, r6
+ 282 007e 02D0     		beq	.L26
+ 191:proximity_task.c ****                     {
+ 283              		.loc 1 191 0
+ 284 0080 1DB9     		cbnz	r5, .L27
+ 150:proximity_task.c ****                     
+ 285              		.loc 1 150 0
+ 286 0082 0023     		movs	r3, #0
+ 287 0084 03E0     		b	.L22
+ 288              	.L26:
+ 289 0086 0023     		movs	r3, #0
+ 290 0088 01E0     		b	.L22
+ 291              	.L27:
+ 193:proximity_task.c ****                         
+ 292              		.loc 1 193 0
+ 293 008a 2646     		mov	r6, r4
+ 294              	.LVL30:
+ 195:proximity_task.c ****                     }
+ 295              		.loc 1 195 0
+ 296 008c 0123     		movs	r3, #1
+ 297              	.L22:
+ 298              	.LVL31:
+ 201:proximity_task.c ****                     {
+ 299              		.loc 1 201 0
+ 300 008e 002B     		cmp	r3, #0
+ 301 0090 BFD0     		beq	.L15
+ 302              	.LBB2:
+ 203:proximity_task.c ****                         {   
+ 303              		.loc 1 203 0
+ 304 0092 0022     		movs	r2, #0
+ 305 0094 0223     		movs	r3, #2
+ 306              	.LVL32:
+ 307 0096 8DF80430 		strb	r3, [sp, #4]
+ 208:proximity_task.c ****                         
+ 308              		.loc 1 208 0
+ 309 009a 8DF80540 		strb	r4, [sp, #5]
+ 211:proximity_task.c ****                     }
+ 310              		.loc 1 211 0
+ 311 009e 1346     		mov	r3, r2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 13
+
+
+ 312 00a0 01A9     		add	r1, sp, #4
+ 313 00a2 0448     		ldr	r0, .L29+8
+ 314 00a4 0068     		ldr	r0, [r0]
+ 315 00a6 FFF7FEFF 		bl	xQueueGenericSend
+ 316              	.LVL33:
+ 317              	.LBE2:
+ 221:proximity_task.c ****                         
+ 318              		.loc 1 221 0
+ 319 00aa B2E7     		b	.L15
+ 320              	.L30:
+ 321              		.align	2
+ 322              	.L29:
+ 323 00ac 00000000 		.word	proximityCommandQ
+ 324 00b0 00000000 		.word	CapSense_dsRam
+ 325 00b4 00000000 		.word	bleCommandQ
+ 326              		.cfi_endproc
+ 327              	.LFE528:
+ 328              		.size	Task_Proximity, .-Task_Proximity
+ 329              		.comm	xTimer_Proximity,4,4
+ 330              		.comm	proximityCommandQ,4,4
+ 331              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 332              		.align	2
+ 333              	.LC0:
+ 334 0000 50726F78 		.ascii	"Proximity Timer\000"
+ 334      696D6974 
+ 334      79205469 
+ 334      6D657200 
+ 335              		.text
+ 336              	.Letext0:
+ 337              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 338              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 339              		.file 4 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/syslib/cy_syslib.h"
+ 340              		.file 5 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/scb/cy_scb_spi.h"
+ 341              		.file 6 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/sar/cy_sar.h"
+ 342              		.file 7 "Generated_Source\\PSoC6\\pdl\\middleware/ble/cy_ble_stack.h"
+ 343              		.file 8 "Generated_Source\\PSoC6\\pdl\\middleware/ble/cy_ble_stack_host_main.h"
+ 344              		.file 9 "Generated_Source\\PSoC6\\pdl\\middleware/ble/cy_ble_gap.h"
+ 345              		.file 10 "Generated_Source\\PSoC6/CapSense_Configuration.h"
+ 346              		.file 11 "Generated_Source\\PSoC6/CapSense_Structure.h"
+ 347              		.file 12 "Generated_Source\\PSoC6/ADC.h"
+ 348              		.file 13 "Generated_Source\\PSoC6\\pdl\\rtos/FreeRTOS/9.0.0/Source/portable/GCC/CM4F/portmacro.h"
+ 349              		.file 14 "Generated_Source\\PSoC6\\pdl\\rtos/FreeRTOS/9.0.0/Source/include/queue.h"
+ 350              		.file 15 "proximity_task.h"
+ 351              		.file 16 "ble_task.h"
+ 352              		.file 17 "Generated_Source\\PSoC6\\pdl\\rtos/FreeRTOS/9.0.0/Source/include/timers.h"
+ 353              		.file 18 "Generated_Source\\PSoC6\\pdl\\cmsis/include/core_cm4.h"
+ 354              		.file 19 "Generated_Source\\PSoC6/CY_EINK_SPIM.h"
+ 355              		.file 20 "Generated_Source\\PSoC6\\pdl\\rtos/FreeRTOS/9.0.0/Source/include/task.h"
+ 356              		.file 21 "Generated_Source\\PSoC6/CapSense_Control.h"
+ 357              		.file 22 "Generated_Source\\PSoC6/CapSense_Sensing.h"
+ 358              		.section	.debug_info,"",%progbits
+ 359              	.Ldebug_info0:
+ 360 0000 200E0000 		.4byte	0xe20
+ 361 0004 0400     		.2byte	0x4
+ 362 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 363 000a 04       		.byte	0x4
+ 364 000b 01       		.uleb128 0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 14
+
+
+ 365 000c DF030000 		.4byte	.LASF288
+ 366 0010 0C       		.byte	0xc
+ 367 0011 46140000 		.4byte	.LASF289
+ 368 0015 BF180000 		.4byte	.LASF290
+ 369 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 370 001d 00000000 		.4byte	0
+ 371 0021 00000000 		.4byte	.Ldebug_line0
+ 372 0025 02       		.uleb128 0x2
+ 373 0026 02       		.byte	0x2
+ 374 0027 05       		.byte	0x5
+ 375 0028 10130000 		.4byte	.LASF0
+ 376 002c 02       		.uleb128 0x2
+ 377 002d 01       		.byte	0x1
+ 378 002e 06       		.byte	0x6
+ 379 002f 22190000 		.4byte	.LASF1
+ 380 0033 03       		.uleb128 0x3
+ 381 0034 C7140000 		.4byte	.LASF3
+ 382 0038 02       		.byte	0x2
+ 383 0039 1D       		.byte	0x1d
+ 384 003a 3E000000 		.4byte	0x3e
+ 385 003e 02       		.uleb128 0x2
+ 386 003f 01       		.byte	0x1
+ 387 0040 08       		.byte	0x8
+ 388 0041 BF160000 		.4byte	.LASF2
+ 389 0045 03       		.uleb128 0x3
+ 390 0046 DF070000 		.4byte	.LASF4
+ 391 004a 02       		.byte	0x2
+ 392 004b 2B       		.byte	0x2b
+ 393 004c 50000000 		.4byte	0x50
+ 394 0050 02       		.uleb128 0x2
+ 395 0051 02       		.byte	0x2
+ 396 0052 07       		.byte	0x7
+ 397 0053 3A190000 		.4byte	.LASF5
+ 398 0057 03       		.uleb128 0x3
+ 399 0058 6A020000 		.4byte	.LASF6
+ 400 005c 02       		.byte	0x2
+ 401 005d 3F       		.byte	0x3f
+ 402 005e 62000000 		.4byte	0x62
+ 403 0062 02       		.uleb128 0x2
+ 404 0063 04       		.byte	0x4
+ 405 0064 05       		.byte	0x5
+ 406 0065 8C130000 		.4byte	.LASF7
+ 407 0069 03       		.uleb128 0x3
+ 408 006a F2160000 		.4byte	.LASF8
+ 409 006e 02       		.byte	0x2
+ 410 006f 41       		.byte	0x41
+ 411 0070 74000000 		.4byte	0x74
+ 412 0074 02       		.uleb128 0x2
+ 413 0075 04       		.byte	0x4
+ 414 0076 07       		.byte	0x7
+ 415 0077 0D160000 		.4byte	.LASF9
+ 416 007b 02       		.uleb128 0x2
+ 417 007c 08       		.byte	0x8
+ 418 007d 05       		.byte	0x5
+ 419 007e 140E0000 		.4byte	.LASF10
+ 420 0082 02       		.uleb128 0x2
+ 421 0083 08       		.byte	0x8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 15
+
+
+ 422 0084 07       		.byte	0x7
+ 423 0085 BC060000 		.4byte	.LASF11
+ 424 0089 04       		.uleb128 0x4
+ 425 008a 04       		.byte	0x4
+ 426 008b 05       		.byte	0x5
+ 427 008c 696E7400 		.ascii	"int\000"
+ 428 0090 02       		.uleb128 0x2
+ 429 0091 04       		.byte	0x4
+ 430 0092 07       		.byte	0x7
+ 431 0093 D0010000 		.4byte	.LASF12
+ 432 0097 03       		.uleb128 0x3
+ 433 0098 CE0C0000 		.4byte	.LASF13
+ 434 009c 03       		.byte	0x3
+ 435 009d 18       		.byte	0x18
+ 436 009e 33000000 		.4byte	0x33
+ 437 00a2 03       		.uleb128 0x3
+ 438 00a3 77110000 		.4byte	.LASF14
+ 439 00a7 03       		.byte	0x3
+ 440 00a8 24       		.byte	0x24
+ 441 00a9 45000000 		.4byte	0x45
+ 442 00ad 03       		.uleb128 0x3
+ 443 00ae 36160000 		.4byte	.LASF15
+ 444 00b2 03       		.byte	0x3
+ 445 00b3 2C       		.byte	0x2c
+ 446 00b4 57000000 		.4byte	0x57
+ 447 00b8 03       		.uleb128 0x3
+ 448 00b9 B7050000 		.4byte	.LASF16
+ 449 00bd 03       		.byte	0x3
+ 450 00be 30       		.byte	0x30
+ 451 00bf 69000000 		.4byte	0x69
+ 452 00c3 02       		.uleb128 0x2
+ 453 00c4 04       		.byte	0x4
+ 454 00c5 07       		.byte	0x7
+ 455 00c6 04160000 		.4byte	.LASF17
+ 456 00ca 05       		.uleb128 0x5
+ 457 00cb B8000000 		.4byte	0xb8
+ 458 00cf 02       		.uleb128 0x2
+ 459 00d0 08       		.byte	0x8
+ 460 00d1 04       		.byte	0x4
+ 461 00d2 38110000 		.4byte	.LASF18
+ 462 00d6 02       		.uleb128 0x2
+ 463 00d7 01       		.byte	0x1
+ 464 00d8 08       		.byte	0x8
+ 465 00d9 CE0B0000 		.4byte	.LASF19
+ 466 00dd 02       		.uleb128 0x2
+ 467 00de 04       		.byte	0x4
+ 468 00df 04       		.byte	0x4
+ 469 00e0 27160000 		.4byte	.LASF20
+ 470 00e4 02       		.uleb128 0x2
+ 471 00e5 08       		.byte	0x8
+ 472 00e6 04       		.byte	0x4
+ 473 00e7 5A090000 		.4byte	.LASF21
+ 474 00eb 06       		.uleb128 0x6
+ 475 00ec 82080000 		.4byte	.LASF22
+ 476 00f0 04       		.byte	0x4
+ 477 00f1 8203     		.2byte	0x382
+ 478 00f3 B8000000 		.4byte	0xb8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 16
+
+
+ 479 00f7 06       		.uleb128 0x6
+ 480 00f8 D9190000 		.4byte	.LASF23
+ 481 00fc 04       		.byte	0x4
+ 482 00fd 8503     		.2byte	0x385
+ 483 00ff 97000000 		.4byte	0x97
+ 484 0103 06       		.uleb128 0x6
+ 485 0104 4D0C0000 		.4byte	.LASF24
+ 486 0108 04       		.byte	0x4
+ 487 0109 8603     		.2byte	0x386
+ 488 010b A2000000 		.4byte	0xa2
+ 489 010f 06       		.uleb128 0x6
+ 490 0110 3F140000 		.4byte	.LASF25
+ 491 0114 04       		.byte	0x4
+ 492 0115 8703     		.2byte	0x387
+ 493 0117 B8000000 		.4byte	0xb8
+ 494 011b 07       		.uleb128 0x7
+ 495 011c 04       		.byte	0x4
+ 496 011d 02       		.uleb128 0x2
+ 497 011e 01       		.byte	0x1
+ 498 011f 02       		.byte	0x2
+ 499 0120 61090000 		.4byte	.LASF26
+ 500 0124 08       		.uleb128 0x8
+ 501 0125 04       		.byte	0x4
+ 502 0126 2A010000 		.4byte	0x12a
+ 503 012a 09       		.uleb128 0x9
+ 504 012b 35010000 		.4byte	0x135
+ 505 012f 0A       		.uleb128 0xa
+ 506 0130 B8000000 		.4byte	0xb8
+ 507 0134 00       		.byte	0
+ 508 0135 06       		.uleb128 0x6
+ 509 0136 6B000000 		.4byte	.LASF27
+ 510 013a 05       		.byte	0x5
+ 511 013b BF01     		.2byte	0x1bf
+ 512 013d 24010000 		.4byte	0x124
+ 513 0141 0B       		.uleb128 0xb
+ 514 0142 CD150000 		.4byte	.LASF291
+ 515 0146 24       		.byte	0x24
+ 516 0147 05       		.byte	0x5
+ 517 0148 4102     		.2byte	0x241
+ 518 014a C4010000 		.4byte	0x1c4
+ 519 014e 0C       		.uleb128 0xc
+ 520 014f D60C0000 		.4byte	.LASF28
+ 521 0153 05       		.byte	0x5
+ 522 0154 4402     		.2byte	0x244
+ 523 0156 CA000000 		.4byte	0xca
+ 524 015a 00       		.byte	0
+ 525 015b 0C       		.uleb128 0xc
+ 526 015c B6080000 		.4byte	.LASF29
+ 527 0160 05       		.byte	0x5
+ 528 0161 4602     		.2byte	0x246
+ 529 0163 1B010000 		.4byte	0x11b
+ 530 0167 04       		.byte	0x4
+ 531 0168 0C       		.uleb128 0xc
+ 532 0169 FA1A0000 		.4byte	.LASF30
+ 533 016d 05       		.byte	0x5
+ 534 016e 4702     		.2byte	0x247
+ 535 0170 B8000000 		.4byte	0xb8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 17
+
+
+ 536 0174 08       		.byte	0x8
+ 537 0175 0C       		.uleb128 0xc
+ 538 0176 7A0C0000 		.4byte	.LASF31
+ 539 017a 05       		.byte	0x5
+ 540 017b 4802     		.2byte	0x248
+ 541 017d CA000000 		.4byte	0xca
+ 542 0181 0C       		.byte	0xc
+ 543 0182 0C       		.uleb128 0xc
+ 544 0183 FD100000 		.4byte	.LASF32
+ 545 0187 05       		.byte	0x5
+ 546 0188 4A02     		.2byte	0x24a
+ 547 018a 1B010000 		.4byte	0x11b
+ 548 018e 10       		.byte	0x10
+ 549 018f 0C       		.uleb128 0xc
+ 550 0190 B80F0000 		.4byte	.LASF33
+ 551 0194 05       		.byte	0x5
+ 552 0195 4B02     		.2byte	0x24b
+ 553 0197 B8000000 		.4byte	0xb8
+ 554 019b 14       		.byte	0x14
+ 555 019c 0C       		.uleb128 0xc
+ 556 019d 48020000 		.4byte	.LASF34
+ 557 01a1 05       		.byte	0x5
+ 558 01a2 4C02     		.2byte	0x24c
+ 559 01a4 CA000000 		.4byte	0xca
+ 560 01a8 18       		.byte	0x18
+ 561 01a9 0C       		.uleb128 0xc
+ 562 01aa 51090000 		.4byte	.LASF35
+ 563 01ae 05       		.byte	0x5
+ 564 01af 5202     		.2byte	0x252
+ 565 01b1 35010000 		.4byte	0x135
+ 566 01b5 1C       		.byte	0x1c
+ 567 01b6 0C       		.uleb128 0xc
+ 568 01b7 BB0C0000 		.4byte	.LASF36
+ 569 01bb 05       		.byte	0x5
+ 570 01bc 5502     		.2byte	0x255
+ 571 01be B8000000 		.4byte	0xb8
+ 572 01c2 20       		.byte	0x20
+ 573 01c3 00       		.byte	0
+ 574 01c4 06       		.uleb128 0x6
+ 575 01c5 370F0000 		.4byte	.LASF37
+ 576 01c9 05       		.byte	0x5
+ 577 01ca 5802     		.2byte	0x258
+ 578 01cc 41010000 		.4byte	0x141
+ 579 01d0 0D       		.uleb128 0xd
+ 580 01d1 01       		.byte	0x1
+ 581 01d2 3E000000 		.4byte	0x3e
+ 582 01d6 06       		.byte	0x6
+ 583 01d7 0504     		.2byte	0x405
+ 584 01d9 F6010000 		.4byte	0x1f6
+ 585 01dd 0E       		.uleb128 0xe
+ 586 01de B9040000 		.4byte	.LASF38
+ 587 01e2 00       		.byte	0
+ 588 01e3 0E       		.uleb128 0xe
+ 589 01e4 EA070000 		.4byte	.LASF39
+ 590 01e8 01       		.byte	0x1
+ 591 01e9 0E       		.uleb128 0xe
+ 592 01ea B60B0000 		.4byte	.LASF40
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 18
+
+
+ 593 01ee 02       		.byte	0x2
+ 594 01ef 0E       		.uleb128 0xe
+ 595 01f0 26020000 		.4byte	.LASF41
+ 596 01f4 03       		.byte	0x3
+ 597 01f5 00       		.byte	0
+ 598 01f6 06       		.uleb128 0x6
+ 599 01f7 2A1A0000 		.4byte	.LASF42
+ 600 01fb 06       		.byte	0x6
+ 601 01fc 0A04     		.2byte	0x40a
+ 602 01fe D0010000 		.4byte	0x1d0
+ 603 0202 0F       		.uleb128 0xf
+ 604 0203 78       		.byte	0x78
+ 605 0204 06       		.byte	0x6
+ 606 0205 F404     		.2byte	0x4f4
+ 607 0207 CF020000 		.4byte	0x2cf
+ 608 020b 0C       		.uleb128 0xc
+ 609 020c 5F080000 		.4byte	.LASF43
+ 610 0210 06       		.byte	0x6
+ 611 0211 F604     		.2byte	0x4f6
+ 612 0213 B8000000 		.4byte	0xb8
+ 613 0217 00       		.byte	0
+ 614 0218 0C       		.uleb128 0xc
+ 615 0219 93160000 		.4byte	.LASF44
+ 616 021d 06       		.byte	0x6
+ 617 021e F704     		.2byte	0x4f7
+ 618 0220 B8000000 		.4byte	0xb8
+ 619 0224 04       		.byte	0x4
+ 620 0225 0C       		.uleb128 0xc
+ 621 0226 9C110000 		.4byte	.LASF45
+ 622 022a 06       		.byte	0x6
+ 623 022b F804     		.2byte	0x4f8
+ 624 022d B8000000 		.4byte	0xb8
+ 625 0231 08       		.byte	0x8
+ 626 0232 0C       		.uleb128 0xc
+ 627 0233 E4150000 		.4byte	.LASF46
+ 628 0237 06       		.byte	0x6
+ 629 0238 F904     		.2byte	0x4f9
+ 630 023a B8000000 		.4byte	0xb8
+ 631 023e 0C       		.byte	0xc
+ 632 023f 0C       		.uleb128 0xc
+ 633 0240 B5070000 		.4byte	.LASF47
+ 634 0244 06       		.byte	0x6
+ 635 0245 FA04     		.2byte	0x4fa
+ 636 0247 B8000000 		.4byte	0xb8
+ 637 024b 10       		.byte	0x10
+ 638 024c 0C       		.uleb128 0xc
+ 639 024d C50D0000 		.4byte	.LASF48
+ 640 0251 06       		.byte	0x6
+ 641 0252 FB04     		.2byte	0x4fb
+ 642 0254 F6010000 		.4byte	0x1f6
+ 643 0258 14       		.byte	0x14
+ 644 0259 0C       		.uleb128 0xc
+ 645 025a 170C0000 		.4byte	.LASF49
+ 646 025e 06       		.byte	0x6
+ 647 025f FC04     		.2byte	0x4fc
+ 648 0261 B8000000 		.4byte	0xb8
+ 649 0265 18       		.byte	0x18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 19
+
+
+ 650 0266 0C       		.uleb128 0xc
+ 651 0267 5B0F0000 		.4byte	.LASF50
+ 652 026b 06       		.byte	0x6
+ 653 026c FD04     		.2byte	0x4fd
+ 654 026e CF020000 		.4byte	0x2cf
+ 655 0272 1C       		.byte	0x1c
+ 656 0273 0C       		.uleb128 0xc
+ 657 0274 F11A0000 		.4byte	.LASF51
+ 658 0278 06       		.byte	0x6
+ 659 0279 FE04     		.2byte	0x4fe
+ 660 027b B8000000 		.4byte	0xb8
+ 661 027f 5C       		.byte	0x5c
+ 662 0280 0C       		.uleb128 0xc
+ 663 0281 7D030000 		.4byte	.LASF52
+ 664 0285 06       		.byte	0x6
+ 665 0286 FF04     		.2byte	0x4ff
+ 666 0288 B8000000 		.4byte	0xb8
+ 667 028c 60       		.byte	0x60
+ 668 028d 0C       		.uleb128 0xc
+ 669 028e 071A0000 		.4byte	.LASF53
+ 670 0292 06       		.byte	0x6
+ 671 0293 0005     		.2byte	0x500
+ 672 0295 B8000000 		.4byte	0xb8
+ 673 0299 64       		.byte	0x64
+ 674 029a 0C       		.uleb128 0xc
+ 675 029b C3110000 		.4byte	.LASF54
+ 676 029f 06       		.byte	0x6
+ 677 02a0 0105     		.2byte	0x501
+ 678 02a2 B8000000 		.4byte	0xb8
+ 679 02a6 68       		.byte	0x68
+ 680 02a7 0C       		.uleb128 0xc
+ 681 02a8 930D0000 		.4byte	.LASF55
+ 682 02ac 06       		.byte	0x6
+ 683 02ad 0205     		.2byte	0x502
+ 684 02af B8000000 		.4byte	0xb8
+ 685 02b3 6C       		.byte	0x6c
+ 686 02b4 0C       		.uleb128 0xc
+ 687 02b5 DF190000 		.4byte	.LASF56
+ 688 02b9 06       		.byte	0x6
+ 689 02ba 0305     		.2byte	0x503
+ 690 02bc 1D010000 		.4byte	0x11d
+ 691 02c0 70       		.byte	0x70
+ 692 02c1 0C       		.uleb128 0xc
+ 693 02c2 320B0000 		.4byte	.LASF57
+ 694 02c6 06       		.byte	0x6
+ 695 02c7 0405     		.2byte	0x504
+ 696 02c9 B8000000 		.4byte	0xb8
+ 697 02cd 74       		.byte	0x74
+ 698 02ce 00       		.byte	0
+ 699 02cf 10       		.uleb128 0x10
+ 700 02d0 B8000000 		.4byte	0xb8
+ 701 02d4 DF020000 		.4byte	0x2df
+ 702 02d8 11       		.uleb128 0x11
+ 703 02d9 C3000000 		.4byte	0xc3
+ 704 02dd 0F       		.byte	0xf
+ 705 02de 00       		.byte	0
+ 706 02df 06       		.uleb128 0x6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 20
+
+
+ 707 02e0 45080000 		.4byte	.LASF58
+ 708 02e4 06       		.byte	0x6
+ 709 02e5 0505     		.2byte	0x505
+ 710 02e7 02020000 		.4byte	0x202
+ 711 02eb 0D       		.uleb128 0xd
+ 712 02ec 02       		.byte	0x2
+ 713 02ed 50000000 		.4byte	0x50
+ 714 02f1 07       		.byte	0x7
+ 715 02f2 3F01     		.2byte	0x13f
+ 716 02f4 1D060000 		.4byte	0x61d
+ 717 02f8 0E       		.uleb128 0xe
+ 718 02f9 A9060000 		.4byte	.LASF59
+ 719 02fd 00       		.byte	0
+ 720 02fe 12       		.uleb128 0x12
+ 721 02ff 03060000 		.4byte	.LASF60
+ 722 0303 0010     		.2byte	0x1000
+ 723 0305 12       		.uleb128 0x12
+ 724 0306 F1150000 		.4byte	.LASF61
+ 725 030a 0110     		.2byte	0x1001
+ 726 030c 12       		.uleb128 0x12
+ 727 030d A30A0000 		.4byte	.LASF62
+ 728 0311 0210     		.2byte	0x1002
+ 729 0313 12       		.uleb128 0x12
+ 730 0314 180B0000 		.4byte	.LASF63
+ 731 0318 0310     		.2byte	0x1003
+ 732 031a 12       		.uleb128 0x12
+ 733 031b D6000000 		.4byte	.LASF64
+ 734 031f 0410     		.2byte	0x1004
+ 735 0321 12       		.uleb128 0x12
+ 736 0322 51020000 		.4byte	.LASF65
+ 737 0326 0510     		.2byte	0x1005
+ 738 0328 12       		.uleb128 0x12
+ 739 0329 A9110000 		.4byte	.LASF66
+ 740 032d 0020     		.2byte	0x2000
+ 741 032f 12       		.uleb128 0x12
+ 742 0330 77140000 		.4byte	.LASF67
+ 743 0334 0120     		.2byte	0x2001
+ 744 0336 12       		.uleb128 0x12
+ 745 0337 4E110000 		.4byte	.LASF68
+ 746 033b 0220     		.2byte	0x2002
+ 747 033d 12       		.uleb128 0x12
+ 748 033e DD0A0000 		.4byte	.LASF69
+ 749 0342 0320     		.2byte	0x2003
+ 750 0344 12       		.uleb128 0x12
+ 751 0345 540C0000 		.4byte	.LASF70
+ 752 0349 0420     		.2byte	0x2004
+ 753 034b 12       		.uleb128 0x12
+ 754 034c 8A0E0000 		.4byte	.LASF71
+ 755 0350 0520     		.2byte	0x2005
+ 756 0352 12       		.uleb128 0x12
+ 757 0353 120A0000 		.4byte	.LASF72
+ 758 0357 0620     		.2byte	0x2006
+ 759 0359 12       		.uleb128 0x12
+ 760 035a 2A150000 		.4byte	.LASF73
+ 761 035e 0720     		.2byte	0x2007
+ 762 0360 12       		.uleb128 0x12
+ 763 0361 2F170000 		.4byte	.LASF74
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 21
+
+
+ 764 0365 0820     		.2byte	0x2008
+ 765 0367 12       		.uleb128 0x12
+ 766 0368 64080000 		.4byte	.LASF75
+ 767 036c 0920     		.2byte	0x2009
+ 768 036e 12       		.uleb128 0x12
+ 769 036f 88060000 		.4byte	.LASF76
+ 770 0373 0A20     		.2byte	0x200a
+ 771 0375 12       		.uleb128 0x12
+ 772 0376 D3060000 		.4byte	.LASF77
+ 773 037a 0B20     		.2byte	0x200b
+ 774 037c 12       		.uleb128 0x12
+ 775 037d BF170000 		.4byte	.LASF78
+ 776 0381 0C20     		.2byte	0x200c
+ 777 0383 12       		.uleb128 0x12
+ 778 0384 D2050000 		.4byte	.LASF79
+ 779 0388 0D20     		.2byte	0x200d
+ 780 038a 12       		.uleb128 0x12
+ 781 038b 2D0D0000 		.4byte	.LASF80
+ 782 038f 0E20     		.2byte	0x200e
+ 783 0391 12       		.uleb128 0x12
+ 784 0392 43120000 		.4byte	.LASF81
+ 785 0396 0F20     		.2byte	0x200f
+ 786 0398 12       		.uleb128 0x12
+ 787 0399 5A0E0000 		.4byte	.LASF82
+ 788 039d 1020     		.2byte	0x2010
+ 789 039f 12       		.uleb128 0x12
+ 790 03a0 8B0F0000 		.4byte	.LASF83
+ 791 03a4 1120     		.2byte	0x2011
+ 792 03a6 12       		.uleb128 0x12
+ 793 03a7 FD160000 		.4byte	.LASF84
+ 794 03ab 1220     		.2byte	0x2012
+ 795 03ad 12       		.uleb128 0x12
+ 796 03ae 90010000 		.4byte	.LASF85
+ 797 03b2 1320     		.2byte	0x2013
+ 798 03b4 12       		.uleb128 0x12
+ 799 03b5 6F0D0000 		.4byte	.LASF86
+ 800 03b9 1420     		.2byte	0x2014
+ 801 03bb 12       		.uleb128 0x12
+ 802 03bc 99030000 		.4byte	.LASF87
+ 803 03c0 1520     		.2byte	0x2015
+ 804 03c2 12       		.uleb128 0x12
+ 805 03c3 5F050000 		.4byte	.LASF88
+ 806 03c7 1620     		.2byte	0x2016
+ 807 03c9 12       		.uleb128 0x12
+ 808 03ca DB020000 		.4byte	.LASF89
+ 809 03ce 1720     		.2byte	0x2017
+ 810 03d0 12       		.uleb128 0x12
+ 811 03d1 17060000 		.4byte	.LASF90
+ 812 03d5 0030     		.2byte	0x3000
+ 813 03d7 12       		.uleb128 0x12
+ 814 03d8 E6080000 		.4byte	.LASF91
+ 815 03dc 0130     		.2byte	0x3001
+ 816 03de 12       		.uleb128 0x12
+ 817 03df 21080000 		.4byte	.LASF92
+ 818 03e3 0230     		.2byte	0x3002
+ 819 03e5 12       		.uleb128 0x12
+ 820 03e6 6A150000 		.4byte	.LASF93
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 22
+
+
+ 821 03ea 0330     		.2byte	0x3003
+ 822 03ec 12       		.uleb128 0x12
+ 823 03ed 76070000 		.4byte	.LASF94
+ 824 03f1 0430     		.2byte	0x3004
+ 825 03f3 12       		.uleb128 0x12
+ 826 03f4 AE150000 		.4byte	.LASF95
+ 827 03f8 0530     		.2byte	0x3005
+ 828 03fa 12       		.uleb128 0x12
+ 829 03fb 71010000 		.4byte	.LASF96
+ 830 03ff 0630     		.2byte	0x3006
+ 831 0401 12       		.uleb128 0x12
+ 832 0402 84190000 		.4byte	.LASF97
+ 833 0406 0730     		.2byte	0x3007
+ 834 0408 12       		.uleb128 0x12
+ 835 0409 E70E0000 		.4byte	.LASF98
+ 836 040d 0830     		.2byte	0x3008
+ 837 040f 12       		.uleb128 0x12
+ 838 0410 AA090000 		.4byte	.LASF99
+ 839 0414 0930     		.2byte	0x3009
+ 840 0416 12       		.uleb128 0x12
+ 841 0417 8E150000 		.4byte	.LASF100
+ 842 041b 0A30     		.2byte	0x300a
+ 843 041d 12       		.uleb128 0x12
+ 844 041e D30B0000 		.4byte	.LASF101
+ 845 0422 0B30     		.2byte	0x300b
+ 846 0424 12       		.uleb128 0x12
+ 847 0425 F5000000 		.4byte	.LASF102
+ 848 0429 0C30     		.2byte	0x300c
+ 849 042b 12       		.uleb128 0x12
+ 850 042c F80C0000 		.4byte	.LASF103
+ 851 0430 1130     		.2byte	0x3011
+ 852 0432 12       		.uleb128 0x12
+ 853 0433 89120000 		.4byte	.LASF104
+ 854 0437 1230     		.2byte	0x3012
+ 855 0439 12       		.uleb128 0x12
+ 856 043a 3E160000 		.4byte	.LASF105
+ 857 043e 1330     		.2byte	0x3013
+ 858 0440 12       		.uleb128 0x12
+ 859 0441 A1140000 		.4byte	.LASF106
+ 860 0445 1430     		.2byte	0x3014
+ 861 0447 12       		.uleb128 0x12
+ 862 0448 B2130000 		.4byte	.LASF107
+ 863 044c 1530     		.2byte	0x3015
+ 864 044e 12       		.uleb128 0x12
+ 865 044f F10D0000 		.4byte	.LASF108
+ 866 0453 1630     		.2byte	0x3016
+ 867 0455 12       		.uleb128 0x12
+ 868 0456 CF0D0000 		.4byte	.LASF109
+ 869 045a 1730     		.2byte	0x3017
+ 870 045c 12       		.uleb128 0x12
+ 871 045d 3E0B0000 		.4byte	.LASF110
+ 872 0461 1830     		.2byte	0x3018
+ 873 0463 12       		.uleb128 0x12
+ 874 0464 2C100000 		.4byte	.LASF111
+ 875 0468 0040     		.2byte	0x4000
+ 876 046a 12       		.uleb128 0x12
+ 877 046b 4D190000 		.4byte	.LASF112
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 23
+
+
+ 878 046f 0140     		.2byte	0x4001
+ 879 0471 12       		.uleb128 0x12
+ 880 0472 11000000 		.4byte	.LASF113
+ 881 0476 0240     		.2byte	0x4002
+ 882 0478 12       		.uleb128 0x12
+ 883 0479 5B160000 		.4byte	.LASF114
+ 884 047d 0340     		.2byte	0x4003
+ 885 047f 12       		.uleb128 0x12
+ 886 0480 520D0000 		.4byte	.LASF115
+ 887 0484 0440     		.2byte	0x4004
+ 888 0486 12       		.uleb128 0x12
+ 889 0487 8D1A0000 		.4byte	.LASF116
+ 890 048b 0540     		.2byte	0x4005
+ 891 048d 12       		.uleb128 0x12
+ 892 048e 89000000 		.4byte	.LASF117
+ 893 0492 0640     		.2byte	0x4006
+ 894 0494 12       		.uleb128 0x12
+ 895 0495 BC080000 		.4byte	.LASF118
+ 896 0499 0740     		.2byte	0x4007
+ 897 049b 12       		.uleb128 0x12
+ 898 049c 4A130000 		.4byte	.LASF119
+ 899 04a0 0840     		.2byte	0x4008
+ 900 04a2 12       		.uleb128 0x12
+ 901 04a3 03080000 		.4byte	.LASF120
+ 902 04a7 0940     		.2byte	0x4009
+ 903 04a9 12       		.uleb128 0x12
+ 904 04aa 041B0000 		.4byte	.LASF121
+ 905 04ae 0A40     		.2byte	0x400a
+ 906 04b0 12       		.uleb128 0x12
+ 907 04b1 F70B0000 		.4byte	.LASF122
+ 908 04b5 0B40     		.2byte	0x400b
+ 909 04b7 12       		.uleb128 0x12
+ 910 04b8 660F0000 		.4byte	.LASF123
+ 911 04bc 0C40     		.2byte	0x400c
+ 912 04be 12       		.uleb128 0x12
+ 913 04bf 910C0000 		.4byte	.LASF124
+ 914 04c3 0D40     		.2byte	0x400d
+ 915 04c5 12       		.uleb128 0x12
+ 916 04c6 91100000 		.4byte	.LASF125
+ 917 04ca 0E40     		.2byte	0x400e
+ 918 04cc 12       		.uleb128 0x12
+ 919 04cd 8C080000 		.4byte	.LASF126
+ 920 04d1 0F40     		.2byte	0x400f
+ 921 04d3 12       		.uleb128 0x12
+ 922 04d4 1E070000 		.4byte	.LASF127
+ 923 04d8 1040     		.2byte	0x4010
+ 924 04da 12       		.uleb128 0x12
+ 925 04db 53170000 		.4byte	.LASF128
+ 926 04df 1140     		.2byte	0x4011
+ 927 04e1 12       		.uleb128 0x12
+ 928 04e2 EA090000 		.4byte	.LASF129
+ 929 04e6 1240     		.2byte	0x4012
+ 930 04e8 12       		.uleb128 0x12
+ 931 04e9 F5130000 		.4byte	.LASF130
+ 932 04ed 1340     		.2byte	0x4013
+ 933 04ef 12       		.uleb128 0x12
+ 934 04f0 70100000 		.4byte	.LASF131
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 24
+
+
+ 935 04f4 1440     		.2byte	0x4014
+ 936 04f6 12       		.uleb128 0x12
+ 937 04f7 92040000 		.4byte	.LASF132
+ 938 04fb 1540     		.2byte	0x4015
+ 939 04fd 12       		.uleb128 0x12
+ 940 04fe 5D1A0000 		.4byte	.LASF133
+ 941 0502 1640     		.2byte	0x4016
+ 942 0504 12       		.uleb128 0x12
+ 943 0505 EF010000 		.4byte	.LASF134
+ 944 0509 1740     		.2byte	0x4017
+ 945 050b 12       		.uleb128 0x12
+ 946 050c 410E0000 		.4byte	.LASF135
+ 947 0510 1840     		.2byte	0x4018
+ 948 0512 12       		.uleb128 0x12
+ 949 0513 E2120000 		.4byte	.LASF136
+ 950 0517 1940     		.2byte	0x4019
+ 951 0519 12       		.uleb128 0x12
+ 952 051a 00120000 		.4byte	.LASF137
+ 953 051e 0050     		.2byte	0x5000
+ 954 0520 12       		.uleb128 0x12
+ 955 0521 48030000 		.4byte	.LASF138
+ 956 0525 0150     		.2byte	0x5001
+ 957 0527 12       		.uleb128 0x12
+ 958 0528 DE170000 		.4byte	.LASF139
+ 959 052c 0250     		.2byte	0x5002
+ 960 052e 12       		.uleb128 0x12
+ 961 052f 47180000 		.4byte	.LASF140
+ 962 0533 0350     		.2byte	0x5003
+ 963 0535 12       		.uleb128 0x12
+ 964 0536 1E050000 		.4byte	.LASF141
+ 965 053a 0450     		.2byte	0x5004
+ 966 053c 12       		.uleb128 0x12
+ 967 053d 1B120000 		.4byte	.LASF142
+ 968 0541 0550     		.2byte	0x5005
+ 969 0543 12       		.uleb128 0x12
+ 970 0544 2B0C0000 		.4byte	.LASF143
+ 971 0548 0650     		.2byte	0x5006
+ 972 054a 12       		.uleb128 0x12
+ 973 054b 97020000 		.4byte	.LASF144
+ 974 054f 0750     		.2byte	0x5007
+ 975 0551 12       		.uleb128 0x12
+ 976 0552 41060000 		.4byte	.LASF145
+ 977 0556 0850     		.2byte	0x5008
+ 978 0558 12       		.uleb128 0x12
+ 979 0559 7E050000 		.4byte	.LASF146
+ 980 055d 0950     		.2byte	0x5009
+ 981 055f 12       		.uleb128 0x12
+ 982 0560 98050000 		.4byte	.LASF147
+ 983 0564 0A50     		.2byte	0x500a
+ 984 0566 12       		.uleb128 0x12
+ 985 0567 28030000 		.4byte	.LASF148
+ 986 056b 0B50     		.2byte	0x500b
+ 987 056d 12       		.uleb128 0x12
+ 988 056e 6E120000 		.4byte	.LASF149
+ 989 0572 0C50     		.2byte	0x500c
+ 990 0574 12       		.uleb128 0x12
+ 991 0575 360A0000 		.4byte	.LASF150
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 25
+
+
+ 992 0579 0D50     		.2byte	0x500d
+ 993 057b 12       		.uleb128 0x12
+ 994 057c 65190000 		.4byte	.LASF151
+ 995 0580 0E50     		.2byte	0x500e
+ 996 0582 12       		.uleb128 0x12
+ 997 0583 1D090000 		.4byte	.LASF152
+ 998 0587 0F50     		.2byte	0x500f
+ 999 0589 12       		.uleb128 0x12
+ 1000 058a 57140000 		.4byte	.LASF153
+ 1001 058e 1050     		.2byte	0x5010
+ 1002 0590 12       		.uleb128 0x12
+ 1003 0591 0F180000 		.4byte	.LASF154
+ 1004 0595 1150     		.2byte	0x5011
+ 1005 0597 12       		.uleb128 0x12
+ 1006 0598 19010000 		.4byte	.LASF155
+ 1007 059c 1250     		.2byte	0x5012
+ 1008 059e 12       		.uleb128 0x12
+ 1009 059f DE110000 		.4byte	.LASF156
+ 1010 05a3 1350     		.2byte	0x5013
+ 1011 05a5 12       		.uleb128 0x12
+ 1012 05a6 3D050000 		.4byte	.LASF157
+ 1013 05aa 1450     		.2byte	0x5014
+ 1014 05ac 12       		.uleb128 0x12
+ 1015 05ad CD160000 		.4byte	.LASF158
+ 1016 05b1 1550     		.2byte	0x5015
+ 1017 05b3 12       		.uleb128 0x12
+ 1018 05b4 66180000 		.4byte	.LASF159
+ 1019 05b8 1650     		.2byte	0x5016
+ 1020 05ba 12       		.uleb128 0x12
+ 1021 05bb B5030000 		.4byte	.LASF160
+ 1022 05bf 1750     		.2byte	0x5017
+ 1023 05c1 12       		.uleb128 0x12
+ 1024 05c2 0A0F0000 		.4byte	.LASF161
+ 1025 05c6 1850     		.2byte	0x5018
+ 1026 05c8 12       		.uleb128 0x12
+ 1027 05c9 B2190000 		.4byte	.LASF162
+ 1028 05cd 0060     		.2byte	0x6000
+ 1029 05cf 12       		.uleb128 0x12
+ 1030 05d0 8D170000 		.4byte	.LASF163
+ 1031 05d4 0160     		.2byte	0x6001
+ 1032 05d6 12       		.uleb128 0x12
+ 1033 05d7 C00A0000 		.4byte	.LASF164
+ 1034 05db 0260     		.2byte	0x6002
+ 1035 05dd 12       		.uleb128 0x12
+ 1036 05de 51100000 		.4byte	.LASF165
+ 1037 05e2 0360     		.2byte	0x6003
+ 1038 05e4 12       		.uleb128 0x12
+ 1039 05e5 69060000 		.4byte	.LASF166
+ 1040 05e9 0460     		.2byte	0x6004
+ 1041 05eb 12       		.uleb128 0x12
+ 1042 05ec 1D140000 		.4byte	.LASF167
+ 1043 05f0 0560     		.2byte	0x6005
+ 1044 05f2 12       		.uleb128 0x12
+ 1045 05f3 88090000 		.4byte	.LASF168
+ 1046 05f7 0660     		.2byte	0x6006
+ 1047 05f9 12       		.uleb128 0x12
+ 1048 05fa 4B000000 		.4byte	.LASF169
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 26
+
+
+ 1049 05fe 0760     		.2byte	0x6007
+ 1050 0600 12       		.uleb128 0x12
+ 1051 0601 AC010000 		.4byte	.LASF170
+ 1052 0605 0860     		.2byte	0x6008
+ 1053 0607 12       		.uleb128 0x12
+ 1054 0608 B2000000 		.4byte	.LASF171
+ 1055 060c 0960     		.2byte	0x6009
+ 1056 060e 12       		.uleb128 0x12
+ 1057 060f CA0F0000 		.4byte	.LASF172
+ 1058 0613 0A60     		.2byte	0x600a
+ 1059 0615 12       		.uleb128 0x12
+ 1060 0616 6E090000 		.4byte	.LASF173
+ 1061 061a FFFF     		.2byte	0xffff
+ 1062 061c 00       		.byte	0
+ 1063 061d 0F       		.uleb128 0xf
+ 1064 061e 02       		.byte	0x2
+ 1065 061f 08       		.byte	0x8
+ 1066 0620 5B01     		.2byte	0x15b
+ 1067 0622 41060000 		.4byte	0x641
+ 1068 0626 0C       		.uleb128 0xc
+ 1069 0627 B6180000 		.4byte	.LASF174
+ 1070 062b 08       		.byte	0x8
+ 1071 062c 6501     		.2byte	0x165
+ 1072 062e 97000000 		.4byte	0x97
+ 1073 0632 00       		.byte	0
+ 1074 0633 0C       		.uleb128 0xc
+ 1075 0634 59080000 		.4byte	.LASF175
+ 1076 0638 08       		.byte	0x8
+ 1077 0639 6901     		.2byte	0x169
+ 1078 063b 97000000 		.4byte	0x97
+ 1079 063f 01       		.byte	0x1
+ 1080 0640 00       		.byte	0
+ 1081 0641 06       		.uleb128 0x6
+ 1082 0642 BA120000 		.4byte	.LASF176
+ 1083 0646 08       		.byte	0x8
+ 1084 0647 6B01     		.2byte	0x16b
+ 1085 0649 1D060000 		.4byte	0x61d
+ 1086 064d 13       		.uleb128 0x13
+ 1087 064e 01       		.byte	0x1
+ 1088 064f 3E000000 		.4byte	0x3e
+ 1089 0653 09       		.byte	0x9
+ 1090 0654 7E       		.byte	0x7e
+ 1091 0655 72060000 		.4byte	0x672
+ 1092 0659 0E       		.uleb128 0xe
+ 1093 065a 64030000 		.4byte	.LASF177
+ 1094 065e 00       		.byte	0
+ 1095 065f 0E       		.uleb128 0xe
+ 1096 0660 C0070000 		.4byte	.LASF178
+ 1097 0664 01       		.byte	0x1
+ 1098 0665 0E       		.uleb128 0xe
+ 1099 0666 CD090000 		.4byte	.LASF179
+ 1100 066a 02       		.byte	0x2
+ 1101 066b 0E       		.uleb128 0xe
+ 1102 066c 640B0000 		.4byte	.LASF180
+ 1103 0670 03       		.byte	0x3
+ 1104 0671 00       		.byte	0
+ 1105 0672 03       		.uleb128 0x3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 27
+
+
+ 1106 0673 60070000 		.4byte	.LASF181
+ 1107 0677 09       		.byte	0x9
+ 1108 0678 83       		.byte	0x83
+ 1109 0679 4D060000 		.4byte	0x64d
+ 1110 067d 13       		.uleb128 0x13
+ 1111 067e 01       		.byte	0x1
+ 1112 067f 3E000000 		.4byte	0x3e
+ 1113 0683 09       		.byte	0x9
+ 1114 0684 87       		.byte	0x87
+ 1115 0685 BA060000 		.4byte	0x6ba
+ 1116 0689 0E       		.uleb128 0xe
+ 1117 068a A81A0000 		.4byte	.LASF182
+ 1118 068e 00       		.byte	0
+ 1119 068f 0E       		.uleb128 0xe
+ 1120 0690 D1040000 		.4byte	.LASF183
+ 1121 0694 01       		.byte	0x1
+ 1122 0695 0E       		.uleb128 0xe
+ 1123 0696 E1100000 		.4byte	.LASF184
+ 1124 069a 02       		.byte	0x2
+ 1125 069b 0E       		.uleb128 0xe
+ 1126 069c C71A0000 		.4byte	.LASF185
+ 1127 06a0 03       		.byte	0x3
+ 1128 06a1 0E       		.uleb128 0xe
+ 1129 06a2 0E110000 		.4byte	.LASF186
+ 1130 06a6 04       		.byte	0x4
+ 1131 06a7 0E       		.uleb128 0xe
+ 1132 06a8 840B0000 		.4byte	.LASF187
+ 1133 06ac 05       		.byte	0x5
+ 1134 06ad 0E       		.uleb128 0xe
+ 1135 06ae B6100000 		.4byte	.LASF188
+ 1136 06b2 06       		.byte	0x6
+ 1137 06b3 0E       		.uleb128 0xe
+ 1138 06b4 5C0A0000 		.4byte	.LASF189
+ 1139 06b8 07       		.byte	0x7
+ 1140 06b9 00       		.byte	0
+ 1141 06ba 03       		.uleb128 0x3
+ 1142 06bb 80020000 		.4byte	.LASF190
+ 1143 06bf 09       		.byte	0x9
+ 1144 06c0 90       		.byte	0x90
+ 1145 06c1 7D060000 		.4byte	0x67d
+ 1146 06c5 03       		.uleb128 0x3
+ 1147 06c6 75170000 		.4byte	.LASF191
+ 1148 06ca 0A       		.byte	0xa
+ 1149 06cb D8       		.byte	0xd8
+ 1150 06cc 03010000 		.4byte	0x103
+ 1151 06d0 03       		.uleb128 0x3
+ 1152 06d1 DD0C0000 		.4byte	.LASF192
+ 1153 06d5 0A       		.byte	0xa
+ 1154 06d6 DC       		.byte	0xdc
+ 1155 06d7 F7000000 		.4byte	0xf7
+ 1156 06db 10       		.uleb128 0x10
+ 1157 06dc F7000000 		.4byte	0xf7
+ 1158 06e0 EB060000 		.4byte	0x6eb
+ 1159 06e4 11       		.uleb128 0x11
+ 1160 06e5 C3000000 		.4byte	0xc3
+ 1161 06e9 00       		.byte	0
+ 1162 06ea 00       		.byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 28
+
+
+ 1163 06eb 14       		.uleb128 0x14
+ 1164 06ec 14       		.byte	0x14
+ 1165 06ed 0B       		.byte	0xb
+ 1166 06ee DA       		.byte	0xda
+ 1167 06ef 97070000 		.4byte	0x797
+ 1168 06f3 15       		.uleb128 0x15
+ 1169 06f4 C30C0000 		.4byte	.LASF193
+ 1170 06f8 0B       		.byte	0xb
+ 1171 06f9 E0       		.byte	0xe0
+ 1172 06fa 03010000 		.4byte	0x103
+ 1173 06fe 00       		.byte	0
+ 1174 06ff 15       		.uleb128 0x15
+ 1175 0700 82160000 		.4byte	.LASF194
+ 1176 0704 0B       		.byte	0xb
+ 1177 0705 E5       		.byte	0xe5
+ 1178 0706 C5060000 		.4byte	0x6c5
+ 1179 070a 02       		.byte	0x2
+ 1180 070b 15       		.uleb128 0x15
+ 1181 070c AE0B0000 		.4byte	.LASF195
+ 1182 0710 0B       		.byte	0xb
+ 1183 0711 EA       		.byte	0xea
+ 1184 0712 F7000000 		.4byte	0xf7
+ 1185 0716 04       		.byte	0x4
+ 1186 0717 15       		.uleb128 0x15
+ 1187 0718 2E0F0000 		.4byte	.LASF196
+ 1188 071c 0B       		.byte	0xb
+ 1189 071d EF       		.byte	0xef
+ 1190 071e F7000000 		.4byte	0xf7
+ 1191 0722 05       		.byte	0x5
+ 1192 0723 15       		.uleb128 0x15
+ 1193 0724 7D090000 		.4byte	.LASF197
+ 1194 0728 0B       		.byte	0xb
+ 1195 0729 F4       		.byte	0xf4
+ 1196 072a F7000000 		.4byte	0xf7
+ 1197 072e 06       		.byte	0x6
+ 1198 072f 15       		.uleb128 0x15
+ 1199 0730 360E0000 		.4byte	.LASF198
+ 1200 0734 0B       		.byte	0xb
+ 1201 0735 F9       		.byte	0xf9
+ 1202 0736 F7000000 		.4byte	0xf7
+ 1203 073a 07       		.byte	0x7
+ 1204 073b 0C       		.uleb128 0xc
+ 1205 073c 510A0000 		.4byte	.LASF199
+ 1206 0740 0B       		.byte	0xb
+ 1207 0741 0001     		.2byte	0x100
+ 1208 0743 D0060000 		.4byte	0x6d0
+ 1209 0747 08       		.byte	0x8
+ 1210 0748 0C       		.uleb128 0xc
+ 1211 0749 1F160000 		.4byte	.LASF200
+ 1212 074d 0B       		.byte	0xb
+ 1213 074e 0801     		.2byte	0x108
+ 1214 0750 DB060000 		.4byte	0x6db
+ 1215 0754 09       		.byte	0x9
+ 1216 0755 0C       		.uleb128 0xc
+ 1217 0756 97180000 		.4byte	.LASF201
+ 1218 075a 0B       		.byte	0xb
+ 1219 075b 1101     		.2byte	0x111
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 29
+
+
+ 1220 075d 03010000 		.4byte	0x103
+ 1221 0761 0A       		.byte	0xa
+ 1222 0762 0C       		.uleb128 0xc
+ 1223 0763 3D130000 		.4byte	.LASF202
+ 1224 0767 0B       		.byte	0xb
+ 1225 0768 1601     		.2byte	0x116
+ 1226 076a F7000000 		.4byte	0xf7
+ 1227 076e 0C       		.byte	0xc
+ 1228 076f 0C       		.uleb128 0xc
+ 1229 0770 F8140000 		.4byte	.LASF203
+ 1230 0774 0B       		.byte	0xb
+ 1231 0775 1D01     		.2byte	0x11d
+ 1232 0777 03010000 		.4byte	0x103
+ 1233 077b 0E       		.byte	0xe
+ 1234 077c 0C       		.uleb128 0xc
+ 1235 077d 67090000 		.4byte	.LASF204
+ 1236 0781 0B       		.byte	0xb
+ 1237 0782 2201     		.2byte	0x122
+ 1238 0784 03010000 		.4byte	0x103
+ 1239 0788 10       		.byte	0x10
+ 1240 0789 0C       		.uleb128 0xc
+ 1241 078a 50010000 		.4byte	.LASF205
+ 1242 078e 0B       		.byte	0xb
+ 1243 078f 2701     		.2byte	0x127
+ 1244 0791 C5060000 		.4byte	0x6c5
+ 1245 0795 12       		.byte	0x12
+ 1246 0796 00       		.byte	0
+ 1247 0797 06       		.uleb128 0x6
+ 1248 0798 9E160000 		.4byte	.LASF206
+ 1249 079c 0B       		.byte	0xb
+ 1250 079d 2801     		.2byte	0x128
+ 1251 079f EB060000 		.4byte	0x6eb
+ 1252 07a3 0F       		.uleb128 0xf
+ 1253 07a4 14       		.byte	0x14
+ 1254 07a5 0B       		.byte	0xb
+ 1255 07a6 2E01     		.2byte	0x12e
+ 1256 07a8 BA070000 		.4byte	0x7ba
+ 1257 07ac 0C       		.uleb128 0xc
+ 1258 07ad AB180000 		.4byte	.LASF207
+ 1259 07b1 0B       		.byte	0xb
+ 1260 07b2 3301     		.2byte	0x133
+ 1261 07b4 97070000 		.4byte	0x797
+ 1262 07b8 00       		.byte	0
+ 1263 07b9 00       		.byte	0
+ 1264 07ba 06       		.uleb128 0x6
+ 1265 07bb 02050000 		.4byte	.LASF208
+ 1266 07bf 0B       		.byte	0xb
+ 1267 07c0 3401     		.2byte	0x134
+ 1268 07c2 A3070000 		.4byte	0x7a3
+ 1269 07c6 0F       		.uleb128 0xf
+ 1270 07c7 0A       		.byte	0xa
+ 1271 07c8 0B       		.byte	0xb
+ 1272 07c9 3A01     		.2byte	0x13a
+ 1273 07cb 1E080000 		.4byte	0x81e
+ 1274 07cf 16       		.uleb128 0x16
+ 1275 07d0 72617700 		.ascii	"raw\000"
+ 1276 07d4 0B       		.byte	0xb
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 30
+
+
+ 1277 07d5 3F01     		.2byte	0x13f
+ 1278 07d7 1E080000 		.4byte	0x81e
+ 1279 07db 00       		.byte	0
+ 1280 07dc 0C       		.uleb128 0xc
+ 1281 07dd 35190000 		.4byte	.LASF209
+ 1282 07e1 0B       		.byte	0xb
+ 1283 07e2 4401     		.2byte	0x144
+ 1284 07e4 1E080000 		.4byte	0x81e
+ 1285 07e8 02       		.byte	0x2
+ 1286 07e9 0C       		.uleb128 0xc
+ 1287 07ea 8B160000 		.4byte	.LASF210
+ 1288 07ee 0B       		.byte	0xb
+ 1289 07ef 4A01     		.2byte	0x14a
+ 1290 07f1 DB060000 		.4byte	0x6db
+ 1291 07f5 04       		.byte	0x4
+ 1292 07f6 0C       		.uleb128 0xc
+ 1293 07f7 E7130000 		.4byte	.LASF211
+ 1294 07fb 0B       		.byte	0xb
+ 1295 07fc 4F01     		.2byte	0x14f
+ 1296 07fe C5060000 		.4byte	0x6c5
+ 1297 0802 06       		.byte	0x6
+ 1298 0803 0C       		.uleb128 0xc
+ 1299 0804 ED190000 		.4byte	.LASF212
+ 1300 0808 0B       		.byte	0xb
+ 1301 0809 5401     		.2byte	0x154
+ 1302 080b 2E080000 		.4byte	0x82e
+ 1303 080f 08       		.byte	0x8
+ 1304 0810 0C       		.uleb128 0xc
+ 1305 0811 D3130000 		.4byte	.LASF213
+ 1306 0815 0B       		.byte	0xb
+ 1307 0816 5A01     		.2byte	0x15a
+ 1308 0818 DB060000 		.4byte	0x6db
+ 1309 081c 09       		.byte	0x9
+ 1310 081d 00       		.byte	0
+ 1311 081e 10       		.uleb128 0x10
+ 1312 081f 03010000 		.4byte	0x103
+ 1313 0823 2E080000 		.4byte	0x82e
+ 1314 0827 11       		.uleb128 0x11
+ 1315 0828 C3000000 		.4byte	0xc3
+ 1316 082c 00       		.byte	0
+ 1317 082d 00       		.byte	0
+ 1318 082e 10       		.uleb128 0x10
+ 1319 082f D0060000 		.4byte	0x6d0
+ 1320 0833 3E080000 		.4byte	0x83e
+ 1321 0837 11       		.uleb128 0x11
+ 1322 0838 C3000000 		.4byte	0xc3
+ 1323 083c 00       		.byte	0
+ 1324 083d 00       		.byte	0
+ 1325 083e 06       		.uleb128 0x6
+ 1326 083f 05090000 		.4byte	.LASF214
+ 1327 0843 0B       		.byte	0xb
+ 1328 0844 5B01     		.2byte	0x15b
+ 1329 0846 C6070000 		.4byte	0x7c6
+ 1330 084a 0F       		.uleb128 0xf
+ 1331 084b 0A       		.byte	0xa
+ 1332 084c 0B       		.byte	0xb
+ 1333 084d 6101     		.2byte	0x161
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 31
+
+
+ 1334 084f 61080000 		.4byte	0x861
+ 1335 0853 0C       		.uleb128 0xc
+ 1336 0854 AB180000 		.4byte	.LASF207
+ 1337 0858 0B       		.byte	0xb
+ 1338 0859 6601     		.2byte	0x166
+ 1339 085b 61080000 		.4byte	0x861
+ 1340 085f 00       		.byte	0
+ 1341 0860 00       		.byte	0
+ 1342 0861 10       		.uleb128 0x10
+ 1343 0862 3E080000 		.4byte	0x83e
+ 1344 0866 71080000 		.4byte	0x871
+ 1345 086a 11       		.uleb128 0x11
+ 1346 086b C3000000 		.4byte	0xc3
+ 1347 086f 00       		.byte	0
+ 1348 0870 00       		.byte	0
+ 1349 0871 06       		.uleb128 0x6
+ 1350 0872 02150000 		.4byte	.LASF215
+ 1351 0876 0B       		.byte	0xb
+ 1352 0877 6701     		.2byte	0x167
+ 1353 0879 4A080000 		.4byte	0x84a
+ 1354 087d 0F       		.uleb128 0xf
+ 1355 087e 44       		.byte	0x44
+ 1356 087f 0B       		.byte	0xb
+ 1357 0880 6D01     		.2byte	0x16d
+ 1358 0882 64090000 		.4byte	0x964
+ 1359 0886 0C       		.uleb128 0xc
+ 1360 0887 93110000 		.4byte	.LASF216
+ 1361 088b 0B       		.byte	0xb
+ 1362 088c 7501     		.2byte	0x175
+ 1363 088e 03010000 		.4byte	0x103
+ 1364 0892 00       		.byte	0
+ 1365 0893 0C       		.uleb128 0xc
+ 1366 0894 2D160000 		.4byte	.LASF217
+ 1367 0898 0B       		.byte	0xb
+ 1368 0899 7A01     		.2byte	0x17a
+ 1369 089b 03010000 		.4byte	0x103
+ 1370 089f 02       		.byte	0x2
+ 1371 08a0 0C       		.uleb128 0xc
+ 1372 08a1 40020000 		.4byte	.LASF218
+ 1373 08a5 0B       		.byte	0xb
+ 1374 08a6 7F01     		.2byte	0x17f
+ 1375 08a8 03010000 		.4byte	0x103
+ 1376 08ac 04       		.byte	0x4
+ 1377 08ad 0C       		.uleb128 0xc
+ 1378 08ae EC130000 		.4byte	.LASF219
+ 1379 08b2 0B       		.byte	0xb
+ 1380 08b3 8501     		.2byte	0x185
+ 1381 08b5 03010000 		.4byte	0x103
+ 1382 08b9 06       		.byte	0x6
+ 1383 08ba 0C       		.uleb128 0xc
+ 1384 08bb 1A020000 		.4byte	.LASF220
+ 1385 08bf 0B       		.byte	0xb
+ 1386 08c0 8A01     		.2byte	0x18a
+ 1387 08c2 03010000 		.4byte	0x103
+ 1388 08c6 08       		.byte	0x8
+ 1389 08c7 0C       		.uleb128 0xc
+ 1390 08c8 D60C0000 		.4byte	.LASF28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 32
+
+
+ 1391 08cc 0B       		.byte	0xb
+ 1392 08cd 8F01     		.2byte	0x18f
+ 1393 08cf 64090000 		.4byte	0x964
+ 1394 08d3 0C       		.byte	0xc
+ 1395 08d4 0C       		.uleb128 0xc
+ 1396 08d5 DC130000 		.4byte	.LASF221
+ 1397 08d9 0B       		.byte	0xb
+ 1398 08da 9501     		.2byte	0x195
+ 1399 08dc 69090000 		.4byte	0x969
+ 1400 08e0 10       		.byte	0x10
+ 1401 08e1 0C       		.uleb128 0xc
+ 1402 08e2 1F150000 		.4byte	.LASF222
+ 1403 08e6 0B       		.byte	0xb
+ 1404 08e7 9B01     		.2byte	0x19b
+ 1405 08e9 69090000 		.4byte	0x969
+ 1406 08ed 14       		.byte	0x14
+ 1407 08ee 0C       		.uleb128 0xc
+ 1408 08ef 230D0000 		.4byte	.LASF223
+ 1409 08f3 0B       		.byte	0xb
+ 1410 08f4 AD01     		.2byte	0x1ad
+ 1411 08f6 DB060000 		.4byte	0x6db
+ 1412 08fa 18       		.byte	0x18
+ 1413 08fb 0C       		.uleb128 0xc
+ 1414 08fc 500F0000 		.4byte	.LASF224
+ 1415 0900 0B       		.byte	0xb
+ 1416 0901 B201     		.2byte	0x1b2
+ 1417 0903 03010000 		.4byte	0x103
+ 1418 0907 1A       		.byte	0x1a
+ 1419 0908 0C       		.uleb128 0xc
+ 1420 0909 DC080000 		.4byte	.LASF225
+ 1421 090d 0B       		.byte	0xb
+ 1422 090e B701     		.2byte	0x1b7
+ 1423 0910 F7000000 		.4byte	0xf7
+ 1424 0914 1C       		.byte	0x1c
+ 1425 0915 0C       		.uleb128 0xc
+ 1426 0916 43070000 		.4byte	.LASF226
+ 1427 091a 0B       		.byte	0xb
+ 1428 091b BC01     		.2byte	0x1bc
+ 1429 091d BA070000 		.4byte	0x7ba
+ 1430 0921 1E       		.byte	0x1e
+ 1431 0922 0C       		.uleb128 0xc
+ 1432 0923 0A070000 		.4byte	.LASF227
+ 1433 0927 0B       		.byte	0xb
+ 1434 0928 C101     		.2byte	0x1c1
+ 1435 092a 71080000 		.4byte	0x871
+ 1436 092e 32       		.byte	0x32
+ 1437 092f 0C       		.uleb128 0xc
+ 1438 0930 4D1A0000 		.4byte	.LASF228
+ 1439 0934 0B       		.byte	0xb
+ 1440 0935 C601     		.2byte	0x1c6
+ 1441 0937 F7000000 		.4byte	0xf7
+ 1442 093b 3C       		.byte	0x3c
+ 1443 093c 0C       		.uleb128 0xc
+ 1444 093d 93070000 		.4byte	.LASF229
+ 1445 0941 0B       		.byte	0xb
+ 1446 0942 CB01     		.2byte	0x1cb
+ 1447 0944 F7000000 		.4byte	0xf7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 33
+
+
+ 1448 0948 3D       		.byte	0x3d
+ 1449 0949 0C       		.uleb128 0xc
+ 1450 094a 80110000 		.4byte	.LASF230
+ 1451 094e 0B       		.byte	0xb
+ 1452 094f D001     		.2byte	0x1d0
+ 1453 0951 03010000 		.4byte	0x103
+ 1454 0955 3E       		.byte	0x3e
+ 1455 0956 0C       		.uleb128 0xc
+ 1456 0957 D70E0000 		.4byte	.LASF231
+ 1457 095b 0B       		.byte	0xb
+ 1458 095c D501     		.2byte	0x1d5
+ 1459 095e 1E080000 		.4byte	0x81e
+ 1460 0962 40       		.byte	0x40
+ 1461 0963 00       		.byte	0
+ 1462 0964 05       		.uleb128 0x5
+ 1463 0965 0F010000 		.4byte	0x10f
+ 1464 0969 10       		.uleb128 0x10
+ 1465 096a 0F010000 		.4byte	0x10f
+ 1466 096e 79090000 		.4byte	0x979
+ 1467 0972 11       		.uleb128 0x11
+ 1468 0973 C3000000 		.4byte	0xc3
+ 1469 0977 00       		.byte	0
+ 1470 0978 00       		.byte	0
+ 1471 0979 06       		.uleb128 0x6
+ 1472 097a 1A130000 		.4byte	.LASF232
+ 1473 097e 0B       		.byte	0xb
+ 1474 097f D601     		.2byte	0x1d6
+ 1475 0981 7D080000 		.4byte	0x87d
+ 1476 0985 14       		.uleb128 0x14
+ 1477 0986 14       		.byte	0x14
+ 1478 0987 0C       		.byte	0xc
+ 1479 0988 3B       		.byte	0x3b
+ 1480 0989 CA090000 		.4byte	0x9ca
+ 1481 098d 15       		.uleb128 0x15
+ 1482 098e 74020000 		.4byte	.LASF233
+ 1483 0992 0C       		.byte	0xc
+ 1484 0993 3D       		.byte	0x3d
+ 1485 0994 B8000000 		.4byte	0xb8
+ 1486 0998 00       		.byte	0
+ 1487 0999 15       		.uleb128 0x15
+ 1488 099a 12070000 		.4byte	.LASF234
+ 1489 099e 0C       		.byte	0xc
+ 1490 099f 3E       		.byte	0x3e
+ 1491 09a0 B8000000 		.4byte	0xb8
+ 1492 09a4 04       		.byte	0x4
+ 1493 09a5 15       		.uleb128 0x15
+ 1494 09a6 00030000 		.4byte	.LASF235
+ 1495 09aa 0C       		.byte	0xc
+ 1496 09ab 3F       		.byte	0x3f
+ 1497 09ac CA090000 		.4byte	0x9ca
+ 1498 09b0 08       		.byte	0x8
+ 1499 09b1 15       		.uleb128 0x15
+ 1500 09b2 A7190000 		.4byte	.LASF236
+ 1501 09b6 0C       		.byte	0xc
+ 1502 09b7 40       		.byte	0x40
+ 1503 09b8 B8000000 		.4byte	0xb8
+ 1504 09bc 0C       		.byte	0xc
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 34
+
+
+ 1505 09bd 15       		.uleb128 0x15
+ 1506 09be B4170000 		.4byte	.LASF237
+ 1507 09c2 0C       		.byte	0xc
+ 1508 09c3 45       		.byte	0x45
+ 1509 09c4 B8000000 		.4byte	0xb8
+ 1510 09c8 10       		.byte	0x10
+ 1511 09c9 00       		.byte	0
+ 1512 09ca 08       		.uleb128 0x8
+ 1513 09cb 04       		.byte	0x4
+ 1514 09cc D0090000 		.4byte	0x9d0
+ 1515 09d0 17       		.uleb128 0x17
+ 1516 09d1 DF020000 		.4byte	0x2df
+ 1517 09d5 03       		.uleb128 0x3
+ 1518 09d6 7A130000 		.4byte	.LASF238
+ 1519 09da 0C       		.byte	0xc
+ 1520 09db 48       		.byte	0x48
+ 1521 09dc 85090000 		.4byte	0x985
+ 1522 09e0 03       		.uleb128 0x3
+ 1523 09e1 AA0E0000 		.4byte	.LASF239
+ 1524 09e5 0D       		.byte	0xd
+ 1525 09e6 62       		.byte	0x62
+ 1526 09e7 62000000 		.4byte	0x62
+ 1527 09eb 03       		.uleb128 0x3
+ 1528 09ec 03110000 		.4byte	.LASF240
+ 1529 09f0 0D       		.byte	0xd
+ 1530 09f1 69       		.byte	0x69
+ 1531 09f2 B8000000 		.4byte	0xb8
+ 1532 09f6 03       		.uleb128 0x3
+ 1533 09f7 830C0000 		.4byte	.LASF241
+ 1534 09fb 0E       		.byte	0xe
+ 1535 09fc 58       		.byte	0x58
+ 1536 09fd 1B010000 		.4byte	0x11b
+ 1537 0a01 13       		.uleb128 0x13
+ 1538 0a02 01       		.byte	0x1
+ 1539 0a03 3E000000 		.4byte	0x3e
+ 1540 0a07 0F       		.byte	0xf
+ 1541 0a08 3A       		.byte	0x3a
+ 1542 0a09 200A0000 		.4byte	0xa20
+ 1543 0a0d 0E       		.uleb128 0xe
+ 1544 0a0e D1140000 		.4byte	.LASF242
+ 1545 0a12 00       		.byte	0
+ 1546 0a13 0E       		.uleb128 0xe
+ 1547 0a14 44110000 		.4byte	.LASF243
+ 1548 0a18 01       		.byte	0x1
+ 1549 0a19 0E       		.uleb128 0xe
+ 1550 0a1a E0140000 		.4byte	.LASF244
+ 1551 0a1e 02       		.byte	0x2
+ 1552 0a1f 00       		.byte	0
+ 1553 0a20 03       		.uleb128 0x3
+ 1554 0a21 220E0000 		.4byte	.LASF245
+ 1555 0a25 0F       		.byte	0xf
+ 1556 0a26 3E       		.byte	0x3e
+ 1557 0a27 010A0000 		.4byte	0xa01
+ 1558 0a2b 13       		.uleb128 0x13
+ 1559 0a2c 01       		.byte	0x1
+ 1560 0a2d 3E000000 		.4byte	0x3e
+ 1561 0a31 10       		.byte	0x10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 35
+
+
+ 1562 0a32 3B       		.byte	0x3b
+ 1563 0a33 4A0A0000 		.4byte	0xa4a
+ 1564 0a37 0E       		.uleb128 0xe
+ 1565 0a38 B50E0000 		.4byte	.LASF246
+ 1566 0a3c 00       		.byte	0
+ 1567 0a3d 0E       		.uleb128 0xe
+ 1568 0a3e C5020000 		.4byte	.LASF247
+ 1569 0a42 01       		.byte	0x1
+ 1570 0a43 0E       		.uleb128 0xe
+ 1571 0a44 0C030000 		.4byte	.LASF248
+ 1572 0a48 02       		.byte	0x2
+ 1573 0a49 00       		.byte	0
+ 1574 0a4a 03       		.uleb128 0x3
+ 1575 0a4b 4C070000 		.4byte	.LASF249
+ 1576 0a4f 10       		.byte	0x10
+ 1577 0a50 3F       		.byte	0x3f
+ 1578 0a51 2B0A0000 		.4byte	0xa2b
+ 1579 0a55 14       		.uleb128 0x14
+ 1580 0a56 02       		.byte	0x2
+ 1581 0a57 10       		.byte	0x10
+ 1582 0a58 42       		.byte	0x42
+ 1583 0a59 760A0000 		.4byte	0xa76
+ 1584 0a5d 15       		.uleb128 0x15
+ 1585 0a5e C20F0000 		.4byte	.LASF250
+ 1586 0a62 10       		.byte	0x10
+ 1587 0a63 43       		.byte	0x43
+ 1588 0a64 4A0A0000 		.4byte	0xa4a
+ 1589 0a68 00       		.byte	0
+ 1590 0a69 15       		.uleb128 0x15
+ 1591 0a6a 03100000 		.4byte	.LASF251
+ 1592 0a6e 10       		.byte	0x10
+ 1593 0a6f 44       		.byte	0x44
+ 1594 0a70 97000000 		.4byte	0x97
+ 1595 0a74 01       		.byte	0x1
+ 1596 0a75 00       		.byte	0
+ 1597 0a76 03       		.uleb128 0x3
+ 1598 0a77 89180000 		.4byte	.LASF252
+ 1599 0a7b 10       		.byte	0x10
+ 1600 0a7c 45       		.byte	0x45
+ 1601 0a7d 550A0000 		.4byte	0xa55
+ 1602 0a81 03       		.uleb128 0x3
+ 1603 0a82 F5050000 		.4byte	.LASF253
+ 1604 0a86 11       		.byte	0x11
+ 1605 0a87 76       		.byte	0x76
+ 1606 0a88 1B010000 		.4byte	0x11b
+ 1607 0a8c 18       		.uleb128 0x18
+ 1608 0a8d 010B0000 		.4byte	.LASF254
+ 1609 0a91 01       		.byte	0x1
+ 1610 0a92 FD       		.byte	0xfd
+ 1611 0a93 00000000 		.4byte	.LFB529
+ 1612 0a97 24000000 		.4byte	.LFE529-.LFB529
+ 1613 0a9b 01       		.uleb128 0x1
+ 1614 0a9c 9C       		.byte	0x9c
+ 1615 0a9d E60A0000 		.4byte	0xae6
+ 1616 0aa1 19       		.uleb128 0x19
+ 1617 0aa2 C0140000 		.4byte	.LASF258
+ 1618 0aa6 01       		.byte	0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 36
+
+
+ 1619 0aa7 FD       		.byte	0xfd
+ 1620 0aa8 810A0000 		.4byte	0xa81
+ 1621 0aac 00000000 		.4byte	.LLST0
+ 1622 0ab0 1A       		.uleb128 0x1a
+ 1623 0ab1 AC120000 		.4byte	.LASF256
+ 1624 0ab5 01       		.byte	0x1
+ 1625 0ab6 0001     		.2byte	0x100
+ 1626 0ab8 E0090000 		.4byte	0x9e0
+ 1627 0abc 1B       		.uleb128 0x1b
+ 1628 0abd CD110000 		.4byte	.LASF262
+ 1629 0ac1 01       		.byte	0x1
+ 1630 0ac2 0601     		.2byte	0x106
+ 1631 0ac4 200A0000 		.4byte	0xa20
+ 1632 0ac8 02       		.uleb128 0x2
+ 1633 0ac9 91       		.byte	0x91
+ 1634 0aca 77       		.sleb128 -9
+ 1635 0acb 1C       		.uleb128 0x1c
+ 1636 0acc 18000000 		.4byte	.LVL2
+ 1637 0ad0 BB0D0000 		.4byte	0xdbb
+ 1638 0ad4 1D       		.uleb128 0x1d
+ 1639 0ad5 01       		.uleb128 0x1
+ 1640 0ad6 51       		.byte	0x51
+ 1641 0ad7 02       		.uleb128 0x2
+ 1642 0ad8 91       		.byte	0x91
+ 1643 0ad9 77       		.sleb128 -9
+ 1644 0ada 1D       		.uleb128 0x1d
+ 1645 0adb 01       		.uleb128 0x1
+ 1646 0adc 52       		.byte	0x52
+ 1647 0add 01       		.uleb128 0x1
+ 1648 0ade 30       		.byte	0x30
+ 1649 0adf 1D       		.uleb128 0x1d
+ 1650 0ae0 01       		.uleb128 0x1
+ 1651 0ae1 53       		.byte	0x53
+ 1652 0ae2 01       		.uleb128 0x1
+ 1653 0ae3 30       		.byte	0x30
+ 1654 0ae4 00       		.byte	0
+ 1655 0ae5 00       		.byte	0
+ 1656 0ae6 1E       		.uleb128 0x1e
+ 1657 0ae7 3D090000 		.4byte	.LASF255
+ 1658 0aeb 01       		.byte	0x1
+ 1659 0aec 1E01     		.2byte	0x11e
+ 1660 0aee 00000000 		.4byte	.LFB530
+ 1661 0af2 40000000 		.4byte	.LFE530-.LFB530
+ 1662 0af6 01       		.uleb128 0x1
+ 1663 0af7 9C       		.byte	0x9c
+ 1664 0af8 630B0000 		.4byte	0xb63
+ 1665 0afc 1A       		.uleb128 0x1a
+ 1666 0afd AC120000 		.4byte	.LASF256
+ 1667 0b01 01       		.byte	0x1
+ 1668 0b02 2101     		.2byte	0x121
+ 1669 0b04 E0090000 		.4byte	0x9e0
+ 1670 0b08 1F       		.uleb128 0x1f
+ 1671 0b09 16000000 		.4byte	.LVL3
+ 1672 0b0d C70D0000 		.4byte	0xdc7
+ 1673 0b11 390B0000 		.4byte	0xb39
+ 1674 0b15 1D       		.uleb128 0x1d
+ 1675 0b16 01       		.uleb128 0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 37
+
+
+ 1676 0b17 50       		.byte	0x50
+ 1677 0b18 05       		.uleb128 0x5
+ 1678 0b19 03       		.byte	0x3
+ 1679 0b1a 00000000 		.4byte	.LC0
+ 1680 0b1e 1D       		.uleb128 0x1d
+ 1681 0b1f 01       		.uleb128 0x1
+ 1682 0b20 51       		.byte	0x51
+ 1683 0b21 02       		.uleb128 0x2
+ 1684 0b22 09       		.byte	0x9
+ 1685 0b23 FF       		.byte	0xff
+ 1686 0b24 1D       		.uleb128 0x1d
+ 1687 0b25 01       		.uleb128 0x1
+ 1688 0b26 52       		.byte	0x52
+ 1689 0b27 01       		.uleb128 0x1
+ 1690 0b28 31       		.byte	0x31
+ 1691 0b29 1D       		.uleb128 0x1d
+ 1692 0b2a 01       		.uleb128 0x1
+ 1693 0b2b 53       		.byte	0x53
+ 1694 0b2c 01       		.uleb128 0x1
+ 1695 0b2d 30       		.byte	0x30
+ 1696 0b2e 1D       		.uleb128 0x1d
+ 1697 0b2f 02       		.uleb128 0x2
+ 1698 0b30 7D       		.byte	0x7d
+ 1699 0b31 00       		.sleb128 0
+ 1700 0b32 05       		.uleb128 0x5
+ 1701 0b33 03       		.byte	0x3
+ 1702 0b34 00000000 		.4byte	ProximityTimerCallback
+ 1703 0b38 00       		.byte	0
+ 1704 0b39 20       		.uleb128 0x20
+ 1705 0b3a 22000000 		.4byte	.LVL4
+ 1706 0b3e D30D0000 		.4byte	0xdd3
+ 1707 0b42 1C       		.uleb128 0x1c
+ 1708 0b43 30000000 		.4byte	.LVL5
+ 1709 0b47 DF0D0000 		.4byte	0xddf
+ 1710 0b4b 1D       		.uleb128 0x1d
+ 1711 0b4c 01       		.uleb128 0x1
+ 1712 0b4d 50       		.byte	0x50
+ 1713 0b4e 02       		.uleb128 0x2
+ 1714 0b4f 74       		.byte	0x74
+ 1715 0b50 00       		.sleb128 0
+ 1716 0b51 1D       		.uleb128 0x1d
+ 1717 0b52 01       		.uleb128 0x1
+ 1718 0b53 51       		.byte	0x51
+ 1719 0b54 01       		.uleb128 0x1
+ 1720 0b55 31       		.byte	0x31
+ 1721 0b56 1D       		.uleb128 0x1d
+ 1722 0b57 01       		.uleb128 0x1
+ 1723 0b58 53       		.byte	0x53
+ 1724 0b59 01       		.uleb128 0x1
+ 1725 0b5a 30       		.byte	0x30
+ 1726 0b5b 1D       		.uleb128 0x1d
+ 1727 0b5c 02       		.uleb128 0x2
+ 1728 0b5d 7D       		.byte	0x7d
+ 1729 0b5e 00       		.sleb128 0
+ 1730 0b5f 01       		.uleb128 0x1
+ 1731 0b60 30       		.byte	0x30
+ 1732 0b61 00       		.byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 38
+
+
+ 1733 0b62 00       		.byte	0
+ 1734 0b63 1E       		.uleb128 0x1e
+ 1735 0b64 36000000 		.4byte	.LASF257
+ 1736 0b68 01       		.byte	0x1
+ 1737 0b69 4601     		.2byte	0x146
+ 1738 0b6b 00000000 		.4byte	.LFB531
+ 1739 0b6f 20000000 		.4byte	.LFE531-.LFB531
+ 1740 0b73 01       		.uleb128 0x1
+ 1741 0b74 9C       		.byte	0x9c
+ 1742 0b75 BD0B0000 		.4byte	0xbbd
+ 1743 0b79 21       		.uleb128 0x21
+ 1744 0b7a 2E190000 		.4byte	.LASF259
+ 1745 0b7e 01       		.byte	0x1
+ 1746 0b7f 4601     		.2byte	0x146
+ 1747 0b81 EB090000 		.4byte	0x9eb
+ 1748 0b85 21000000 		.4byte	.LLST1
+ 1749 0b89 1A       		.uleb128 0x1a
+ 1750 0b8a AC120000 		.4byte	.LASF256
+ 1751 0b8e 01       		.byte	0x1
+ 1752 0b8f 4901     		.2byte	0x149
+ 1753 0b91 E0090000 		.4byte	0x9e0
+ 1754 0b95 1C       		.uleb128 0x1c
+ 1755 0b96 16000000 		.4byte	.LVL8
+ 1756 0b9a DF0D0000 		.4byte	0xddf
+ 1757 0b9e 1D       		.uleb128 0x1d
+ 1758 0b9f 01       		.uleb128 0x1
+ 1759 0ba0 50       		.byte	0x50
+ 1760 0ba1 02       		.uleb128 0x2
+ 1761 0ba2 74       		.byte	0x74
+ 1762 0ba3 00       		.sleb128 0
+ 1763 0ba4 1D       		.uleb128 0x1d
+ 1764 0ba5 01       		.uleb128 0x1
+ 1765 0ba6 51       		.byte	0x51
+ 1766 0ba7 01       		.uleb128 0x1
+ 1767 0ba8 34       		.byte	0x34
+ 1768 0ba9 1D       		.uleb128 0x1d
+ 1769 0baa 01       		.uleb128 0x1
+ 1770 0bab 52       		.byte	0x52
+ 1771 0bac 03       		.uleb128 0x3
+ 1772 0bad F3       		.byte	0xf3
+ 1773 0bae 01       		.uleb128 0x1
+ 1774 0baf 50       		.byte	0x50
+ 1775 0bb0 1D       		.uleb128 0x1d
+ 1776 0bb1 01       		.uleb128 0x1
+ 1777 0bb2 53       		.byte	0x53
+ 1778 0bb3 01       		.uleb128 0x1
+ 1779 0bb4 30       		.byte	0x30
+ 1780 0bb5 1D       		.uleb128 0x1d
+ 1781 0bb6 02       		.uleb128 0x2
+ 1782 0bb7 7D       		.byte	0x7d
+ 1783 0bb8 00       		.sleb128 0
+ 1784 0bb9 01       		.uleb128 0x1
+ 1785 0bba 30       		.byte	0x30
+ 1786 0bbb 00       		.byte	0
+ 1787 0bbc 00       		.byte	0
+ 1788 0bbd 22       		.uleb128 0x22
+ 1789 0bbe D3120000 		.4byte	.LASF292
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 39
+
+
+ 1790 0bc2 01       		.byte	0x1
+ 1791 0bc3 52       		.byte	0x52
+ 1792 0bc4 00000000 		.4byte	.LFB528
+ 1793 0bc8 B8000000 		.4byte	.LFE528-.LFB528
+ 1794 0bcc 01       		.uleb128 0x1
+ 1795 0bcd 9C       		.byte	0x9c
+ 1796 0bce F00C0000 		.4byte	0xcf0
+ 1797 0bd2 19       		.uleb128 0x19
+ 1798 0bd3 6D130000 		.4byte	.LASF260
+ 1799 0bd7 01       		.byte	0x1
+ 1800 0bd8 52       		.byte	0x52
+ 1801 0bd9 1B010000 		.4byte	0x11b
+ 1802 0bdd 4D000000 		.4byte	.LLST2
+ 1803 0be1 23       		.uleb128 0x23
+ 1804 0be2 A3070000 		.4byte	.LASF261
+ 1805 0be6 01       		.byte	0x1
+ 1806 0be7 55       		.byte	0x55
+ 1807 0be8 EB000000 		.4byte	0xeb
+ 1808 0bec 24       		.uleb128 0x24
+ 1809 0bed CD110000 		.4byte	.LASF262
+ 1810 0bf1 01       		.byte	0x1
+ 1811 0bf2 58       		.byte	0x58
+ 1812 0bf3 200A0000 		.4byte	0xa20
+ 1813 0bf7 02       		.uleb128 0x2
+ 1814 0bf8 91       		.byte	0x91
+ 1815 0bf9 6F       		.sleb128 -17
+ 1816 0bfa 25       		.uleb128 0x25
+ 1817 0bfb AC120000 		.4byte	.LASF256
+ 1818 0bff 01       		.byte	0x1
+ 1819 0c00 5B       		.byte	0x5b
+ 1820 0c01 E0090000 		.4byte	0x9e0
+ 1821 0c05 6E000000 		.4byte	.LLST3
+ 1822 0c09 25       		.uleb128 0x25
+ 1823 0c0a 58150000 		.4byte	.LASF263
+ 1824 0c0e 01       		.byte	0x1
+ 1825 0c0f 5E       		.byte	0x5e
+ 1826 0c10 1D010000 		.4byte	0x11d
+ 1827 0c14 97000000 		.4byte	.LLST4
+ 1828 0c18 25       		.uleb128 0x25
+ 1829 0c19 95130000 		.4byte	.LASF264
+ 1830 0c1d 01       		.byte	0x1
+ 1831 0c1e 61       		.byte	0x61
+ 1832 0c1f 97000000 		.4byte	0x97
+ 1833 0c23 D9000000 		.4byte	.LLST5
+ 1834 0c27 25       		.uleb128 0x25
+ 1835 0c28 9E180000 		.4byte	.LASF265
+ 1836 0c2c 01       		.byte	0x1
+ 1837 0c2d 62       		.byte	0x62
+ 1838 0c2e 97000000 		.4byte	0x97
+ 1839 0c32 0E010000 		.4byte	.LLST6
+ 1840 0c36 25       		.uleb128 0x25
+ 1841 0c37 151A0000 		.4byte	.LASF266
+ 1842 0c3b 01       		.byte	0x1
+ 1843 0c3c 65       		.byte	0x65
+ 1844 0c3d 1D010000 		.4byte	0x11d
+ 1845 0c41 39010000 		.4byte	.LLST7
+ 1846 0c45 26       		.uleb128 0x26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 40
+
+
+ 1847 0c46 92000000 		.4byte	.LBB2
+ 1848 0c4a 18000000 		.4byte	.LBE2-.LBB2
+ 1849 0c4e 7B0C0000 		.4byte	0xc7b
+ 1850 0c52 24       		.uleb128 0x24
+ 1851 0c53 EF0F0000 		.4byte	.LASF267
+ 1852 0c57 01       		.byte	0x1
+ 1853 0c58 CB       		.byte	0xcb
+ 1854 0c59 760A0000 		.4byte	0xa76
+ 1855 0c5d 02       		.uleb128 0x2
+ 1856 0c5e 91       		.byte	0x91
+ 1857 0c5f 6C       		.sleb128 -20
+ 1858 0c60 1C       		.uleb128 0x1c
+ 1859 0c61 AA000000 		.4byte	.LVL33
+ 1860 0c65 BB0D0000 		.4byte	0xdbb
+ 1861 0c69 1D       		.uleb128 0x1d
+ 1862 0c6a 01       		.uleb128 0x1
+ 1863 0c6b 51       		.byte	0x51
+ 1864 0c6c 02       		.uleb128 0x2
+ 1865 0c6d 91       		.byte	0x91
+ 1866 0c6e 6C       		.sleb128 -20
+ 1867 0c6f 1D       		.uleb128 0x1d
+ 1868 0c70 01       		.uleb128 0x1
+ 1869 0c71 52       		.byte	0x52
+ 1870 0c72 01       		.uleb128 0x1
+ 1871 0c73 30       		.byte	0x30
+ 1872 0c74 1D       		.uleb128 0x1d
+ 1873 0c75 01       		.uleb128 0x1
+ 1874 0c76 53       		.byte	0x53
+ 1875 0c77 01       		.uleb128 0x1
+ 1876 0c78 30       		.byte	0x30
+ 1877 0c79 00       		.byte	0
+ 1878 0c7a 00       		.byte	0
+ 1879 0c7b 20       		.uleb128 0x20
+ 1880 0c7c 08000000 		.4byte	.LVL11
+ 1881 0c80 E60A0000 		.4byte	0xae6
+ 1882 0c84 20       		.uleb128 0x20
+ 1883 0c85 0C000000 		.4byte	.LVL12
+ 1884 0c89 EB0D0000 		.4byte	0xdeb
+ 1885 0c8d 1F       		.uleb128 0x1f
+ 1886 0c8e 24000000 		.4byte	.LVL14
+ 1887 0c92 F60D0000 		.4byte	0xdf6
+ 1888 0c96 AC0C0000 		.4byte	0xcac
+ 1889 0c9a 1D       		.uleb128 0x1d
+ 1890 0c9b 01       		.uleb128 0x1
+ 1891 0c9c 51       		.byte	0x51
+ 1892 0c9d 02       		.uleb128 0x2
+ 1893 0c9e 91       		.byte	0x91
+ 1894 0c9f 6F       		.sleb128 -17
+ 1895 0ca0 1D       		.uleb128 0x1d
+ 1896 0ca1 01       		.uleb128 0x1
+ 1897 0ca2 52       		.byte	0x52
+ 1898 0ca3 02       		.uleb128 0x2
+ 1899 0ca4 09       		.byte	0x9
+ 1900 0ca5 FF       		.byte	0xff
+ 1901 0ca6 1D       		.uleb128 0x1d
+ 1902 0ca7 01       		.uleb128 0x1
+ 1903 0ca8 53       		.byte	0x53
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 41
+
+
+ 1904 0ca9 01       		.uleb128 0x1
+ 1905 0caa 30       		.byte	0x30
+ 1906 0cab 00       		.byte	0
+ 1907 0cac 1F       		.uleb128 0x1f
+ 1908 0cad 3E000000 		.4byte	.LVL17
+ 1909 0cb1 630B0000 		.4byte	0xb63
+ 1910 0cb5 C00C0000 		.4byte	0xcc0
+ 1911 0cb9 1D       		.uleb128 0x1d
+ 1912 0cba 01       		.uleb128 0x1
+ 1913 0cbb 50       		.byte	0x50
+ 1914 0cbc 02       		.uleb128 0x2
+ 1915 0cbd 08       		.byte	0x8
+ 1916 0cbe 21       		.byte	0x21
+ 1917 0cbf 00       		.byte	0
+ 1918 0cc0 1F       		.uleb128 0x1f
+ 1919 0cc1 4A000000 		.4byte	.LVL20
+ 1920 0cc5 630B0000 		.4byte	0xb63
+ 1921 0cc9 D40C0000 		.4byte	0xcd4
+ 1922 0ccd 1D       		.uleb128 0x1d
+ 1923 0cce 01       		.uleb128 0x1
+ 1924 0ccf 50       		.byte	0x50
+ 1925 0cd0 02       		.uleb128 0x2
+ 1926 0cd1 09       		.byte	0x9
+ 1927 0cd2 FF       		.byte	0xff
+ 1928 0cd3 00       		.byte	0
+ 1929 0cd4 20       		.uleb128 0x20
+ 1930 0cd5 52000000 		.4byte	.LVL22
+ 1931 0cd9 020E0000 		.4byte	0xe02
+ 1932 0cdd 20       		.uleb128 0x20
+ 1933 0cde 58000000 		.4byte	.LVL23
+ 1934 0ce2 0D0E0000 		.4byte	0xe0d
+ 1935 0ce6 20       		.uleb128 0x20
+ 1936 0ce7 7C000000 		.4byte	.LVL29
+ 1937 0ceb 180E0000 		.4byte	0xe18
+ 1938 0cef 00       		.byte	0
+ 1939 0cf0 27       		.uleb128 0x27
+ 1940 0cf1 A5130000 		.4byte	.LASF268
+ 1941 0cf5 12       		.byte	0x12
+ 1942 0cf6 EA07     		.2byte	0x7ea
+ 1943 0cf8 FC0C0000 		.4byte	0xcfc
+ 1944 0cfc 05       		.uleb128 0x5
+ 1945 0cfd AD000000 		.4byte	0xad
+ 1946 0d01 27       		.uleb128 0x27
+ 1947 0d02 A30D0000 		.4byte	.LASF269
+ 1948 0d06 09       		.byte	0x9
+ 1949 0d07 2202     		.2byte	0x222
+ 1950 0d09 72060000 		.4byte	0x672
+ 1951 0d0d 10       		.uleb128 0x10
+ 1952 0d0e 41060000 		.4byte	0x641
+ 1953 0d12 1D0D0000 		.4byte	0xd1d
+ 1954 0d16 11       		.uleb128 0x11
+ 1955 0d17 C3000000 		.4byte	0xc3
+ 1956 0d1b 00       		.byte	0
+ 1957 0d1c 00       		.byte	0
+ 1958 0d1d 27       		.uleb128 0x27
+ 1959 0d1e DD010000 		.4byte	.LASF270
+ 1960 0d22 09       		.byte	0x9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 42
+
+
+ 1961 0d23 2C02     		.2byte	0x22c
+ 1962 0d25 0D0D0000 		.4byte	0xd0d
+ 1963 0d29 10       		.uleb128 0x10
+ 1964 0d2a BA060000 		.4byte	0x6ba
+ 1965 0d2e 390D0000 		.4byte	0xd39
+ 1966 0d32 11       		.uleb128 0x11
+ 1967 0d33 C3000000 		.4byte	0xc3
+ 1968 0d37 00       		.byte	0
+ 1969 0d38 00       		.byte	0
+ 1970 0d39 27       		.uleb128 0x27
+ 1971 0d3a 00000000 		.4byte	.LASF271
+ 1972 0d3e 09       		.byte	0x9
+ 1973 0d3f 2D02     		.2byte	0x22d
+ 1974 0d41 290D0000 		.4byte	0xd29
+ 1975 0d45 28       		.uleb128 0x28
+ 1976 0d46 3B010000 		.4byte	.LASF272
+ 1977 0d4a 13       		.byte	0x13
+ 1978 0d4b 5E       		.byte	0x5e
+ 1979 0d4c C4010000 		.4byte	0x1c4
+ 1980 0d50 27       		.uleb128 0x27
+ 1981 0d51 C80E0000 		.4byte	.LASF273
+ 1982 0d55 0B       		.byte	0xb
+ 1983 0d56 FD03     		.2byte	0x3fd
+ 1984 0d58 79090000 		.4byte	0x979
+ 1985 0d5c 27       		.uleb128 0x27
+ 1986 0d5d FD170000 		.4byte	.LASF274
+ 1987 0d61 0C       		.byte	0xc
+ 1988 0d62 6001     		.2byte	0x160
+ 1989 0d64 B8000000 		.4byte	0xb8
+ 1990 0d68 10       		.uleb128 0x10
+ 1991 0d69 780D0000 		.4byte	0xd78
+ 1992 0d6d 780D0000 		.4byte	0xd78
+ 1993 0d71 11       		.uleb128 0x11
+ 1994 0d72 C3000000 		.4byte	0xc3
+ 1995 0d76 00       		.byte	0
+ 1996 0d77 00       		.byte	0
+ 1997 0d78 17       		.uleb128 0x17
+ 1998 0d79 D5090000 		.4byte	0x9d5
+ 1999 0d7d 27       		.uleb128 0x27
+ 2000 0d7e 2E130000 		.4byte	.LASF275
+ 2001 0d82 0C       		.byte	0xc
+ 2002 0d83 6401     		.2byte	0x164
+ 2003 0d85 890D0000 		.4byte	0xd89
+ 2004 0d89 17       		.uleb128 0x17
+ 2005 0d8a 680D0000 		.4byte	0xd68
+ 2006 0d8e 29       		.uleb128 0x29
+ 2007 0d8f C0050000 		.4byte	.LASF276
+ 2008 0d93 01       		.byte	0x1
+ 2009 0d94 3C       		.byte	0x3c
+ 2010 0d95 F6090000 		.4byte	0x9f6
+ 2011 0d99 05       		.uleb128 0x5
+ 2012 0d9a 03       		.byte	0x3
+ 2013 0d9b 00000000 		.4byte	proximityCommandQ
+ 2014 0d9f 28       		.uleb128 0x28
+ 2015 0da0 FB190000 		.4byte	.LASF277
+ 2016 0da4 10       		.byte	0x10
+ 2017 0da5 48       		.byte	0x48
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 43
+
+
+ 2018 0da6 F6090000 		.4byte	0x9f6
+ 2019 0daa 29       		.uleb128 0x29
+ 2020 0dab 800A0000 		.4byte	.LASF278
+ 2021 0daf 01       		.byte	0x1
+ 2022 0db0 3F       		.byte	0x3f
+ 2023 0db1 810A0000 		.4byte	0xa81
+ 2024 0db5 05       		.uleb128 0x5
+ 2025 0db6 03       		.byte	0x3
+ 2026 0db7 00000000 		.4byte	xTimer_Proximity
+ 2027 0dbb 2A       		.uleb128 0x2a
+ 2028 0dbc 910A0000 		.4byte	.LASF279
+ 2029 0dc0 910A0000 		.4byte	.LASF279
+ 2030 0dc4 0E       		.byte	0xe
+ 2031 0dc5 B402     		.2byte	0x2b4
+ 2032 0dc7 2A       		.uleb128 0x2a
+ 2033 0dc8 1E0C0000 		.4byte	.LASF280
+ 2034 0dcc 1E0C0000 		.4byte	.LASF280
+ 2035 0dd0 11       		.byte	0x11
+ 2036 0dd1 0D01     		.2byte	0x10d
+ 2037 0dd3 2A       		.uleb128 0x2a
+ 2038 0dd4 B30D0000 		.4byte	.LASF281
+ 2039 0dd8 B30D0000 		.4byte	.LASF281
+ 2040 0ddc 14       		.byte	0x14
+ 2041 0ddd 0805     		.2byte	0x508
+ 2042 0ddf 2A       		.uleb128 0x2a
+ 2043 0de0 5C010000 		.4byte	.LASF282
+ 2044 0de4 5C010000 		.4byte	.LASF282
+ 2045 0de8 11       		.byte	0x11
+ 2046 0de9 1A05     		.2byte	0x51a
+ 2047 0deb 2B       		.uleb128 0x2b
+ 2048 0dec B6020000 		.4byte	.LASF283
+ 2049 0df0 B6020000 		.4byte	.LASF283
+ 2050 0df4 15       		.byte	0x15
+ 2051 0df5 3A       		.byte	0x3a
+ 2052 0df6 2A       		.uleb128 0x2a
+ 2053 0df7 F5060000 		.4byte	.LASF284
+ 2054 0dfb F5060000 		.4byte	.LASF284
+ 2055 0dff 0E       		.byte	0xe
+ 2056 0e00 F503     		.2byte	0x3f5
+ 2057 0e02 2B       		.uleb128 0x2b
+ 2058 0e03 89030000 		.4byte	.LASF285
+ 2059 0e07 89030000 		.4byte	.LASF285
+ 2060 0e0b 16       		.byte	0x16
+ 2061 0e0c 56       		.byte	0x56
+ 2062 0e0d 2B       		.uleb128 0x2b
+ 2063 0e0e 11100000 		.4byte	.LASF286
+ 2064 0e12 11100000 		.4byte	.LASF286
+ 2065 0e16 15       		.byte	0x15
+ 2066 0e17 3E       		.byte	0x3e
+ 2067 0e18 2B       		.uleb128 0x2b
+ 2068 0e19 2F180000 		.4byte	.LASF287
+ 2069 0e1d 2F180000 		.4byte	.LASF287
+ 2070 0e21 16       		.byte	0x16
+ 2071 0e22 55       		.byte	0x55
+ 2072 0e23 00       		.byte	0
+ 2073              		.section	.debug_abbrev,"",%progbits
+ 2074              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 44
+
+
+ 2075 0000 01       		.uleb128 0x1
+ 2076 0001 11       		.uleb128 0x11
+ 2077 0002 01       		.byte	0x1
+ 2078 0003 25       		.uleb128 0x25
+ 2079 0004 0E       		.uleb128 0xe
+ 2080 0005 13       		.uleb128 0x13
+ 2081 0006 0B       		.uleb128 0xb
+ 2082 0007 03       		.uleb128 0x3
+ 2083 0008 0E       		.uleb128 0xe
+ 2084 0009 1B       		.uleb128 0x1b
+ 2085 000a 0E       		.uleb128 0xe
+ 2086 000b 55       		.uleb128 0x55
+ 2087 000c 17       		.uleb128 0x17
+ 2088 000d 11       		.uleb128 0x11
+ 2089 000e 01       		.uleb128 0x1
+ 2090 000f 10       		.uleb128 0x10
+ 2091 0010 17       		.uleb128 0x17
+ 2092 0011 00       		.byte	0
+ 2093 0012 00       		.byte	0
+ 2094 0013 02       		.uleb128 0x2
+ 2095 0014 24       		.uleb128 0x24
+ 2096 0015 00       		.byte	0
+ 2097 0016 0B       		.uleb128 0xb
+ 2098 0017 0B       		.uleb128 0xb
+ 2099 0018 3E       		.uleb128 0x3e
+ 2100 0019 0B       		.uleb128 0xb
+ 2101 001a 03       		.uleb128 0x3
+ 2102 001b 0E       		.uleb128 0xe
+ 2103 001c 00       		.byte	0
+ 2104 001d 00       		.byte	0
+ 2105 001e 03       		.uleb128 0x3
+ 2106 001f 16       		.uleb128 0x16
+ 2107 0020 00       		.byte	0
+ 2108 0021 03       		.uleb128 0x3
+ 2109 0022 0E       		.uleb128 0xe
+ 2110 0023 3A       		.uleb128 0x3a
+ 2111 0024 0B       		.uleb128 0xb
+ 2112 0025 3B       		.uleb128 0x3b
+ 2113 0026 0B       		.uleb128 0xb
+ 2114 0027 49       		.uleb128 0x49
+ 2115 0028 13       		.uleb128 0x13
+ 2116 0029 00       		.byte	0
+ 2117 002a 00       		.byte	0
+ 2118 002b 04       		.uleb128 0x4
+ 2119 002c 24       		.uleb128 0x24
+ 2120 002d 00       		.byte	0
+ 2121 002e 0B       		.uleb128 0xb
+ 2122 002f 0B       		.uleb128 0xb
+ 2123 0030 3E       		.uleb128 0x3e
+ 2124 0031 0B       		.uleb128 0xb
+ 2125 0032 03       		.uleb128 0x3
+ 2126 0033 08       		.uleb128 0x8
+ 2127 0034 00       		.byte	0
+ 2128 0035 00       		.byte	0
+ 2129 0036 05       		.uleb128 0x5
+ 2130 0037 35       		.uleb128 0x35
+ 2131 0038 00       		.byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 45
+
+
+ 2132 0039 49       		.uleb128 0x49
+ 2133 003a 13       		.uleb128 0x13
+ 2134 003b 00       		.byte	0
+ 2135 003c 00       		.byte	0
+ 2136 003d 06       		.uleb128 0x6
+ 2137 003e 16       		.uleb128 0x16
+ 2138 003f 00       		.byte	0
+ 2139 0040 03       		.uleb128 0x3
+ 2140 0041 0E       		.uleb128 0xe
+ 2141 0042 3A       		.uleb128 0x3a
+ 2142 0043 0B       		.uleb128 0xb
+ 2143 0044 3B       		.uleb128 0x3b
+ 2144 0045 05       		.uleb128 0x5
+ 2145 0046 49       		.uleb128 0x49
+ 2146 0047 13       		.uleb128 0x13
+ 2147 0048 00       		.byte	0
+ 2148 0049 00       		.byte	0
+ 2149 004a 07       		.uleb128 0x7
+ 2150 004b 0F       		.uleb128 0xf
+ 2151 004c 00       		.byte	0
+ 2152 004d 0B       		.uleb128 0xb
+ 2153 004e 0B       		.uleb128 0xb
+ 2154 004f 00       		.byte	0
+ 2155 0050 00       		.byte	0
+ 2156 0051 08       		.uleb128 0x8
+ 2157 0052 0F       		.uleb128 0xf
+ 2158 0053 00       		.byte	0
+ 2159 0054 0B       		.uleb128 0xb
+ 2160 0055 0B       		.uleb128 0xb
+ 2161 0056 49       		.uleb128 0x49
+ 2162 0057 13       		.uleb128 0x13
+ 2163 0058 00       		.byte	0
+ 2164 0059 00       		.byte	0
+ 2165 005a 09       		.uleb128 0x9
+ 2166 005b 15       		.uleb128 0x15
+ 2167 005c 01       		.byte	0x1
+ 2168 005d 27       		.uleb128 0x27
+ 2169 005e 19       		.uleb128 0x19
+ 2170 005f 01       		.uleb128 0x1
+ 2171 0060 13       		.uleb128 0x13
+ 2172 0061 00       		.byte	0
+ 2173 0062 00       		.byte	0
+ 2174 0063 0A       		.uleb128 0xa
+ 2175 0064 05       		.uleb128 0x5
+ 2176 0065 00       		.byte	0
+ 2177 0066 49       		.uleb128 0x49
+ 2178 0067 13       		.uleb128 0x13
+ 2179 0068 00       		.byte	0
+ 2180 0069 00       		.byte	0
+ 2181 006a 0B       		.uleb128 0xb
+ 2182 006b 13       		.uleb128 0x13
+ 2183 006c 01       		.byte	0x1
+ 2184 006d 03       		.uleb128 0x3
+ 2185 006e 0E       		.uleb128 0xe
+ 2186 006f 0B       		.uleb128 0xb
+ 2187 0070 0B       		.uleb128 0xb
+ 2188 0071 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 46
+
+
+ 2189 0072 0B       		.uleb128 0xb
+ 2190 0073 3B       		.uleb128 0x3b
+ 2191 0074 05       		.uleb128 0x5
+ 2192 0075 01       		.uleb128 0x1
+ 2193 0076 13       		.uleb128 0x13
+ 2194 0077 00       		.byte	0
+ 2195 0078 00       		.byte	0
+ 2196 0079 0C       		.uleb128 0xc
+ 2197 007a 0D       		.uleb128 0xd
+ 2198 007b 00       		.byte	0
+ 2199 007c 03       		.uleb128 0x3
+ 2200 007d 0E       		.uleb128 0xe
+ 2201 007e 3A       		.uleb128 0x3a
+ 2202 007f 0B       		.uleb128 0xb
+ 2203 0080 3B       		.uleb128 0x3b
+ 2204 0081 05       		.uleb128 0x5
+ 2205 0082 49       		.uleb128 0x49
+ 2206 0083 13       		.uleb128 0x13
+ 2207 0084 38       		.uleb128 0x38
+ 2208 0085 0B       		.uleb128 0xb
+ 2209 0086 00       		.byte	0
+ 2210 0087 00       		.byte	0
+ 2211 0088 0D       		.uleb128 0xd
+ 2212 0089 04       		.uleb128 0x4
+ 2213 008a 01       		.byte	0x1
+ 2214 008b 0B       		.uleb128 0xb
+ 2215 008c 0B       		.uleb128 0xb
+ 2216 008d 49       		.uleb128 0x49
+ 2217 008e 13       		.uleb128 0x13
+ 2218 008f 3A       		.uleb128 0x3a
+ 2219 0090 0B       		.uleb128 0xb
+ 2220 0091 3B       		.uleb128 0x3b
+ 2221 0092 05       		.uleb128 0x5
+ 2222 0093 01       		.uleb128 0x1
+ 2223 0094 13       		.uleb128 0x13
+ 2224 0095 00       		.byte	0
+ 2225 0096 00       		.byte	0
+ 2226 0097 0E       		.uleb128 0xe
+ 2227 0098 28       		.uleb128 0x28
+ 2228 0099 00       		.byte	0
+ 2229 009a 03       		.uleb128 0x3
+ 2230 009b 0E       		.uleb128 0xe
+ 2231 009c 1C       		.uleb128 0x1c
+ 2232 009d 0B       		.uleb128 0xb
+ 2233 009e 00       		.byte	0
+ 2234 009f 00       		.byte	0
+ 2235 00a0 0F       		.uleb128 0xf
+ 2236 00a1 13       		.uleb128 0x13
+ 2237 00a2 01       		.byte	0x1
+ 2238 00a3 0B       		.uleb128 0xb
+ 2239 00a4 0B       		.uleb128 0xb
+ 2240 00a5 3A       		.uleb128 0x3a
+ 2241 00a6 0B       		.uleb128 0xb
+ 2242 00a7 3B       		.uleb128 0x3b
+ 2243 00a8 05       		.uleb128 0x5
+ 2244 00a9 01       		.uleb128 0x1
+ 2245 00aa 13       		.uleb128 0x13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 47
+
+
+ 2246 00ab 00       		.byte	0
+ 2247 00ac 00       		.byte	0
+ 2248 00ad 10       		.uleb128 0x10
+ 2249 00ae 01       		.uleb128 0x1
+ 2250 00af 01       		.byte	0x1
+ 2251 00b0 49       		.uleb128 0x49
+ 2252 00b1 13       		.uleb128 0x13
+ 2253 00b2 01       		.uleb128 0x1
+ 2254 00b3 13       		.uleb128 0x13
+ 2255 00b4 00       		.byte	0
+ 2256 00b5 00       		.byte	0
+ 2257 00b6 11       		.uleb128 0x11
+ 2258 00b7 21       		.uleb128 0x21
+ 2259 00b8 00       		.byte	0
+ 2260 00b9 49       		.uleb128 0x49
+ 2261 00ba 13       		.uleb128 0x13
+ 2262 00bb 2F       		.uleb128 0x2f
+ 2263 00bc 0B       		.uleb128 0xb
+ 2264 00bd 00       		.byte	0
+ 2265 00be 00       		.byte	0
+ 2266 00bf 12       		.uleb128 0x12
+ 2267 00c0 28       		.uleb128 0x28
+ 2268 00c1 00       		.byte	0
+ 2269 00c2 03       		.uleb128 0x3
+ 2270 00c3 0E       		.uleb128 0xe
+ 2271 00c4 1C       		.uleb128 0x1c
+ 2272 00c5 05       		.uleb128 0x5
+ 2273 00c6 00       		.byte	0
+ 2274 00c7 00       		.byte	0
+ 2275 00c8 13       		.uleb128 0x13
+ 2276 00c9 04       		.uleb128 0x4
+ 2277 00ca 01       		.byte	0x1
+ 2278 00cb 0B       		.uleb128 0xb
+ 2279 00cc 0B       		.uleb128 0xb
+ 2280 00cd 49       		.uleb128 0x49
+ 2281 00ce 13       		.uleb128 0x13
+ 2282 00cf 3A       		.uleb128 0x3a
+ 2283 00d0 0B       		.uleb128 0xb
+ 2284 00d1 3B       		.uleb128 0x3b
+ 2285 00d2 0B       		.uleb128 0xb
+ 2286 00d3 01       		.uleb128 0x1
+ 2287 00d4 13       		.uleb128 0x13
+ 2288 00d5 00       		.byte	0
+ 2289 00d6 00       		.byte	0
+ 2290 00d7 14       		.uleb128 0x14
+ 2291 00d8 13       		.uleb128 0x13
+ 2292 00d9 01       		.byte	0x1
+ 2293 00da 0B       		.uleb128 0xb
+ 2294 00db 0B       		.uleb128 0xb
+ 2295 00dc 3A       		.uleb128 0x3a
+ 2296 00dd 0B       		.uleb128 0xb
+ 2297 00de 3B       		.uleb128 0x3b
+ 2298 00df 0B       		.uleb128 0xb
+ 2299 00e0 01       		.uleb128 0x1
+ 2300 00e1 13       		.uleb128 0x13
+ 2301 00e2 00       		.byte	0
+ 2302 00e3 00       		.byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 48
+
+
+ 2303 00e4 15       		.uleb128 0x15
+ 2304 00e5 0D       		.uleb128 0xd
+ 2305 00e6 00       		.byte	0
+ 2306 00e7 03       		.uleb128 0x3
+ 2307 00e8 0E       		.uleb128 0xe
+ 2308 00e9 3A       		.uleb128 0x3a
+ 2309 00ea 0B       		.uleb128 0xb
+ 2310 00eb 3B       		.uleb128 0x3b
+ 2311 00ec 0B       		.uleb128 0xb
+ 2312 00ed 49       		.uleb128 0x49
+ 2313 00ee 13       		.uleb128 0x13
+ 2314 00ef 38       		.uleb128 0x38
+ 2315 00f0 0B       		.uleb128 0xb
+ 2316 00f1 00       		.byte	0
+ 2317 00f2 00       		.byte	0
+ 2318 00f3 16       		.uleb128 0x16
+ 2319 00f4 0D       		.uleb128 0xd
+ 2320 00f5 00       		.byte	0
+ 2321 00f6 03       		.uleb128 0x3
+ 2322 00f7 08       		.uleb128 0x8
+ 2323 00f8 3A       		.uleb128 0x3a
+ 2324 00f9 0B       		.uleb128 0xb
+ 2325 00fa 3B       		.uleb128 0x3b
+ 2326 00fb 05       		.uleb128 0x5
+ 2327 00fc 49       		.uleb128 0x49
+ 2328 00fd 13       		.uleb128 0x13
+ 2329 00fe 38       		.uleb128 0x38
+ 2330 00ff 0B       		.uleb128 0xb
+ 2331 0100 00       		.byte	0
+ 2332 0101 00       		.byte	0
+ 2333 0102 17       		.uleb128 0x17
+ 2334 0103 26       		.uleb128 0x26
+ 2335 0104 00       		.byte	0
+ 2336 0105 49       		.uleb128 0x49
+ 2337 0106 13       		.uleb128 0x13
+ 2338 0107 00       		.byte	0
+ 2339 0108 00       		.byte	0
+ 2340 0109 18       		.uleb128 0x18
+ 2341 010a 2E       		.uleb128 0x2e
+ 2342 010b 01       		.byte	0x1
+ 2343 010c 03       		.uleb128 0x3
+ 2344 010d 0E       		.uleb128 0xe
+ 2345 010e 3A       		.uleb128 0x3a
+ 2346 010f 0B       		.uleb128 0xb
+ 2347 0110 3B       		.uleb128 0x3b
+ 2348 0111 0B       		.uleb128 0xb
+ 2349 0112 27       		.uleb128 0x27
+ 2350 0113 19       		.uleb128 0x19
+ 2351 0114 11       		.uleb128 0x11
+ 2352 0115 01       		.uleb128 0x1
+ 2353 0116 12       		.uleb128 0x12
+ 2354 0117 06       		.uleb128 0x6
+ 2355 0118 40       		.uleb128 0x40
+ 2356 0119 18       		.uleb128 0x18
+ 2357 011a 9742     		.uleb128 0x2117
+ 2358 011c 19       		.uleb128 0x19
+ 2359 011d 01       		.uleb128 0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 49
+
+
+ 2360 011e 13       		.uleb128 0x13
+ 2361 011f 00       		.byte	0
+ 2362 0120 00       		.byte	0
+ 2363 0121 19       		.uleb128 0x19
+ 2364 0122 05       		.uleb128 0x5
+ 2365 0123 00       		.byte	0
+ 2366 0124 03       		.uleb128 0x3
+ 2367 0125 0E       		.uleb128 0xe
+ 2368 0126 3A       		.uleb128 0x3a
+ 2369 0127 0B       		.uleb128 0xb
+ 2370 0128 3B       		.uleb128 0x3b
+ 2371 0129 0B       		.uleb128 0xb
+ 2372 012a 49       		.uleb128 0x49
+ 2373 012b 13       		.uleb128 0x13
+ 2374 012c 02       		.uleb128 0x2
+ 2375 012d 17       		.uleb128 0x17
+ 2376 012e 00       		.byte	0
+ 2377 012f 00       		.byte	0
+ 2378 0130 1A       		.uleb128 0x1a
+ 2379 0131 34       		.uleb128 0x34
+ 2380 0132 00       		.byte	0
+ 2381 0133 03       		.uleb128 0x3
+ 2382 0134 0E       		.uleb128 0xe
+ 2383 0135 3A       		.uleb128 0x3a
+ 2384 0136 0B       		.uleb128 0xb
+ 2385 0137 3B       		.uleb128 0x3b
+ 2386 0138 05       		.uleb128 0x5
+ 2387 0139 49       		.uleb128 0x49
+ 2388 013a 13       		.uleb128 0x13
+ 2389 013b 00       		.byte	0
+ 2390 013c 00       		.byte	0
+ 2391 013d 1B       		.uleb128 0x1b
+ 2392 013e 34       		.uleb128 0x34
+ 2393 013f 00       		.byte	0
+ 2394 0140 03       		.uleb128 0x3
+ 2395 0141 0E       		.uleb128 0xe
+ 2396 0142 3A       		.uleb128 0x3a
+ 2397 0143 0B       		.uleb128 0xb
+ 2398 0144 3B       		.uleb128 0x3b
+ 2399 0145 05       		.uleb128 0x5
+ 2400 0146 49       		.uleb128 0x49
+ 2401 0147 13       		.uleb128 0x13
+ 2402 0148 02       		.uleb128 0x2
+ 2403 0149 18       		.uleb128 0x18
+ 2404 014a 00       		.byte	0
+ 2405 014b 00       		.byte	0
+ 2406 014c 1C       		.uleb128 0x1c
+ 2407 014d 898201   		.uleb128 0x4109
+ 2408 0150 01       		.byte	0x1
+ 2409 0151 11       		.uleb128 0x11
+ 2410 0152 01       		.uleb128 0x1
+ 2411 0153 31       		.uleb128 0x31
+ 2412 0154 13       		.uleb128 0x13
+ 2413 0155 00       		.byte	0
+ 2414 0156 00       		.byte	0
+ 2415 0157 1D       		.uleb128 0x1d
+ 2416 0158 8A8201   		.uleb128 0x410a
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 50
+
+
+ 2417 015b 00       		.byte	0
+ 2418 015c 02       		.uleb128 0x2
+ 2419 015d 18       		.uleb128 0x18
+ 2420 015e 9142     		.uleb128 0x2111
+ 2421 0160 18       		.uleb128 0x18
+ 2422 0161 00       		.byte	0
+ 2423 0162 00       		.byte	0
+ 2424 0163 1E       		.uleb128 0x1e
+ 2425 0164 2E       		.uleb128 0x2e
+ 2426 0165 01       		.byte	0x1
+ 2427 0166 03       		.uleb128 0x3
+ 2428 0167 0E       		.uleb128 0xe
+ 2429 0168 3A       		.uleb128 0x3a
+ 2430 0169 0B       		.uleb128 0xb
+ 2431 016a 3B       		.uleb128 0x3b
+ 2432 016b 05       		.uleb128 0x5
+ 2433 016c 27       		.uleb128 0x27
+ 2434 016d 19       		.uleb128 0x19
+ 2435 016e 11       		.uleb128 0x11
+ 2436 016f 01       		.uleb128 0x1
+ 2437 0170 12       		.uleb128 0x12
+ 2438 0171 06       		.uleb128 0x6
+ 2439 0172 40       		.uleb128 0x40
+ 2440 0173 18       		.uleb128 0x18
+ 2441 0174 9742     		.uleb128 0x2117
+ 2442 0176 19       		.uleb128 0x19
+ 2443 0177 01       		.uleb128 0x1
+ 2444 0178 13       		.uleb128 0x13
+ 2445 0179 00       		.byte	0
+ 2446 017a 00       		.byte	0
+ 2447 017b 1F       		.uleb128 0x1f
+ 2448 017c 898201   		.uleb128 0x4109
+ 2449 017f 01       		.byte	0x1
+ 2450 0180 11       		.uleb128 0x11
+ 2451 0181 01       		.uleb128 0x1
+ 2452 0182 31       		.uleb128 0x31
+ 2453 0183 13       		.uleb128 0x13
+ 2454 0184 01       		.uleb128 0x1
+ 2455 0185 13       		.uleb128 0x13
+ 2456 0186 00       		.byte	0
+ 2457 0187 00       		.byte	0
+ 2458 0188 20       		.uleb128 0x20
+ 2459 0189 898201   		.uleb128 0x4109
+ 2460 018c 00       		.byte	0
+ 2461 018d 11       		.uleb128 0x11
+ 2462 018e 01       		.uleb128 0x1
+ 2463 018f 31       		.uleb128 0x31
+ 2464 0190 13       		.uleb128 0x13
+ 2465 0191 00       		.byte	0
+ 2466 0192 00       		.byte	0
+ 2467 0193 21       		.uleb128 0x21
+ 2468 0194 05       		.uleb128 0x5
+ 2469 0195 00       		.byte	0
+ 2470 0196 03       		.uleb128 0x3
+ 2471 0197 0E       		.uleb128 0xe
+ 2472 0198 3A       		.uleb128 0x3a
+ 2473 0199 0B       		.uleb128 0xb
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 51
+
+
+ 2474 019a 3B       		.uleb128 0x3b
+ 2475 019b 05       		.uleb128 0x5
+ 2476 019c 49       		.uleb128 0x49
+ 2477 019d 13       		.uleb128 0x13
+ 2478 019e 02       		.uleb128 0x2
+ 2479 019f 17       		.uleb128 0x17
+ 2480 01a0 00       		.byte	0
+ 2481 01a1 00       		.byte	0
+ 2482 01a2 22       		.uleb128 0x22
+ 2483 01a3 2E       		.uleb128 0x2e
+ 2484 01a4 01       		.byte	0x1
+ 2485 01a5 3F       		.uleb128 0x3f
+ 2486 01a6 19       		.uleb128 0x19
+ 2487 01a7 03       		.uleb128 0x3
+ 2488 01a8 0E       		.uleb128 0xe
+ 2489 01a9 3A       		.uleb128 0x3a
+ 2490 01aa 0B       		.uleb128 0xb
+ 2491 01ab 3B       		.uleb128 0x3b
+ 2492 01ac 0B       		.uleb128 0xb
+ 2493 01ad 27       		.uleb128 0x27
+ 2494 01ae 19       		.uleb128 0x19
+ 2495 01af 8701     		.uleb128 0x87
+ 2496 01b1 19       		.uleb128 0x19
+ 2497 01b2 11       		.uleb128 0x11
+ 2498 01b3 01       		.uleb128 0x1
+ 2499 01b4 12       		.uleb128 0x12
+ 2500 01b5 06       		.uleb128 0x6
+ 2501 01b6 40       		.uleb128 0x40
+ 2502 01b7 18       		.uleb128 0x18
+ 2503 01b8 9742     		.uleb128 0x2117
+ 2504 01ba 19       		.uleb128 0x19
+ 2505 01bb 01       		.uleb128 0x1
+ 2506 01bc 13       		.uleb128 0x13
+ 2507 01bd 00       		.byte	0
+ 2508 01be 00       		.byte	0
+ 2509 01bf 23       		.uleb128 0x23
+ 2510 01c0 34       		.uleb128 0x34
+ 2511 01c1 00       		.byte	0
+ 2512 01c2 03       		.uleb128 0x3
+ 2513 01c3 0E       		.uleb128 0xe
+ 2514 01c4 3A       		.uleb128 0x3a
+ 2515 01c5 0B       		.uleb128 0xb
+ 2516 01c6 3B       		.uleb128 0x3b
+ 2517 01c7 0B       		.uleb128 0xb
+ 2518 01c8 49       		.uleb128 0x49
+ 2519 01c9 13       		.uleb128 0x13
+ 2520 01ca 00       		.byte	0
+ 2521 01cb 00       		.byte	0
+ 2522 01cc 24       		.uleb128 0x24
+ 2523 01cd 34       		.uleb128 0x34
+ 2524 01ce 00       		.byte	0
+ 2525 01cf 03       		.uleb128 0x3
+ 2526 01d0 0E       		.uleb128 0xe
+ 2527 01d1 3A       		.uleb128 0x3a
+ 2528 01d2 0B       		.uleb128 0xb
+ 2529 01d3 3B       		.uleb128 0x3b
+ 2530 01d4 0B       		.uleb128 0xb
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 52
+
+
+ 2531 01d5 49       		.uleb128 0x49
+ 2532 01d6 13       		.uleb128 0x13
+ 2533 01d7 02       		.uleb128 0x2
+ 2534 01d8 18       		.uleb128 0x18
+ 2535 01d9 00       		.byte	0
+ 2536 01da 00       		.byte	0
+ 2537 01db 25       		.uleb128 0x25
+ 2538 01dc 34       		.uleb128 0x34
+ 2539 01dd 00       		.byte	0
+ 2540 01de 03       		.uleb128 0x3
+ 2541 01df 0E       		.uleb128 0xe
+ 2542 01e0 3A       		.uleb128 0x3a
+ 2543 01e1 0B       		.uleb128 0xb
+ 2544 01e2 3B       		.uleb128 0x3b
+ 2545 01e3 0B       		.uleb128 0xb
+ 2546 01e4 49       		.uleb128 0x49
+ 2547 01e5 13       		.uleb128 0x13
+ 2548 01e6 02       		.uleb128 0x2
+ 2549 01e7 17       		.uleb128 0x17
+ 2550 01e8 00       		.byte	0
+ 2551 01e9 00       		.byte	0
+ 2552 01ea 26       		.uleb128 0x26
+ 2553 01eb 0B       		.uleb128 0xb
+ 2554 01ec 01       		.byte	0x1
+ 2555 01ed 11       		.uleb128 0x11
+ 2556 01ee 01       		.uleb128 0x1
+ 2557 01ef 12       		.uleb128 0x12
+ 2558 01f0 06       		.uleb128 0x6
+ 2559 01f1 01       		.uleb128 0x1
+ 2560 01f2 13       		.uleb128 0x13
+ 2561 01f3 00       		.byte	0
+ 2562 01f4 00       		.byte	0
+ 2563 01f5 27       		.uleb128 0x27
+ 2564 01f6 34       		.uleb128 0x34
+ 2565 01f7 00       		.byte	0
+ 2566 01f8 03       		.uleb128 0x3
+ 2567 01f9 0E       		.uleb128 0xe
+ 2568 01fa 3A       		.uleb128 0x3a
+ 2569 01fb 0B       		.uleb128 0xb
+ 2570 01fc 3B       		.uleb128 0x3b
+ 2571 01fd 05       		.uleb128 0x5
+ 2572 01fe 49       		.uleb128 0x49
+ 2573 01ff 13       		.uleb128 0x13
+ 2574 0200 3F       		.uleb128 0x3f
+ 2575 0201 19       		.uleb128 0x19
+ 2576 0202 3C       		.uleb128 0x3c
+ 2577 0203 19       		.uleb128 0x19
+ 2578 0204 00       		.byte	0
+ 2579 0205 00       		.byte	0
+ 2580 0206 28       		.uleb128 0x28
+ 2581 0207 34       		.uleb128 0x34
+ 2582 0208 00       		.byte	0
+ 2583 0209 03       		.uleb128 0x3
+ 2584 020a 0E       		.uleb128 0xe
+ 2585 020b 3A       		.uleb128 0x3a
+ 2586 020c 0B       		.uleb128 0xb
+ 2587 020d 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 53
+
+
+ 2588 020e 0B       		.uleb128 0xb
+ 2589 020f 49       		.uleb128 0x49
+ 2590 0210 13       		.uleb128 0x13
+ 2591 0211 3F       		.uleb128 0x3f
+ 2592 0212 19       		.uleb128 0x19
+ 2593 0213 3C       		.uleb128 0x3c
+ 2594 0214 19       		.uleb128 0x19
+ 2595 0215 00       		.byte	0
+ 2596 0216 00       		.byte	0
+ 2597 0217 29       		.uleb128 0x29
+ 2598 0218 34       		.uleb128 0x34
+ 2599 0219 00       		.byte	0
+ 2600 021a 03       		.uleb128 0x3
+ 2601 021b 0E       		.uleb128 0xe
+ 2602 021c 3A       		.uleb128 0x3a
+ 2603 021d 0B       		.uleb128 0xb
+ 2604 021e 3B       		.uleb128 0x3b
+ 2605 021f 0B       		.uleb128 0xb
+ 2606 0220 49       		.uleb128 0x49
+ 2607 0221 13       		.uleb128 0x13
+ 2608 0222 3F       		.uleb128 0x3f
+ 2609 0223 19       		.uleb128 0x19
+ 2610 0224 02       		.uleb128 0x2
+ 2611 0225 18       		.uleb128 0x18
+ 2612 0226 00       		.byte	0
+ 2613 0227 00       		.byte	0
+ 2614 0228 2A       		.uleb128 0x2a
+ 2615 0229 2E       		.uleb128 0x2e
+ 2616 022a 00       		.byte	0
+ 2617 022b 3F       		.uleb128 0x3f
+ 2618 022c 19       		.uleb128 0x19
+ 2619 022d 3C       		.uleb128 0x3c
+ 2620 022e 19       		.uleb128 0x19
+ 2621 022f 6E       		.uleb128 0x6e
+ 2622 0230 0E       		.uleb128 0xe
+ 2623 0231 03       		.uleb128 0x3
+ 2624 0232 0E       		.uleb128 0xe
+ 2625 0233 3A       		.uleb128 0x3a
+ 2626 0234 0B       		.uleb128 0xb
+ 2627 0235 3B       		.uleb128 0x3b
+ 2628 0236 05       		.uleb128 0x5
+ 2629 0237 00       		.byte	0
+ 2630 0238 00       		.byte	0
+ 2631 0239 2B       		.uleb128 0x2b
+ 2632 023a 2E       		.uleb128 0x2e
+ 2633 023b 00       		.byte	0
+ 2634 023c 3F       		.uleb128 0x3f
+ 2635 023d 19       		.uleb128 0x19
+ 2636 023e 3C       		.uleb128 0x3c
+ 2637 023f 19       		.uleb128 0x19
+ 2638 0240 6E       		.uleb128 0x6e
+ 2639 0241 0E       		.uleb128 0xe
+ 2640 0242 03       		.uleb128 0x3
+ 2641 0243 0E       		.uleb128 0xe
+ 2642 0244 3A       		.uleb128 0x3a
+ 2643 0245 0B       		.uleb128 0xb
+ 2644 0246 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 54
+
+
+ 2645 0247 0B       		.uleb128 0xb
+ 2646 0248 00       		.byte	0
+ 2647 0249 00       		.byte	0
+ 2648 024a 00       		.byte	0
+ 2649              		.section	.debug_loc,"",%progbits
+ 2650              	.Ldebug_loc0:
+ 2651              	.LLST0:
+ 2652 0000 00000000 		.4byte	.LVL0
+ 2653 0004 12000000 		.4byte	.LVL1
+ 2654 0008 0100     		.2byte	0x1
+ 2655 000a 50       		.byte	0x50
+ 2656 000b 12000000 		.4byte	.LVL1
+ 2657 000f 24000000 		.4byte	.LFE529
+ 2658 0013 0400     		.2byte	0x4
+ 2659 0015 F3       		.byte	0xf3
+ 2660 0016 01       		.uleb128 0x1
+ 2661 0017 50       		.byte	0x50
+ 2662 0018 9F       		.byte	0x9f
+ 2663 0019 00000000 		.4byte	0
+ 2664 001d 00000000 		.4byte	0
+ 2665              	.LLST1:
+ 2666 0021 00000000 		.4byte	.LVL6
+ 2667 0025 12000000 		.4byte	.LVL7
+ 2668 0029 0100     		.2byte	0x1
+ 2669 002b 50       		.byte	0x50
+ 2670 002c 12000000 		.4byte	.LVL7
+ 2671 0030 15000000 		.4byte	.LVL8-1
+ 2672 0034 0100     		.2byte	0x1
+ 2673 0036 52       		.byte	0x52
+ 2674 0037 15000000 		.4byte	.LVL8-1
+ 2675 003b 20000000 		.4byte	.LFE531
+ 2676 003f 0400     		.2byte	0x4
+ 2677 0041 F3       		.byte	0xf3
+ 2678 0042 01       		.uleb128 0x1
+ 2679 0043 50       		.byte	0x50
+ 2680 0044 9F       		.byte	0x9f
+ 2681 0045 00000000 		.4byte	0
+ 2682 0049 00000000 		.4byte	0
+ 2683              	.LLST2:
+ 2684 004d 00000000 		.4byte	.LVL9
+ 2685 0051 07000000 		.4byte	.LVL11-1
+ 2686 0055 0100     		.2byte	0x1
+ 2687 0057 50       		.byte	0x50
+ 2688 0058 07000000 		.4byte	.LVL11-1
+ 2689 005c B8000000 		.4byte	.LFE528
+ 2690 0060 0400     		.2byte	0x4
+ 2691 0062 F3       		.byte	0xf3
+ 2692 0063 01       		.uleb128 0x1
+ 2693 0064 50       		.byte	0x50
+ 2694 0065 9F       		.byte	0x9f
+ 2695 0066 00000000 		.4byte	0
+ 2696 006a 00000000 		.4byte	0
+ 2697              	.LLST3:
+ 2698 006e 24000000 		.4byte	.LVL14
+ 2699 0072 3A000000 		.4byte	.LVL16
+ 2700 0076 0100     		.2byte	0x1
+ 2701 0078 50       		.byte	0x50
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 55
+
+
+ 2702 0079 42000000 		.4byte	.LVL18
+ 2703 007d 46000000 		.4byte	.LVL19
+ 2704 0081 0100     		.2byte	0x1
+ 2705 0083 50       		.byte	0x50
+ 2706 0084 4E000000 		.4byte	.LVL21
+ 2707 0088 51000000 		.4byte	.LVL22-1
+ 2708 008c 0100     		.2byte	0x1
+ 2709 008e 50       		.byte	0x50
+ 2710 008f 00000000 		.4byte	0
+ 2711 0093 00000000 		.4byte	0
+ 2712              	.LLST4:
+ 2713 0097 04000000 		.4byte	.LVL10
+ 2714 009b 12000000 		.4byte	.LVL13
+ 2715 009f 0200     		.2byte	0x2
+ 2716 00a1 30       		.byte	0x30
+ 2717 00a2 9F       		.byte	0x9f
+ 2718 00a3 12000000 		.4byte	.LVL13
+ 2719 00a7 38000000 		.4byte	.LVL15
+ 2720 00ab 0100     		.2byte	0x1
+ 2721 00ad 55       		.byte	0x55
+ 2722 00ae 38000000 		.4byte	.LVL15
+ 2723 00b2 42000000 		.4byte	.LVL18
+ 2724 00b6 0200     		.2byte	0x2
+ 2725 00b8 31       		.byte	0x31
+ 2726 00b9 9F       		.byte	0x9f
+ 2727 00ba 42000000 		.4byte	.LVL18
+ 2728 00be 4E000000 		.4byte	.LVL21
+ 2729 00c2 0200     		.2byte	0x2
+ 2730 00c4 30       		.byte	0x30
+ 2731 00c5 9F       		.byte	0x9f
+ 2732 00c6 4E000000 		.4byte	.LVL21
+ 2733 00ca B8000000 		.4byte	.LFE528
+ 2734 00ce 0100     		.2byte	0x1
+ 2735 00d0 55       		.byte	0x55
+ 2736 00d1 00000000 		.4byte	0
+ 2737 00d5 00000000 		.4byte	0
+ 2738              	.LLST5:
+ 2739 00d9 04000000 		.4byte	.LVL10
+ 2740 00dd 12000000 		.4byte	.LVL13
+ 2741 00e1 0200     		.2byte	0x2
+ 2742 00e3 30       		.byte	0x30
+ 2743 00e4 9F       		.byte	0x9f
+ 2744 00e5 12000000 		.4byte	.LVL13
+ 2745 00e9 6C000000 		.4byte	.LVL24
+ 2746 00ed 0100     		.2byte	0x1
+ 2747 00ef 54       		.byte	0x54
+ 2748 00f0 70000000 		.4byte	.LVL25
+ 2749 00f4 74000000 		.4byte	.LVL26
+ 2750 00f8 0100     		.2byte	0x1
+ 2751 00fa 54       		.byte	0x54
+ 2752 00fb 76000000 		.4byte	.LVL27
+ 2753 00ff B8000000 		.4byte	.LFE528
+ 2754 0103 0100     		.2byte	0x1
+ 2755 0105 54       		.byte	0x54
+ 2756 0106 00000000 		.4byte	0
+ 2757 010a 00000000 		.4byte	0
+ 2758              	.LLST6:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 56
+
+
+ 2759 010e 04000000 		.4byte	.LVL10
+ 2760 0112 12000000 		.4byte	.LVL13
+ 2761 0116 0300     		.2byte	0x3
+ 2762 0118 09       		.byte	0x9
+ 2763 0119 FF       		.byte	0xff
+ 2764 011a 9F       		.byte	0x9f
+ 2765 011b 12000000 		.4byte	.LVL13
+ 2766 011f 8C000000 		.4byte	.LVL30
+ 2767 0123 0100     		.2byte	0x1
+ 2768 0125 56       		.byte	0x56
+ 2769 0126 8E000000 		.4byte	.LVL31
+ 2770 012a B8000000 		.4byte	.LFE528
+ 2771 012e 0100     		.2byte	0x1
+ 2772 0130 56       		.byte	0x56
+ 2773 0131 00000000 		.4byte	0
+ 2774 0135 00000000 		.4byte	0
+ 2775              	.LLST7:
+ 2776 0139 4E000000 		.4byte	.LVL21
+ 2777 013d 8E000000 		.4byte	.LVL31
+ 2778 0141 0200     		.2byte	0x2
+ 2779 0143 30       		.byte	0x30
+ 2780 0144 9F       		.byte	0x9f
+ 2781 0145 8E000000 		.4byte	.LVL31
+ 2782 0149 96000000 		.4byte	.LVL32
+ 2783 014d 0100     		.2byte	0x1
+ 2784 014f 53       		.byte	0x53
+ 2785 0150 00000000 		.4byte	0
+ 2786 0154 00000000 		.4byte	0
+ 2787              		.section	.debug_aranges,"",%progbits
+ 2788 0000 34000000 		.4byte	0x34
+ 2789 0004 0200     		.2byte	0x2
+ 2790 0006 00000000 		.4byte	.Ldebug_info0
+ 2791 000a 04       		.byte	0x4
+ 2792 000b 00       		.byte	0
+ 2793 000c 0000     		.2byte	0
+ 2794 000e 0000     		.2byte	0
+ 2795 0010 00000000 		.4byte	.LFB529
+ 2796 0014 24000000 		.4byte	.LFE529-.LFB529
+ 2797 0018 00000000 		.4byte	.LFB530
+ 2798 001c 40000000 		.4byte	.LFE530-.LFB530
+ 2799 0020 00000000 		.4byte	.LFB531
+ 2800 0024 20000000 		.4byte	.LFE531-.LFB531
+ 2801 0028 00000000 		.4byte	.LFB528
+ 2802 002c B8000000 		.4byte	.LFE528-.LFB528
+ 2803 0030 00000000 		.4byte	0
+ 2804 0034 00000000 		.4byte	0
+ 2805              		.section	.debug_ranges,"",%progbits
+ 2806              	.Ldebug_ranges0:
+ 2807 0000 00000000 		.4byte	.LFB529
+ 2808 0004 24000000 		.4byte	.LFE529
+ 2809 0008 00000000 		.4byte	.LFB530
+ 2810 000c 40000000 		.4byte	.LFE530
+ 2811 0010 00000000 		.4byte	.LFB531
+ 2812 0014 20000000 		.4byte	.LFE531
+ 2813 0018 00000000 		.4byte	.LFB528
+ 2814 001c B8000000 		.4byte	.LFE528
+ 2815 0020 00000000 		.4byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 57
+
+
+ 2816 0024 00000000 		.4byte	0
+ 2817              		.section	.debug_line,"",%progbits
+ 2818              	.Ldebug_line0:
+ 2819 0000 76040000 		.section	.debug_str,"MS",%progbits,1
+ 2819      0200F103 
+ 2819      00000201 
+ 2819      FB0E0D00 
+ 2819      01010101 
+ 2820              	.LASF271:
+ 2821 0000 63795F62 		.ascii	"cy_ble_connState\000"
+ 2821      6C655F63 
+ 2821      6F6E6E53 
+ 2821      74617465 
+ 2821      00
+ 2822              	.LASF113:
+ 2823 0011 43595F42 		.ascii	"CY_BLE_EVT_GAP_PASSKEY_ENTRY_REQUEST\000"
+ 2823      4C455F45 
+ 2823      56545F47 
+ 2823      41505F50 
+ 2823      4153534B 
+ 2824              	.LASF257:
+ 2825 0036 50726F78 		.ascii	"ProximityTimerUpdate\000"
+ 2825      696D6974 
+ 2825      7954696D 
+ 2825      65725570 
+ 2825      64617465 
+ 2826              	.LASF169:
+ 2827 004b 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_DATA_READ\000"
+ 2827      4C455F45 
+ 2827      56545F4C 
+ 2827      32434150 
+ 2827      5F434246 
+ 2828              	.LASF27:
+ 2829 006b 63795F63 		.ascii	"cy_cb_scb_spi_handle_events_t\000"
+ 2829      625F7363 
+ 2829      625F7370 
+ 2829      695F6861 
+ 2829      6E646C65 
+ 2830              	.LASF117:
+ 2831 0089 43595F42 		.ascii	"CY_BLE_EVT_GAPP_ADVERTISEMENT_START_STOP\000"
+ 2831      4C455F45 
+ 2831      56545F47 
+ 2831      4150505F 
+ 2831      41445645 
+ 2832              	.LASF171:
+ 2833 00b2 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_TX_CREDIT_IND\000"
+ 2833      4C455F45 
+ 2833      56545F4C 
+ 2833      32434150 
+ 2833      5F434246 
+ 2834              	.LASF64:
+ 2835 00d6 43595F42 		.ascii	"CY_BLE_EVT_PENDING_FLASH_WRITE\000"
+ 2835      4C455F45 
+ 2835      56545F50 
+ 2835      454E4449 
+ 2835      4E475F46 
+ 2836              	.LASF102:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 58
+
+
+ 2837 00f5 43595F42 		.ascii	"CY_BLE_EVT_AES_CCM_DECRYPT_COMPLETE\000"
+ 2837      4C455F45 
+ 2837      56545F41 
+ 2837      45535F43 
+ 2837      434D5F44 
+ 2838              	.LASF155:
+ 2839 0119 43595F42 		.ascii	"CY_BLE_EVT_GATTC_HANDLE_VALUE_NTF\000"
+ 2839      4C455F45 
+ 2839      56545F47 
+ 2839      41545443 
+ 2839      5F48414E 
+ 2840              	.LASF272:
+ 2841 013b 43595F45 		.ascii	"CY_EINK_SPIM_context\000"
+ 2841      494E4B5F 
+ 2841      5350494D 
+ 2841      5F636F6E 
+ 2841      74657874 
+ 2842              	.LASF205:
+ 2843 0150 70726F78 		.ascii	"proxTouchTh\000"
+ 2843      546F7563 
+ 2843      68546800 
+ 2844              	.LASF282:
+ 2845 015c 7854696D 		.ascii	"xTimerGenericCommand\000"
+ 2845      65724765 
+ 2845      6E657269 
+ 2845      63436F6D 
+ 2845      6D616E64 
+ 2846              	.LASF96:
+ 2847 0171 43595F42 		.ascii	"CY_BLE_EVT_SET_TX_PWR_COMPLETE\000"
+ 2847      4C455F45 
+ 2847      56545F53 
+ 2847      45545F54 
+ 2847      585F5057 
+ 2848              	.LASF85:
+ 2849 0190 43595F42 		.ascii	"CY_BLE_EVT_GET_PHY_COMPLETE\000"
+ 2849      4C455F45 
+ 2849      56545F47 
+ 2849      45545F50 
+ 2849      48595F43 
+ 2850              	.LASF170:
+ 2851 01ac 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_RX_CREDIT_IND\000"
+ 2851      4C455F45 
+ 2851      56545F4C 
+ 2851      32434150 
+ 2851      5F434246 
+ 2852              	.LASF12:
+ 2853 01d0 756E7369 		.ascii	"unsigned int\000"
+ 2853      676E6564 
+ 2853      20696E74 
+ 2853      00
+ 2854              	.LASF270:
+ 2855 01dd 63795F62 		.ascii	"cy_ble_connHandle\000"
+ 2855      6C655F63 
+ 2855      6F6E6E48 
+ 2855      616E646C 
+ 2855      6500
+ 2856              	.LASF134:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 59
+
+
+ 2857 01ef 43595F42 		.ascii	"CY_BLE_EVT_GAP_CREATE_CONN_CANCEL_COMPLETE\000"
+ 2857      4C455F45 
+ 2857      56545F47 
+ 2857      41505F43 
+ 2857      52454154 
+ 2858              	.LASF220:
+ 2859 021a 7363616E 		.ascii	"scanCounter\000"
+ 2859      436F756E 
+ 2859      74657200 
+ 2860              	.LASF41:
+ 2861 0226 43595F53 		.ascii	"CY_SAR_RANGE_COND_OUTSIDE\000"
+ 2861      41525F52 
+ 2861      414E4745 
+ 2861      5F434F4E 
+ 2861      445F4F55 
+ 2862              	.LASF218:
+ 2863 0240 6877436C 		.ascii	"hwClock\000"
+ 2863      6F636B00 
+ 2864              	.LASF34:
+ 2865 0248 74784275 		.ascii	"txBufIdx\000"
+ 2865      66496478 
+ 2865      00
+ 2866              	.LASF65:
+ 2867 0251 43595F42 		.ascii	"CY_BLE_EVT_FLASH_CORRUPT\000"
+ 2867      4C455F45 
+ 2867      56545F46 
+ 2867      4C415348 
+ 2867      5F434F52 
+ 2868              	.LASF6:
+ 2869 026a 5F5F696E 		.ascii	"__int32_t\000"
+ 2869      7433325F 
+ 2869      7400
+ 2870              	.LASF233:
+ 2871 0274 6368616E 		.ascii	"channelBase\000"
+ 2871      6E656C42 
+ 2871      61736500 
+ 2872              	.LASF190:
+ 2873 0280 63795F65 		.ascii	"cy_en_ble_conn_state_t\000"
+ 2873      6E5F626C 
+ 2873      655F636F 
+ 2873      6E6E5F73 
+ 2873      74617465 
+ 2874              	.LASF144:
+ 2875 0297 43595F42 		.ascii	"CY_BLE_EVT_GATTC_FIND_INFO_RSP\000"
+ 2875      4C455F45 
+ 2875      56545F47 
+ 2875      41545443 
+ 2875      5F46494E 
+ 2876              	.LASF283:
+ 2877 02b6 43617053 		.ascii	"CapSense_Start\000"
+ 2877      656E7365 
+ 2877      5F537461 
+ 2877      727400
+ 2878              	.LASF247:
+ 2879 02c5 48414E44 		.ascii	"HANDLE_GPIO_INTERRUPT\000"
+ 2879      4C455F47 
+ 2879      50494F5F 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 60
+
+
+ 2879      494E5445 
+ 2879      52525550 
+ 2880              	.LASF89:
+ 2881 02db 43595F42 		.ascii	"CY_BLE_EVT_SET_PRIVACY_MODE_COMPLETE\000"
+ 2881      4C455F45 
+ 2881      56545F53 
+ 2881      45545F50 
+ 2881      52495641 
+ 2882              	.LASF235:
+ 2883 0300 6877436F 		.ascii	"hwConfigStc\000"
+ 2883      6E666967 
+ 2883      53746300 
+ 2884              	.LASF248:
+ 2885 030c 53454E44 		.ascii	"SEND_PROXIMITY_NOTIFICATION\000"
+ 2885      5F50524F 
+ 2885      58494D49 
+ 2885      54595F4E 
+ 2885      4F544946 
+ 2886              	.LASF148:
+ 2887 0328 43595F42 		.ascii	"CY_BLE_EVT_GATTC_READ_MULTI_RSP\000"
+ 2887      4C455F45 
+ 2887      56545F47 
+ 2887      41545443 
+ 2887      5F524541 
+ 2888              	.LASF138:
+ 2889 0348 43595F42 		.ascii	"CY_BLE_EVT_GATT_CONNECT_IND\000"
+ 2889      4C455F45 
+ 2889      56545F47 
+ 2889      4154545F 
+ 2889      434F4E4E 
+ 2890              	.LASF177:
+ 2891 0364 43595F42 		.ascii	"CY_BLE_ADV_STATE_STOPPED\000"
+ 2891      4C455F41 
+ 2891      44565F53 
+ 2891      54415445 
+ 2891      5F53544F 
+ 2892              	.LASF52:
+ 2893 037d 73617449 		.ascii	"satIntrMask\000"
+ 2893      6E74724D 
+ 2893      61736B00 
+ 2894              	.LASF285:
+ 2895 0389 43617053 		.ascii	"CapSense_IsBusy\000"
+ 2895      656E7365 
+ 2895      5F497342 
+ 2895      75737900 
+ 2896              	.LASF87:
+ 2897 0399 43595F42 		.ascii	"CY_BLE_EVT_SET_PHY_COMPLETE\000"
+ 2897      4C455F45 
+ 2897      56545F53 
+ 2897      45545F50 
+ 2897      48595F43 
+ 2898              	.LASF160:
+ 2899 03b5 43595F42 		.ascii	"CY_BLE_EVT_GATTS_READ_CHAR_VAL_ACCESS_REQ\000"
+ 2899      4C455F45 
+ 2899      56545F47 
+ 2899      41545453 
+ 2899      5F524541 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 61
+
+
+ 2900              	.LASF288:
+ 2901 03df 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2901      43313120 
+ 2901      352E342E 
+ 2901      31203230 
+ 2901      31363036 
+ 2902 0412 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m4 -mfloat-abi=s"
+ 2902      20726576 
+ 2902      6973696F 
+ 2902      6E203233 
+ 2902      37373135 
+ 2903 0445 6F667466 		.ascii	"oftfp -mfpu=fpv4-sp-d16 -mthumb -g -Og -ffunction-s"
+ 2903      70202D6D 
+ 2903      6670753D 
+ 2903      66707634 
+ 2903      2D73702D 
+ 2904 0478 65637469 		.ascii	"ections -ffat-lto-objects\000"
+ 2904      6F6E7320 
+ 2904      2D666661 
+ 2904      742D6C74 
+ 2904      6F2D6F62 
+ 2905              	.LASF132:
+ 2906 0492 43595F42 		.ascii	"CY_BLE_EVT_GAP_RESOLVE_DEVICE_COMPLETE\000"
+ 2906      4C455F45 
+ 2906      56545F47 
+ 2906      41505F52 
+ 2906      45534F4C 
+ 2907              	.LASF38:
+ 2908 04b9 43595F53 		.ascii	"CY_SAR_RANGE_COND_BELOW\000"
+ 2908      41525F52 
+ 2908      414E4745 
+ 2908      5F434F4E 
+ 2908      445F4245 
+ 2909              	.LASF183:
+ 2910 04d1 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_DISCONNECTED_DISCOVERED\000"
+ 2910      4C455F43 
+ 2910      4F4E4E5F 
+ 2910      53544154 
+ 2910      455F434C 
+ 2911              	.LASF208:
+ 2912 0502 43617053 		.ascii	"CapSense_RAM_WD_LIST_STRUCT\000"
+ 2912      656E7365 
+ 2912      5F52414D 
+ 2912      5F57445F 
+ 2912      4C495354 
+ 2913              	.LASF141:
+ 2914 051e 43595F42 		.ascii	"CY_BLE_EVT_GATTC_XCHNG_MTU_RSP\000"
+ 2914      4C455F45 
+ 2914      56545F47 
+ 2914      41545443 
+ 2914      5F584348 
+ 2915              	.LASF157:
+ 2916 053d 43595F42 		.ascii	"CY_BLE_EVT_GATTS_HANDLE_VALUE_CNF\000"
+ 2916      4C455F45 
+ 2916      56545F47 
+ 2916      41545453 
+ 2916      5F48414E 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 62
+
+
+ 2917              	.LASF88:
+ 2918 055f 43595F42 		.ascii	"CY_BLE_EVT_PHY_UPDATE_COMPLETE\000"
+ 2918      4C455F45 
+ 2918      56545F50 
+ 2918      48595F55 
+ 2918      50444154 
+ 2919              	.LASF146:
+ 2920 057e 43595F42 		.ascii	"CY_BLE_EVT_GATTC_READ_RSP\000"
+ 2920      4C455F45 
+ 2920      56545F47 
+ 2920      41545443 
+ 2920      5F524541 
+ 2921              	.LASF147:
+ 2922 0598 43595F42 		.ascii	"CY_BLE_EVT_GATTC_READ_BLOB_RSP\000"
+ 2922      4C455F45 
+ 2922      56545F47 
+ 2922      41545443 
+ 2922      5F524541 
+ 2923              	.LASF16:
+ 2924 05b7 75696E74 		.ascii	"uint32_t\000"
+ 2924      33325F74 
+ 2924      00
+ 2925              	.LASF276:
+ 2926 05c0 70726F78 		.ascii	"proximityCommandQ\000"
+ 2926      696D6974 
+ 2926      79436F6D 
+ 2926      6D616E64 
+ 2926      5100
+ 2927              	.LASF79:
+ 2928 05d2 43595F42 		.ascii	"CY_BLE_EVT_SET_RPA_ENABLE_COMPLETE\000"
+ 2928      4C455F45 
+ 2928      56545F53 
+ 2928      45545F52 
+ 2928      50415F45 
+ 2929              	.LASF253:
+ 2930 05f5 54696D65 		.ascii	"TimerHandle_t\000"
+ 2930      7248616E 
+ 2930      646C655F 
+ 2930      7400
+ 2931              	.LASF60:
+ 2932 0603 43595F42 		.ascii	"CY_BLE_EVT_STACK_ON\000"
+ 2932      4C455F45 
+ 2932      56545F53 
+ 2932      5441434B 
+ 2932      5F4F4E00 
+ 2933              	.LASF90:
+ 2934 0617 43595F42 		.ascii	"CY_BLE_EVT_LL_CNTRL_PROC_PENDING_COMPLETE\000"
+ 2934      4C455F45 
+ 2934      56545F4C 
+ 2934      4C5F434E 
+ 2934      54524C5F 
+ 2935              	.LASF145:
+ 2936 0641 43595F42 		.ascii	"CY_BLE_EVT_GATTC_FIND_BY_TYPE_VALUE_RSP\000"
+ 2936      4C455F45 
+ 2936      56545F47 
+ 2936      41545443 
+ 2936      5F46494E 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 63
+
+
+ 2937              	.LASF166:
+ 2938 0669 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_CONN_CNF\000"
+ 2938      4C455F45 
+ 2938      56545F4C 
+ 2938      32434150 
+ 2938      5F434246 
+ 2939              	.LASF76:
+ 2940 0688 43595F42 		.ascii	"CY_BLE_EVT_GET_PEER_RPA_COMPLETE\000"
+ 2940      4C455F45 
+ 2940      56545F47 
+ 2940      45545F50 
+ 2940      4545525F 
+ 2941              	.LASF59:
+ 2942 06a9 43595F42 		.ascii	"CY_BLE_EVT_INVALID\000"
+ 2942      4C455F45 
+ 2942      56545F49 
+ 2942      4E56414C 
+ 2942      494400
+ 2943              	.LASF11:
+ 2944 06bc 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2944      206C6F6E 
+ 2944      6720756E 
+ 2944      7369676E 
+ 2944      65642069 
+ 2945              	.LASF77:
+ 2946 06d3 43595F42 		.ascii	"CY_BLE_EVT_GET_LOCAL_RPA_COMPLETE\000"
+ 2946      4C455F45 
+ 2946      56545F47 
+ 2946      45545F4C 
+ 2946      4F43414C 
+ 2947              	.LASF284:
+ 2948 06f5 78517565 		.ascii	"xQueueGenericReceive\000"
+ 2948      75654765 
+ 2948      6E657269 
+ 2948      63526563 
+ 2948      65697665 
+ 2949              	.LASF227:
+ 2950 070a 736E734C 		.ascii	"snsList\000"
+ 2950      69737400 
+ 2951              	.LASF234:
+ 2952 0712 6E756D43 		.ascii	"numChannels\000"
+ 2952      68616E6E 
+ 2952      656C7300 
+ 2953              	.LASF127:
+ 2954 071e 43595F42 		.ascii	"CY_BLE_EVT_GAP_ENHANCE_CONN_COMPLETE\000"
+ 2954      4C455F45 
+ 2954      56545F47 
+ 2954      41505F45 
+ 2954      4E48414E 
+ 2955              	.LASF226:
+ 2956 0743 77646774 		.ascii	"wdgtList\000"
+ 2956      4C697374 
+ 2956      00
+ 2957              	.LASF249:
+ 2958 074c 626C655F 		.ascii	"ble_commands_list_t\000"
+ 2958      636F6D6D 
+ 2958      616E6473 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 64
+
+
+ 2958      5F6C6973 
+ 2958      745F7400 
+ 2959              	.LASF181:
+ 2960 0760 63795F65 		.ascii	"cy_en_ble_adv_state_t\000"
+ 2960      6E5F626C 
+ 2960      655F6164 
+ 2960      765F7374 
+ 2960      6174655F 
+ 2961              	.LASF94:
+ 2962 0776 43595F42 		.ascii	"CY_BLE_EVT_GET_RSSI_COMPLETE\000"
+ 2962      4C455F45 
+ 2962      56545F47 
+ 2962      45545F52 
+ 2962      5353495F 
+ 2963              	.LASF229:
+ 2964 0793 736E7254 		.ascii	"snrTestSensorId\000"
+ 2964      65737453 
+ 2964      656E736F 
+ 2964      72496400 
+ 2965              	.LASF261:
+ 2966 07a3 63617053 		.ascii	"capSenseApiResult\000"
+ 2966      656E7365 
+ 2966      41706952 
+ 2966      6573756C 
+ 2966      7400
+ 2967              	.LASF47:
+ 2968 07b5 72616E67 		.ascii	"rangeThres\000"
+ 2968      65546872 
+ 2968      657300
+ 2969              	.LASF178:
+ 2970 07c0 43595F42 		.ascii	"CY_BLE_ADV_STATE_ADV_INITIATED\000"
+ 2970      4C455F41 
+ 2970      44565F53 
+ 2970      54415445 
+ 2970      5F414456 
+ 2971              	.LASF4:
+ 2972 07df 5F5F7569 		.ascii	"__uint16_t\000"
+ 2972      6E743136 
+ 2972      5F7400
+ 2973              	.LASF39:
+ 2974 07ea 43595F53 		.ascii	"CY_SAR_RANGE_COND_INSIDE\000"
+ 2974      41525F52 
+ 2974      414E4745 
+ 2974      5F434F4E 
+ 2974      445F494E 
+ 2975              	.LASF120:
+ 2976 0803 43595F42 		.ascii	"CY_BLE_EVT_GAP_ENCRYPT_CHANGE\000"
+ 2976      4C455F45 
+ 2976      56545F47 
+ 2976      41505F45 
+ 2976      4E435259 
+ 2977              	.LASF92:
+ 2978 0821 43595F42 		.ascii	"CY_BLE_EVT_SET_DEVICE_ADDR_COMPLETE\000"
+ 2978      4C455F45 
+ 2978      56545F53 
+ 2978      45545F44 
+ 2978      45564943 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 65
+
+
+ 2979              	.LASF58:
+ 2980 0845 63795F73 		.ascii	"cy_stc_sar_config_t\000"
+ 2980      74635F73 
+ 2980      61725F63 
+ 2980      6F6E6669 
+ 2980      675F7400 
+ 2981              	.LASF175:
+ 2982 0859 61747449 		.ascii	"attId\000"
+ 2982      6400
+ 2983              	.LASF43:
+ 2984 085f 6374726C 		.ascii	"ctrl\000"
+ 2984      00
+ 2985              	.LASF75:
+ 2986 0864 43595F42 		.ascii	"CY_BLE_EVT_DATA_LENGTH_CHANGE\000"
+ 2986      4C455F45 
+ 2986      56545F44 
+ 2986      4154415F 
+ 2986      4C454E47 
+ 2987              	.LASF22:
+ 2988 0882 63795F73 		.ascii	"cy_status\000"
+ 2988      74617475 
+ 2988      7300
+ 2989              	.LASF126:
+ 2990 088c 43595F42 		.ascii	"CY_BLE_EVT_GAP_OOB_GENERATED_NOTIFICATION\000"
+ 2990      4C455F45 
+ 2990      56545F47 
+ 2990      41505F4F 
+ 2990      4F425F47 
+ 2991              	.LASF29:
+ 2992 08b6 72784275 		.ascii	"rxBuf\000"
+ 2992      6600
+ 2993              	.LASF118:
+ 2994 08bc 43595F42 		.ascii	"CY_BLE_EVT_GAP_DEVICE_CONNECTED\000"
+ 2994      4C455F45 
+ 2994      56545F47 
+ 2994      41505F44 
+ 2994      45564943 
+ 2995              	.LASF225:
+ 2996 08dc 6D6F6443 		.ascii	"modCsdClk\000"
+ 2996      7364436C 
+ 2996      6B00
+ 2997              	.LASF91:
+ 2998 08e6 43595F42 		.ascii	"CY_BLE_EVT_SOFT_RESET_COMPLETE\000"
+ 2998      4C455F45 
+ 2998      56545F53 
+ 2998      4F46545F 
+ 2998      52455345 
+ 2999              	.LASF214:
+ 3000 0905 43617053 		.ascii	"CapSense_RAM_SNS_STRUCT\000"
+ 3000      656E7365 
+ 3000      5F52414D 
+ 3000      5F534E53 
+ 3000      5F535452 
+ 3001              	.LASF152:
+ 3002 091d 43595F42 		.ascii	"CY_BLE_EVT_GATTS_PREP_WRITE_REQ\000"
+ 3002      4C455F45 
+ 3002      56545F47 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 66
+
+
+ 3002      41545453 
+ 3002      5F505245 
+ 3003              	.LASF255:
+ 3004 093d 50726F78 		.ascii	"ProximityTimerStart\000"
+ 3004      696D6974 
+ 3004      7954696D 
+ 3004      65725374 
+ 3004      61727400 
+ 3005              	.LASF35:
+ 3006 0951 63624576 		.ascii	"cbEvents\000"
+ 3006      656E7473 
+ 3006      00
+ 3007              	.LASF21:
+ 3008 095a 646F7562 		.ascii	"double\000"
+ 3008      6C6500
+ 3009              	.LASF26:
+ 3010 0961 5F426F6F 		.ascii	"_Bool\000"
+ 3010      6C00
+ 3011              	.LASF204:
+ 3012 0967 73696750 		.ascii	"sigPFC\000"
+ 3012      464300
+ 3013              	.LASF173:
+ 3014 096e 43595F42 		.ascii	"CY_BLE_EVT_MAX\000"
+ 3014      4C455F45 
+ 3014      56545F4D 
+ 3014      415800
+ 3015              	.LASF197:
+ 3016 097d 68797374 		.ascii	"hysteresis\000"
+ 3016      65726573 
+ 3016      697300
+ 3017              	.LASF168:
+ 3018 0988 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_DISCONN_CNF\000"
+ 3018      4C455F45 
+ 3018      56545F4C 
+ 3018      32434150 
+ 3018      5F434246 
+ 3019              	.LASF99:
+ 3020 09aa 43595F42 		.ascii	"CY_BLE_EVT_RANDOM_NUM_GEN_COMPLETE\000"
+ 3020      4C455F45 
+ 3020      56545F52 
+ 3020      414E444F 
+ 3020      4D5F4E55 
+ 3021              	.LASF179:
+ 3022 09cd 43595F42 		.ascii	"CY_BLE_ADV_STATE_ADVERTISING\000"
+ 3022      4C455F41 
+ 3022      44565F53 
+ 3022      54415445 
+ 3022      5F414456 
+ 3023              	.LASF129:
+ 3024 09ea 43595F42 		.ascii	"CY_BLE_EVT_GAP_SMP_NEGOTIATED_AUTH_INFO\000"
+ 3024      4C455F45 
+ 3024      56545F47 
+ 3024      41505F53 
+ 3024      4D505F4E 
+ 3025              	.LASF72:
+ 3026 0a12 43595F42 		.ascii	"CY_BLE_EVT_SET_DATA_LENGTH_COMPLETE\000"
+ 3026      4C455F45 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 67
+
+
+ 3026      56545F53 
+ 3026      45545F44 
+ 3026      4154415F 
+ 3027              	.LASF150:
+ 3028 0a36 43595F42 		.ascii	"CY_BLE_EVT_GATTC_WRITE_RSP\000"
+ 3028      4C455F45 
+ 3028      56545F47 
+ 3028      41545443 
+ 3028      5F575249 
+ 3029              	.LASF199:
+ 3030 0a51 6C6F7742 		.ascii	"lowBslnRst\000"
+ 3030      736C6E52 
+ 3030      737400
+ 3031              	.LASF189:
+ 3032 0a5c 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_DISCOVERED\000"
+ 3032      4C455F43 
+ 3032      4F4E4E5F 
+ 3032      53544154 
+ 3032      455F434C 
+ 3033              	.LASF278:
+ 3034 0a80 7854696D 		.ascii	"xTimer_Proximity\000"
+ 3034      65725F50 
+ 3034      726F7869 
+ 3034      6D697479 
+ 3034      00
+ 3035              	.LASF279:
+ 3036 0a91 78517565 		.ascii	"xQueueGenericSend\000"
+ 3036      75654765 
+ 3036      6E657269 
+ 3036      6353656E 
+ 3036      6400
+ 3037              	.LASF62:
+ 3038 0aa3 43595F42 		.ascii	"CY_BLE_EVT_STACK_BUSY_STATUS\000"
+ 3038      4C455F45 
+ 3038      56545F53 
+ 3038      5441434B 
+ 3038      5F425553 
+ 3039              	.LASF164:
+ 3040 0ac0 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_COMMAND_REJ\000"
+ 3040      4C455F45 
+ 3040      56545F4C 
+ 3040      32434150 
+ 3040      5F434F4D 
+ 3041              	.LASF69:
+ 3042 0add 43595F42 		.ascii	"CY_BLE_EVT_GET_CHANNEL_MAP_COMPLETE\000"
+ 3042      4C455F45 
+ 3042      56545F47 
+ 3042      45545F43 
+ 3042      48414E4E 
+ 3043              	.LASF254:
+ 3044 0b01 50726F78 		.ascii	"ProximityTimerCallback\000"
+ 3044      696D6974 
+ 3044      7954696D 
+ 3044      65724361 
+ 3044      6C6C6261 
+ 3045              	.LASF63:
+ 3046 0b18 43595F42 		.ascii	"CY_BLE_EVT_MEMORY_REQUEST\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 68
+
+
+ 3046      4C455F45 
+ 3046      56545F4D 
+ 3046      454D4F52 
+ 3046      595F5245 
+ 3047              	.LASF57:
+ 3048 0b32 76726566 		.ascii	"vrefMvValue\000"
+ 3048      4D765661 
+ 3048      6C756500 
+ 3049              	.LASF110:
+ 3050 0b3e 43595F42 		.ascii	"CY_BLE_EVT_SET_CONN_PRIORITY_COMPLETE\000"
+ 3050      4C455F45 
+ 3050      56545F53 
+ 3050      45545F43 
+ 3050      4F4E4E5F 
+ 3051              	.LASF180:
+ 3052 0b64 43595F42 		.ascii	"CY_BLE_ADV_STATE_STOP_INITIATED\000"
+ 3052      4C455F41 
+ 3052      44565F53 
+ 3052      54415445 
+ 3052      5F53544F 
+ 3053              	.LASF187:
+ 3054 0b84 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_CHAR_DISCOVERING\000"
+ 3054      4C455F43 
+ 3054      4F4E4E5F 
+ 3054      53544154 
+ 3054      455F434C 
+ 3055              	.LASF195:
+ 3056 0bae 6E6F6973 		.ascii	"noiseTh\000"
+ 3056      65546800 
+ 3057              	.LASF40:
+ 3058 0bb6 43595F53 		.ascii	"CY_SAR_RANGE_COND_ABOVE\000"
+ 3058      41525F52 
+ 3058      414E4745 
+ 3058      5F434F4E 
+ 3058      445F4142 
+ 3059              	.LASF19:
+ 3060 0bce 63686172 		.ascii	"char\000"
+ 3060      00
+ 3061              	.LASF101:
+ 3062 0bd3 43595F42 		.ascii	"CY_BLE_EVT_AES_CCM_ENCRYPT_COMPLETE\000"
+ 3062      4C455F45 
+ 3062      56545F41 
+ 3062      45535F43 
+ 3062      434D5F45 
+ 3063              	.LASF122:
+ 3064 0bf7 43595F42 		.ascii	"CY_BLE_EVT_GAPC_SCAN_START_STOP\000"
+ 3064      4C455F45 
+ 3064      56545F47 
+ 3064      4150435F 
+ 3064      5343414E 
+ 3065              	.LASF49:
+ 3066 0c17 6368616E 		.ascii	"chanEn\000"
+ 3066      456E00
+ 3067              	.LASF280:
+ 3068 0c1e 7854696D 		.ascii	"xTimerCreate\000"
+ 3068      65724372 
+ 3068      65617465 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 69
+
+
+ 3068      00
+ 3069              	.LASF143:
+ 3070 0c2b 43595F42 		.ascii	"CY_BLE_EVT_GATTC_READ_BY_TYPE_RSP\000"
+ 3070      4C455F45 
+ 3070      56545F47 
+ 3070      41545443 
+ 3070      5F524541 
+ 3071              	.LASF24:
+ 3072 0c4d 75696E74 		.ascii	"uint16\000"
+ 3072      313600
+ 3073              	.LASF70:
+ 3074 0c54 43595F42 		.ascii	"CY_BLE_EVT_LE_SET_EVENT_MASK_COMPLETE\000"
+ 3074      4C455F45 
+ 3074      56545F4C 
+ 3074      455F5345 
+ 3074      545F4556 
+ 3075              	.LASF31:
+ 3076 0c7a 72784275 		.ascii	"rxBufIdx\000"
+ 3076      66496478 
+ 3076      00
+ 3077              	.LASF241:
+ 3078 0c83 51756575 		.ascii	"QueueHandle_t\000"
+ 3078      6548616E 
+ 3078      646C655F 
+ 3078      7400
+ 3079              	.LASF124:
+ 3080 0c91 43595F42 		.ascii	"CY_BLE_EVT_GAP_NUMERIC_COMPARISON_REQUEST\000"
+ 3080      4C455F45 
+ 3080      56545F47 
+ 3080      41505F4E 
+ 3080      554D4552 
+ 3081              	.LASF36:
+ 3082 0cbb 696E6974 		.ascii	"initKey\000"
+ 3082      4B657900 
+ 3083              	.LASF193:
+ 3084 0cc3 7265736F 		.ascii	"resolution\000"
+ 3084      6C757469 
+ 3084      6F6E00
+ 3085              	.LASF13:
+ 3086 0cce 75696E74 		.ascii	"uint8_t\000"
+ 3086      385F7400 
+ 3087              	.LASF28:
+ 3088 0cd6 73746174 		.ascii	"status\000"
+ 3088      757300
+ 3089              	.LASF192:
+ 3090 0cdd 43617053 		.ascii	"CapSense_LOW_BSLN_RST_TYPE\000"
+ 3090      656E7365 
+ 3090      5F4C4F57 
+ 3090      5F42534C 
+ 3090      4E5F5253 
+ 3091              	.LASF103:
+ 3092 0cf8 43595F42 		.ascii	"CY_BLE_EVT_SET_SLAVE_LATENCY_MODE_COMPLETE\000"
+ 3092      4C455F45 
+ 3092      56545F53 
+ 3092      45545F53 
+ 3092      4C415645 
+ 3093              	.LASF223:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 70
+
+
+ 3094 0d23 736E7353 		.ascii	"snsStatus\000"
+ 3094      74617475 
+ 3094      7300
+ 3095              	.LASF80:
+ 3096 0d2d 43595F42 		.ascii	"CY_BLE_EVT_SET_HOST_CHANNEL_COMPLETE\000"
+ 3096      4C455F45 
+ 3096      56545F53 
+ 3096      45545F48 
+ 3096      4F53545F 
+ 3097              	.LASF115:
+ 3098 0d52 43595F42 		.ascii	"CY_BLE_EVT_GAP_AUTH_COMPLETE\000"
+ 3098      4C455F45 
+ 3098      56545F47 
+ 3098      41505F41 
+ 3098      5554485F 
+ 3099              	.LASF86:
+ 3100 0d6f 43595F42 		.ascii	"CY_BLE_EVT_SET_DEFAULT_PHY_COMPLETE\000"
+ 3100      4C455F45 
+ 3100      56545F53 
+ 3100      45545F44 
+ 3100      45464155 
+ 3101              	.LASF55:
+ 3102 0d93 6D757853 		.ascii	"muxSwitchSqCtrl\000"
+ 3102      77697463 
+ 3102      68537143 
+ 3102      74726C00 
+ 3103              	.LASF269:
+ 3104 0da3 63795F62 		.ascii	"cy_ble_advState\000"
+ 3104      6C655F61 
+ 3104      64765374 
+ 3104      61746500 
+ 3105              	.LASF281:
+ 3106 0db3 78546173 		.ascii	"xTaskGetTickCount\000"
+ 3106      6B476574 
+ 3106      5469636B 
+ 3106      436F756E 
+ 3106      7400
+ 3107              	.LASF48:
+ 3108 0dc5 72616E67 		.ascii	"rangeCond\000"
+ 3108      65436F6E 
+ 3108      6400
+ 3109              	.LASF109:
+ 3110 0dcf 43595F42 		.ascii	"CY_BLE_EVT_SET_CE_LENGTH_COMPLETE\000"
+ 3110      4C455F45 
+ 3110      56545F53 
+ 3110      45545F43 
+ 3110      455F4C45 
+ 3111              	.LASF108:
+ 3112 0df1 43595F42 		.ascii	"CY_BLE_EVT_SET_EVENT_MASK_COMPLETE\000"
+ 3112      4C455F45 
+ 3112      56545F53 
+ 3112      45545F45 
+ 3112      56454E54 
+ 3113              	.LASF10:
+ 3114 0e14 6C6F6E67 		.ascii	"long long int\000"
+ 3114      206C6F6E 
+ 3114      6720696E 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 71
+
+
+ 3114      7400
+ 3115              	.LASF245:
+ 3116 0e22 70726F78 		.ascii	"proximity_command_t\000"
+ 3116      696D6974 
+ 3116      795F636F 
+ 3116      6D6D616E 
+ 3116      645F7400 
+ 3117              	.LASF198:
+ 3118 0e36 6F6E4465 		.ascii	"onDebounce\000"
+ 3118      626F756E 
+ 3118      636500
+ 3119              	.LASF135:
+ 3120 0e41 43595F42 		.ascii	"CY_BLE_EVT_GAP_CONN_ESTB\000"
+ 3120      4C455F45 
+ 3120      56545F47 
+ 3120      41505F43 
+ 3120      4F4E4E5F 
+ 3121              	.LASF82:
+ 3122 0e5a 43595F42 		.ascii	"CY_BLE_EVT_REMOVE_DEVICE_FROM_RPA_LIST_COMPLETE\000"
+ 3122      4C455F45 
+ 3122      56545F52 
+ 3122      454D4F56 
+ 3122      455F4445 
+ 3123              	.LASF71:
+ 3124 0e8a 43595F42 		.ascii	"CY_BLE_EVT_LE_PING_AUTH_TIMEOUT\000"
+ 3124      4C455F45 
+ 3124      56545F4C 
+ 3124      455F5049 
+ 3124      4E475F41 
+ 3125              	.LASF239:
+ 3126 0eaa 42617365 		.ascii	"BaseType_t\000"
+ 3126      54797065 
+ 3126      5F7400
+ 3127              	.LASF246:
+ 3128 0eb5 50524F43 		.ascii	"PROCESS_BLE_EVENTS\000"
+ 3128      4553535F 
+ 3128      424C455F 
+ 3128      4556454E 
+ 3128      545300
+ 3129              	.LASF273:
+ 3130 0ec8 43617053 		.ascii	"CapSense_dsRam\000"
+ 3130      656E7365 
+ 3130      5F647352 
+ 3130      616D00
+ 3131              	.LASF231:
+ 3132 0ed7 736E7254 		.ascii	"snrTestRawCount\000"
+ 3132      65737452 
+ 3132      6177436F 
+ 3132      756E7400 
+ 3133              	.LASF98:
+ 3134 0ee7 43595F42 		.ascii	"CY_BLE_EVT_SET_CLK_CONFIG_COMPLETE\000"
+ 3134      4C455F45 
+ 3134      56545F53 
+ 3134      45545F43 
+ 3134      4C4B5F43 
+ 3135              	.LASF161:
+ 3136 0f0a 43595F42 		.ascii	"CY_BLE_EVT_GATTC_LONG_PROCEDURE_END\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 72
+
+
+ 3136      4C455F45 
+ 3136      56545F47 
+ 3136      41545443 
+ 3136      5F4C4F4E 
+ 3137              	.LASF196:
+ 3138 0f2e 6E4E6F69 		.ascii	"nNoiseTh\000"
+ 3138      73655468 
+ 3138      00
+ 3139              	.LASF37:
+ 3140 0f37 63795F73 		.ascii	"cy_stc_scb_spi_context_t\000"
+ 3140      74635F73 
+ 3140      63625F73 
+ 3140      70695F63 
+ 3140      6F6E7465 
+ 3141              	.LASF224:
+ 3142 0f50 63736430 		.ascii	"csd0Config\000"
+ 3142      436F6E66 
+ 3142      696700
+ 3143              	.LASF50:
+ 3144 0f5b 6368616E 		.ascii	"chanConfig\000"
+ 3144      436F6E66 
+ 3144      696700
+ 3145              	.LASF123:
+ 3146 0f66 43595F42 		.ascii	"CY_BLE_EVT_GAP_KEYINFO_EXCHNGE_CMPLT\000"
+ 3146      4C455F45 
+ 3146      56545F47 
+ 3146      41505F4B 
+ 3146      4559494E 
+ 3147              	.LASF83:
+ 3148 0f8b 43595F42 		.ascii	"CY_BLE_EVT_ADD_DEVICE_TO_WHITE_LIST_COMPLETE\000"
+ 3148      4C455F45 
+ 3148      56545F41 
+ 3148      44445F44 
+ 3148      45564943 
+ 3149              	.LASF33:
+ 3150 0fb8 74784275 		.ascii	"txBufSize\000"
+ 3150      6653697A 
+ 3150      6500
+ 3151              	.LASF250:
+ 3152 0fc2 636F6D6D 		.ascii	"command\000"
+ 3152      616E6400 
+ 3153              	.LASF172:
+ 3154 0fca 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_DATA_WRITE_IND\000"
+ 3154      4C455F45 
+ 3154      56545F4C 
+ 3154      32434150 
+ 3154      5F434246 
+ 3155              	.LASF267:
+ 3156 0fef 626C6543 		.ascii	"bleCommandProximity\000"
+ 3156      6F6D6D61 
+ 3156      6E645072 
+ 3156      6F78696D 
+ 3156      69747900 
+ 3157              	.LASF251:
+ 3158 1003 70726F78 		.ascii	"proximityData\000"
+ 3158      696D6974 
+ 3158      79446174 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 73
+
+
+ 3158      6100
+ 3159              	.LASF286:
+ 3160 1011 43617053 		.ascii	"CapSense_ProcessAllWidgets\000"
+ 3160      656E7365 
+ 3160      5F50726F 
+ 3160      63657373 
+ 3160      416C6C57 
+ 3161              	.LASF111:
+ 3162 102c 43595F42 		.ascii	"CY_BLE_EVT_GAPC_SCAN_PROGRESS_RESULT\000"
+ 3162      4C455F45 
+ 3162      56545F47 
+ 3162      4150435F 
+ 3162      5343414E 
+ 3163              	.LASF165:
+ 3164 1051 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_CONN_IND\000"
+ 3164      4C455F45 
+ 3164      56545F4C 
+ 3164      32434150 
+ 3164      5F434246 
+ 3165              	.LASF131:
+ 3166 1070 43595F42 		.ascii	"CY_BLE_EVT_GAP_KEYS_GEN_COMPLETE\000"
+ 3166      4C455F45 
+ 3166      56545F47 
+ 3166      41505F4B 
+ 3166      4559535F 
+ 3167              	.LASF125:
+ 3168 1091 43595F42 		.ascii	"CY_BLE_EVT_GAP_KEYPRESS_NOTIFICATION\000"
+ 3168      4C455F45 
+ 3168      56545F47 
+ 3168      41505F4B 
+ 3168      45595052 
+ 3169              	.LASF188:
+ 3170 10b6 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_DESCR_DISCOVERING\000"
+ 3170      4C455F43 
+ 3170      4F4E4E5F 
+ 3170      53544154 
+ 3170      455F434C 
+ 3171              	.LASF184:
+ 3172 10e1 43595F42 		.ascii	"CY_BLE_CONN_STATE_CONNECTED\000"
+ 3172      4C455F43 
+ 3172      4F4E4E5F 
+ 3172      53544154 
+ 3172      455F434F 
+ 3173              	.LASF32:
+ 3174 10fd 74784275 		.ascii	"txBuf\000"
+ 3174      6600
+ 3175              	.LASF240:
+ 3176 1103 5469636B 		.ascii	"TickType_t\000"
+ 3176      54797065 
+ 3176      5F7400
+ 3177              	.LASF186:
+ 3178 110e 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_INCL_DISCOVERING\000"
+ 3178      4C455F43 
+ 3178      4F4E4E5F 
+ 3178      53544154 
+ 3178      455F434C 
+ 3179              	.LASF18:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 74
+
+
+ 3180 1138 6C6F6E67 		.ascii	"long double\000"
+ 3180      20646F75 
+ 3180      626C6500 
+ 3181              	.LASF243:
+ 3182 1144 53454E44 		.ascii	"SEND_NONE\000"
+ 3182      5F4E4F4E 
+ 3182      4500
+ 3183              	.LASF68:
+ 3184 114e 43595F42 		.ascii	"CY_BLE_EVT_READ_AUTH_PAYLOAD_TO_COMPLETE\000"
+ 3184      4C455F45 
+ 3184      56545F52 
+ 3184      4541445F 
+ 3184      41555448 
+ 3185              	.LASF14:
+ 3186 1177 75696E74 		.ascii	"uint16_t\000"
+ 3186      31365F74 
+ 3186      00
+ 3187              	.LASF230:
+ 3188 1180 736E7254 		.ascii	"snrTestScanCounter\000"
+ 3188      65737453 
+ 3188      63616E43 
+ 3188      6F756E74 
+ 3188      657200
+ 3189              	.LASF216:
+ 3190 1193 636F6E66 		.ascii	"configId\000"
+ 3190      69674964 
+ 3190      00
+ 3191              	.LASF45:
+ 3192 119c 73616D70 		.ascii	"sampleTime01\000"
+ 3192      6C655469 
+ 3192      6D653031 
+ 3192      00
+ 3193              	.LASF66:
+ 3194 11a9 43595F42 		.ascii	"CY_BLE_EVT_HARDWARE_ERROR\000"
+ 3194      4C455F45 
+ 3194      56545F48 
+ 3194      41524457 
+ 3194      4152455F 
+ 3195              	.LASF54:
+ 3196 11c3 6D757853 		.ascii	"muxSwitch\000"
+ 3196      77697463 
+ 3196      6800
+ 3197              	.LASF262:
+ 3198 11cd 70726F78 		.ascii	"proximityCommand\000"
+ 3198      696D6974 
+ 3198      79436F6D 
+ 3198      6D616E64 
+ 3198      00
+ 3199              	.LASF156:
+ 3200 11de 43595F42 		.ascii	"CY_BLE_EVT_GATTC_HANDLE_VALUE_IND\000"
+ 3200      4C455F45 
+ 3200      56545F47 
+ 3200      41545443 
+ 3200      5F48414E 
+ 3201              	.LASF137:
+ 3202 1200 43595F42 		.ascii	"CY_BLE_EVT_GATTC_ERROR_RSP\000"
+ 3202      4C455F45 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 75
+
+
+ 3202      56545F47 
+ 3202      41545443 
+ 3202      5F455252 
+ 3203              	.LASF142:
+ 3204 121b 43595F42 		.ascii	"CY_BLE_EVT_GATTC_READ_BY_GROUP_TYPE_RSP\000"
+ 3204      4C455F45 
+ 3204      56545F47 
+ 3204      41545443 
+ 3204      5F524541 
+ 3205              	.LASF81:
+ 3206 1243 43595F42 		.ascii	"CY_BLE_EVT_ADD_DEVICE_TO_RPA_LIST_COMPLETE\000"
+ 3206      4C455F45 
+ 3206      56545F41 
+ 3206      44445F44 
+ 3206      45564943 
+ 3207              	.LASF149:
+ 3208 126e 43595F42 		.ascii	"CY_BLE_EVT_GATTS_WRITE_REQ\000"
+ 3208      4C455F45 
+ 3208      56545F47 
+ 3208      41545453 
+ 3208      5F575249 
+ 3209              	.LASF104:
+ 3210 1289 43595F42 		.ascii	"CY_BLE_EVT_STACK_SHUTDOWN_COMPLETE\000"
+ 3210      4C455F45 
+ 3210      56545F53 
+ 3210      5441434B 
+ 3210      5F534855 
+ 3211              	.LASF256:
+ 3212 12ac 72746F73 		.ascii	"rtosApiResult\000"
+ 3212      41706952 
+ 3212      6573756C 
+ 3212      7400
+ 3213              	.LASF176:
+ 3214 12ba 63795F73 		.ascii	"cy_stc_ble_conn_handle_t\000"
+ 3214      74635F62 
+ 3214      6C655F63 
+ 3214      6F6E6E5F 
+ 3214      68616E64 
+ 3215              	.LASF292:
+ 3216 12d3 5461736B 		.ascii	"Task_Proximity\000"
+ 3216      5F50726F 
+ 3216      78696D69 
+ 3216      747900
+ 3217              	.LASF136:
+ 3218 12e2 43595F42 		.ascii	"CY_BLE_EVT_GAPP_UPDATE_ADV_SCAN_DATA_COMPLETE\000"
+ 3218      4C455F45 
+ 3218      56545F47 
+ 3218      4150505F 
+ 3218      55504441 
+ 3219              	.LASF0:
+ 3220 1310 73686F72 		.ascii	"short int\000"
+ 3220      7420696E 
+ 3220      7400
+ 3221              	.LASF232:
+ 3222 131a 43617053 		.ascii	"CapSense_RAM_STRUCT\000"
+ 3222      656E7365 
+ 3222      5F52414D 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 76
+
+
+ 3222      5F535452 
+ 3222      55435400 
+ 3223              	.LASF275:
+ 3224 132e 4144435F 		.ascii	"ADC_allConfigs\000"
+ 3224      616C6C43 
+ 3224      6F6E6669 
+ 3224      677300
+ 3225              	.LASF202:
+ 3226 133d 736E7343 		.ascii	"snsClkSource\000"
+ 3226      6C6B536F 
+ 3226      75726365 
+ 3226      00
+ 3227              	.LASF119:
+ 3228 134a 43595F42 		.ascii	"CY_BLE_EVT_GAP_DEVICE_DISCONNECTED\000"
+ 3228      4C455F45 
+ 3228      56545F47 
+ 3228      41505F44 
+ 3228      45564943 
+ 3229              	.LASF260:
+ 3230 136d 70765061 		.ascii	"pvParameters\000"
+ 3230      72616D65 
+ 3230      74657273 
+ 3230      00
+ 3231              	.LASF238:
+ 3232 137a 4144435F 		.ascii	"ADC_CONFIG_STRUCT\000"
+ 3232      434F4E46 
+ 3232      49475F53 
+ 3232      54525543 
+ 3232      5400
+ 3233              	.LASF7:
+ 3234 138c 6C6F6E67 		.ascii	"long int\000"
+ 3234      20696E74 
+ 3234      00
+ 3235              	.LASF264:
+ 3236 1395 63757272 		.ascii	"currentProxData\000"
+ 3236      656E7450 
+ 3236      726F7844 
+ 3236      61746100 
+ 3237              	.LASF268:
+ 3238 13a5 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 3238      52784275 
+ 3238      66666572 
+ 3238      00
+ 3239              	.LASF107:
+ 3240 13b2 43595F42 		.ascii	"CY_BLE_EVT_AES_CMAC_GEN_COMPLETE\000"
+ 3240      4C455F45 
+ 3240      56545F41 
+ 3240      45535F43 
+ 3240      4D41435F 
+ 3241              	.LASF213:
+ 3242 13d3 69646163 		.ascii	"idacComp\000"
+ 3242      436F6D70 
+ 3242      00
+ 3243              	.LASF221:
+ 3244 13dc 77646774 		.ascii	"wdgtEnable\000"
+ 3244      456E6162 
+ 3244      6C6500
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 77
+
+
+ 3245              	.LASF211:
+ 3246 13e7 64696666 		.ascii	"diff\000"
+ 3246      00
+ 3247              	.LASF219:
+ 3248 13ec 74756E65 		.ascii	"tunerCmd\000"
+ 3248      72436D64 
+ 3248      00
+ 3249              	.LASF130:
+ 3250 13f5 43595F42 		.ascii	"CY_BLE_EVT_GAP_DEVICE_ADDR_GEN_COMPLETE\000"
+ 3250      4C455F45 
+ 3250      56545F47 
+ 3250      41505F44 
+ 3250      45564943 
+ 3251              	.LASF167:
+ 3252 141d 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_DISCONN_IND\000"
+ 3252      4C455F45 
+ 3252      56545F4C 
+ 3252      32434150 
+ 3252      5F434246 
+ 3253              	.LASF25:
+ 3254 143f 75696E74 		.ascii	"uint32\000"
+ 3254      333200
+ 3255              	.LASF289:
+ 3256 1446 70726F78 		.ascii	"proximity_task.c\000"
+ 3256      696D6974 
+ 3256      795F7461 
+ 3256      736B2E63 
+ 3256      00
+ 3257              	.LASF153:
+ 3258 1457 43595F42 		.ascii	"CY_BLE_EVT_GATTS_EXEC_WRITE_REQ\000"
+ 3258      4C455F45 
+ 3258      56545F47 
+ 3258      41545453 
+ 3258      5F455845 
+ 3259              	.LASF67:
+ 3260 1477 43595F42 		.ascii	"CY_BLE_EVT_WRITE_AUTH_PAYLOAD_TO_COMPLETE\000"
+ 3260      4C455F45 
+ 3260      56545F57 
+ 3260      52495445 
+ 3260      5F415554 
+ 3261              	.LASF106:
+ 3262 14a1 43595F42 		.ascii	"CY_BLE_EVT_RADIO_VOLTAGE_LEVEL\000"
+ 3262      4C455F45 
+ 3262      56545F52 
+ 3262      4144494F 
+ 3262      5F564F4C 
+ 3263              	.LASF258:
+ 3264 14c0 7854696D 		.ascii	"xTimer\000"
+ 3264      657200
+ 3265              	.LASF3:
+ 3266 14c7 5F5F7569 		.ascii	"__uint8_t\000"
+ 3266      6E74385F 
+ 3266      7400
+ 3267              	.LASF242:
+ 3268 14d1 53454E44 		.ascii	"SEND_PROXIMITY\000"
+ 3268      5F50524F 
+ 3268      58494D49 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 78
+
+
+ 3268      545900
+ 3269              	.LASF244:
+ 3270 14e0 50524F58 		.ascii	"PROXIMITY_TIMER_EXPIRED\000"
+ 3270      494D4954 
+ 3270      595F5449 
+ 3270      4D45525F 
+ 3270      45585049 
+ 3271              	.LASF203:
+ 3272 14f8 66696E67 		.ascii	"fingerCap\000"
+ 3272      65724361 
+ 3272      7000
+ 3273              	.LASF215:
+ 3274 1502 43617053 		.ascii	"CapSense_RAM_SNS_LIST_STRUCT\000"
+ 3274      656E7365 
+ 3274      5F52414D 
+ 3274      5F534E53 
+ 3274      5F4C4953 
+ 3275              	.LASF222:
+ 3276 151f 77646774 		.ascii	"wdgtStatus\000"
+ 3276      53746174 
+ 3276      757300
+ 3277              	.LASF73:
+ 3278 152a 43595F42 		.ascii	"CY_BLE_EVT_SET_SUGGESTED_DATA_LENGTH_COMPLETE\000"
+ 3278      4C455F45 
+ 3278      56545F53 
+ 3278      45545F53 
+ 3278      55474745 
+ 3279              	.LASF263:
+ 3280 1558 73656E64 		.ascii	"sendProximityData\000"
+ 3280      50726F78 
+ 3280      696D6974 
+ 3280      79446174 
+ 3280      6100
+ 3281              	.LASF93:
+ 3282 156a 43595F42 		.ascii	"CY_BLE_EVT_GET_DEVICE_ADDR_COMPLETE\000"
+ 3282      4C455F45 
+ 3282      56545F47 
+ 3282      45545F44 
+ 3282      45564943 
+ 3283              	.LASF100:
+ 3284 158e 43595F42 		.ascii	"CY_BLE_EVT_AES_ENCRYPT_COMPLETE\000"
+ 3284      4C455F45 
+ 3284      56545F41 
+ 3284      45535F45 
+ 3284      4E435259 
+ 3285              	.LASF95:
+ 3286 15ae 43595F42 		.ascii	"CY_BLE_EVT_GET_TX_PWR_COMPLETE\000"
+ 3286      4C455F45 
+ 3286      56545F47 
+ 3286      45545F54 
+ 3286      585F5057 
+ 3287              	.LASF291:
+ 3288 15cd 63795F73 		.ascii	"cy_stc_scb_spi_context\000"
+ 3288      74635F73 
+ 3288      63625F73 
+ 3288      70695F63 
+ 3288      6F6E7465 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 79
+
+
+ 3289              	.LASF46:
+ 3290 15e4 73616D70 		.ascii	"sampleTime23\000"
+ 3290      6C655469 
+ 3290      6D653233 
+ 3290      00
+ 3291              	.LASF61:
+ 3292 15f1 43595F42 		.ascii	"CY_BLE_EVT_TIMEOUT\000"
+ 3292      4C455F45 
+ 3292      56545F54 
+ 3292      494D454F 
+ 3292      555400
+ 3293              	.LASF17:
+ 3294 1604 73697A65 		.ascii	"sizetype\000"
+ 3294      74797065 
+ 3294      00
+ 3295              	.LASF9:
+ 3296 160d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3296      20756E73 
+ 3296      69676E65 
+ 3296      6420696E 
+ 3296      7400
+ 3297              	.LASF200:
+ 3298 161f 69646163 		.ascii	"idacMod\000"
+ 3298      4D6F6400 
+ 3299              	.LASF20:
+ 3300 1627 666C6F61 		.ascii	"float\000"
+ 3300      7400
+ 3301              	.LASF217:
+ 3302 162d 64657669 		.ascii	"deviceId\000"
+ 3302      63654964 
+ 3302      00
+ 3303              	.LASF15:
+ 3304 1636 696E7433 		.ascii	"int32_t\000"
+ 3304      325F7400 
+ 3305              	.LASF105:
+ 3306 163e 43595F42 		.ascii	"CY_BLE_EVT_RADIO_TEMPERATURE\000"
+ 3306      4C455F45 
+ 3306      56545F52 
+ 3306      4144494F 
+ 3306      5F54454D 
+ 3307              	.LASF114:
+ 3308 165b 43595F42 		.ascii	"CY_BLE_EVT_GAP_PASSKEY_DISPLAY_REQUEST\000"
+ 3308      4C455F45 
+ 3308      56545F47 
+ 3308      41505F50 
+ 3308      4153534B 
+ 3309              	.LASF194:
+ 3310 1682 66696E67 		.ascii	"fingerTh\000"
+ 3310      65725468 
+ 3310      00
+ 3311              	.LASF210:
+ 3312 168b 62736C6E 		.ascii	"bslnExt\000"
+ 3312      45787400 
+ 3313              	.LASF44:
+ 3314 1693 73616D70 		.ascii	"sampleCtrl\000"
+ 3314      6C654374 
+ 3314      726C00
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 80
+
+
+ 3315              	.LASF206:
+ 3316 169e 43617053 		.ascii	"CapSense_RAM_WD_PROXIMITY_STRUCT\000"
+ 3316      656E7365 
+ 3316      5F52414D 
+ 3316      5F57445F 
+ 3316      50524F58 
+ 3317              	.LASF2:
+ 3318 16bf 756E7369 		.ascii	"unsigned char\000"
+ 3318      676E6564 
+ 3318      20636861 
+ 3318      7200
+ 3319              	.LASF158:
+ 3320 16cd 43595F42 		.ascii	"CY_BLE_EVT_GATTS_DATA_SIGNED_CMD_REQ\000"
+ 3320      4C455F45 
+ 3320      56545F47 
+ 3320      41545453 
+ 3320      5F444154 
+ 3321              	.LASF8:
+ 3322 16f2 5F5F7569 		.ascii	"__uint32_t\000"
+ 3322      6E743332 
+ 3322      5F7400
+ 3323              	.LASF84:
+ 3324 16fd 43595F42 		.ascii	"CY_BLE_EVT_REMOVE_DEVICE_FROM_WHITE_LIST_COMPLETE\000"
+ 3324      4C455F45 
+ 3324      56545F52 
+ 3324      454D4F56 
+ 3324      455F4445 
+ 3325              	.LASF74:
+ 3326 172f 43595F42 		.ascii	"CY_BLE_EVT_GET_DATA_LENGTH_COMPLETE\000"
+ 3326      4C455F45 
+ 3326      56545F47 
+ 3326      45545F44 
+ 3326      4154415F 
+ 3327              	.LASF128:
+ 3328 1753 43595F42 		.ascii	"CY_BLE_EVT_GAPC_DIRECT_ADV_REPORT\000"
+ 3328      4C455F45 
+ 3328      56545F47 
+ 3328      4150435F 
+ 3328      44495245 
+ 3329              	.LASF191:
+ 3330 1775 43617053 		.ascii	"CapSense_THRESHOLD_TYPE\000"
+ 3330      656E7365 
+ 3330      5F544852 
+ 3330      4553484F 
+ 3330      4C445F54 
+ 3331              	.LASF163:
+ 3332 178d 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_RSP\000"
+ 3332      4C455F45 
+ 3332      56545F4C 
+ 3332      32434150 
+ 3332      5F434F4E 
+ 3333              	.LASF237:
+ 3334 17b4 636C6B44 		.ascii	"clkDivider\000"
+ 3334      69766964 
+ 3334      657200
+ 3335              	.LASF78:
+ 3336 17bf 43595F42 		.ascii	"CY_BLE_EVT_SET_RPA_TO_COMPLETE\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 81
+
+
+ 3336      4C455F45 
+ 3336      56545F53 
+ 3336      45545F52 
+ 3336      50415F54 
+ 3337              	.LASF139:
+ 3338 17de 43595F42 		.ascii	"CY_BLE_EVT_GATT_DISCONNECT_IND\000"
+ 3338      4C455F45 
+ 3338      56545F47 
+ 3338      4154545F 
+ 3338      44495343 
+ 3339              	.LASF274:
+ 3340 17fd 4144435F 		.ascii	"ADC_currentConfig\000"
+ 3340      63757272 
+ 3340      656E7443 
+ 3340      6F6E6669 
+ 3340      6700
+ 3341              	.LASF154:
+ 3342 180f 43595F42 		.ascii	"CY_BLE_EVT_GATTC_EXEC_WRITE_RSP\000"
+ 3342      4C455F45 
+ 3342      56545F47 
+ 3342      41545443 
+ 3342      5F455845 
+ 3343              	.LASF287:
+ 3344 182f 43617053 		.ascii	"CapSense_ScanAllWidgets\000"
+ 3344      656E7365 
+ 3344      5F536361 
+ 3344      6E416C6C 
+ 3344      57696467 
+ 3345              	.LASF140:
+ 3346 1847 43595F42 		.ascii	"CY_BLE_EVT_GATTS_XCNHG_MTU_REQ\000"
+ 3346      4C455F45 
+ 3346      56545F47 
+ 3346      41545453 
+ 3346      5F58434E 
+ 3347              	.LASF159:
+ 3348 1866 43595F42 		.ascii	"CY_BLE_EVT_GATTC_STOP_CMD_COMPLETE\000"
+ 3348      4C455F45 
+ 3348      56545F47 
+ 3348      41545443 
+ 3348      5F53544F 
+ 3349              	.LASF252:
+ 3350 1889 626C655F 		.ascii	"ble_command_t\000"
+ 3350      636F6D6D 
+ 3350      616E645F 
+ 3350      7400
+ 3351              	.LASF201:
+ 3352 1897 736E7343 		.ascii	"snsClk\000"
+ 3352      6C6B00
+ 3353              	.LASF265:
+ 3354 189e 70726576 		.ascii	"prevProxData\000"
+ 3354      50726F78 
+ 3354      44617461 
+ 3354      00
+ 3355              	.LASF207:
+ 3356 18ab 70726F78 		.ascii	"proximity0\000"
+ 3356      696D6974 
+ 3356      793000
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 82
+
+
+ 3357              	.LASF174:
+ 3358 18b6 62644861 		.ascii	"bdHandle\000"
+ 3358      6E646C65 
+ 3358      00
+ 3359              	.LASF290:
+ 3360 18bf 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\psoc6-realtime-processing\\B"
+ 3360      73657273 
+ 3360      5C636F64 
+ 3360      79675C67 
+ 3360      69745C70 
+ 3361 18ed 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\\CE218137_BLE_Proximity_RTOS01.cyd"
+ 3361      54435F49 
+ 3361      4D552E63 
+ 3361      7964736E 
+ 3361      5C434532 
+ 3362 191f 736E00   		.ascii	"sn\000"
+ 3363              	.LASF1:
+ 3364 1922 7369676E 		.ascii	"signed char\000"
+ 3364      65642063 
+ 3364      68617200 
+ 3365              	.LASF259:
+ 3366 192e 70657269 		.ascii	"period\000"
+ 3366      6F6400
+ 3367              	.LASF209:
+ 3368 1935 62736C6E 		.ascii	"bsln\000"
+ 3368      00
+ 3369              	.LASF5:
+ 3370 193a 73686F72 		.ascii	"short unsigned int\000"
+ 3370      7420756E 
+ 3370      7369676E 
+ 3370      65642069 
+ 3370      6E7400
+ 3371              	.LASF112:
+ 3372 194d 43595F42 		.ascii	"CY_BLE_EVT_GAP_AUTH_REQ\000"
+ 3372      4C455F45 
+ 3372      56545F47 
+ 3372      41505F41 
+ 3372      5554485F 
+ 3373              	.LASF151:
+ 3374 1965 43595F42 		.ascii	"CY_BLE_EVT_GATTS_WRITE_CMD_REQ\000"
+ 3374      4C455F45 
+ 3374      56545F47 
+ 3374      41545453 
+ 3374      5F575249 
+ 3375              	.LASF97:
+ 3376 1984 43595F42 		.ascii	"CY_BLE_EVT_GET_CLK_CONFIG_COMPLETE\000"
+ 3376      4C455F45 
+ 3376      56545F47 
+ 3376      45545F43 
+ 3376      4C4B5F43 
+ 3377              	.LASF236:
+ 3378 19a7 6D697363 		.ascii	"miscConfig\000"
+ 3378      436F6E66 
+ 3378      696700
+ 3379              	.LASF162:
+ 3380 19b2 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_REQ\000"
+ 3380      4C455F45 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 83
+
+
+ 3380      56545F4C 
+ 3380      32434150 
+ 3380      5F434F4E 
+ 3381              	.LASF23:
+ 3382 19d9 75696E74 		.ascii	"uint8\000"
+ 3382      3800
+ 3383              	.LASF56:
+ 3384 19df 636F6E66 		.ascii	"configRouting\000"
+ 3384      6967526F 
+ 3384      7574696E 
+ 3384      6700
+ 3385              	.LASF212:
+ 3386 19ed 6E656742 		.ascii	"negBslnRstCnt\000"
+ 3386      736C6E52 
+ 3386      7374436E 
+ 3386      7400
+ 3387              	.LASF277:
+ 3388 19fb 626C6543 		.ascii	"bleCommandQ\000"
+ 3388      6F6D6D61 
+ 3388      6E645100 
+ 3389              	.LASF53:
+ 3390 1a07 72616E67 		.ascii	"rangeIntrMask\000"
+ 3390      65496E74 
+ 3390      724D6173 
+ 3390      6B00
+ 3391              	.LASF266:
+ 3392 1a15 70726F78 		.ascii	"proximityDataUpdated\000"
+ 3392      696D6974 
+ 3392      79446174 
+ 3392      61557064 
+ 3392      61746564 
+ 3393              	.LASF42:
+ 3394 1a2a 63795F65 		.ascii	"cy_en_sar_range_detect_condition_t\000"
+ 3394      6E5F7361 
+ 3394      725F7261 
+ 3394      6E67655F 
+ 3394      64657465 
+ 3395              	.LASF228:
+ 3396 1a4d 736E7254 		.ascii	"snrTestWidgetId\000"
+ 3396      65737457 
+ 3396      69646765 
+ 3396      74496400 
+ 3397              	.LASF133:
+ 3398 1a5d 43595F42 		.ascii	"CY_BLE_EVT_GAP_GEN_SET_LOCAL_P256_KEYS_COMPLETE\000"
+ 3398      4C455F45 
+ 3398      56545F47 
+ 3398      41505F47 
+ 3398      454E5F53 
+ 3399              	.LASF116:
+ 3400 1a8d 43595F42 		.ascii	"CY_BLE_EVT_GAP_AUTH_FAILED\000"
+ 3400      4C455F45 
+ 3400      56545F47 
+ 3400      41505F41 
+ 3400      5554485F 
+ 3401              	.LASF182:
+ 3402 1aa8 43595F42 		.ascii	"CY_BLE_CONN_STATE_DISCONNECTED\000"
+ 3402      4C455F43 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc6RgQsi.s 			page 84
+
+
+ 3402      4F4E4E5F 
+ 3402      53544154 
+ 3402      455F4449 
+ 3403              	.LASF185:
+ 3404 1ac7 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_SRVC_DISCOVERING\000"
+ 3404      4C455F43 
+ 3404      4F4E4E5F 
+ 3404      53544154 
+ 3404      455F434C 
+ 3405              	.LASF51:
+ 3406 1af1 696E7472 		.ascii	"intrMask\000"
+ 3406      4D61736B 
+ 3406      00
+ 3407              	.LASF30:
+ 3408 1afa 72784275 		.ascii	"rxBufSize\000"
+ 3408      6653697A 
+ 3408      6500
+ 3409              	.LASF121:
+ 3410 1b04 43595F42 		.ascii	"CY_BLE_EVT_GAP_CONNECTION_UPDATE_COMPLETE\000"
+ 3410      4C455F45 
+ 3410      56545F47 
+ 3410      41505F43 
+ 3410      4F4E4E45 
+ 3411              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

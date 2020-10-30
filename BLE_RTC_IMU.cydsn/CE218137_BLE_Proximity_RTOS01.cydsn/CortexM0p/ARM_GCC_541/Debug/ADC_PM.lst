@@ -1,0 +1,2032 @@
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0plus
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"ADC_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	ADC_DeepSleepCallbackStruct
+  20              		.data
+  21              		.align	2
+  22              		.type	ADC_DeepSleepCallbackStruct, %object
+  23              		.size	ADC_DeepSleepCallbackStruct, 24
+  24              	ADC_DeepSleepCallbackStruct:
+  25 0000 00000000 		.word	Cy_SAR_DeepSleepCallback
+  26 0004 01       		.byte	1
+  27 0005 00000000 		.space	7
+  27      000000
+  28 000c 18000000 		.word	ADC_DeepSleepCallbackParams
+  29 0010 00000000 		.space	8
+  29      00000000 
+  30              		.type	ADC_DeepSleepCallbackParams, %object
+  31              		.size	ADC_DeepSleepCallbackParams, 12
+  32              	ADC_DeepSleepCallbackParams:
+  33 0018 00000000 		.space	4
+  34 001c 00001D41 		.word	1092419584
+  35 0020 00000000 		.space	4
+  36              		.text
+  37              	.Letext0:
+  38              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+  39              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+  40              		.file 3 "Generated_Source\\PSoC6\\pdl\\devices/psoc6/ip/cyip_sar.h"
+  41              		.file 4 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/syspm/cy_syspm.h"
+  42              		.file 5 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/sar/cy_sar.h"
+  43              		.file 6 "Generated_Source\\PSoC6\\ADC.h"
+  44              		.file 7 "Generated_Source\\PSoC6\\ADC_PM.c"
+  45              		.section	.debug_info,"",%progbits
+  46              	.Ldebug_info0:
+  47 0000 91070000 		.4byte	0x791
+  48 0004 0400     		.2byte	0x4
+  49 0006 00000000 		.4byte	.Ldebug_abbrev0
+  50 000a 04       		.byte	0x4
+  51 000b 01       		.uleb128 0x1
+  52 000c 21060000 		.4byte	.LASF127
+  53 0010 0C       		.byte	0xc
+  54 0011 66030000 		.4byte	.LASF128
+  55 0015 B2050000 		.4byte	.LASF129
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 2
+
+
+  56 0019 00000000 		.4byte	.Ldebug_line0
+  57 001d 02       		.uleb128 0x2
+  58 001e 02       		.byte	0x2
+  59 001f 05       		.byte	0x5
+  60 0020 65050000 		.4byte	.LASF0
+  61 0024 02       		.uleb128 0x2
+  62 0025 01       		.byte	0x1
+  63 0026 08       		.byte	0x8
+  64 0027 46050000 		.4byte	.LASF1
+  65 002b 02       		.uleb128 0x2
+  66 002c 01       		.byte	0x1
+  67 002d 06       		.byte	0x6
+  68 002e E2000000 		.4byte	.LASF2
+  69 0032 02       		.uleb128 0x2
+  70 0033 02       		.byte	0x2
+  71 0034 07       		.byte	0x7
+  72 0035 E9020000 		.4byte	.LASF3
+  73 0039 02       		.uleb128 0x2
+  74 003a 04       		.byte	0x4
+  75 003b 05       		.byte	0x5
+  76 003c 4D010000 		.4byte	.LASF4
+  77 0040 03       		.uleb128 0x3
+  78 0041 1F020000 		.4byte	.LASF9
+  79 0045 01       		.byte	0x1
+  80 0046 41       		.byte	0x41
+  81 0047 4B000000 		.4byte	0x4b
+  82 004b 02       		.uleb128 0x2
+  83 004c 04       		.byte	0x4
+  84 004d 07       		.byte	0x7
+  85 004e 96020000 		.4byte	.LASF5
+  86 0052 02       		.uleb128 0x2
+  87 0053 08       		.byte	0x8
+  88 0054 05       		.byte	0x5
+  89 0055 D4000000 		.4byte	.LASF6
+  90 0059 02       		.uleb128 0x2
+  91 005a 08       		.byte	0x8
+  92 005b 07       		.byte	0x7
+  93 005c 7A000000 		.4byte	.LASF7
+  94 0060 04       		.uleb128 0x4
+  95 0061 04       		.byte	0x4
+  96 0062 05       		.byte	0x5
+  97 0063 696E7400 		.ascii	"int\000"
+  98 0067 02       		.uleb128 0x2
+  99 0068 04       		.byte	0x4
+ 100 0069 07       		.byte	0x7
+ 101 006a 75020000 		.4byte	.LASF8
+ 102 006e 03       		.uleb128 0x3
+ 103 006f A9050000 		.4byte	.LASF10
+ 104 0073 02       		.byte	0x2
+ 105 0074 30       		.byte	0x30
+ 106 0075 40000000 		.4byte	0x40
+ 107 0079 02       		.uleb128 0x2
+ 108 007a 04       		.byte	0x4
+ 109 007b 07       		.byte	0x7
+ 110 007c CA030000 		.4byte	.LASF11
+ 111 0080 05       		.uleb128 0x5
+ 112 0081 6E000000 		.4byte	0x6e
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 3
+
+
+ 113 0085 06       		.uleb128 0x6
+ 114 0086 80000000 		.4byte	0x80
+ 115 008a 07       		.uleb128 0x7
+ 116 008b 85000000 		.4byte	0x85
+ 117 008f 9A000000 		.4byte	0x9a
+ 118 0093 08       		.uleb128 0x8
+ 119 0094 79000000 		.4byte	0x79
+ 120 0098 01       		.byte	0x1
+ 121 0099 00       		.byte	0
+ 122 009a 07       		.uleb128 0x7
+ 123 009b 80000000 		.4byte	0x80
+ 124 009f AA000000 		.4byte	0xaa
+ 125 00a3 08       		.uleb128 0x8
+ 126 00a4 79000000 		.4byte	0x79
+ 127 00a8 0F       		.byte	0xf
+ 128 00a9 00       		.byte	0
+ 129 00aa 07       		.uleb128 0x7
+ 130 00ab 85000000 		.4byte	0x85
+ 131 00af BA000000 		.4byte	0xba
+ 132 00b3 08       		.uleb128 0x8
+ 133 00b4 79000000 		.4byte	0x79
+ 134 00b8 02       		.byte	0x2
+ 135 00b9 00       		.byte	0
+ 136 00ba 07       		.uleb128 0x7
+ 137 00bb 85000000 		.4byte	0x85
+ 138 00bf CA000000 		.4byte	0xca
+ 139 00c3 08       		.uleb128 0x8
+ 140 00c4 79000000 		.4byte	0x79
+ 141 00c8 0F       		.byte	0xf
+ 142 00c9 00       		.byte	0
+ 143 00ca 07       		.uleb128 0x7
+ 144 00cb 85000000 		.4byte	0x85
+ 145 00cf DA000000 		.4byte	0xda
+ 146 00d3 08       		.uleb128 0x8
+ 147 00d4 79000000 		.4byte	0x79
+ 148 00d8 0E       		.byte	0xe
+ 149 00d9 00       		.byte	0
+ 150 00da 09       		.uleb128 0x9
+ 151 00db 080F     		.2byte	0xf08
+ 152 00dd 03       		.byte	0x3
+ 153 00de 21       		.byte	0x21
+ 154 00df 62030000 		.4byte	0x362
+ 155 00e3 0A       		.uleb128 0xa
+ 156 00e4 36070000 		.4byte	.LASF12
+ 157 00e8 03       		.byte	0x3
+ 158 00e9 22       		.byte	0x22
+ 159 00ea 80000000 		.4byte	0x80
+ 160 00ee 00       		.byte	0
+ 161 00ef 0A       		.uleb128 0xa
+ 162 00f0 12040000 		.4byte	.LASF13
+ 163 00f4 03       		.byte	0x3
+ 164 00f5 23       		.byte	0x23
+ 165 00f6 80000000 		.4byte	0x80
+ 166 00fa 04       		.byte	0x4
+ 167 00fb 0A       		.uleb128 0xa
+ 168 00fc 82050000 		.4byte	.LASF14
+ 169 0100 03       		.byte	0x3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 4
+
+
+ 170 0101 24       		.byte	0x24
+ 171 0102 67030000 		.4byte	0x367
+ 172 0106 08       		.byte	0x8
+ 173 0107 0A       		.uleb128 0xa
+ 174 0108 36020000 		.4byte	.LASF15
+ 175 010c 03       		.byte	0x3
+ 176 010d 25       		.byte	0x25
+ 177 010e 80000000 		.4byte	0x80
+ 178 0112 10       		.byte	0x10
+ 179 0113 0A       		.uleb128 0xa
+ 180 0114 5C040000 		.4byte	.LASF16
+ 181 0118 03       		.byte	0x3
+ 182 0119 26       		.byte	0x26
+ 183 011a 80000000 		.4byte	0x80
+ 184 011e 14       		.byte	0x14
+ 185 011f 0A       		.uleb128 0xa
+ 186 0120 1E040000 		.4byte	.LASF17
+ 187 0124 03       		.byte	0x3
+ 188 0125 27       		.byte	0x27
+ 189 0126 80000000 		.4byte	0x80
+ 190 012a 18       		.byte	0x18
+ 191 012b 0A       		.uleb128 0xa
+ 192 012c 5D000000 		.4byte	.LASF18
+ 193 0130 03       		.byte	0x3
+ 194 0131 28       		.byte	0x28
+ 195 0132 80000000 		.4byte	0x80
+ 196 0136 1C       		.byte	0x1c
+ 197 0137 0A       		.uleb128 0xa
+ 198 0138 54040000 		.4byte	.LASF19
+ 199 013c 03       		.byte	0x3
+ 200 013d 29       		.byte	0x29
+ 201 013e 80000000 		.4byte	0x80
+ 202 0142 20       		.byte	0x20
+ 203 0143 0A       		.uleb128 0xa
+ 204 0144 6B070000 		.4byte	.LASF20
+ 205 0148 03       		.byte	0x3
+ 206 0149 2A       		.byte	0x2a
+ 207 014a 80000000 		.4byte	0x80
+ 208 014e 24       		.byte	0x24
+ 209 014f 0A       		.uleb128 0xa
+ 210 0150 C6040000 		.4byte	.LASF21
+ 211 0154 03       		.byte	0x3
+ 212 0155 2B       		.byte	0x2b
+ 213 0156 81030000 		.4byte	0x381
+ 214 015a 28       		.byte	0x28
+ 215 015b 0A       		.uleb128 0xa
+ 216 015c 52020000 		.4byte	.LASF22
+ 217 0160 03       		.byte	0x3
+ 218 0161 2C       		.byte	0x2c
+ 219 0162 86030000 		.4byte	0x386
+ 220 0166 80       		.byte	0x80
+ 221 0167 0A       		.uleb128 0xa
+ 222 0168 D0040000 		.4byte	.LASF23
+ 223 016c 03       		.byte	0x3
+ 224 016d 2D       		.byte	0x2d
+ 225 016e 90030000 		.4byte	0x390
+ 226 0172 C0       		.byte	0xc0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 5
+
+
+ 227 0173 0B       		.uleb128 0xb
+ 228 0174 19070000 		.4byte	.LASF24
+ 229 0178 03       		.byte	0x3
+ 230 0179 2E       		.byte	0x2e
+ 231 017a 9A030000 		.4byte	0x39a
+ 232 017e 0001     		.2byte	0x100
+ 233 0180 0B       		.uleb128 0xb
+ 234 0181 DA040000 		.4byte	.LASF25
+ 235 0185 03       		.byte	0x3
+ 236 0186 2F       		.byte	0x2f
+ 237 0187 A4030000 		.4byte	0x3a4
+ 238 018b 4001     		.2byte	0x140
+ 239 018d 0B       		.uleb128 0xb
+ 240 018e EB030000 		.4byte	.LASF26
+ 241 0192 03       		.byte	0x3
+ 242 0193 30       		.byte	0x30
+ 243 0194 AE030000 		.4byte	0x3ae
+ 244 0198 8001     		.2byte	0x180
+ 245 019a 0B       		.uleb128 0xb
+ 246 019b E4040000 		.4byte	.LASF27
+ 247 019f 03       		.byte	0x3
+ 248 01a0 31       		.byte	0x31
+ 249 01a1 B8030000 		.4byte	0x3b8
+ 250 01a5 C001     		.2byte	0x1c0
+ 251 01a7 0B       		.uleb128 0xb
+ 252 01a8 12030000 		.4byte	.LASF28
+ 253 01ac 03       		.byte	0x3
+ 254 01ad 32       		.byte	0x32
+ 255 01ae 85000000 		.4byte	0x85
+ 256 01b2 0002     		.2byte	0x200
+ 257 01b4 0B       		.uleb128 0xb
+ 258 01b5 96070000 		.4byte	.LASF29
+ 259 01b9 03       		.byte	0x3
+ 260 01ba 33       		.byte	0x33
+ 261 01bb 85000000 		.4byte	0x85
+ 262 01bf 0402     		.2byte	0x204
+ 263 01c1 0B       		.uleb128 0xb
+ 264 01c2 A8020000 		.4byte	.LASF30
+ 265 01c6 03       		.byte	0x3
+ 266 01c7 34       		.byte	0x34
+ 267 01c8 85000000 		.4byte	0x85
+ 268 01cc 0802     		.2byte	0x208
+ 269 01ce 0B       		.uleb128 0xb
+ 270 01cf 8B050000 		.4byte	.LASF31
+ 271 01d3 03       		.byte	0x3
+ 272 01d4 35       		.byte	0x35
+ 273 01d5 85000000 		.4byte	0x85
+ 274 01d9 0C02     		.2byte	0x20c
+ 275 01db 0B       		.uleb128 0xb
+ 276 01dc FD060000 		.4byte	.LASF32
+ 277 01e0 03       		.byte	0x3
+ 278 01e1 36       		.byte	0x36
+ 279 01e2 80000000 		.4byte	0x80
+ 280 01e6 1002     		.2byte	0x210
+ 281 01e8 0B       		.uleb128 0xb
+ 282 01e9 BC030000 		.4byte	.LASF33
+ 283 01ed 03       		.byte	0x3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 6
+
+
+ 284 01ee 37       		.byte	0x37
+ 285 01ef 80000000 		.4byte	0x80
+ 286 01f3 1402     		.2byte	0x214
+ 287 01f5 0B       		.uleb128 0xb
+ 288 01f6 CE020000 		.4byte	.LASF34
+ 289 01fa 03       		.byte	0x3
+ 290 01fb 38       		.byte	0x38
+ 291 01fc 80000000 		.4byte	0x80
+ 292 0200 1802     		.2byte	0x218
+ 293 0202 0B       		.uleb128 0xb
+ 294 0203 B4040000 		.4byte	.LASF35
+ 295 0207 03       		.byte	0x3
+ 296 0208 39       		.byte	0x39
+ 297 0209 85000000 		.4byte	0x85
+ 298 020d 1C02     		.2byte	0x21c
+ 299 020f 0B       		.uleb128 0xb
+ 300 0210 44020000 		.4byte	.LASF36
+ 301 0214 03       		.byte	0x3
+ 302 0215 3A       		.byte	0x3a
+ 303 0216 80000000 		.4byte	0x80
+ 304 021a 2002     		.2byte	0x220
+ 305 021c 0B       		.uleb128 0xb
+ 306 021d 86040000 		.4byte	.LASF37
+ 307 0221 03       		.byte	0x3
+ 308 0222 3B       		.byte	0x3b
+ 309 0223 80000000 		.4byte	0x80
+ 310 0227 2402     		.2byte	0x224
+ 311 0229 0B       		.uleb128 0xb
+ 312 022a 91000000 		.4byte	.LASF38
+ 313 022e 03       		.byte	0x3
+ 314 022f 3C       		.byte	0x3c
+ 315 0230 80000000 		.4byte	0x80
+ 316 0234 2802     		.2byte	0x228
+ 317 0236 0B       		.uleb128 0xb
+ 318 0237 E8060000 		.4byte	.LASF39
+ 319 023b 03       		.byte	0x3
+ 320 023c 3D       		.byte	0x3d
+ 321 023d 85000000 		.4byte	0x85
+ 322 0241 2C02     		.2byte	0x22c
+ 323 0243 0B       		.uleb128 0xb
+ 324 0244 07030000 		.4byte	.LASF40
+ 325 0248 03       		.byte	0x3
+ 326 0249 3E       		.byte	0x3e
+ 327 024a 80000000 		.4byte	0x80
+ 328 024e 3002     		.2byte	0x230
+ 329 0250 0B       		.uleb128 0xb
+ 330 0251 12080000 		.4byte	.LASF41
+ 331 0255 03       		.byte	0x3
+ 332 0256 3F       		.byte	0x3f
+ 333 0257 80000000 		.4byte	0x80
+ 334 025b 3402     		.2byte	0x234
+ 335 025d 0B       		.uleb128 0xb
+ 336 025e D8060000 		.4byte	.LASF42
+ 337 0262 03       		.byte	0x3
+ 338 0263 40       		.byte	0x40
+ 339 0264 80000000 		.4byte	0x80
+ 340 0268 3802     		.2byte	0x238
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 7
+
+
+ 341 026a 0B       		.uleb128 0xb
+ 342 026b 4E080000 		.4byte	.LASF43
+ 343 026f 03       		.byte	0x3
+ 344 0270 41       		.byte	0x41
+ 345 0271 85000000 		.4byte	0x85
+ 346 0275 3C02     		.2byte	0x23c
+ 347 0277 0B       		.uleb128 0xb
+ 348 0278 68010000 		.4byte	.LASF44
+ 349 027c 03       		.byte	0x3
+ 350 027d 42       		.byte	0x42
+ 351 027e 85000000 		.4byte	0x85
+ 352 0282 4002     		.2byte	0x240
+ 353 0284 0B       		.uleb128 0xb
+ 354 0285 EE040000 		.4byte	.LASF45
+ 355 0289 03       		.byte	0x3
+ 356 028a 43       		.byte	0x43
+ 357 028b C2030000 		.4byte	0x3c2
+ 358 028f 4402     		.2byte	0x244
+ 359 0291 0B       		.uleb128 0xb
+ 360 0292 D3030000 		.4byte	.LASF46
+ 361 0296 03       		.byte	0x3
+ 362 0297 44       		.byte	0x44
+ 363 0298 80000000 		.4byte	0x80
+ 364 029c 8002     		.2byte	0x280
+ 365 029e 0B       		.uleb128 0xb
+ 366 029f F8040000 		.4byte	.LASF47
+ 367 02a3 03       		.byte	0x3
+ 368 02a4 45       		.byte	0x45
+ 369 02a5 CC030000 		.4byte	0x3cc
+ 370 02a9 8402     		.2byte	0x284
+ 371 02ab 0B       		.uleb128 0xb
+ 372 02ac 73010000 		.4byte	.LASF48
+ 373 02b0 03       		.byte	0x3
+ 374 02b1 46       		.byte	0x46
+ 375 02b2 85000000 		.4byte	0x85
+ 376 02b6 9002     		.2byte	0x290
+ 377 02b8 0B       		.uleb128 0xb
+ 378 02b9 02050000 		.4byte	.LASF49
+ 379 02bd 03       		.byte	0x3
+ 380 02be 47       		.byte	0x47
+ 381 02bf D6030000 		.4byte	0x3d6
+ 382 02c3 9402     		.2byte	0x294
+ 383 02c5 0B       		.uleb128 0xb
+ 384 02c6 07070000 		.4byte	.LASF50
+ 385 02ca 03       		.byte	0x3
+ 386 02cb 48       		.byte	0x48
+ 387 02cc 85000000 		.4byte	0x85
+ 388 02d0 A002     		.2byte	0x2a0
+ 389 02d2 0B       		.uleb128 0xb
+ 390 02d3 6A040000 		.4byte	.LASF51
+ 391 02d7 03       		.byte	0x3
+ 392 02d8 49       		.byte	0x49
+ 393 02d9 85000000 		.4byte	0x85
+ 394 02dd A402     		.2byte	0x2a4
+ 395 02df 0B       		.uleb128 0xb
+ 396 02e0 0C050000 		.4byte	.LASF52
+ 397 02e4 03       		.byte	0x3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 8
+
+
+ 398 02e5 4A       		.byte	0x4a
+ 399 02e6 E0030000 		.4byte	0x3e0
+ 400 02ea A802     		.2byte	0x2a8
+ 401 02ec 0B       		.uleb128 0xb
+ 402 02ed 4C000000 		.4byte	.LASF53
+ 403 02f1 03       		.byte	0x3
+ 404 02f2 4B       		.byte	0x4b
+ 405 02f3 80000000 		.4byte	0x80
+ 406 02f7 0003     		.2byte	0x300
+ 407 02f9 0B       		.uleb128 0xb
+ 408 02fa 9D010000 		.4byte	.LASF54
+ 409 02fe 03       		.byte	0x3
+ 410 02ff 4C       		.byte	0x4c
+ 411 0300 80000000 		.4byte	0x80
+ 412 0304 0403     		.2byte	0x304
+ 413 0306 0B       		.uleb128 0xb
+ 414 0307 16050000 		.4byte	.LASF55
+ 415 030b 03       		.byte	0x3
+ 416 030c 4D       		.byte	0x4d
+ 417 030d FA030000 		.4byte	0x3fa
+ 418 0311 0803     		.2byte	0x308
+ 419 0313 0B       		.uleb128 0xb
+ 420 0314 BB020000 		.4byte	.LASF56
+ 421 0318 03       		.byte	0x3
+ 422 0319 4E       		.byte	0x4e
+ 423 031a 80000000 		.4byte	0x80
+ 424 031e 4003     		.2byte	0x340
+ 425 0320 0B       		.uleb128 0xb
+ 426 0321 23070000 		.4byte	.LASF57
+ 427 0325 03       		.byte	0x3
+ 428 0326 4F       		.byte	0x4f
+ 429 0327 80000000 		.4byte	0x80
+ 430 032b 4403     		.2byte	0x344
+ 431 032d 0B       		.uleb128 0xb
+ 432 032e 56010000 		.4byte	.LASF58
+ 433 0332 03       		.byte	0x3
+ 434 0333 50       		.byte	0x50
+ 435 0334 85000000 		.4byte	0x85
+ 436 0338 4803     		.2byte	0x348
+ 437 033a 0B       		.uleb128 0xb
+ 438 033b 1C010000 		.4byte	.LASF59
+ 439 033f 03       		.byte	0x3
+ 440 0340 51       		.byte	0x51
+ 441 0341 15040000 		.4byte	0x415
+ 442 0345 4C03     		.2byte	0x34c
+ 443 0347 0B       		.uleb128 0xb
+ 444 0348 AC000000 		.4byte	.LASF60
+ 445 034c 03       		.byte	0x3
+ 446 034d 52       		.byte	0x52
+ 447 034e 80000000 		.4byte	0x80
+ 448 0352 000F     		.2byte	0xf00
+ 449 0354 0B       		.uleb128 0xb
+ 450 0355 B6000000 		.4byte	.LASF61
+ 451 0359 03       		.byte	0x3
+ 452 035a 53       		.byte	0x53
+ 453 035b 80000000 		.4byte	0x80
+ 454 035f 040F     		.2byte	0xf04
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 9
+
+
+ 455 0361 00       		.byte	0
+ 456 0362 05       		.uleb128 0x5
+ 457 0363 8A000000 		.4byte	0x8a
+ 458 0367 06       		.uleb128 0x6
+ 459 0368 62030000 		.4byte	0x362
+ 460 036c 07       		.uleb128 0x7
+ 461 036d 85000000 		.4byte	0x85
+ 462 0371 7C030000 		.4byte	0x37c
+ 463 0375 08       		.uleb128 0x8
+ 464 0376 79000000 		.4byte	0x79
+ 465 037a 15       		.byte	0x15
+ 466 037b 00       		.byte	0
+ 467 037c 05       		.uleb128 0x5
+ 468 037d 6C030000 		.4byte	0x36c
+ 469 0381 06       		.uleb128 0x6
+ 470 0382 7C030000 		.4byte	0x37c
+ 471 0386 05       		.uleb128 0x5
+ 472 0387 9A000000 		.4byte	0x9a
+ 473 038b 05       		.uleb128 0x5
+ 474 038c BA000000 		.4byte	0xba
+ 475 0390 06       		.uleb128 0x6
+ 476 0391 8B030000 		.4byte	0x38b
+ 477 0395 05       		.uleb128 0x5
+ 478 0396 BA000000 		.4byte	0xba
+ 479 039a 06       		.uleb128 0x6
+ 480 039b 95030000 		.4byte	0x395
+ 481 039f 05       		.uleb128 0x5
+ 482 03a0 BA000000 		.4byte	0xba
+ 483 03a4 06       		.uleb128 0x6
+ 484 03a5 9F030000 		.4byte	0x39f
+ 485 03a9 05       		.uleb128 0x5
+ 486 03aa BA000000 		.4byte	0xba
+ 487 03ae 06       		.uleb128 0x6
+ 488 03af A9030000 		.4byte	0x3a9
+ 489 03b3 05       		.uleb128 0x5
+ 490 03b4 BA000000 		.4byte	0xba
+ 491 03b8 06       		.uleb128 0x6
+ 492 03b9 B3030000 		.4byte	0x3b3
+ 493 03bd 05       		.uleb128 0x5
+ 494 03be CA000000 		.4byte	0xca
+ 495 03c2 06       		.uleb128 0x6
+ 496 03c3 BD030000 		.4byte	0x3bd
+ 497 03c7 05       		.uleb128 0x5
+ 498 03c8 AA000000 		.4byte	0xaa
+ 499 03cc 06       		.uleb128 0x6
+ 500 03cd C7030000 		.4byte	0x3c7
+ 501 03d1 05       		.uleb128 0x5
+ 502 03d2 AA000000 		.4byte	0xaa
+ 503 03d6 06       		.uleb128 0x6
+ 504 03d7 D1030000 		.4byte	0x3d1
+ 505 03db 05       		.uleb128 0x5
+ 506 03dc 6C030000 		.4byte	0x36c
+ 507 03e0 06       		.uleb128 0x6
+ 508 03e1 DB030000 		.4byte	0x3db
+ 509 03e5 07       		.uleb128 0x7
+ 510 03e6 85000000 		.4byte	0x85
+ 511 03ea F5030000 		.4byte	0x3f5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 10
+
+
+ 512 03ee 08       		.uleb128 0x8
+ 513 03ef 79000000 		.4byte	0x79
+ 514 03f3 0D       		.byte	0xd
+ 515 03f4 00       		.byte	0
+ 516 03f5 05       		.uleb128 0x5
+ 517 03f6 E5030000 		.4byte	0x3e5
+ 518 03fa 06       		.uleb128 0x6
+ 519 03fb F5030000 		.4byte	0x3f5
+ 520 03ff 07       		.uleb128 0x7
+ 521 0400 85000000 		.4byte	0x85
+ 522 0404 10040000 		.4byte	0x410
+ 523 0408 0C       		.uleb128 0xc
+ 524 0409 79000000 		.4byte	0x79
+ 525 040d EC02     		.2byte	0x2ec
+ 526 040f 00       		.byte	0
+ 527 0410 05       		.uleb128 0x5
+ 528 0411 FF030000 		.4byte	0x3ff
+ 529 0415 06       		.uleb128 0x6
+ 530 0416 10040000 		.4byte	0x410
+ 531 041a 03       		.uleb128 0x3
+ 532 041b A0050000 		.4byte	.LASF62
+ 533 041f 03       		.byte	0x3
+ 534 0420 54       		.byte	0x54
+ 535 0421 DA000000 		.4byte	0xda
+ 536 0425 02       		.uleb128 0x2
+ 537 0426 08       		.byte	0x8
+ 538 0427 04       		.byte	0x4
+ 539 0428 B3060000 		.4byte	.LASF63
+ 540 042c 02       		.uleb128 0x2
+ 541 042d 01       		.byte	0x1
+ 542 042e 08       		.byte	0x8
+ 543 042f BF060000 		.4byte	.LASF64
+ 544 0433 02       		.uleb128 0x2
+ 545 0434 04       		.byte	0x4
+ 546 0435 04       		.byte	0x4
+ 547 0436 C0040000 		.4byte	.LASF65
+ 548 043a 02       		.uleb128 0x2
+ 549 043b 08       		.byte	0x8
+ 550 043c 04       		.byte	0x4
+ 551 043d 96010000 		.4byte	.LASF66
+ 552 0441 0D       		.uleb128 0xd
+ 553 0442 04       		.byte	0x4
+ 554 0443 67000000 		.4byte	0x67
+ 555 0447 04       		.byte	0x4
+ 556 0448 9703     		.2byte	0x397
+ 557 044a 79040000 		.4byte	0x479
+ 558 044e 0E       		.uleb128 0xe
+ 559 044f AA070000 		.4byte	.LASF67
+ 560 0453 00       		.byte	0
+ 561 0454 0F       		.uleb128 0xf
+ 562 0455 39000000 		.4byte	.LASF68
+ 563 0459 01004200 		.4byte	0x420001
+ 564 045d 0F       		.uleb128 0xf
+ 565 045e 1C000000 		.4byte	.LASF69
+ 566 0462 02004200 		.4byte	0x420002
+ 567 0466 0F       		.uleb128 0xf
+ 568 0467 5E020000 		.4byte	.LASF70
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 11
+
+
+ 569 046b 03004200 		.4byte	0x420003
+ 570 046f 0F       		.uleb128 0xf
+ 571 0470 3B070000 		.4byte	.LASF71
+ 572 0474 FF004200 		.4byte	0x4200ff
+ 573 0478 00       		.byte	0
+ 574 0479 10       		.uleb128 0x10
+ 575 047a 76070000 		.4byte	.LASF72
+ 576 047e 04       		.byte	0x4
+ 577 047f 9E03     		.2byte	0x39e
+ 578 0481 41040000 		.4byte	0x441
+ 579 0485 0D       		.uleb128 0xd
+ 580 0486 01       		.byte	0x1
+ 581 0487 24000000 		.4byte	0x24
+ 582 048b 04       		.byte	0x4
+ 583 048c 2D04     		.2byte	0x42d
+ 584 048e B1040000 		.4byte	0x4b1
+ 585 0492 0E       		.uleb128 0xe
+ 586 0493 2A040000 		.4byte	.LASF73
+ 587 0497 00       		.byte	0
+ 588 0498 0E       		.uleb128 0xe
+ 589 0499 44030000 		.4byte	.LASF74
+ 590 049d 01       		.byte	0x1
+ 591 049e 0E       		.uleb128 0xe
+ 592 049f 73040000 		.4byte	.LASF75
+ 593 04a3 02       		.byte	0x2
+ 594 04a4 0E       		.uleb128 0xe
+ 595 04a5 31080000 		.4byte	.LASF76
+ 596 04a9 03       		.byte	0x3
+ 597 04aa 0E       		.uleb128 0xe
+ 598 04ab 86030000 		.4byte	.LASF77
+ 599 04af 04       		.byte	0x4
+ 600 04b0 00       		.byte	0
+ 601 04b1 10       		.uleb128 0x10
+ 602 04b2 00000000 		.4byte	.LASF78
+ 603 04b6 04       		.byte	0x4
+ 604 04b7 3304     		.2byte	0x433
+ 605 04b9 85040000 		.4byte	0x485
+ 606 04bd 0D       		.uleb128 0xd
+ 607 04be 01       		.byte	0x1
+ 608 04bf 24000000 		.4byte	0x24
+ 609 04c3 04       		.byte	0x4
+ 610 04c4 3704     		.2byte	0x437
+ 611 04c6 E3040000 		.4byte	0x4e3
+ 612 04ca 0E       		.uleb128 0xe
+ 613 04cb D5070000 		.4byte	.LASF79
+ 614 04cf 01       		.byte	0x1
+ 615 04d0 0E       		.uleb128 0xe
+ 616 04d1 82020000 		.4byte	.LASF80
+ 617 04d5 02       		.byte	0x2
+ 618 04d6 0E       		.uleb128 0xe
+ 619 04d7 39040000 		.4byte	.LASF81
+ 620 04db 04       		.byte	0x4
+ 621 04dc 0E       		.uleb128 0xe
+ 622 04dd A2030000 		.4byte	.LASF82
+ 623 04e1 08       		.byte	0x8
+ 624 04e2 00       		.byte	0
+ 625 04e3 10       		.uleb128 0x10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 12
+
+
+ 626 04e4 98040000 		.4byte	.LASF83
+ 627 04e8 04       		.byte	0x4
+ 628 04e9 4104     		.2byte	0x441
+ 629 04eb BD040000 		.4byte	0x4bd
+ 630 04ef 11       		.uleb128 0x11
+ 631 04f0 0C       		.byte	0xc
+ 632 04f1 04       		.byte	0x4
+ 633 04f2 5D04     		.2byte	0x45d
+ 634 04f4 20050000 		.4byte	0x520
+ 635 04f8 12       		.uleb128 0x12
+ 636 04f9 C4060000 		.4byte	.LASF84
+ 637 04fd 04       		.byte	0x4
+ 638 04fe 5F04     		.2byte	0x45f
+ 639 0500 E3040000 		.4byte	0x4e3
+ 640 0504 00       		.byte	0
+ 641 0505 12       		.uleb128 0x12
+ 642 0506 C5030000 		.4byte	.LASF85
+ 643 050a 04       		.byte	0x4
+ 644 050b 6304     		.2byte	0x463
+ 645 050d 20050000 		.4byte	0x520
+ 646 0511 04       		.byte	0x4
+ 647 0512 12       		.uleb128 0x12
+ 648 0513 E1020000 		.4byte	.LASF86
+ 649 0517 04       		.byte	0x4
+ 650 0518 6504     		.2byte	0x465
+ 651 051a 20050000 		.4byte	0x520
+ 652 051e 08       		.byte	0x8
+ 653 051f 00       		.byte	0
+ 654 0520 13       		.uleb128 0x13
+ 655 0521 04       		.byte	0x4
+ 656 0522 10       		.uleb128 0x10
+ 657 0523 EA010000 		.4byte	.LASF87
+ 658 0527 04       		.byte	0x4
+ 659 0528 6804     		.2byte	0x468
+ 660 052a EF040000 		.4byte	0x4ef
+ 661 052e 10       		.uleb128 0x10
+ 662 052f 54050000 		.4byte	.LASF88
+ 663 0533 04       		.byte	0x4
+ 664 0534 6B04     		.2byte	0x46b
+ 665 0536 3A050000 		.4byte	0x53a
+ 666 053a 14       		.uleb128 0x14
+ 667 053b 04       		.byte	0x4
+ 668 053c 40050000 		.4byte	0x540
+ 669 0540 15       		.uleb128 0x15
+ 670 0541 79040000 		.4byte	0x479
+ 671 0545 4F050000 		.4byte	0x54f
+ 672 0549 16       		.uleb128 0x16
+ 673 054a 4F050000 		.4byte	0x54f
+ 674 054e 00       		.byte	0
+ 675 054f 14       		.uleb128 0x14
+ 676 0550 04       		.byte	0x4
+ 677 0551 22050000 		.4byte	0x522
+ 678 0555 17       		.uleb128 0x17
+ 679 0556 09020000 		.4byte	.LASF130
+ 680 055a 18       		.byte	0x18
+ 681 055b 04       		.byte	0x4
+ 682 055c 6E04     		.2byte	0x46e
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 13
+
+
+ 683 055e B1050000 		.4byte	0x5b1
+ 684 0562 12       		.uleb128 0x12
+ 685 0563 24030000 		.4byte	.LASF89
+ 686 0567 04       		.byte	0x4
+ 687 0568 7004     		.2byte	0x470
+ 688 056a 2E050000 		.4byte	0x52e
+ 689 056e 00       		.byte	0
+ 690 056f 12       		.uleb128 0x12
+ 691 0570 58000000 		.4byte	.LASF90
+ 692 0574 04       		.byte	0x4
+ 693 0575 7104     		.2byte	0x471
+ 694 0577 B1040000 		.4byte	0x4b1
+ 695 057b 04       		.byte	0x4
+ 696 057c 12       		.uleb128 0x12
+ 697 057d D8020000 		.4byte	.LASF91
+ 698 0581 04       		.byte	0x4
+ 699 0582 7204     		.2byte	0x472
+ 700 0584 6E000000 		.4byte	0x6e
+ 701 0588 08       		.byte	0x8
+ 702 0589 12       		.uleb128 0x12
+ 703 058a 57030000 		.4byte	.LASF92
+ 704 058e 04       		.byte	0x4
+ 705 058f 7904     		.2byte	0x479
+ 706 0591 4F050000 		.4byte	0x54f
+ 707 0595 0C       		.byte	0xc
+ 708 0596 12       		.uleb128 0x12
+ 709 0597 A4000000 		.4byte	.LASF93
+ 710 059b 04       		.byte	0x4
+ 711 059c 7C04     		.2byte	0x47c
+ 712 059e B1050000 		.4byte	0x5b1
+ 713 05a2 10       		.byte	0x10
+ 714 05a3 12       		.uleb128 0x12
+ 715 05a4 E3030000 		.4byte	.LASF94
+ 716 05a8 04       		.byte	0x4
+ 717 05a9 8204     		.2byte	0x482
+ 718 05ab B1050000 		.4byte	0x5b1
+ 719 05af 14       		.byte	0x14
+ 720 05b0 00       		.byte	0
+ 721 05b1 14       		.uleb128 0x14
+ 722 05b2 04       		.byte	0x4
+ 723 05b3 55050000 		.4byte	0x555
+ 724 05b7 10       		.uleb128 0x10
+ 725 05b8 49070000 		.4byte	.LASF95
+ 726 05bc 04       		.byte	0x4
+ 727 05bd 8704     		.2byte	0x487
+ 728 05bf 55050000 		.4byte	0x555
+ 729 05c3 0D       		.uleb128 0xd
+ 730 05c4 01       		.byte	0x1
+ 731 05c5 24000000 		.4byte	0x24
+ 732 05c9 05       		.byte	0x5
+ 733 05ca 0504     		.2byte	0x405
+ 734 05cc E9050000 		.4byte	0x5e9
+ 735 05d0 0E       		.uleb128 0xe
+ 736 05d1 35010000 		.4byte	.LASF96
+ 737 05d5 00       		.byte	0
+ 738 05d6 0E       		.uleb128 0xe
+ 739 05d7 27050000 		.4byte	.LASF97
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 14
+
+
+ 740 05db 01       		.byte	0x1
+ 741 05dc 0E       		.uleb128 0xe
+ 742 05dd 7E010000 		.4byte	.LASF98
+ 743 05e1 02       		.byte	0x2
+ 744 05e2 0E       		.uleb128 0xe
+ 745 05e3 BB070000 		.4byte	.LASF99
+ 746 05e7 03       		.byte	0x3
+ 747 05e8 00       		.byte	0
+ 748 05e9 10       		.uleb128 0x10
+ 749 05ea EE000000 		.4byte	.LASF100
+ 750 05ee 05       		.byte	0x5
+ 751 05ef 0A04     		.2byte	0x40a
+ 752 05f1 C3050000 		.4byte	0x5c3
+ 753 05f5 11       		.uleb128 0x11
+ 754 05f6 78       		.byte	0x78
+ 755 05f7 05       		.byte	0x5
+ 756 05f8 F404     		.2byte	0x4f4
+ 757 05fa C2060000 		.4byte	0x6c2
+ 758 05fe 12       		.uleb128 0x12
+ 759 05ff 02070000 		.4byte	.LASF101
+ 760 0603 05       		.byte	0x5
+ 761 0604 F604     		.2byte	0x4f6
+ 762 0606 6E000000 		.4byte	0x6e
+ 763 060a 00       		.byte	0
+ 764 060b 12       		.uleb128 0x12
+ 765 060c 8B070000 		.4byte	.LASF102
+ 766 0610 05       		.byte	0x5
+ 767 0611 F704     		.2byte	0x4f7
+ 768 0613 6E000000 		.4byte	0x6e
+ 769 0617 04       		.byte	0x4
+ 770 0618 12       		.uleb128 0x12
+ 771 0619 DD010000 		.4byte	.LASF103
+ 772 061d 05       		.byte	0x5
+ 773 061e F804     		.2byte	0x4f8
+ 774 0620 6E000000 		.4byte	0x6e
+ 775 0624 08       		.byte	0x8
+ 776 0625 12       		.uleb128 0x12
+ 777 0626 F7030000 		.4byte	.LASF104
+ 778 062a 05       		.byte	0x5
+ 779 062b F904     		.2byte	0x4f9
+ 780 062d 6E000000 		.4byte	0x6e
+ 781 0631 0C       		.byte	0xc
+ 782 0632 12       		.uleb128 0x12
+ 783 0633 FC020000 		.4byte	.LASF105
+ 784 0637 05       		.byte	0x5
+ 785 0638 FA04     		.2byte	0x4fa
+ 786 063a 6E000000 		.4byte	0x6e
+ 787 063e 10       		.byte	0x10
+ 788 063f 12       		.uleb128 0x12
+ 789 0640 61070000 		.4byte	.LASF106
+ 790 0644 05       		.byte	0x5
+ 791 0645 FB04     		.2byte	0x4fb
+ 792 0647 E9050000 		.4byte	0x5e9
+ 793 064b 14       		.byte	0x14
+ 794 064c 12       		.uleb128 0x12
+ 795 064d 20050000 		.4byte	.LASF107
+ 796 0651 05       		.byte	0x5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 15
+
+
+ 797 0652 FC04     		.2byte	0x4fc
+ 798 0654 6E000000 		.4byte	0x6e
+ 799 0658 18       		.byte	0x18
+ 800 0659 12       		.uleb128 0x12
+ 801 065a 39030000 		.4byte	.LASF108
+ 802 065e 05       		.byte	0x5
+ 803 065f FD04     		.2byte	0x4fd
+ 804 0661 C2060000 		.4byte	0x6c2
+ 805 0665 1C       		.byte	0x1c
+ 806 0666 12       		.uleb128 0x12
+ 807 0667 79050000 		.4byte	.LASF109
+ 808 066b 05       		.byte	0x5
+ 809 066c FE04     		.2byte	0x4fe
+ 810 066e 6E000000 		.4byte	0x6e
+ 811 0672 5C       		.byte	0x5c
+ 812 0673 12       		.uleb128 0x12
+ 813 0674 2D000000 		.4byte	.LASF110
+ 814 0678 05       		.byte	0x5
+ 815 0679 FF04     		.2byte	0x4ff
+ 816 067b 6E000000 		.4byte	0x6e
+ 817 067f 60       		.byte	0x60
+ 818 0680 12       		.uleb128 0x12
+ 819 0681 27010000 		.4byte	.LASF111
+ 820 0685 05       		.byte	0x5
+ 821 0686 0005     		.2byte	0x500
+ 822 0688 6E000000 		.4byte	0x6e
+ 823 068c 64       		.byte	0x64
+ 824 068d 12       		.uleb128 0x12
+ 825 068e 6F050000 		.4byte	.LASF112
+ 826 0692 05       		.byte	0x5
+ 827 0693 0105     		.2byte	0x501
+ 828 0695 6E000000 		.4byte	0x6e
+ 829 0699 68       		.byte	0x68
+ 830 069a 12       		.uleb128 0x12
+ 831 069b 21080000 		.4byte	.LASF113
+ 832 069f 05       		.byte	0x5
+ 833 06a0 0205     		.2byte	0x502
+ 834 06a2 6E000000 		.4byte	0x6e
+ 835 06a6 6C       		.byte	0x6c
+ 836 06a7 12       		.uleb128 0x12
+ 837 06a8 04040000 		.4byte	.LASF114
+ 838 06ac 05       		.byte	0x5
+ 839 06ad 0305     		.2byte	0x503
+ 840 06af D2060000 		.4byte	0x6d2
+ 841 06b3 70       		.byte	0x70
+ 842 06b4 12       		.uleb128 0x12
+ 843 06b5 15060000 		.4byte	.LASF115
+ 844 06b9 05       		.byte	0x5
+ 845 06ba 0405     		.2byte	0x504
+ 846 06bc 6E000000 		.4byte	0x6e
+ 847 06c0 74       		.byte	0x74
+ 848 06c1 00       		.byte	0
+ 849 06c2 07       		.uleb128 0x7
+ 850 06c3 6E000000 		.4byte	0x6e
+ 851 06c7 D2060000 		.4byte	0x6d2
+ 852 06cb 08       		.uleb128 0x8
+ 853 06cc 79000000 		.4byte	0x79
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 16
+
+
+ 854 06d0 0F       		.byte	0xf
+ 855 06d1 00       		.byte	0
+ 856 06d2 02       		.uleb128 0x2
+ 857 06d3 01       		.byte	0x1
+ 858 06d4 02       		.byte	0x2
+ 859 06d5 40050000 		.4byte	.LASF116
+ 860 06d9 10       		.uleb128 0x10
+ 861 06da C0000000 		.4byte	.LASF117
+ 862 06de 05       		.byte	0x5
+ 863 06df 0505     		.2byte	0x505
+ 864 06e1 F5050000 		.4byte	0x5f5
+ 865 06e5 18       		.uleb128 0x18
+ 866 06e6 14       		.byte	0x14
+ 867 06e7 06       		.byte	0x6
+ 868 06e8 3B       		.byte	0x3b
+ 869 06e9 2A070000 		.4byte	0x72a
+ 870 06ed 0A       		.uleb128 0xa
+ 871 06ee 06080000 		.4byte	.LASF118
+ 872 06f2 06       		.byte	0x6
+ 873 06f3 3D       		.byte	0x3d
+ 874 06f4 6E000000 		.4byte	0x6e
+ 875 06f8 00       		.byte	0
+ 876 06f9 0A       		.uleb128 0xa
+ 877 06fa 2D030000 		.4byte	.LASF119
+ 878 06fe 06       		.byte	0x6
+ 879 06ff 3E       		.byte	0x3e
+ 880 0700 6E000000 		.4byte	0x6e
+ 881 0704 04       		.byte	0x4
+ 882 0705 0A       		.uleb128 0xa
+ 883 0706 2A020000 		.4byte	.LASF120
+ 884 070a 06       		.byte	0x6
+ 885 070b 3F       		.byte	0x3f
+ 886 070c 2A070000 		.4byte	0x72a
+ 887 0710 08       		.byte	0x8
+ 888 0711 0A       		.uleb128 0xa
+ 889 0712 0E070000 		.4byte	.LASF121
+ 890 0716 06       		.byte	0x6
+ 891 0717 40       		.byte	0x40
+ 892 0718 6E000000 		.4byte	0x6e
+ 893 071c 0C       		.byte	0xc
+ 894 071d 0A       		.uleb128 0xa
+ 895 071e 11010000 		.4byte	.LASF122
+ 896 0722 06       		.byte	0x6
+ 897 0723 45       		.byte	0x45
+ 898 0724 6E000000 		.4byte	0x6e
+ 899 0728 10       		.byte	0x10
+ 900 0729 00       		.byte	0
+ 901 072a 14       		.uleb128 0x14
+ 902 072b 04       		.byte	0x4
+ 903 072c 30070000 		.4byte	0x730
+ 904 0730 06       		.uleb128 0x6
+ 905 0731 D9060000 		.4byte	0x6d9
+ 906 0735 03       		.uleb128 0x3
+ 907 0736 AF010000 		.4byte	.LASF123
+ 908 073a 06       		.byte	0x6
+ 909 073b 48       		.byte	0x48
+ 910 073c E5060000 		.4byte	0x6e5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 17
+
+
+ 911 0740 19       		.uleb128 0x19
+ 912 0741 C1010000 		.4byte	.LASF131
+ 913 0745 07       		.byte	0x7
+ 914 0746 29       		.byte	0x29
+ 915 0747 22050000 		.4byte	0x522
+ 916 074b 05       		.uleb128 0x5
+ 917 074c 03       		.byte	0x3
+ 918 074d 18000000 		.4byte	ADC_DeepSleepCallbackParams
+ 919 0751 1A       		.uleb128 0x1a
+ 920 0752 68000000 		.4byte	.LASF124
+ 921 0756 06       		.byte	0x6
+ 922 0757 6001     		.2byte	0x160
+ 923 0759 6E000000 		.4byte	0x6e
+ 924 075d 07       		.uleb128 0x7
+ 925 075e 6D070000 		.4byte	0x76d
+ 926 0762 6D070000 		.4byte	0x76d
+ 927 0766 08       		.uleb128 0x8
+ 928 0767 79000000 		.4byte	0x79
+ 929 076b 00       		.byte	0
+ 930 076c 00       		.byte	0
+ 931 076d 06       		.uleb128 0x6
+ 932 076e 35070000 		.4byte	0x735
+ 933 0772 1A       		.uleb128 0x1a
+ 934 0773 C9060000 		.4byte	.LASF125
+ 935 0777 06       		.byte	0x6
+ 936 0778 6401     		.2byte	0x164
+ 937 077a 7E070000 		.4byte	0x77e
+ 938 077e 06       		.uleb128 0x6
+ 939 077f 5D070000 		.4byte	0x75d
+ 940 0783 1B       		.uleb128 0x1b
+ 941 0784 EA070000 		.4byte	.LASF126
+ 942 0788 07       		.byte	0x7
+ 943 0789 2D       		.byte	0x2d
+ 944 078a B7050000 		.4byte	0x5b7
+ 945 078e 05       		.uleb128 0x5
+ 946 078f 03       		.byte	0x3
+ 947 0790 00000000 		.4byte	ADC_DeepSleepCallbackStruct
+ 948 0794 00       		.byte	0
+ 949              		.section	.debug_abbrev,"",%progbits
+ 950              	.Ldebug_abbrev0:
+ 951 0000 01       		.uleb128 0x1
+ 952 0001 11       		.uleb128 0x11
+ 953 0002 01       		.byte	0x1
+ 954 0003 25       		.uleb128 0x25
+ 955 0004 0E       		.uleb128 0xe
+ 956 0005 13       		.uleb128 0x13
+ 957 0006 0B       		.uleb128 0xb
+ 958 0007 03       		.uleb128 0x3
+ 959 0008 0E       		.uleb128 0xe
+ 960 0009 1B       		.uleb128 0x1b
+ 961 000a 0E       		.uleb128 0xe
+ 962 000b 10       		.uleb128 0x10
+ 963 000c 17       		.uleb128 0x17
+ 964 000d 00       		.byte	0
+ 965 000e 00       		.byte	0
+ 966 000f 02       		.uleb128 0x2
+ 967 0010 24       		.uleb128 0x24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 18
+
+
+ 968 0011 00       		.byte	0
+ 969 0012 0B       		.uleb128 0xb
+ 970 0013 0B       		.uleb128 0xb
+ 971 0014 3E       		.uleb128 0x3e
+ 972 0015 0B       		.uleb128 0xb
+ 973 0016 03       		.uleb128 0x3
+ 974 0017 0E       		.uleb128 0xe
+ 975 0018 00       		.byte	0
+ 976 0019 00       		.byte	0
+ 977 001a 03       		.uleb128 0x3
+ 978 001b 16       		.uleb128 0x16
+ 979 001c 00       		.byte	0
+ 980 001d 03       		.uleb128 0x3
+ 981 001e 0E       		.uleb128 0xe
+ 982 001f 3A       		.uleb128 0x3a
+ 983 0020 0B       		.uleb128 0xb
+ 984 0021 3B       		.uleb128 0x3b
+ 985 0022 0B       		.uleb128 0xb
+ 986 0023 49       		.uleb128 0x49
+ 987 0024 13       		.uleb128 0x13
+ 988 0025 00       		.byte	0
+ 989 0026 00       		.byte	0
+ 990 0027 04       		.uleb128 0x4
+ 991 0028 24       		.uleb128 0x24
+ 992 0029 00       		.byte	0
+ 993 002a 0B       		.uleb128 0xb
+ 994 002b 0B       		.uleb128 0xb
+ 995 002c 3E       		.uleb128 0x3e
+ 996 002d 0B       		.uleb128 0xb
+ 997 002e 03       		.uleb128 0x3
+ 998 002f 08       		.uleb128 0x8
+ 999 0030 00       		.byte	0
+ 1000 0031 00       		.byte	0
+ 1001 0032 05       		.uleb128 0x5
+ 1002 0033 35       		.uleb128 0x35
+ 1003 0034 00       		.byte	0
+ 1004 0035 49       		.uleb128 0x49
+ 1005 0036 13       		.uleb128 0x13
+ 1006 0037 00       		.byte	0
+ 1007 0038 00       		.byte	0
+ 1008 0039 06       		.uleb128 0x6
+ 1009 003a 26       		.uleb128 0x26
+ 1010 003b 00       		.byte	0
+ 1011 003c 49       		.uleb128 0x49
+ 1012 003d 13       		.uleb128 0x13
+ 1013 003e 00       		.byte	0
+ 1014 003f 00       		.byte	0
+ 1015 0040 07       		.uleb128 0x7
+ 1016 0041 01       		.uleb128 0x1
+ 1017 0042 01       		.byte	0x1
+ 1018 0043 49       		.uleb128 0x49
+ 1019 0044 13       		.uleb128 0x13
+ 1020 0045 01       		.uleb128 0x1
+ 1021 0046 13       		.uleb128 0x13
+ 1022 0047 00       		.byte	0
+ 1023 0048 00       		.byte	0
+ 1024 0049 08       		.uleb128 0x8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 19
+
+
+ 1025 004a 21       		.uleb128 0x21
+ 1026 004b 00       		.byte	0
+ 1027 004c 49       		.uleb128 0x49
+ 1028 004d 13       		.uleb128 0x13
+ 1029 004e 2F       		.uleb128 0x2f
+ 1030 004f 0B       		.uleb128 0xb
+ 1031 0050 00       		.byte	0
+ 1032 0051 00       		.byte	0
+ 1033 0052 09       		.uleb128 0x9
+ 1034 0053 13       		.uleb128 0x13
+ 1035 0054 01       		.byte	0x1
+ 1036 0055 0B       		.uleb128 0xb
+ 1037 0056 05       		.uleb128 0x5
+ 1038 0057 3A       		.uleb128 0x3a
+ 1039 0058 0B       		.uleb128 0xb
+ 1040 0059 3B       		.uleb128 0x3b
+ 1041 005a 0B       		.uleb128 0xb
+ 1042 005b 01       		.uleb128 0x1
+ 1043 005c 13       		.uleb128 0x13
+ 1044 005d 00       		.byte	0
+ 1045 005e 00       		.byte	0
+ 1046 005f 0A       		.uleb128 0xa
+ 1047 0060 0D       		.uleb128 0xd
+ 1048 0061 00       		.byte	0
+ 1049 0062 03       		.uleb128 0x3
+ 1050 0063 0E       		.uleb128 0xe
+ 1051 0064 3A       		.uleb128 0x3a
+ 1052 0065 0B       		.uleb128 0xb
+ 1053 0066 3B       		.uleb128 0x3b
+ 1054 0067 0B       		.uleb128 0xb
+ 1055 0068 49       		.uleb128 0x49
+ 1056 0069 13       		.uleb128 0x13
+ 1057 006a 38       		.uleb128 0x38
+ 1058 006b 0B       		.uleb128 0xb
+ 1059 006c 00       		.byte	0
+ 1060 006d 00       		.byte	0
+ 1061 006e 0B       		.uleb128 0xb
+ 1062 006f 0D       		.uleb128 0xd
+ 1063 0070 00       		.byte	0
+ 1064 0071 03       		.uleb128 0x3
+ 1065 0072 0E       		.uleb128 0xe
+ 1066 0073 3A       		.uleb128 0x3a
+ 1067 0074 0B       		.uleb128 0xb
+ 1068 0075 3B       		.uleb128 0x3b
+ 1069 0076 0B       		.uleb128 0xb
+ 1070 0077 49       		.uleb128 0x49
+ 1071 0078 13       		.uleb128 0x13
+ 1072 0079 38       		.uleb128 0x38
+ 1073 007a 05       		.uleb128 0x5
+ 1074 007b 00       		.byte	0
+ 1075 007c 00       		.byte	0
+ 1076 007d 0C       		.uleb128 0xc
+ 1077 007e 21       		.uleb128 0x21
+ 1078 007f 00       		.byte	0
+ 1079 0080 49       		.uleb128 0x49
+ 1080 0081 13       		.uleb128 0x13
+ 1081 0082 2F       		.uleb128 0x2f
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 20
+
+
+ 1082 0083 05       		.uleb128 0x5
+ 1083 0084 00       		.byte	0
+ 1084 0085 00       		.byte	0
+ 1085 0086 0D       		.uleb128 0xd
+ 1086 0087 04       		.uleb128 0x4
+ 1087 0088 01       		.byte	0x1
+ 1088 0089 0B       		.uleb128 0xb
+ 1089 008a 0B       		.uleb128 0xb
+ 1090 008b 49       		.uleb128 0x49
+ 1091 008c 13       		.uleb128 0x13
+ 1092 008d 3A       		.uleb128 0x3a
+ 1093 008e 0B       		.uleb128 0xb
+ 1094 008f 3B       		.uleb128 0x3b
+ 1095 0090 05       		.uleb128 0x5
+ 1096 0091 01       		.uleb128 0x1
+ 1097 0092 13       		.uleb128 0x13
+ 1098 0093 00       		.byte	0
+ 1099 0094 00       		.byte	0
+ 1100 0095 0E       		.uleb128 0xe
+ 1101 0096 28       		.uleb128 0x28
+ 1102 0097 00       		.byte	0
+ 1103 0098 03       		.uleb128 0x3
+ 1104 0099 0E       		.uleb128 0xe
+ 1105 009a 1C       		.uleb128 0x1c
+ 1106 009b 0B       		.uleb128 0xb
+ 1107 009c 00       		.byte	0
+ 1108 009d 00       		.byte	0
+ 1109 009e 0F       		.uleb128 0xf
+ 1110 009f 28       		.uleb128 0x28
+ 1111 00a0 00       		.byte	0
+ 1112 00a1 03       		.uleb128 0x3
+ 1113 00a2 0E       		.uleb128 0xe
+ 1114 00a3 1C       		.uleb128 0x1c
+ 1115 00a4 06       		.uleb128 0x6
+ 1116 00a5 00       		.byte	0
+ 1117 00a6 00       		.byte	0
+ 1118 00a7 10       		.uleb128 0x10
+ 1119 00a8 16       		.uleb128 0x16
+ 1120 00a9 00       		.byte	0
+ 1121 00aa 03       		.uleb128 0x3
+ 1122 00ab 0E       		.uleb128 0xe
+ 1123 00ac 3A       		.uleb128 0x3a
+ 1124 00ad 0B       		.uleb128 0xb
+ 1125 00ae 3B       		.uleb128 0x3b
+ 1126 00af 05       		.uleb128 0x5
+ 1127 00b0 49       		.uleb128 0x49
+ 1128 00b1 13       		.uleb128 0x13
+ 1129 00b2 00       		.byte	0
+ 1130 00b3 00       		.byte	0
+ 1131 00b4 11       		.uleb128 0x11
+ 1132 00b5 13       		.uleb128 0x13
+ 1133 00b6 01       		.byte	0x1
+ 1134 00b7 0B       		.uleb128 0xb
+ 1135 00b8 0B       		.uleb128 0xb
+ 1136 00b9 3A       		.uleb128 0x3a
+ 1137 00ba 0B       		.uleb128 0xb
+ 1138 00bb 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 21
+
+
+ 1139 00bc 05       		.uleb128 0x5
+ 1140 00bd 01       		.uleb128 0x1
+ 1141 00be 13       		.uleb128 0x13
+ 1142 00bf 00       		.byte	0
+ 1143 00c0 00       		.byte	0
+ 1144 00c1 12       		.uleb128 0x12
+ 1145 00c2 0D       		.uleb128 0xd
+ 1146 00c3 00       		.byte	0
+ 1147 00c4 03       		.uleb128 0x3
+ 1148 00c5 0E       		.uleb128 0xe
+ 1149 00c6 3A       		.uleb128 0x3a
+ 1150 00c7 0B       		.uleb128 0xb
+ 1151 00c8 3B       		.uleb128 0x3b
+ 1152 00c9 05       		.uleb128 0x5
+ 1153 00ca 49       		.uleb128 0x49
+ 1154 00cb 13       		.uleb128 0x13
+ 1155 00cc 38       		.uleb128 0x38
+ 1156 00cd 0B       		.uleb128 0xb
+ 1157 00ce 00       		.byte	0
+ 1158 00cf 00       		.byte	0
+ 1159 00d0 13       		.uleb128 0x13
+ 1160 00d1 0F       		.uleb128 0xf
+ 1161 00d2 00       		.byte	0
+ 1162 00d3 0B       		.uleb128 0xb
+ 1163 00d4 0B       		.uleb128 0xb
+ 1164 00d5 00       		.byte	0
+ 1165 00d6 00       		.byte	0
+ 1166 00d7 14       		.uleb128 0x14
+ 1167 00d8 0F       		.uleb128 0xf
+ 1168 00d9 00       		.byte	0
+ 1169 00da 0B       		.uleb128 0xb
+ 1170 00db 0B       		.uleb128 0xb
+ 1171 00dc 49       		.uleb128 0x49
+ 1172 00dd 13       		.uleb128 0x13
+ 1173 00de 00       		.byte	0
+ 1174 00df 00       		.byte	0
+ 1175 00e0 15       		.uleb128 0x15
+ 1176 00e1 15       		.uleb128 0x15
+ 1177 00e2 01       		.byte	0x1
+ 1178 00e3 27       		.uleb128 0x27
+ 1179 00e4 19       		.uleb128 0x19
+ 1180 00e5 49       		.uleb128 0x49
+ 1181 00e6 13       		.uleb128 0x13
+ 1182 00e7 01       		.uleb128 0x1
+ 1183 00e8 13       		.uleb128 0x13
+ 1184 00e9 00       		.byte	0
+ 1185 00ea 00       		.byte	0
+ 1186 00eb 16       		.uleb128 0x16
+ 1187 00ec 05       		.uleb128 0x5
+ 1188 00ed 00       		.byte	0
+ 1189 00ee 49       		.uleb128 0x49
+ 1190 00ef 13       		.uleb128 0x13
+ 1191 00f0 00       		.byte	0
+ 1192 00f1 00       		.byte	0
+ 1193 00f2 17       		.uleb128 0x17
+ 1194 00f3 13       		.uleb128 0x13
+ 1195 00f4 01       		.byte	0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 22
+
+
+ 1196 00f5 03       		.uleb128 0x3
+ 1197 00f6 0E       		.uleb128 0xe
+ 1198 00f7 0B       		.uleb128 0xb
+ 1199 00f8 0B       		.uleb128 0xb
+ 1200 00f9 3A       		.uleb128 0x3a
+ 1201 00fa 0B       		.uleb128 0xb
+ 1202 00fb 3B       		.uleb128 0x3b
+ 1203 00fc 05       		.uleb128 0x5
+ 1204 00fd 01       		.uleb128 0x1
+ 1205 00fe 13       		.uleb128 0x13
+ 1206 00ff 00       		.byte	0
+ 1207 0100 00       		.byte	0
+ 1208 0101 18       		.uleb128 0x18
+ 1209 0102 13       		.uleb128 0x13
+ 1210 0103 01       		.byte	0x1
+ 1211 0104 0B       		.uleb128 0xb
+ 1212 0105 0B       		.uleb128 0xb
+ 1213 0106 3A       		.uleb128 0x3a
+ 1214 0107 0B       		.uleb128 0xb
+ 1215 0108 3B       		.uleb128 0x3b
+ 1216 0109 0B       		.uleb128 0xb
+ 1217 010a 01       		.uleb128 0x1
+ 1218 010b 13       		.uleb128 0x13
+ 1219 010c 00       		.byte	0
+ 1220 010d 00       		.byte	0
+ 1221 010e 19       		.uleb128 0x19
+ 1222 010f 34       		.uleb128 0x34
+ 1223 0110 00       		.byte	0
+ 1224 0111 03       		.uleb128 0x3
+ 1225 0112 0E       		.uleb128 0xe
+ 1226 0113 3A       		.uleb128 0x3a
+ 1227 0114 0B       		.uleb128 0xb
+ 1228 0115 3B       		.uleb128 0x3b
+ 1229 0116 0B       		.uleb128 0xb
+ 1230 0117 49       		.uleb128 0x49
+ 1231 0118 13       		.uleb128 0x13
+ 1232 0119 02       		.uleb128 0x2
+ 1233 011a 18       		.uleb128 0x18
+ 1234 011b 00       		.byte	0
+ 1235 011c 00       		.byte	0
+ 1236 011d 1A       		.uleb128 0x1a
+ 1237 011e 34       		.uleb128 0x34
+ 1238 011f 00       		.byte	0
+ 1239 0120 03       		.uleb128 0x3
+ 1240 0121 0E       		.uleb128 0xe
+ 1241 0122 3A       		.uleb128 0x3a
+ 1242 0123 0B       		.uleb128 0xb
+ 1243 0124 3B       		.uleb128 0x3b
+ 1244 0125 05       		.uleb128 0x5
+ 1245 0126 49       		.uleb128 0x49
+ 1246 0127 13       		.uleb128 0x13
+ 1247 0128 3F       		.uleb128 0x3f
+ 1248 0129 19       		.uleb128 0x19
+ 1249 012a 3C       		.uleb128 0x3c
+ 1250 012b 19       		.uleb128 0x19
+ 1251 012c 00       		.byte	0
+ 1252 012d 00       		.byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 23
+
+
+ 1253 012e 1B       		.uleb128 0x1b
+ 1254 012f 34       		.uleb128 0x34
+ 1255 0130 00       		.byte	0
+ 1256 0131 03       		.uleb128 0x3
+ 1257 0132 0E       		.uleb128 0xe
+ 1258 0133 3A       		.uleb128 0x3a
+ 1259 0134 0B       		.uleb128 0xb
+ 1260 0135 3B       		.uleb128 0x3b
+ 1261 0136 0B       		.uleb128 0xb
+ 1262 0137 49       		.uleb128 0x49
+ 1263 0138 13       		.uleb128 0x13
+ 1264 0139 3F       		.uleb128 0x3f
+ 1265 013a 19       		.uleb128 0x19
+ 1266 013b 02       		.uleb128 0x2
+ 1267 013c 18       		.uleb128 0x18
+ 1268 013d 00       		.byte	0
+ 1269 013e 00       		.byte	0
+ 1270 013f 00       		.byte	0
+ 1271              		.section	.debug_aranges,"",%progbits
+ 1272 0000 14000000 		.4byte	0x14
+ 1273 0004 0200     		.2byte	0x2
+ 1274 0006 00000000 		.4byte	.Ldebug_info0
+ 1275 000a 04       		.byte	0x4
+ 1276 000b 00       		.byte	0
+ 1277 000c 0000     		.2byte	0
+ 1278 000e 0000     		.2byte	0
+ 1279 0010 00000000 		.4byte	0
+ 1280 0014 00000000 		.4byte	0
+ 1281              		.section	.debug_line,"",%progbits
+ 1282              	.Ldebug_line0:
+ 1283 0000 FC010000 		.section	.debug_str,"MS",%progbits,1
+ 1283      0200F601 
+ 1283      00000201 
+ 1283      FB0E0D00 
+ 1283      01010101 
+ 1284              	.LASF78:
+ 1285 0000 63795F65 		.ascii	"cy_en_syspm_callback_type_t\000"
+ 1285      6E5F7379 
+ 1285      73706D5F 
+ 1285      63616C6C 
+ 1285      6261636B 
+ 1286              	.LASF69:
+ 1287 001c 43595F53 		.ascii	"CY_SYSPM_TIMEOUT\000"
+ 1287      5953504D 
+ 1287      5F54494D 
+ 1287      454F5554 
+ 1287      00
+ 1288              	.LASF110:
+ 1289 002d 73617449 		.ascii	"satIntrMask\000"
+ 1289      6E74724D 
+ 1289      61736B00 
+ 1290              	.LASF68:
+ 1291 0039 43595F53 		.ascii	"CY_SYSPM_BAD_PARAM\000"
+ 1291      5953504D 
+ 1291      5F424144 
+ 1291      5F504152 
+ 1291      414D00
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 24
+
+
+ 1292              	.LASF53:
+ 1293 004c 4D55585F 		.ascii	"MUX_SWITCH0\000"
+ 1293      53574954 
+ 1293      43483000 
+ 1294              	.LASF90:
+ 1295 0058 74797065 		.ascii	"type\000"
+ 1295      00
+ 1296              	.LASF18:
+ 1297 005d 52414E47 		.ascii	"RANGE_COND\000"
+ 1297      455F434F 
+ 1297      4E4400
+ 1298              	.LASF124:
+ 1299 0068 4144435F 		.ascii	"ADC_currentConfig\000"
+ 1299      63757272 
+ 1299      656E7443 
+ 1299      6F6E6669 
+ 1299      6700
+ 1300              	.LASF7:
+ 1301 007a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1301      206C6F6E 
+ 1301      6720756E 
+ 1301      7369676E 
+ 1301      65642069 
+ 1302              	.LASF38:
+ 1303 0091 53415455 		.ascii	"SATURATE_INTR_MASK\000"
+ 1303      52415445 
+ 1303      5F494E54 
+ 1303      525F4D41 
+ 1303      534B00
+ 1304              	.LASF93:
+ 1305 00a4 70726576 		.ascii	"prevItm\000"
+ 1305      49746D00 
+ 1306              	.LASF60:
+ 1307 00ac 414E415F 		.ascii	"ANA_TRIM0\000"
+ 1307      5452494D 
+ 1307      3000
+ 1308              	.LASF61:
+ 1309 00b6 414E415F 		.ascii	"ANA_TRIM1\000"
+ 1309      5452494D 
+ 1309      3100
+ 1310              	.LASF117:
+ 1311 00c0 63795F73 		.ascii	"cy_stc_sar_config_t\000"
+ 1311      74635F73 
+ 1311      61725F63 
+ 1311      6F6E6669 
+ 1311      675F7400 
+ 1312              	.LASF6:
+ 1313 00d4 6C6F6E67 		.ascii	"long long int\000"
+ 1313      206C6F6E 
+ 1313      6720696E 
+ 1313      7400
+ 1314              	.LASF2:
+ 1315 00e2 7369676E 		.ascii	"signed char\000"
+ 1315      65642063 
+ 1315      68617200 
+ 1316              	.LASF100:
+ 1317 00ee 63795F65 		.ascii	"cy_en_sar_range_detect_condition_t\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 25
+
+
+ 1317      6E5F7361 
+ 1317      725F7261 
+ 1317      6E67655F 
+ 1317      64657465 
+ 1318              	.LASF122:
+ 1319 0111 636C6B44 		.ascii	"clkDivider\000"
+ 1319      69766964 
+ 1319      657200
+ 1320              	.LASF59:
+ 1321 011c 52455345 		.ascii	"RESERVED10\000"
+ 1321      52564544 
+ 1321      313000
+ 1322              	.LASF111:
+ 1323 0127 72616E67 		.ascii	"rangeIntrMask\000"
+ 1323      65496E74 
+ 1323      724D6173 
+ 1323      6B00
+ 1324              	.LASF96:
+ 1325 0135 43595F53 		.ascii	"CY_SAR_RANGE_COND_BELOW\000"
+ 1325      41525F52 
+ 1325      414E4745 
+ 1325      5F434F4E 
+ 1325      445F4245 
+ 1326              	.LASF4:
+ 1327 014d 6C6F6E67 		.ascii	"long int\000"
+ 1327      20696E74 
+ 1327      00
+ 1328              	.LASF58:
+ 1329 0156 4D55585F 		.ascii	"MUX_SWITCH_STATUS\000"
+ 1329      53574954 
+ 1329      43485F53 
+ 1329      54415455 
+ 1329      5300
+ 1330              	.LASF44:
+ 1331 0168 494E5452 		.ascii	"INTR_CAUSE\000"
+ 1331      5F434155 
+ 1331      534500
+ 1332              	.LASF48:
+ 1333 0173 494E4A5F 		.ascii	"INJ_RESULT\000"
+ 1333      52455355 
+ 1333      4C5400
+ 1334              	.LASF98:
+ 1335 017e 43595F53 		.ascii	"CY_SAR_RANGE_COND_ABOVE\000"
+ 1335      41525F52 
+ 1335      414E4745 
+ 1335      5F434F4E 
+ 1335      445F4142 
+ 1336              	.LASF66:
+ 1337 0196 646F7562 		.ascii	"double\000"
+ 1337      6C6500
+ 1338              	.LASF54:
+ 1339 019d 4D55585F 		.ascii	"MUX_SWITCH_CLEAR0\000"
+ 1339      53574954 
+ 1339      43485F43 
+ 1339      4C454152 
+ 1339      3000
+ 1340              	.LASF123:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 26
+
+
+ 1341 01af 4144435F 		.ascii	"ADC_CONFIG_STRUCT\000"
+ 1341      434F4E46 
+ 1341      49475F53 
+ 1341      54525543 
+ 1341      5400
+ 1342              	.LASF131:
+ 1343 01c1 4144435F 		.ascii	"ADC_DeepSleepCallbackParams\000"
+ 1343      44656570 
+ 1343      536C6565 
+ 1343      7043616C 
+ 1343      6C626163 
+ 1344              	.LASF103:
+ 1345 01dd 73616D70 		.ascii	"sampleTime01\000"
+ 1345      6C655469 
+ 1345      6D653031 
+ 1345      00
+ 1346              	.LASF87:
+ 1347 01ea 63795F73 		.ascii	"cy_stc_syspm_callback_params_t\000"
+ 1347      74635F73 
+ 1347      7973706D 
+ 1347      5F63616C 
+ 1347      6C626163 
+ 1348              	.LASF130:
+ 1349 0209 63795F73 		.ascii	"cy_stc_syspm_callback\000"
+ 1349      74635F73 
+ 1349      7973706D 
+ 1349      5F63616C 
+ 1349      6C626163 
+ 1350              	.LASF9:
+ 1351 021f 5F5F7569 		.ascii	"__uint32_t\000"
+ 1351      6E743332 
+ 1351      5F7400
+ 1352              	.LASF120:
+ 1353 022a 6877436F 		.ascii	"hwConfigStc\000"
+ 1353      6E666967 
+ 1353      53746300 
+ 1354              	.LASF15:
+ 1355 0236 53414D50 		.ascii	"SAMPLE_TIME01\000"
+ 1355      4C455F54 
+ 1355      494D4530 
+ 1355      3100
+ 1356              	.LASF36:
+ 1357 0244 53415455 		.ascii	"SATURATE_INTR\000"
+ 1357      52415445 
+ 1357      5F494E54 
+ 1357      5200
+ 1358              	.LASF22:
+ 1359 0252 4348414E 		.ascii	"CHAN_CONFIG\000"
+ 1359      5F434F4E 
+ 1359      46494700 
+ 1360              	.LASF70:
+ 1361 025e 43595F53 		.ascii	"CY_SYSPM_INVALID_STATE\000"
+ 1361      5953504D 
+ 1361      5F494E56 
+ 1361      414C4944 
+ 1361      5F535441 
+ 1362              	.LASF8:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 27
+
+
+ 1363 0275 756E7369 		.ascii	"unsigned int\000"
+ 1363      676E6564 
+ 1363      20696E74 
+ 1363      00
+ 1364              	.LASF80:
+ 1365 0282 43595F53 		.ascii	"CY_SYSPM_CHECK_FAIL\000"
+ 1365      5953504D 
+ 1365      5F434845 
+ 1365      434B5F46 
+ 1365      41494C00 
+ 1366              	.LASF5:
+ 1367 0296 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1367      20756E73 
+ 1367      69676E65 
+ 1367      6420696E 
+ 1367      7400
+ 1368              	.LASF30:
+ 1369 02a8 4348414E 		.ascii	"CHAN_WORK_NEWVALUE\000"
+ 1369      5F574F52 
+ 1369      4B5F4E45 
+ 1369      5756414C 
+ 1369      554500
+ 1370              	.LASF56:
+ 1371 02bb 4D55585F 		.ascii	"MUX_SWITCH_DS_CTRL\000"
+ 1371      53574954 
+ 1371      43485F44 
+ 1371      535F4354 
+ 1371      524C00
+ 1372              	.LASF34:
+ 1373 02ce 494E5452 		.ascii	"INTR_MASK\000"
+ 1373      5F4D4153 
+ 1373      4B00
+ 1374              	.LASF91:
+ 1375 02d8 736B6970 		.ascii	"skipMode\000"
+ 1375      4D6F6465 
+ 1375      00
+ 1376              	.LASF86:
+ 1377 02e1 636F6E74 		.ascii	"context\000"
+ 1377      65787400 
+ 1378              	.LASF3:
+ 1379 02e9 73686F72 		.ascii	"short unsigned int\000"
+ 1379      7420756E 
+ 1379      7369676E 
+ 1379      65642069 
+ 1379      6E7400
+ 1380              	.LASF105:
+ 1381 02fc 72616E67 		.ascii	"rangeThres\000"
+ 1381      65546872 
+ 1381      657300
+ 1382              	.LASF40:
+ 1383 0307 52414E47 		.ascii	"RANGE_INTR\000"
+ 1383      455F494E 
+ 1383      545200
+ 1384              	.LASF28:
+ 1385 0312 4348414E 		.ascii	"CHAN_WORK_UPDATED\000"
+ 1385      5F574F52 
+ 1385      4B5F5550 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 28
+
+
+ 1385      44415445 
+ 1385      4400
+ 1386              	.LASF89:
+ 1387 0324 63616C6C 		.ascii	"callback\000"
+ 1387      6261636B 
+ 1387      00
+ 1388              	.LASF119:
+ 1389 032d 6E756D43 		.ascii	"numChannels\000"
+ 1389      68616E6E 
+ 1389      656C7300 
+ 1390              	.LASF108:
+ 1391 0339 6368616E 		.ascii	"chanConfig\000"
+ 1391      436F6E66 
+ 1391      696700
+ 1392              	.LASF74:
+ 1393 0344 43595F53 		.ascii	"CY_SYSPM_DEEPSLEEP\000"
+ 1393      5953504D 
+ 1393      5F444545 
+ 1393      50534C45 
+ 1393      455000
+ 1394              	.LASF92:
+ 1395 0357 63616C6C 		.ascii	"callbackParams\000"
+ 1395      6261636B 
+ 1395      50617261 
+ 1395      6D7300
+ 1396              	.LASF128:
+ 1397 0366 47656E65 		.ascii	"Generated_Source\\PSoC6\\ADC_PM.c\000"
+ 1397      72617465 
+ 1397      645F536F 
+ 1397      75726365 
+ 1397      5C50536F 
+ 1398              	.LASF77:
+ 1399 0386 43595F53 		.ascii	"CY_SYSPM_EXIT_LOWPOWER_MODE\000"
+ 1399      5953504D 
+ 1399      5F455849 
+ 1399      545F4C4F 
+ 1399      57504F57 
+ 1400              	.LASF82:
+ 1401 03a2 43595F53 		.ascii	"CY_SYSPM_AFTER_TRANSITION\000"
+ 1401      5953504D 
+ 1401      5F414654 
+ 1401      45525F54 
+ 1401      52414E53 
+ 1402              	.LASF33:
+ 1403 03bc 494E5452 		.ascii	"INTR_SET\000"
+ 1403      5F534554 
+ 1403      00
+ 1404              	.LASF85:
+ 1405 03c5 62617365 		.ascii	"base\000"
+ 1405      00
+ 1406              	.LASF11:
+ 1407 03ca 73697A65 		.ascii	"sizetype\000"
+ 1407      74797065 
+ 1407      00
+ 1408              	.LASF46:
+ 1409 03d3 494E4A5F 		.ascii	"INJ_CHAN_CONFIG\000"
+ 1409      4348414E 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 29
+
+
+ 1409      5F434F4E 
+ 1409      46494700 
+ 1410              	.LASF94:
+ 1411 03e3 6E657874 		.ascii	"nextItm\000"
+ 1411      49746D00 
+ 1412              	.LASF26:
+ 1413 03eb 4348414E 		.ascii	"CHAN_RESULT\000"
+ 1413      5F524553 
+ 1413      554C5400 
+ 1414              	.LASF104:
+ 1415 03f7 73616D70 		.ascii	"sampleTime23\000"
+ 1415      6C655469 
+ 1415      6D653233 
+ 1415      00
+ 1416              	.LASF114:
+ 1417 0404 636F6E66 		.ascii	"configRouting\000"
+ 1417      6967526F 
+ 1417      7574696E 
+ 1417      6700
+ 1418              	.LASF13:
+ 1419 0412 53414D50 		.ascii	"SAMPLE_CTRL\000"
+ 1419      4C455F43 
+ 1419      54524C00 
+ 1420              	.LASF17:
+ 1421 041e 52414E47 		.ascii	"RANGE_THRES\000"
+ 1421      455F5448 
+ 1421      52455300 
+ 1422              	.LASF73:
+ 1423 042a 43595F53 		.ascii	"CY_SYSPM_SLEEP\000"
+ 1423      5953504D 
+ 1423      5F534C45 
+ 1423      455000
+ 1424              	.LASF81:
+ 1425 0439 43595F53 		.ascii	"CY_SYSPM_BEFORE_TRANSITION\000"
+ 1425      5953504D 
+ 1425      5F424546 
+ 1425      4F52455F 
+ 1425      5452414E 
+ 1426              	.LASF19:
+ 1427 0454 4348414E 		.ascii	"CHAN_EN\000"
+ 1427      5F454E00 
+ 1428              	.LASF16:
+ 1429 045c 53414D50 		.ascii	"SAMPLE_TIME23\000"
+ 1429      4C455F54 
+ 1429      494D4532 
+ 1429      3300
+ 1430              	.LASF51:
+ 1431 046a 4156475F 		.ascii	"AVG_STAT\000"
+ 1431      53544154 
+ 1431      00
+ 1432              	.LASF75:
+ 1433 0473 43595F53 		.ascii	"CY_SYSPM_HIBERNATE\000"
+ 1433      5953504D 
+ 1433      5F484942 
+ 1433      45524E41 
+ 1433      544500
+ 1434              	.LASF37:
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 30
+
+
+ 1435 0486 53415455 		.ascii	"SATURATE_INTR_SET\000"
+ 1435      52415445 
+ 1435      5F494E54 
+ 1435      525F5345 
+ 1435      5400
+ 1436              	.LASF83:
+ 1437 0498 63795F65 		.ascii	"cy_en_syspm_callback_mode_t\000"
+ 1437      6E5F7379 
+ 1437      73706D5F 
+ 1437      63616C6C 
+ 1437      6261636B 
+ 1438              	.LASF35:
+ 1439 04b4 494E5452 		.ascii	"INTR_MASKED\000"
+ 1439      5F4D4153 
+ 1439      4B454400 
+ 1440              	.LASF65:
+ 1441 04c0 666C6F61 		.ascii	"float\000"
+ 1441      7400
+ 1442              	.LASF21:
+ 1443 04c6 52455345 		.ascii	"RESERVED1\000"
+ 1443      52564544 
+ 1443      3100
+ 1444              	.LASF23:
+ 1445 04d0 52455345 		.ascii	"RESERVED2\000"
+ 1445      52564544 
+ 1445      3200
+ 1446              	.LASF25:
+ 1447 04da 52455345 		.ascii	"RESERVED3\000"
+ 1447      52564544 
+ 1447      3300
+ 1448              	.LASF27:
+ 1449 04e4 52455345 		.ascii	"RESERVED4\000"
+ 1449      52564544 
+ 1449      3400
+ 1450              	.LASF45:
+ 1451 04ee 52455345 		.ascii	"RESERVED5\000"
+ 1451      52564544 
+ 1451      3500
+ 1452              	.LASF47:
+ 1453 04f8 52455345 		.ascii	"RESERVED6\000"
+ 1453      52564544 
+ 1453      3600
+ 1454              	.LASF49:
+ 1455 0502 52455345 		.ascii	"RESERVED7\000"
+ 1455      52564544 
+ 1455      3700
+ 1456              	.LASF52:
+ 1457 050c 52455345 		.ascii	"RESERVED8\000"
+ 1457      52564544 
+ 1457      3800
+ 1458              	.LASF55:
+ 1459 0516 52455345 		.ascii	"RESERVED9\000"
+ 1459      52564544 
+ 1459      3900
+ 1460              	.LASF107:
+ 1461 0520 6368616E 		.ascii	"chanEn\000"
+ 1461      456E00
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 31
+
+
+ 1462              	.LASF97:
+ 1463 0527 43595F53 		.ascii	"CY_SAR_RANGE_COND_INSIDE\000"
+ 1463      41525F52 
+ 1463      414E4745 
+ 1463      5F434F4E 
+ 1463      445F494E 
+ 1464              	.LASF116:
+ 1465 0540 5F426F6F 		.ascii	"_Bool\000"
+ 1465      6C00
+ 1466              	.LASF1:
+ 1467 0546 756E7369 		.ascii	"unsigned char\000"
+ 1467      676E6564 
+ 1467      20636861 
+ 1467      7200
+ 1468              	.LASF88:
+ 1469 0554 43795F53 		.ascii	"Cy_SysPmCallback\000"
+ 1469      7973506D 
+ 1469      43616C6C 
+ 1469      6261636B 
+ 1469      00
+ 1470              	.LASF0:
+ 1471 0565 73686F72 		.ascii	"short int\000"
+ 1471      7420696E 
+ 1471      7400
+ 1472              	.LASF112:
+ 1473 056f 6D757853 		.ascii	"muxSwitch\000"
+ 1473      77697463 
+ 1473      6800
+ 1474              	.LASF109:
+ 1475 0579 696E7472 		.ascii	"intrMask\000"
+ 1475      4D61736B 
+ 1475      00
+ 1476              	.LASF14:
+ 1477 0582 52455345 		.ascii	"RESERVED\000"
+ 1477      52564544 
+ 1477      00
+ 1478              	.LASF31:
+ 1479 058b 4348414E 		.ascii	"CHAN_RESULT_NEWVALUE\000"
+ 1479      5F524553 
+ 1479      554C545F 
+ 1479      4E455756 
+ 1479      414C5545 
+ 1480              	.LASF62:
+ 1481 05a0 5341525F 		.ascii	"SAR_Type\000"
+ 1481      54797065 
+ 1481      00
+ 1482              	.LASF10:
+ 1483 05a9 75696E74 		.ascii	"uint32_t\000"
+ 1483      33325F74 
+ 1483      00
+ 1484              	.LASF129:
+ 1485 05b2 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\psoc6-realtime-processing\\B"
+ 1485      73657273 
+ 1485      5C636F64 
+ 1485      79675C67 
+ 1485      69745C70 
+ 1486 05e0 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\\CE218137_BLE_Proximity_RTOS01.cyd"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 32
+
+
+ 1486      54435F49 
+ 1486      4D552E63 
+ 1486      7964736E 
+ 1486      5C434532 
+ 1487 0612 736E00   		.ascii	"sn\000"
+ 1488              	.LASF115:
+ 1489 0615 76726566 		.ascii	"vrefMvValue\000"
+ 1489      4D765661 
+ 1489      6C756500 
+ 1490              	.LASF127:
+ 1491 0621 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1491      43313120 
+ 1491      352E342E 
+ 1491      31203230 
+ 1491      31363036 
+ 1492 0654 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0plus -mthumb -"
+ 1492      20726576 
+ 1492      6973696F 
+ 1492      6E203233 
+ 1492      37373135 
+ 1493 0687 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 1493      67202D66 
+ 1493      66756E63 
+ 1493      74696F6E 
+ 1493      2D736563 
+ 1494              	.LASF63:
+ 1495 06b3 6C6F6E67 		.ascii	"long double\000"
+ 1495      20646F75 
+ 1495      626C6500 
+ 1496              	.LASF64:
+ 1497 06bf 63686172 		.ascii	"char\000"
+ 1497      00
+ 1498              	.LASF84:
+ 1499 06c4 6D6F6465 		.ascii	"mode\000"
+ 1499      00
+ 1500              	.LASF125:
+ 1501 06c9 4144435F 		.ascii	"ADC_allConfigs\000"
+ 1501      616C6C43 
+ 1501      6F6E6669 
+ 1501      677300
+ 1502              	.LASF42:
+ 1503 06d8 52414E47 		.ascii	"RANGE_INTR_MASK\000"
+ 1503      455F494E 
+ 1503      54525F4D 
+ 1503      41534B00 
+ 1504              	.LASF39:
+ 1505 06e8 53415455 		.ascii	"SATURATE_INTR_MASKED\000"
+ 1505      52415445 
+ 1505      5F494E54 
+ 1505      525F4D41 
+ 1505      534B4544 
+ 1506              	.LASF32:
+ 1507 06fd 494E5452 		.ascii	"INTR\000"
+ 1507      00
+ 1508              	.LASF101:
+ 1509 0702 6374726C 		.ascii	"ctrl\000"
+ 1509      00
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 33
+
+
+ 1510              	.LASF50:
+ 1511 0707 53544154 		.ascii	"STATUS\000"
+ 1511      555300
+ 1512              	.LASF121:
+ 1513 070e 6D697363 		.ascii	"miscConfig\000"
+ 1513      436F6E66 
+ 1513      696700
+ 1514              	.LASF24:
+ 1515 0719 4348414E 		.ascii	"CHAN_WORK\000"
+ 1515      5F574F52 
+ 1515      4B00
+ 1516              	.LASF57:
+ 1517 0723 4D55585F 		.ascii	"MUX_SWITCH_SQ_CTRL\000"
+ 1517      53574954 
+ 1517      43485F53 
+ 1517      515F4354 
+ 1517      524C00
+ 1518              	.LASF12:
+ 1519 0736 4354524C 		.ascii	"CTRL\000"
+ 1519      00
+ 1520              	.LASF71:
+ 1521 073b 43595F53 		.ascii	"CY_SYSPM_FAIL\000"
+ 1521      5953504D 
+ 1521      5F464149 
+ 1521      4C00
+ 1522              	.LASF95:
+ 1523 0749 63795F73 		.ascii	"cy_stc_syspm_callback_t\000"
+ 1523      74635F73 
+ 1523      7973706D 
+ 1523      5F63616C 
+ 1523      6C626163 
+ 1524              	.LASF106:
+ 1525 0761 72616E67 		.ascii	"rangeCond\000"
+ 1525      65436F6E 
+ 1525      6400
+ 1526              	.LASF20:
+ 1527 076b 53544152 		.ascii	"START_CTRL\000"
+ 1527      545F4354 
+ 1527      524C00
+ 1528              	.LASF72:
+ 1529 0776 63795F65 		.ascii	"cy_en_syspm_status_t\000"
+ 1529      6E5F7379 
+ 1529      73706D5F 
+ 1529      73746174 
+ 1529      75735F74 
+ 1530              	.LASF102:
+ 1531 078b 73616D70 		.ascii	"sampleCtrl\000"
+ 1531      6C654374 
+ 1531      726C00
+ 1532              	.LASF29:
+ 1533 0796 4348414E 		.ascii	"CHAN_RESULT_UPDATED\000"
+ 1533      5F524553 
+ 1533      554C545F 
+ 1533      55504441 
+ 1533      54454400 
+ 1534              	.LASF67:
+ 1535 07aa 43595F53 		.ascii	"CY_SYSPM_SUCCESS\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cczhlIcX.s 			page 34
+
+
+ 1535      5953504D 
+ 1535      5F535543 
+ 1535      43455353 
+ 1535      00
+ 1536              	.LASF99:
+ 1537 07bb 43595F53 		.ascii	"CY_SAR_RANGE_COND_OUTSIDE\000"
+ 1537      41525F52 
+ 1537      414E4745 
+ 1537      5F434F4E 
+ 1537      445F4F55 
+ 1538              	.LASF79:
+ 1539 07d5 43595F53 		.ascii	"CY_SYSPM_CHECK_READY\000"
+ 1539      5953504D 
+ 1539      5F434845 
+ 1539      434B5F52 
+ 1539      45414459 
+ 1540              	.LASF126:
+ 1541 07ea 4144435F 		.ascii	"ADC_DeepSleepCallbackStruct\000"
+ 1541      44656570 
+ 1541      536C6565 
+ 1541      7043616C 
+ 1541      6C626163 
+ 1542              	.LASF118:
+ 1543 0806 6368616E 		.ascii	"channelBase\000"
+ 1543      6E656C42 
+ 1543      61736500 
+ 1544              	.LASF41:
+ 1545 0812 52414E47 		.ascii	"RANGE_INTR_SET\000"
+ 1545      455F494E 
+ 1545      54525F53 
+ 1545      455400
+ 1546              	.LASF113:
+ 1547 0821 6D757853 		.ascii	"muxSwitchSqCtrl\000"
+ 1547      77697463 
+ 1547      68537143 
+ 1547      74726C00 
+ 1548              	.LASF76:
+ 1549 0831 43595F53 		.ascii	"CY_SYSPM_ENTER_LOWPOWER_MODE\000"
+ 1549      5953504D 
+ 1549      5F454E54 
+ 1549      45525F4C 
+ 1549      4F57504F 
+ 1550              	.LASF43:
+ 1551 084e 52414E47 		.ascii	"RANGE_INTR_MASKED\000"
+ 1551      455F494E 
+ 1551      54525F4D 
+ 1551      41534B45 
+ 1551      4400
+ 1552              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
