@@ -45,30 +45,30 @@
 ********************************************************************************/
 
 /* Include guard */
-#ifndef TEMPERATURE_TASK2_H
-#define TEMPERATURE_TASK2_H
+#ifndef NAMESPACE_IMU_TASK
+#define NAMESPACE_IMU_TASK
 
 /* Header file includes */ 
 #include "project.h"
 #include "FreeRTOS.h"     
 #include "queue.h"    
 
-/* Data-type that's used to send commands to imu task */    
+/* Data-type that's used to send commands to temperature task */    
 typedef enum
 {
-    SEND_TEMPERATURE, 
-    SEND_NONE,
-    HANDLE_ADC_INTERRUPT,
-    TEMPERATURE_TIMER_EXPIRED
+    SEND_IMU_START, 
+    SEND_IMU_STOP,
+    HANDLE_IMU_INTERRUPT,
+    IMU_TIMER_EXPIRED
 }   imu_command_t;    
 
-/* Handles for the Queues that contain imu command and data */ 
+/* Handles for the Queues that contain temperature command and data */ 
 extern QueueHandle_t imuCommandQ;
 extern QueueHandle_t imuDataQ;
 
-/* Task_IMU reads imu from a thermistor circuit and sends it 
+/* Task_IMU reads temperature from a thermistor circuit and sends it 
    to Task_Ble */    
-void Task_Temperature2(void *pvParameters);    
+void Task_IMU(void *pvParameters);    
 
-#endif /* TEMPERATURE_TASK_H */
+#endif
 /* [] END OF FILE */

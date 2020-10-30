@@ -61,6 +61,7 @@ typedef enum
     PROCESS_BLE_EVENTS,
     HANDLE_GPIO_INTERRUPT,
     SEND_TEMPERATURE_INDICATION,
+    SEND_IMU_INDICATION,
 }   ble_commands_list_t;
 
 /* Data-type of BLE commands and data */
