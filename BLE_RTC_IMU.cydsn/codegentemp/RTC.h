@@ -48,10 +48,10 @@
 /* Initial Time and Date definitions */
 #define RTC_INITIAL_DATE_SEC          (0u)
 #define RTC_INITIAL_DATE_MIN          (0u)
-#define RTC_INITIAL_DATE_HOUR         (15u)
+#define RTC_INITIAL_DATE_HOUR         (22u)
 #define RTC_INITIAL_DATE_HOUR_FORMAT  (CY_RTC_24_HOURS)
 #define RTC_INITIAL_DATE_DOW          (5u)
-#define RTC_INITIAL_DATE_DOM          (15u)
+#define RTC_INITIAL_DATE_DOM          (29u)
 #define RTC_INITIAL_DATE_MONTH        (10u)
 #define RTC_INITIAL_DATE_YEAR         (20u)
 

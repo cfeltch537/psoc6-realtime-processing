@@ -1,6 +1,6 @@
 -- ======================================================================
 -- BLE_RTC_IMU.ctl generated from BLE_RTC_IMU
--- 10/15/2020 at 15:56
+-- 10/29/2020 at 22:16
 -- This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 -- ======================================================================
 
