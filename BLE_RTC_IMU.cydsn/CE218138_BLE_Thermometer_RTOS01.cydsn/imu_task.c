@@ -46,7 +46,7 @@
 
 /* Header file includes */
 #include <math.h>
-#include "motion_task.h"
+#include "imu_task.h"
 #include "uart_debug.h"
 #include "ble_task.h"
 #include "task.h" 

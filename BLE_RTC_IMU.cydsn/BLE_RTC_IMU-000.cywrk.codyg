@@ -18,7 +18,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\ble_task.h">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\imu_task.c">
 <ExpandedNodeIds>
 <v>BLE_RTC_IMU-000</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU</v>
@@ -152,10 +152,10 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\ble_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\display_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\FreeRTOSConfig.h</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\imu_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\rtc_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\status_led_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\temperature_task.h</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\temperature_task02.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\uart_debug.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\ble_thermometer_config.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\screen_contents.h</v>
@@ -169,10 +169,10 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\ble_task.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\display_task.c</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\imu_task.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\rtc_task.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\status_led_task.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\temperature_task.c</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\temperature_task02.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\uart_debug.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\main_cm4.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\screen_contents.c</v>
@@ -190,9 +190,6 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\TopDesign</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CE218138_BLE_Thermometer_RTOS01.cydwr</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CE218138_BLE_Thermometer_RTOS01.cydwr\Pins</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CE218138_BLE_Thermometer_RTOS01.cydwr\Analog</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CE218138_BLE_Thermometer_RTOS01.cydwr\DMA</v>
@@ -214,10 +211,10 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\ble_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\display_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\FreeRTOSConfig.h</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\imu_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\rtc_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\status_led_task.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\temperature_task.h</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\temperature_task02.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\uart_debug.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\ble_thermometer_config.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Header Files\screen_contents.h</v>
@@ -231,10 +228,10 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\ble_task.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\display_task.c</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\imu_task.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\rtc_task.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\status_led_task.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\temperature_task.c</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\temperature_task02.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\uart_debug.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\main_cm4.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\screen_contents.c</v>
@@ -242,6 +239,9 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\cy_ble_config.h</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\cy_ipc_config.c</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\cy_ipc_config.h</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\cyapicallbacks.h</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\stdio_user.c</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -581,6 +581,7 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\display_task.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\event_groups.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\heap_4.lst</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\imu_task.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\list.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\main_cm4.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\pervasive_eink_hardware_driver.lst</v>
@@ -596,7 +597,6 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\system_psoc63_cm4.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\tasks.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\temperature_task.lst</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\temperature_task02.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\Timer_IMU.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\Timer_PPG.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\timers.lst</v>
