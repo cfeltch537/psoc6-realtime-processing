@@ -2,7 +2,7 @@
 --	Conversion of CE218138_BLE_Thermometer_RTOS01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Oct 23 12:28:53 2020
+--	Thu Oct 29 21:50:02 2020
 --
 
 USE cypress.cypress.all;
@@ -442,6 +442,39 @@ TERMINAL tmpSIOVREF__THER_GND_net_0 : bit;
 SIGNAL tmpFB_0__THER_OUT_2_net_0 : bit;
 SIGNAL tmpIO_0__THER_OUT_2_net_0 : bit;
 TERMINAL tmpSIOVREF__THER_OUT_2_net_0 : bit;
+SIGNAL \DEBUG_UART:Net_847\ : bit;
+SIGNAL \DEBUG_UART:clock_wire\ : bit;
+SIGNAL \DEBUG_UART:Net_22\ : bit;
+SIGNAL \DEBUG_UART:Net_23\ : bit;
+SIGNAL \DEBUG_UART:tx_wire\ : bit;
+SIGNAL \DEBUG_UART:tmpFB_0__tx_net_0\ : bit;
+SIGNAL \DEBUG_UART:tmpIO_0__tx_net_0\ : bit;
+TERMINAL \DEBUG_UART:tmpSIOVREF__tx_net_0\ : bit;
+SIGNAL \DEBUG_UART:Net_1172\ : bit;
+SIGNAL \DEBUG_UART:tmpIO_0__rx_net_0\ : bit;
+TERMINAL \DEBUG_UART:tmpSIOVREF__rx_net_0\ : bit;
+SIGNAL \DEBUG_UART:rx_wire\ : bit;
+SIGNAL \DEBUG_UART:cts_wire\ : bit;
+SIGNAL \DEBUG_UART:intr_wire\ : bit;
+SIGNAL \DEBUG_UART:rts_wire\ : bit;
+SIGNAL \DEBUG_UART:tx_en_wire\ : bit;
+SIGNAL \DEBUG_UART:Net_145\ : bit;
+SIGNAL \DEBUG_UART:Net_146\ : bit;
+SIGNAL \DEBUG_UART:Net_154\ : bit;
+SIGNAL \DEBUG_UART:Net_155_3\ : bit;
+SIGNAL \DEBUG_UART:Net_155_2\ : bit;
+SIGNAL \DEBUG_UART:Net_155_1\ : bit;
+SIGNAL \DEBUG_UART:Net_155_0\ : bit;
+SIGNAL \DEBUG_UART:Net_156\ : bit;
+SIGNAL \DEBUG_UART:Net_157\ : bit;
+SIGNAL Net_2681 : bit;
+SIGNAL Net_2680 : bit;
+SIGNAL \DEBUG_UART:Net_161\ : bit;
+SIGNAL Net_2676 : bit;
+SIGNAL Net_2677 : bit;
+SIGNAL Net_2678 : bit;
+SIGNAL Net_2683 : bit;
+SIGNAL Net_2684 : bit;
 SIGNAL Net_54 : bit;
 SIGNAL tmpFB_0__Pin_Advertise_net_0 : bit;
 SIGNAL tmpIO_0__Pin_Advertise_net_0 : bit;
@@ -2144,6 +2177,110 @@ THER_OUT_2:cy_mxs40_gpio_v1_0
 		io=>(tmpIO_0__THER_OUT_2_net_0),
 		annotation=>Net_398,
 		siovref=>(tmpSIOVREF__THER_OUT_2_net_0));
+\DEBUG_UART:SCBCLK\:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"9355880a-b929-4a30-9bef-01e8b834368b/b68e5b9d-7828-482d-a282-930f990e3b3e",
+		source_clock_id=>"",
+		divisor=>0,
+		period=>"1085069444.44444",
+		is_direct=>'0',
+		is_digital=>'0')
+	PORT MAP(clock_out=>\DEBUG_UART:Net_847\,
+		dig_domain_out=>open);
+\DEBUG_UART:tx\:cy_mxs40_gpio_v1_0
+	GENERIC MAP(cy_registers=>"",
+		width=>1,
+		sio_grp_cnt=>0,
+		id=>"9355880a-b929-4a30-9bef-01e8b834368b/65f3af6c-759b-4ccb-8c66-5c95ba1f5f4f",
+		drive_mode=>"6",
+		ibuf_enabled=>"0",
+		init_dr_st=>"1",
+		input_sync=>"0",
+		intr_mode=>"0",
+		io_voltage=>"",
+		output_conn=>"1",
+		oe_conn=>"0",
+		output_sync=>"0",
+		oe_sync=>"0",
+		drive_strength=>"0",
+		max_frequency=>"100",
+		output_current_cap=>"8",
+		i2c_mode=>"0",
+		pin_aliases=>"",
+		pin_mode=>"O",
+		slew_rate=>"0",
+		vtrip=>"0",
+		use_annotation=>"0",
+		hotswap_needed=>"0")
+	PORT MAP(oe=>(one),
+		y=>\DEBUG_UART:tx_wire\,
+		fb=>(\DEBUG_UART:tmpFB_0__tx_net_0\),
+		analog=>(open),
+		io=>(\DEBUG_UART:tmpIO_0__tx_net_0\),
+		annotation=>(open),
+		siovref=>(\DEBUG_UART:tmpSIOVREF__tx_net_0\));
+\DEBUG_UART:rx\:cy_mxs40_gpio_v1_0
+	GENERIC MAP(cy_registers=>"",
+		width=>1,
+		sio_grp_cnt=>0,
+		id=>"9355880a-b929-4a30-9bef-01e8b834368b/b7e8018e-1ef7-49c0-b5a5-61641a03e31c",
+		drive_mode=>"0",
+		ibuf_enabled=>"1",
+		init_dr_st=>"1",
+		input_sync=>"0",
+		intr_mode=>"0",
+		io_voltage=>"",
+		output_conn=>"0",
+		oe_conn=>"0",
+		output_sync=>"0",
+		oe_sync=>"0",
+		drive_strength=>"0",
+		max_frequency=>"100",
+		output_current_cap=>"8",
+		i2c_mode=>"0",
+		pin_aliases=>"",
+		pin_mode=>"I",
+		slew_rate=>"0",
+		vtrip=>"0",
+		use_annotation=>"0",
+		hotswap_needed=>"0")
+	PORT MAP(oe=>(one),
+		y=>(zero),
+		fb=>\DEBUG_UART:Net_1172\,
+		analog=>(open),
+		io=>(\DEBUG_UART:tmpIO_0__rx_net_0\),
+		annotation=>(open),
+		siovref=>(\DEBUG_UART:tmpSIOVREF__rx_net_0\));
+\DEBUG_UART:SCB_IRQ\:cy_mxs40_isr_v1_0
+	GENERIC MAP(cy_registers=>"",
+		deepsleep_required=>'0',
+		int_type=>"10")
+	PORT MAP(int_signal=>\DEBUG_UART:intr_wire\);
+\DEBUG_UART:SCB\:cy_mxs40_scb_v1_10
+	GENERIC MAP(cy_registers=>"",
+		requires_io_preconfigure=>'0',
+		mode=>2,
+		master=>'0')
+	PORT MAP(clock=>\DEBUG_UART:Net_847\,
+		uart_rx=>\DEBUG_UART:Net_1172\,
+		uart_tx=>\DEBUG_UART:tx_wire\,
+		uart_rts=>\DEBUG_UART:rts_wire\,
+		uart_cts=>zero,
+		uart_tx_en=>\DEBUG_UART:tx_en_wire\,
+		i2c_scl=>\DEBUG_UART:Net_145\,
+		i2c_sda=>\DEBUG_UART:Net_146\,
+		spi_clk_m=>\DEBUG_UART:Net_154\,
+		spi_clk_s=>zero,
+		spi_select_m=>(\DEBUG_UART:Net_155_3\, \DEBUG_UART:Net_155_2\, \DEBUG_UART:Net_155_1\, \DEBUG_UART:Net_155_0\),
+		spi_select_s=>zero,
+		spi_mosi_m=>\DEBUG_UART:Net_156\,
+		spi_miso_m=>zero,
+		spi_mosi_s=>zero,
+		spi_miso_s=>\DEBUG_UART:Net_157\,
+		interrupt=>\DEBUG_UART:intr_wire\,
+		tr_tx_req=>Net_2681,
+		tr_rx_req=>Net_2680,
+		tr_i2c_scl_filtered=>\DEBUG_UART:Net_161\);
 GlobalSignal:cy_gsref_v1_0
 	GENERIC MAP(guid=>"8C3B410E-0600-5ECF-95DD-0AF91BF8D8A7")
 	PORT MAP(sig_out=>Net_54);

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
   28:system_psoc63_cm0plus.c **** #endif /* defined(CY_DEVICE_PSOC6ABLE2) */
   29:system_psoc63_cm0plus.c **** 
   30:system_psoc63_cm0plus.c **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 2
 
 
   31:system_psoc63_cm0plus.c **** /*******************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
   85:system_psoc63_cm0plus.c **** 
   86:system_psoc63_cm0plus.c **** /** Holds the Alternate high frequency clock in Hz. Updated by \ref SystemCoreClockUpdate(). */
   87:system_psoc63_cm0plus.c **** #if defined (CY_IP_MXBLESS) && (CY_IP_MXBLESS == 1UL)
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 3
 
 
   88:system_psoc63_cm0plus.c ****     uint32_t cy_BleEcoClockFreqHz = CY_CLK_ALTHF_FREQ_HZ;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  142:system_psoc63_cm0plus.c **** #endif /* (SRSS_PILO_PRESENT == 1U) */
  143:system_psoc63_cm0plus.c **** 
  144:system_psoc63_cm0plus.c **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 4
 
 
  145:system_psoc63_cm0plus.c **** /*******************************************************************************
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  199:system_psoc63_cm0plus.c ****             IPC_STRUCT7->DATA = 0UL;
  200:system_psoc63_cm0plus.c ****             /* Release IPC structure #7 to avoid deadlocks in case of SW or WDT reset during Deep-S
  201:system_psoc63_cm0plus.c ****             IPC_STRUCT7->RELEASE = 0UL;
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 5
 
 
  202:system_psoc63_cm0plus.c ****         }
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  236:system_psoc63_cm0plus.c **** *
  237:system_psoc63_cm0plus.c **** * Updates global variables used by the \ref Cy_SysLib_Delay(), \ref
  238:system_psoc63_cm0plus.c **** * Cy_SysLib_DelayUs(), and \ref Cy_SysLib_DelayCycles().
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 6
 
 
  239:system_psoc63_cm0plus.c **** *
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  260:system_psoc63_cm0plus.c ****         srcFreqHz = CY_CLK_IMO_FREQ_HZ;
   81              		.loc 1 260 0
   82 0026 5A48     		ldr	r0, .L23+4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 7
 
 
   83 0028 14E0     		b	.L3
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  111 0046 FA20     		movs	r0, #250
  112 0048 C001     		lsls	r0, r0, #7
  113 004a 03E0     		b	.L3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 8
 
 
  114              	.LVL7:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  133              		.loc 1 320 0
  134 0058 4C4B     		ldr	r3, .L23
  135              	.LVL10:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 9
 
 
  136 005a B222     		movs	r2, #178
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  184              	.LBB7:
  325:system_psoc63_cm0plus.c ****         {
  326:system_psoc63_cm0plus.c ****             uint32_t fllMult;
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 10
 
 
  327:system_psoc63_cm0plus.c ****             uint32_t refDiv;
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  223 00c6 012B     		cmp	r3, #1
  224 00c8 33D1     		bne	.L12
  225              	.LBB8:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 11
 
 
  342:system_psoc63_cm0plus.c ****     {
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  271 0106 01D1     		bne	.L15
  272              	.L14:
  273              		.loc 1 348 0 discriminator 3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 12
 
 
  274 0108 032A     		cmp	r2, #3
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  366:system_psoc63_cm0plus.c ****     else
  367:system_psoc63_cm0plus.c ****     {
  368:system_psoc63_cm0plus.c ****         /* Direct */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 13
 
 
  369:system_psoc63_cm0plus.c ****         pathFreqHz = srcFreqHz;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  348              		.loc 1 385 0
  349 0166 E060     		str	r0, [r4, #12]
  386:system_psoc63_cm0plus.c **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 14
 
 
  387:system_psoc63_cm0plus.c ****     /* Sets clock frequency for Delay API */
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  164:system_psoc63_cm0plus.c ****     /* Restore FLL registers to the default state as they are not restored by the ROM code */
  398              		.loc 1 164 0
  399              		.cfi_startproc
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 15
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 15
 
 
  400              		@ args = 0, pretend = 0, frame = 0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  177:system_psoc63_cm0plus.c **** 
  445              		.loc 1 177 0
  446 0030 FF21     		movs	r1, #255
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 16
 
 
  447 0032 1A4A     		ldr	r2, .L29+12
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
    7:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** ********************************************************************************
    8:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** * \copyright
    9:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** * Copyright 2016-2018, Cypress Semiconductor Corporation. All rights reserved.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 17
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 17
 
 
   10:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** * You may use this file only in accordance with the license, terms, conditions,
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
   64:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *   </tr>
   65:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *   <tr>
   66:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *     <td>CY_ASSERT_CLASS_2</td>
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 18
 
 
   67:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *     <td>CY_ASSERT_L2</td>
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  121:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *   </tr>
  122:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** * </table>
  123:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 19
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 19
 
 
  124:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** * \section group_syslib_changelog Changelog
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  178:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** #endif /* defined(__cplusplus) */
  179:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** 
  180:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** #if defined( __ICCARM__ )
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 20
 
 
  181:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****     /* Suppress the warning for multiple volatile variables in an expression. */
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  235:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****     CY_SYSLIB_SUCCESS       = 0x00UL,    /**< The success status code */
  236:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****     CY_SYSLIB_BAD_PARAM     = CY_SYSLIB_ID | CY_PDL_STATUS_ERROR | 0x01UL,    /**< The bad paramete
  237:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****     CY_SYSLIB_TIMEOUT       = CY_SYSLIB_ID | CY_PDL_STATUS_ERROR | 0x02UL,    /**< The time out sta
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 21
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 21
 
 
  238:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****     CY_SYSLIB_INVALID_STATE = CY_SYSLIB_ID | CY_PDL_STATUS_ERROR | 0x03UL,    /**< The invalid stat
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  292:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****         /** System Handler Control and State Register - SHCSR */
  293:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****         typedef struct
  294:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****         {
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 22
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 22
 
 
  295:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****             uint32_t memFaultAct    :  1;   /**< SHCSR - The MemManage exception active bit, reads 
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  349:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****                 uint32_t s2;       /**< FPU S2 register content */
  350:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****                 uint32_t s3;       /**< FPU S3 register content */
  351:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****                 uint32_t s4;       /**< FPU S4 register content */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 23
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 23
 
 
  352:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****                 uint32_t s5;       /**< FPU S5 register content */
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  406:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****                                 CY_SWAP_ENDIAN32((uint32_t)((x) >> 32U))))
  407:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** 
  408:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 24
 
 
  409:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** /*******************************************************************************
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  463:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** #if (CY_ARM_FAULT_DEBUG == CY_ARM_FAULT_DEBUG_ENABLED)
  464:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****     #define CY_R0_Pos             (0U)     /**< The position of the R0  content in a fault structur
  465:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****     #define CY_R1_Pos             (1U)     /**< The position of the R1  content in a fault structur
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 25
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 25
 
 
  466:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****     #define CY_R2_Pos             (2U)     /**< The position of the R2  content in a fault structur
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  520:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *
  521:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** * \param addr  The register address.
  522:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 26
 
 
  523:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** * \param value The value to write.
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  577:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** * Writes the 24-bit value to the specified address.
  578:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *
  579:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** * \param addr  The register address.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 27
 
 
  580:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** *
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  634:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** 
  635:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** /** Class 2 - Functions that have fixed limits such as counter periods (16-bits/32-bits etc.) */
  636:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** #define CY_ASSERT_CLASS_2           (2U)
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 28
 
 
  637:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** 
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  691:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** #endif  /* !defined(NDEBUG) */
  692:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** 
  693:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 29
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 29
 
 
  694:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** /*******************************************************************************
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  748:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** #define CY_SYSLIB_RESET_SWWDT0          (0x0020U)
  749:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** /** The Multi-Counter Watchdog timer #1 reset has occurred since the last power cycle. */
  750:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** #define CY_SYSLIB_RESET_SWWDT1          (0x0040U)
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 30
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 30
 
 
  751:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** /** The Multi-Counter Watchdog timer #2 reset has occurred since the last power cycle. */
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  805:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****  *  \param cycles  The number of cycles to delay.
  806:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h ****  */
  807:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** void Cy_SysLib_DelayCycles(uint32_t cycles);
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 31
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 31
 
 
  808:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** __NO_RETURN void Cy_SysLib_Halt(uint32_t reason);
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  862:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** 
  863:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** /** \cond INTERNAL */
  864:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** #define CY_SYSLIB_DEVICE_REV_0A       (0x21U)  /**< The device TO *A Revision ID */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 32
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 32
 
 
  865:Generated_Source\PSoC6\pdl\drivers/peripheral/syslib/cy_syslib.h **** #define CY_SYSLIB_DEVICE_PSOC6ABLE2   (0x100U) /**< The PSoC6 BLE2 device Family ID */
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  522 009c 8C050000 		.word	1420
  523 00a0 E0002340 		.word	1076035808
  524              		.cfi_endproc
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 33
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 33
 
 
  525              	.LFE55:
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  558              		.align	2
  559              		.global	Cy_SysDisableCM4
  560              		.code	16
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 34
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 34
 
 
  561              		.thumb_func
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  464:system_psoc63_cm0plus.c **** * \warning Do not call the function while the Cortex-M4 is executing because
  465:system_psoc63_cm0plus.c **** * such a call may corrupt/abort a pending bus-transaction by the CPU and cause
  466:system_psoc63_cm0plus.c **** * unexpected behavior in the system including a deadlock. Call the function
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 35
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 35
 
 
  467:system_psoc63_cm0plus.c **** * while the Cortex-M4 core is in the Sleep or Deep Sleep low-power mode. Use
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  489:system_psoc63_cm0plus.c **** 
  490:system_psoc63_cm0plus.c ****     Cy_RestoreIRQ(interruptState);
  597              		.loc 1 490 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 36
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 36
 
 
  598 0020 FFF7FEFF 		bl	Cy_RestoreIRQ
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  515:system_psoc63_cm0plus.c **** 
  516:system_psoc63_cm0plus.c ****     interruptState = Cy_SaveIRQ();
  628              		.loc 1 516 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 37
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 37
 
 
  629 0002 FFF7FEFF 		bl	Cy_SaveIRQ
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  533:system_psoc63_cm0plus.c **** * \note The reset mode can not be entered from the retained mode.
  534:system_psoc63_cm0plus.c **** *
  535:system_psoc63_cm0plus.c **** * \warning Do not call the function while the Cortex-M4 is executing because
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 38
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 38
 
 
  536:system_psoc63_cm0plus.c **** * such a call may corrupt/abort a pending bus-transaction by the CPU and cause
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  558:system_psoc63_cm0plus.c ****     }
  559:system_psoc63_cm0plus.c **** 
  560:system_psoc63_cm0plus.c ****     Cy_RestoreIRQ(interruptState);
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 39
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 39
 
 
  699              		.loc 1 560 0
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  747              	.LVL77:
  748              	.L46:
  442:system_psoc63_cm0plus.c **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 40
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 40
 
 
  749              		.loc 1 442 0
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  797              		.global	cy_PeriClkFreqHz
  798              		.global	cy_Hfclk0FreqHz
  799              		.global	SystemCoreClock
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 41
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 41
 
 
  800              		.data
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  854 000c 88040000 		.4byte	.LASF293
  855 0010 0C       		.byte	0xc
  856 0011 800E0000 		.4byte	.LASF294
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 42
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 42
 
 
  857 0015 2C0A0000 		.4byte	.LASF295
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  911 0081 696E7400 		.ascii	"int\000"
  912 0085 02       		.uleb128 0x2
  913 0086 04       		.byte	0x4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 43
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 43
 
 
  914 0087 07       		.byte	0x7
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  968 00f7 08       		.uleb128 0x8
  969 00f8 CF050000 		.4byte	.LASF20
  970 00fc 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 44
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 44
 
 
  971 00fd 26       		.byte	0x26
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1025 0170 2F       		.byte	0x2f
  1026 0171 31060000 		.4byte	0x631
  1027 0175 0906     		.2byte	0x609
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 45
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 45
 
 
  1028 0177 09       		.uleb128 0x9
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1082 01ec 09       		.uleb128 0x9
  1083 01ed A60C0000 		.4byte	.LASF39
  1084 01f1 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 46
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 46
 
 
  1085 01f2 39       		.byte	0x39
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1139 0267 42       		.byte	0x42
  1140 0268 65070000 		.4byte	0x765
  1141 026c 1815     		.2byte	0x1518
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 47
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 47
 
 
  1142 026e 09       		.uleb128 0x9
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1196 02e3 09       		.uleb128 0x9
  1197 02e4 B9030000 		.4byte	.LASF58
  1198 02e8 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 48
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 48
 
 
  1199 02e9 4C       		.byte	0x4c
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1253 035e 55       		.byte	0x55
  1254 035f B4000000 		.4byte	0xb4
  1255 0363 0420     		.2byte	0x2004
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 49
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 49
 
 
  1256 0365 09       		.uleb128 0x9
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1310 03da 09       		.uleb128 0x9
  1311 03db E90F0000 		.4byte	.LASF77
  1312 03df 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 50
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 50
 
 
  1313 03e0 5F       		.byte	0x5f
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1367 0455 6A       		.byte	0x6a
  1368 0456 55080000 		.4byte	0x855
  1369 045a 2078     		.2byte	0x7820
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 51
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 51
 
 
  1370 045c 09       		.uleb128 0x9
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1424 04d1 09       		.uleb128 0x9
  1425 04d2 8A060000 		.4byte	.LASF96
  1426 04d6 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 52
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 52
 
 
  1427 04d7 77       		.byte	0x77
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1481 054c 85       		.byte	0x85
  1482 054d B4000000 		.4byte	0xb4
  1483 0551 207C     		.2byte	0x7c20
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 53
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 53
 
 
  1484 0553 09       		.uleb128 0x9
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1538 05c8 09       		.uleb128 0x9
  1539 05c9 9C100000 		.4byte	.LASF115
  1540 05cd 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 54
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 54
 
 
  1541 05ce 94       		.byte	0x94
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1595 0645 50060000 		.4byte	0x650
  1596 0649 0B       		.uleb128 0xb
  1597 064a AD000000 		.4byte	0xad
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 55
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 55
 
 
  1598 064e 01       		.byte	0x1
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1652 06cd AD000000 		.4byte	0xad
  1653 06d1 33       		.byte	0x33
  1654 06d2 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 56
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 56
 
 
  1655 06d3 05       		.uleb128 0x5
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1709 0755 60070000 		.4byte	0x760
  1710 0759 0B       		.uleb128 0xb
  1711 075a AD000000 		.4byte	0xad
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 57
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 57
 
 
  1712 075e 0F       		.byte	0xf
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1766 07de 0A       		.uleb128 0xa
  1767 07df B9000000 		.4byte	0xb9
  1768 07e3 EF070000 		.4byte	0x7ef
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 58
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 58
 
 
  1769 07e7 0C       		.uleb128 0xc
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1823 0869 00       		.byte	0
  1824 086a 05       		.uleb128 0x5
  1825 086b 5A080000 		.4byte	0x85a
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 59
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 59
 
 
  1826 086f 06       		.uleb128 0x6
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1880 08e5 06       		.byte	0x6
  1881 08e6 25       		.byte	0x25
  1882 08e7 B9000000 		.4byte	0xb9
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 60
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 60
 
 
  1883 08eb 0C       		.byte	0xc
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1937 0957 38       		.byte	0x38
  1938 0958 08       		.uleb128 0x8
  1939 0959 F40E0000 		.4byte	.LASF134
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 61
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 61
 
 
  1940 095d 06       		.byte	0x6
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  1994 09c9 06       		.byte	0x6
  1995 09ca 38       		.byte	0x38
  1996 09cb 460C0000 		.4byte	0xc46
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 62
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 62
 
 
  1997 09cf A4       		.byte	0xa4
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2051 0a43 A401     		.2byte	0x1a4
  2052 0a45 09       		.uleb128 0x9
  2053 0a46 81090000 		.4byte	.LASF145
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 63
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 63
 
 
  2054 0a4a 06       		.byte	0x6
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2108 0abf 06       		.byte	0x6
  2109 0ac0 4B       		.byte	0x4b
  2110 0ac1 B9000000 		.4byte	0xb9
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 64
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 64
 
 
  2111 0ac5 0802     		.2byte	0x208
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2165 0b3a B402     		.2byte	0x2b4
  2166 0b3c 09       		.uleb128 0x9
  2167 0b3d EB010000 		.4byte	.LASF156
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 65
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 65
 
 
  2168 0b41 06       		.byte	0x6
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2222 0bb6 06       		.byte	0x6
  2223 0bb7 5E       		.byte	0x5e
  2224 0bb8 6F0D0000 		.4byte	0xd6f
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 66
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 66
 
 
  2225 0bbc 2405     		.2byte	0x524
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2279 0c36 410C0000 		.4byte	0xc41
  2280 0c3a 0B       		.uleb128 0xb
  2281 0c3b AD000000 		.4byte	0xad
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 67
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 67
 
 
  2282 0c3f 16       		.byte	0x16
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2336 0cc0 0A       		.uleb128 0xa
  2337 0cc1 B9000000 		.4byte	0xb9
  2338 0cc5 D00C0000 		.4byte	0xcd0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 68
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 68
 
 
  2339 0cc9 0B       		.uleb128 0xb
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2393 0d47 360D0000 		.4byte	0xd36
  2394 0d4b 06       		.uleb128 0x6
  2395 0d4c 460D0000 		.4byte	0xd46
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 69
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 69
 
 
  2396 0d50 05       		.uleb128 0x5
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2450 0dc6 08       		.uleb128 0x8
  2451 0dc7 79030000 		.4byte	.LASF174
  2452 0dcb 07       		.byte	0x7
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 70
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 70
 
 
  2453 0dcc 27       		.byte	0x27
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2507 0e38 08       		.uleb128 0x8
  2508 0e39 08000000 		.4byte	.LASF16
  2509 0e3d 07       		.byte	0x7
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 71
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 71
 
 
  2510 0e3e 34       		.byte	0x34
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2564 0eb1 AB0E0000 		.4byte	0xeab
  2565 0eb5 0A       		.uleb128 0xa
  2566 0eb6 4F0E0000 		.4byte	0xe4f
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 72
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 72
 
 
  2567 0eba C50E0000 		.4byte	0xec5
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2621 0f29 08       		.byte	0x8
  2622 0f2a 28       		.byte	0x28
  2623 0f2b B4000000 		.4byte	0xb4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 73
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 73
 
 
  2624 0f2f 14       		.byte	0x14
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2678 0f9c 08       		.byte	0x8
  2679 0f9d 35       		.byte	0x35
  2680 0f9e B4000000 		.4byte	0xb4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 74
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 74
 
 
  2681 0fa2 00       		.byte	0
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2735 100e C0       		.byte	0xc0
  2736 100f 09       		.uleb128 0x9
  2737 1010 1B0F0000 		.4byte	.LASF203
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 75
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 75
 
 
  2738 1014 08       		.byte	0x8
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2792 1089 08       		.byte	0x8
  2793 108a 48       		.byte	0x48
  2794 108b B4000000 		.4byte	0xb4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 76
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 76
 
 
  2795 108f 0005     		.2byte	0x500
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2849 1104 2405     		.2byte	0x524
  2850 1106 09       		.uleb128 0x9
  2851 1107 B6090000 		.4byte	.LASF218
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 77
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 77
 
 
  2852 110b 08       		.byte	0x8
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2906 1180 08       		.byte	0x8
  2907 1181 5B       		.byte	0x5b
  2908 1182 B4000000 		.4byte	0xb4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 78
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 78
 
 
  2909 1186 9005     		.2byte	0x590
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  2963 11fb 0C07     		.2byte	0x70c
  2964 11fd 09       		.uleb128 0x9
  2965 11fe 79070000 		.4byte	.LASF232
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 79
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 79
 
 
  2966 1202 08       		.byte	0x8
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3020 1277 08       		.byte	0x8
  3021 1278 6E       		.byte	0x6e
  3022 1279 0E140000 		.4byte	0x140e
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 80
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 80
 
 
  3023 127d 107F     		.2byte	0x7f10
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3077 12f2 28FF     		.2byte	0xff28
  3078 12f4 09       		.uleb128 0x9
  3079 12f5 C7070000 		.4byte	.LASF245
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 81
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 81
 
 
  3080 12f9 08       		.byte	0x8
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3134 1378 05       		.uleb128 0x5
  3135 1379 40060000 		.4byte	0x640
  3136 137d 06       		.uleb128 0x6
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 82
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 82
 
 
  3137 137e 78130000 		.4byte	0x1378
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3191 1400 EE130000 		.4byte	0x13ee
  3192 1404 06       		.uleb128 0x6
  3193 1405 FF130000 		.4byte	0x13ff
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 83
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 83
 
 
  3194 1409 05       		.uleb128 0x5
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3248 147a 00000000 		.4byte	.LFB57
  3249 147e B0010000 		.4byte	.LFE57-.LFB57
  3250 1482 01       		.uleb128 0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 84
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 84
 
 
  3251 1483 9C       		.byte	0x9c
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3305 150e 01       		.byte	0x1
  3306 150f 4001     		.2byte	0x140
  3307 1511 E9150000 		.4byte	0x15e9
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 85
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 85
 
 
  3308 1515 F3000000 		.4byte	.LLST7
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3362 15a3 5A01     		.2byte	0x15a
  3363 15a5 E9150000 		.4byte	0x15e9
  3364 15a9 9B010000 		.4byte	.LLST15
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 86
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 86
 
 
  3365 15ad 15       		.uleb128 0x15
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3419 1631 73140000 		.4byte	0x1473
  3420 1635 18       		.uleb128 0x18
  3421 1636 64000000 		.4byte	.LVL55
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 87
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 87
 
 
  3422 163a 5F180000 		.4byte	0x185f
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3476 16c3 1B       		.uleb128 0x1b
  3477 16c4 4A060000 		.4byte	.LASF276
  3478 16c8 01       		.byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 88
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 88
 
 
  3479 16c9 FF01     		.2byte	0x1ff
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3533 1756 050C0000 		.4byte	.LASF278
  3534 175a 01       		.byte	0x1
  3535 175b AC01     		.2byte	0x1ac
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 89
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 89
 
 
  3536 175d 00000000 		.4byte	.LFB59
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3590 17e2 05       		.uleb128 0x5
  3591 17e3 03       		.byte	0x3
  3592 17e4 00000000 		.4byte	cy_delayFreqHz
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 90
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 90
 
 
  3593 17e8 1F       		.uleb128 0x1f
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3647 185a 03       		.byte	0x3
  3648 185b 00000000 		.4byte	cy_PeriClkFreqHz
  3649 185f 20       		.uleb128 0x20
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 91
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 91
 
 
  3650 1860 56080000 		.4byte	.LASF288
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3704 001b 0E       		.uleb128 0xe
  3705 001c 00       		.byte	0
  3706 001d 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 92
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 92
 
 
  3707 001e 03       		.uleb128 0x3
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3761 0054 03       		.uleb128 0x3
  3762 0055 0E       		.uleb128 0xe
  3763 0056 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 93
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 93
 
 
  3764 0057 0B       		.uleb128 0xb
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3818 008d 0B       		.uleb128 0xb
  3819 008e 0B       		.uleb128 0xb
  3820 008f 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 94
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 94
 
 
  3821 0090 0B       		.uleb128 0xb
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3875 00c7 3A       		.uleb128 0x3a
  3876 00c8 0B       		.uleb128 0xb
  3877 00c9 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 95
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 95
 
 
  3878 00ca 0B       		.uleb128 0xb
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3932 0101 14       		.uleb128 0x14
  3933 0102 0B       		.uleb128 0xb
  3934 0103 01       		.byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 96
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 96
 
 
  3935 0104 11       		.uleb128 0x11
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  3989 013b 0B       		.uleb128 0xb
  3990 013c 00       		.byte	0
  3991 013d 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 97
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 97
 
 
  3992 013e 18       		.uleb128 0x18
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4046 0177 3F       		.uleb128 0x3f
  4047 0178 19       		.uleb128 0x19
  4048 0179 03       		.uleb128 0x3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 98
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 98
 
 
  4049 017a 0E       		.uleb128 0xe
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4103 01b6 00       		.byte	0
  4104 01b7 03       		.uleb128 0x3
  4105 01b8 0E       		.uleb128 0xe
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 99
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 99
 
 
  4106 01b9 3A       		.uleb128 0x3a
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4160 000b 54000000 		.4byte	.LVL9
  4161 000f BB000000 		.4byte	.LVL20-1
  4162 0013 0100     		.2byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 100
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 100
 
 
  4163 0015 50       		.byte	0x50
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4217 00a8 00000000 		.4byte	0
  4218              	.LLST5:
  4219 00ac 1A000000 		.4byte	.LVL1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 101
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 101
 
 
  4220 00b0 2C000000 		.4byte	.LVL2
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4274 0134 A6000000 		.4byte	.LVL16
  4275 0138 C6000000 		.4byte	.LVL22
  4276 013c 0100     		.2byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 102
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 102
 
 
  4277 013e 55       		.byte	0x55
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4331 01c1 20010000 		.4byte	.LVL31
  4332 01c5 2B010000 		.4byte	.LVL34-1
  4333 01c9 0100     		.2byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 103
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 103
 
 
  4334 01cb 51       		.byte	0x51
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4388 0256 00000000 		.4byte	0
  4389              	.LLST23:
  4390 025a 10000000 		.4byte	.LVL65
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 104
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 104
 
 
  4391 025e 14000000 		.4byte	.LVL66
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4445 02e6 F3       		.byte	0xf3
  4446 02e7 01       		.uleb128 0x1
  4447 02e8 50       		.byte	0x50
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 105
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 105
 
 
  4448 02e9 9F       		.byte	0x9f
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4502 0014 02000000 		.4byte	.LFE56-.LFB56
  4503 0018 00000000 		.4byte	.LFB57
  4504 001c B0010000 		.4byte	.LFE57-.LFB57
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 106
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 106
 
 
  4505 0020 00000000 		.4byte	.LFB55
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4552              	.LASF170:
  4553 0011 43505553 		.ascii	"CPUSS_Type\000"
  4553      535F5479 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 107
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 107
 
 
  4553      706500
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4573      4C00
  4574              	.LASF92:
  4575 00e3 52544F43 		.ascii	"RTOC1_UNIQUE_ID_ADDR\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 108
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 108
 
 
  4575      315F554E 
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4597      5F545249 
  4597      4D00
  4598              	.LASF126:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 109
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 109
 
 
  4599 019a 434D305F 		.ascii	"CM0_CLOCK_CTL\000"
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4619      5F496E69 
  4619      7400
  4620              	.LASF117:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 110
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 110
 
 
  4621 0249 52544F43 		.ascii	"RTOC2_SECOND_USER_APP_FORMAT\000"
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4642              	.LASF119:
  4643 02f7 52544F43 		.ascii	"RTOC2_SIGNATURE_VERIF_KEY\000"
  4643      325F5349 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 111
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 111
 
 
  4643      474E4154 
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4667 03b1 5057525F 		.ascii	"PWR_CTL\000"
  4667      43544C00 
  4668              	.LASF58:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 112
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 112
 
 
  4669 03b9 5057525F 		.ascii	"PWR_TRIM_WAKE_CTL\000"
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4690              	.LASF177:
  4691 045a 494E5452 		.ascii	"INTR\000"
  4691      00
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 113
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 113
 
 
  4692              	.LASF240:
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4711      5F4D4143 
  4711      524F5F43 
  4711      544C00
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 114
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 114
 
 
  4712              	.LASF10:
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4735      744F7574 
  4735      70757400 
  4736              	.LASF219:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 115
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 115
 
 
  4737 061a 434C4B5F 		.ascii	"CLK_ECO_STATUS\000"
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4759      5F505055 
  4759      5F535452 
  4759      55435400 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 116
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 116
 
 
  4760              	.LASF173:
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4783 076b 544F4331 		.ascii	"TOC1_CRC_ADDR\000"
  4783      5F435243 
  4783      5F414444 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 117
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 117
 
 
  4783      5200
@@ -7018,7 +7018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4803      5F4F424A 
  4803      4543545F 
  4803      41444452 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 118
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 118
 
 
  4804              	.LASF237:
@@ -7078,7 +7078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4825      4C56445F 
  4825      43544C00 
  4826              	.LASF85:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 119
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 119
 
 
  4827 08da 544F4331 		.ascii	"TOC1_BOOT_PROTECTION_ADDR\000"
@@ -7138,7 +7138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4849      545F434E 
  4849      544C4F57 
  4849      00
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 120
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 120
 
 
  4850              	.LASF9:
@@ -7198,7 +7198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4871      69745C70 
  4872 0a5a 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\\CE218138_BLE_Thermometer_RTOS01.c"
  4872      54435F49 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 121
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 121
 
 
  4872      4D552E63 
@@ -7258,7 +7258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4897 0b1b 434C4B5F 		.ascii	"CLK_PILO_CONFIG\000"
  4897      50494C4F 
  4897      5F434F4E 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 122
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 122
 
 
  4897      46494700 
@@ -7318,7 +7318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4919      7265436C 
  4919      6F636B00 
  4920              	.LASF47:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 123
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 123
 
 
  4921 0bd6 5354414E 		.ascii	"STANDARD_SMPU_STRUCT_SLAVE_ADDR\000"
@@ -7378,7 +7378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4942              	.LASF31:
  4943 0c88 52455345 		.ascii	"RESERVED3\000"
  4943      52564544 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 124
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 124
 
 
  4943      3300
@@ -7438,7 +7438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4967      5452494D 
  4967      5F50494C 
  4967      4F5F4354 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 125
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 125
 
 
  4967      4C00
@@ -7498,7 +7498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  4990              	.LASF228:
  4991 0dd9 53525353 		.ascii	"SRSS_INTR\000"
  4991      5F494E54 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 126
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 126
 
 
  4991      5200
@@ -7558,7 +7558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  5014              	.LASF294:
  5015 0e80 73797374 		.ascii	"system_psoc63_cm0plus.c\000"
  5015      656D5F70 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 127
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 127
 
 
  5015      736F6336 
@@ -7618,7 +7618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  5037 0f1b 5744545F 		.ascii	"WDT_CTL\000"
  5037      43544C00 
  5038              	.LASF1:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 128
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 128
 
 
  5039 0f23 756E7369 		.ascii	"unsigned char\000"
@@ -7678,7 +7678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  5061      52564544 
  5061      313000
  5062              	.LASF65:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 129
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 129
 
 
  5063 0fc8 52455345 		.ascii	"RESERVED11\000"
@@ -7738,7 +7738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  5089 1058 76656374 		.ascii	"vectorTableOffset\000"
  5089      6F725461 
  5089      626C654F 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 130
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 130
 
 
  5089      66667365 
@@ -7798,7 +7798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  5111      52564544 
  5111      323300
  5112              	.LASF165:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 131
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 131
 
 
  5113 1115 52455345 		.ascii	"RESERVED24\000"
@@ -7858,7 +7858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 1
  5137      00
  5138              	.LASF182:
  5139 11b3 53545255 		.ascii	"STRUCT\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccDGU15u.s 			page 132
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccqdP1f9.s 			page 132
 
 
  5139      435400

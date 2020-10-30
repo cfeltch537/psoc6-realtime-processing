@@ -1,5 +1,5 @@
 # CE218138_BLE_Thermometer_RTOS01
-# 2020-10-23 16:29:01Z
+# 2020-10-30 01:50:10Z
 
 dont_use_location p4usbcell -1 -1 0
 dont_use_location USB -1 -1 0
@@ -26,5 +26,7 @@ set_io "CY_EINK_DispRst(0)" iocell 5 2
 set_io "THER_VDD(0)" iocell 10 0
 set_io "THER_GND(0)" iocell 10 3
 set_io "THER_OUT_2(0)" iocell 10 2
+set_io "\DEBUG_UART:tx(0)\" iocell 5 1
+set_io "\DEBUG_UART:rx(0)\" iocell 5 0
 set_io "Pin_Advertise(0)" iocell 0 4
 set_location "\ADC:SAR\" SARADC -1 -1 0

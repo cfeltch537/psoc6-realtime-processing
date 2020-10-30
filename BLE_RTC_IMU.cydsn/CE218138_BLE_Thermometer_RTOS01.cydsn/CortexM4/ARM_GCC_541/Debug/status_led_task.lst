@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
   28:status_led_task.c **** * written permission of Cypress.
   29:status_led_task.c **** *
   30:status_led_task.c **** * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND, 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 2
 
 
   31:status_led_task.c **** * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
   85:status_led_task.c **** * Return:
   86:status_led_task.c **** *  void
   87:status_led_task.c **** *
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 3
 
 
   88:status_led_task.c **** *******************************************************************************/
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  142:status_led_task.c ****                     break;
  143:status_led_task.c ****                 /* Blink the LED once */    
  144:status_led_task.c ****                 case LED_BLINK_ONCE:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 4
 
 
  145:status_led_task.c ****                     Cy_GPIO_Clr(Pin_LED_Orange_0_PORT, Pin_LED_Orange_0_NUM);
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  199:status_led_task.c ****                     StatusLedRedTimerUpdate(STATUS_LED_IDLE_INTERVAL);
  200:status_led_task.c ****                     redLedState = LED_TURN_OFF;
  201:status_led_task.c ****                     break;
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 5
 
 
  202:status_led_task.c ****                 /* Continuously toggle the LED */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  256:status_led_task.c **** /*******************************************************************************
  257:status_led_task.c **** * Function Name: void static StatusLedOrangeTimerCallback(TimerHandle_t xTimer)                    
  258:status_led_task.c **** ********************************************************************************
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 6
 
 
  259:status_led_task.c **** * Summary:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  313:status_led_task.c ****     xTimer_StatusLedOrange =  xTimerCreate ("Orange Status LED Timer",
  314:status_led_task.c ****                                             STATUS_LED_IDLE_INTERVAL, pdTRUE, 
  315:status_led_task.c ****                                             NULL, StatusLedOrangeTimerCallback); 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 7
 
 
  316:status_led_task.c ****     
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  370:status_led_task.c **** *  This function is called when the Red LED Timer expires
  371:status_led_task.c **** *
  372:status_led_task.c **** * Parameters:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 8
 
 
  373:status_led_task.c **** *  TimerHandle_t xTimer :  Current timer value (unused)
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  417:status_led_task.c ****     /* Variable used to store the return values of RTOS APIs */
  418:status_led_task.c ****     BaseType_t rtosApiResult;
  419:status_led_task.c ****     
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 9
 
 
  420:status_led_task.c ****     /* Create an RTOS timer */
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
   69              		.align	2
   70              	.L4:
   71 0034 00000000 		.word	StatusLedRedTimerCallback
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 10
 
 
   72 0038 00000000 		.word	.LC0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  121              		.cfi_def_cfa_offset 8
  122              		@ sp needed
  123 0032 10BD     		pop	{r4, pc}
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 11
 
 
  124              	.L10:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  175              		.align	2
  176              		.thumb
  177              		.thumb_func
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 12
 
 
  178              		.type	StatusLedRedTimerUpdate, %function
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  204 0016 02B0     		add	sp, sp, #8
  205              		.cfi_def_cfa_offset 8
  206              		@ sp needed
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 13
 
 
  207 0018 10BD     		pop	{r4, pc}
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  257              		.section	.text.StatusLedOrangeTimerCallback,"ax",%progbits
  258              		.align	2
  259              		.thumb
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 14
 
 
  260              		.thumb_func
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  309              		@ args = 0, pretend = 0, frame = 8
  310              		@ frame_needed = 0, uses_anonymous_args = 0
  311              	.LVL18:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 15
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 15
 
 
  312 0000 00B5     		push	{lr}
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
    9:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * \copyright
   10:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * Copyright 2016-2018, Cypress Semiconductor Corporation. All rights reserved.
   11:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * You may use this file only in accordance with the license, terms, conditions,
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 16
 
 
   12:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * disclaimers, and limitations in the end user license agreement accompanying
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
   66:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** *
   67:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * \section group_gpio_MISRA MISRA-C Compliance]
   68:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * <table class="doxtable">
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 17
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 17
 
 
   69:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** *   <tr>
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  123:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** 
  124:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #include <stddef.h>
  125:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #include "syslib/cy_syslib.h"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 18
 
 
  126:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #include "cy_device_headers.h"
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  180:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     uint32_t intrMask;      /**< Interrupt enable mask for the port interrupt */
  181:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     uint32_t intrCfg;       /**< Port pin interrupt edge detection configuration */
  182:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     uint32_t cfg;           /**< Port pin drive modes and input buffer enable configuration */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 19
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 19
 
 
  183:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     uint32_t cfgIn;         /**< Port pin input buffer configuration */
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  237:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #define CY_GPIO_IBUF_SHIFT                     (0x01UL)   /**< Single SIO pin shift for input buffe
  238:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #define CY_GPIO_VTRIP_SEL_MASK                 (0x01UL)   /**< Single SIO pin mask for the input bu
  239:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #define CY_GPIO_VTRIP_SEL_SHIFT                (0x02UL)   /**< Single SIO pin shift for the input b
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 20
 
 
  240:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #define CY_GPIO_VREF_SEL_MASK                  (0x03UL)   /**< Single SIO pin mask for voltage refe
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  294:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****                                                 (CY_SIO_VREF_1_2V      == (vrefSel)) || \
  295:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****                                                 (CY_SIO_VREF_AMUX_A    == (vrefSel)) || \
  296:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****                                                 (CY_SIO_VREF_AMUX_B    == (vrefSel)))
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 21
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 21
 
 
  297:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** 
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  351:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #define CY_GPIO_VTRIP_TTL                      (0x01UL) /**< \brief Input buffer compatible with TT
  352:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** /** \} */
  353:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 22
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 22
 
 
  354:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** /**
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  408:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #define CY_SIO_VTRIP_CMOS                      (0x00UL) /**< \brief CMOS input buffer (single-ended
  409:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #define CY_SIO_VTRIP_TTL                       (0x01UL) /**< \brief TTL input buffer (single-ended)
  410:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #define CY_SIO_VTRIP_0_5VDDIO_0_5VOH           (0x00UL) /**< \brief 0.5xVddio or 0.5xVoh (different
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 23
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 23
 
 
  411:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #define CY_SIO_VTRIP_0_4VDDIO_1_0VREF          (0x01UL) /**< \brief 0.4xVddio or 0.4xVoh (different
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  465:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** 
  466:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** /**
  467:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * \addtogroup group_gpio_functions_gpio
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 24
 
 
  468:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * \{
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  522:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #if (IOSS_GPIO_GPIO_PORT_NR_0_31 != 0) || defined (CY_DOXYGEN)
  523:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** __STATIC_INLINE uint32_t Cy_GPIO_GetInterruptCause0(void);
  524:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** #endif /* (IOSS_GPIO_GPIO_PORT_NR_0_31 != 0) */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 25
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 25
 
 
  525:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** 
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  579:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     HSIOM_PRT_Type* portAddrHSIOM;
  580:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** 
  581:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     CY_ASSERT_L2(CY_GPIO_IS_PIN_VALID(pinNum));
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 26
 
 
  582:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     CY_ASSERT_L2(CY_GPIO_IS_HSIOM_VALID(value));
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  636:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     {
  637:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****         pinNum -= CY_GPIO_PRT_HALF;
  638:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****         returnValue = (portAddrHSIOM->PORT_SEL1 >> (pinNum << CY_GPIO_HSIOM_OFFSET)) & CY_GPIO_HSIO
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 27
 
 
  639:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     }
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  693:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** *
  694:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * \param base
  695:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** * Pointer to the pin's port register base address
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 28
 
 
  696:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** *
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  750:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     }
  751:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     else
  752:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     {
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 29
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 29
 
 
  753:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****         base->OUT_SET = CY_GPIO_OUT_MASK << pinNum;
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  807:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** __STATIC_INLINE void Cy_GPIO_Set(GPIO_PRT_Type* base, uint32_t pinNum)
  808:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** {
  809:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     CY_ASSERT_L2(CY_GPIO_IS_PIN_VALID(pinNum));
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 30
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 30
 
 
  810:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h ****     
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  372              	.L34:
  373              	.LBB24:
  374              	.LBB25:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 31
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 31
 
 
  811:Generated_Source\PSoC6\pdl\drivers/peripheral/gpio/cy_gpio.h **** }
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  421              	.LVL36:
  148:status_led_task.c ****                     break;
  422              		.loc 1 148 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 32
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 32
 
 
  423 007e 0422     		movs	r2, #4
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  444              	.L38:
  445              	.LBE29:
  446              	.LBE28:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 33
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 33
 
 
  158:status_led_task.c ****                     {
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  494              		.loc 1 192 0
  495 00c8 4FF0FF30 		mov	r0, #-1
  496 00cc FFF7FEFF 		bl	StatusLedRedTimerUpdate
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 34
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 34
 
 
  497              	.LVL46:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  541 00fe 8022     		movs	r2, #128
  542 0100 124B     		ldr	r3, .L47+12
  543 0102 5A60     		str	r2, [r3, #4]
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 35
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 35
 
 
  544              	.LVL52:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  591              	.LVL58:
  230:status_led_task.c ****                     }
  592              		.loc 1 230 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 36
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 36
 
 
  593 0138 0222     		movs	r2, #2
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  639              		.file 13 "Generated_Source\\PSoC6\\pdl\\middleware/ble/cy_ble_hts.h"
  640              		.file 14 "Generated_Source\\PSoC6\\pdl\\middleware/ble/cy_ble_event_handler.h"
  641              		.file 15 "Generated_Source\\PSoC6/ADC.h"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 37
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 37
 
 
  642              		.file 16 "Generated_Source\\PSoC6\\pdl\\rtos/FreeRTOS/9.0.0/Source/portable/GCC/CM4F/portmacro.h"
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  696 0064 41       		.byte	0x41
  697 0065 69000000 		.4byte	0x69
  698 0069 02       		.uleb128 0x2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 38
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 38
 
 
  699 006a 04       		.byte	0x4
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  753 00d6 0A       		.uleb128 0xa
  754 00d7 4F555400 		.ascii	"OUT\000"
  755 00db 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 39
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 39
 
 
  756 00dc 23       		.byte	0x23
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  810 0147 2C       		.byte	0x2c
  811 0148 B4000000 		.4byte	0xb4
  812 014c 24       		.byte	0x24
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 40
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 40
 
 
  813 014d 0A       		.uleb128 0xa
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  867 01ba 05       		.byte	0x5
  868 01bb 39       		.byte	0x39
  869 01bc 42020000 		.4byte	0x242
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 41
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 41
 
 
  870 01c0 0A       		.uleb128 0xa
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  924 0234 0D       		.uleb128 0xd
  925 0235 E5110000 		.4byte	.LASF39
  926 0239 05       		.byte	0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 42
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 42
 
 
  927 023a 43       		.byte	0x43
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  981 02a5 BF01     		.2byte	0x1bf
  982 02a7 8E020000 		.4byte	0x28e
  983 02ab 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 43
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 43
 
 
  984 02ac 2E180000 		.4byte	.LASF289
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1038 0321 DF0C0000 		.4byte	.LASF56
  1039 0325 07       		.byte	0x7
  1040 0326 5502     		.2byte	0x255
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 44
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 44
 
 
  1041 0328 A2000000 		.4byte	0xa2
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1095 039b 08       		.byte	0x8
  1096 039c 14       		.uleb128 0x14
  1097 039d 22090000 		.4byte	.LASF66
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 45
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 45
 
 
  1098 03a1 08       		.byte	0x8
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1152 0416 08       		.byte	0x8
  1153 0417 0205     		.2byte	0x502
  1154 0419 A2000000 		.4byte	0xa2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 46
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 46
 
 
  1155 041d 6C       		.byte	0x6c
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1209 0493 1E120000 		.4byte	.LASF86
  1210 0497 0020     		.2byte	0x2000
  1211 0499 18       		.uleb128 0x18
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 47
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 47
 
 
  1212 049a CA140000 		.4byte	.LASF87
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1266 0518 D7010000 		.4byte	.LASF105
  1267 051c 1320     		.2byte	0x2013
  1268 051e 18       		.uleb128 0x18
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 48
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 48
 
 
  1269 051f 770D0000 		.4byte	.LASF106
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1323 059d ED120000 		.4byte	.LASF124
  1324 05a1 1230     		.2byte	0x3012
  1325 05a3 18       		.uleb128 0x18
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 49
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 49
 
 
  1326 05a4 8B160000 		.4byte	.LASF125
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1380 0622 A30F0000 		.4byte	.LASF143
  1381 0626 0C40     		.2byte	0x400c
  1382 0628 18       		.uleb128 0x18
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 50
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 50
 
 
  1383 0629 B50C0000 		.4byte	.LASF144
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1437 06a7 7F120000 		.4byte	.LASF162
  1438 06ab 0550     		.2byte	0x5005
  1439 06ad 18       		.uleb128 0x18
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 51
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 51
 
 
  1440 06ae 170C0000 		.4byte	.LASF163
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1494 072c 4E0F0000 		.4byte	.LASF181
  1495 0730 1850     		.2byte	0x5018
  1496 0732 18       		.uleb128 0x18
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 52
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 52
 
 
  1497 0733 F9190000 		.4byte	.LASF182
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1551 07ab 0E       		.uleb128 0xe
  1552 07ac 1E130000 		.4byte	.LASF196
  1553 07b0 0A       		.byte	0xa
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 53
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 53
 
 
  1554 07b1 6B01     		.2byte	0x16b
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1608 081e 7F010000 		.4byte	.LASF209
  1609 0822 07       		.byte	0x7
  1610 0823 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 54
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 54
 
 
  1611 0824 03       		.uleb128 0x3
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1665 0890 16       		.uleb128 0x16
  1666 0891 F5170000 		.4byte	.LASF223
  1667 0895 02       		.byte	0x2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 55
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 55
 
 
  1668 0896 16       		.uleb128 0x16
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1722 08fd A2000000 		.4byte	0xa2
  1723 0901 04       		.byte	0x4
  1724 0902 0B       		.uleb128 0xb
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 56
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 56
 
 
  1725 0903 51030000 		.4byte	.LASF234
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1779 0975 01       		.byte	0x1
  1780 0976 16       		.uleb128 0x16
  1781 0977 720F0000 		.4byte	.LASF243
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 57
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 57
 
 
  1782 097b 02       		.byte	0x2
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1836 09e6 F7090000 		.4byte	0x9f7
  1837 09ea 1B       		.uleb128 0x1b
  1838 09eb A8160000 		.4byte	.LASF253
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 58
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 58
 
 
  1839 09ef 02       		.byte	0x2
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1893 0a67 3D090000 		.4byte	0x93d
  1894 0a6b 1E       		.uleb128 0x1e
  1895 0a6c 16000000 		.4byte	.LVL0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 59
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 59
 
 
  1896 0a70 4D100000 		.4byte	0x104d
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  1950 0abe 1F       		.uleb128 0x1f
  1951 0abf 02       		.uleb128 0x2
  1952 0ac0 7D       		.byte	0x7d
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 60
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 60
 
 
  1953 0ac1 00       		.sleb128 0
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2007 0b1a 22000000 		.4byte	.LVL4
  2008 0b1e 59100000 		.4byte	0x1059
  2009 0b22 21       		.uleb128 0x21
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 61
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 61
 
 
  2010 0b23 30000000 		.4byte	.LVL5
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2064 0b83 00       		.sleb128 0
  2065 0b84 1F       		.uleb128 0x1f
  2066 0b85 01       		.uleb128 0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 62
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 62
 
 
  2067 0b86 51       		.byte	0x51
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2121 0be0 51       		.byte	0x51
  2122 0be1 01       		.uleb128 0x1
  2123 0be2 34       		.byte	0x34
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 63
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 63
 
 
  2124 0be3 1F       		.uleb128 0x1f
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2178 0c44 02       		.uleb128 0x2
  2179 0c45 91       		.byte	0x91
  2180 0c46 74       		.sleb128 -12
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 64
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 64
 
 
  2181 0c47 1F       		.uleb128 0x1f
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2235 0ca8 1F       		.uleb128 0x1f
  2236 0ca9 01       		.uleb128 0x1
  2237 0caa 53       		.byte	0x53
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 65
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 65
 
 
  2238 0cab 01       		.uleb128 0x1
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2292 0d20 7D       		.byte	0x7d
  2293 0d21 380D0000 		.4byte	0xd38
  2294 0d25 29       		.uleb128 0x29
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 66
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 66
 
 
  2295 0d26 EA090000 		.4byte	0x9ea
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2349 0db9 D00D0000 		.4byte	0xdd0
  2350 0dbd 29       		.uleb128 0x29
  2351 0dbe 160A0000 		.4byte	0xa16
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 67
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 67
 
 
  2352 0dc2 AA010000 		.4byte	.LLST14
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2406 0e55 29       		.uleb128 0x29
  2407 0e56 3C0A0000 		.4byte	0xa3c
  2408 0e5a 5A020000 		.4byte	.LLST22
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 68
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 68
 
 
  2409 0e5e 29       		.uleb128 0x29
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2463 0ed0 09       		.byte	0x9
  2464 0ed1 FF       		.byte	0xff
  2465 0ed2 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 69
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 69
 
 
  2466 0ed3 1E       		.uleb128 0x1e
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2520 0f38 00       		.byte	0
  2521 0f39 1E       		.uleb128 0x1e
  2522 0f3a E6000000 		.4byte	.LVL49
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 70
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 70
 
 
  2523 0f3e 9D0B0000 		.4byte	0xb9d
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2577 0fa5 07       		.uleb128 0x7
  2578 0fa6 AB070000 		.4byte	0x7ab
  2579 0faa B50F0000 		.4byte	0xfb5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 71
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 71
 
 
  2580 0fae 08       		.uleb128 0x8
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2634 1027 00000000 		.4byte	statusLedDataQ
  2635 102b 2C       		.uleb128 0x2c
  2636 102c 5D090000 		.4byte	.LASF279
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 72
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 72
 
 
  2637 1030 01       		.byte	0x1
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2691 000c 17       		.uleb128 0x17
  2692 000d 11       		.uleb128 0x11
  2693 000e 01       		.uleb128 0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 73
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 73
 
 
  2694 000f 10       		.uleb128 0x10
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2748 0045 01       		.uleb128 0x1
  2749 0046 01       		.byte	0x1
  2750 0047 49       		.uleb128 0x49
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 74
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 74
 
 
  2751 0048 13       		.uleb128 0x13
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2805 007e 0B       		.uleb128 0xb
  2806 007f 00       		.byte	0
  2807 0080 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 75
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 75
 
 
  2808 0081 0C       		.uleb128 0xc
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2862 00b7 13       		.uleb128 0x13
  2863 00b8 00       		.byte	0
  2864 00b9 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 76
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 76
 
 
  2865 00ba 11       		.uleb128 0x11
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2919 00f0 0B       		.uleb128 0xb
  2920 00f1 3B       		.uleb128 0x3b
  2921 00f2 05       		.uleb128 0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 77
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 77
 
 
  2922 00f3 01       		.uleb128 0x1
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  2976 0129 0E       		.uleb128 0xe
  2977 012a 3A       		.uleb128 0x3a
  2978 012b 0B       		.uleb128 0xb
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 78
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 78
 
 
  2979 012c 3B       		.uleb128 0x3b
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3033 0163 05       		.uleb128 0x5
  3034 0164 49       		.uleb128 0x49
  3035 0165 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 79
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 79
 
 
  3036 0166 00       		.byte	0
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3090 01a5 00       		.byte	0
  3091 01a6 23       		.uleb128 0x23
  3092 01a7 34       		.uleb128 0x34
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 80
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 80
 
 
  3093 01a8 00       		.byte	0
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3147 01e0 00       		.byte	0
  3148 01e1 26       		.uleb128 0x26
  3149 01e2 34       		.uleb128 0x34
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 81
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 81
 
 
  3150 01e3 00       		.byte	0
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3204 0219 2A       		.uleb128 0x2a
  3205 021a 34       		.uleb128 0x34
  3206 021b 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 82
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 82
 
 
  3207 021c 03       		.uleb128 0x3
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3261 0252 19       		.uleb128 0x19
  3262 0253 6E       		.uleb128 0x6e
  3263 0254 0E       		.uleb128 0xe
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 83
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 83
 
 
  3264 0255 03       		.uleb128 0x3
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3318 006b 0400     		.2byte	0x4
  3319 006d F3       		.byte	0xf3
  3320 006e 01       		.uleb128 0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 84
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 84
 
 
  3321 006f 50       		.byte	0x50
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3375 00f6 00000000 		.4byte	0
  3376              	.LLST6:
  3377 00fa 34000000 		.4byte	.LVL22
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 85
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 85
 
 
  3378 00fe 3A000000 		.4byte	.LVL23
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3432 0189 9F       		.byte	0x9f
  3433 018a 00000000 		.4byte	0
  3434 018e 00000000 		.4byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 86
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 86
 
 
  3435              	.LLST13:
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3489 021e 0600     		.2byte	0x6
  3490 0220 0C       		.byte	0xc
  3491 0221 80063240 		.4byte	0x40320680
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 87
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 87
 
 
  3492 0225 9F       		.byte	0x9f
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3546              		.section	.debug_aranges,"",%progbits
  3547 0000 4C000000 		.4byte	0x4c
  3548 0004 0200     		.2byte	0x2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 88
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 88
 
 
  3549 0006 00000000 		.4byte	.Ldebug_info0
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3594      4C455F48 
  3594      54535F54 
  3594      454D505F 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 89
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 89
 
 
  3594      54595045 
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3616 0105 43595F42 		.ascii	"CY_BLE_EVT_PENDING_FLASH_WRITE\000"
  3616      4C455F45 
  3616      56545F50 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 90
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 90
 
 
  3616      454E4449 
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3634      00
  3635              	.LASF273:
  3636 0224 63795F62 		.ascii	"cy_ble_connHandle\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 91
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 91
 
 
  3636      6C655F63 
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3656      4F43414C 
  3657              	.LASF164:
  3658 030d 43595F42 		.ascii	"CY_BLE_EVT_GATTC_FIND_INFO_RSP\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 92
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 92
 
 
  3658      4C455F45 
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3678      48595F43 
  3679              	.LASF180:
  3680 0413 43595F42 		.ascii	"CY_BLE_EVT_GATTS_READ_CHAR_VAL_ACCESS_REQ\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 93
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 93
 
 
  3680      4C455F45 
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3697 0582 43595F42 		.ascii	"CY_BLE_EVT_GATTC_XCHNG_MTU_RSP\000"
  3697      4C455F45 
  3697      56545F47 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 94
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 94
 
 
  3697      41545443 
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3717      4C5F434E 
  3717      54524C5F 
  3718              	.LASF186:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 95
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 95
 
 
  3719 069a 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_CONN_CNF\000"
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3739      56545F47 
  3739      45545F52 
  3739      5353495F 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 96
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 96
 
 
  3740              	.LASF67:
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3761      4F555400 
  3762              	.LASF49:
  3763 087e 72784275 		.ascii	"rxBuf\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 97
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 97
 
 
  3763      6600
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3783      4152455F 
  3784              	.LASF45:
  3785 0950 646F7562 		.ascii	"double\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 98
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 98
 
 
  3785      6C6500
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3805      5F575249 
  3806              	.LASF284:
  3807 0a52 78517565 		.ascii	"xQueueGenericSend\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 99
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 99
 
 
  3807      75654765 
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3827      54415445 
  3827      5F53544F 
  3828              	.LASF229:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 100
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 100
 
 
  3829 0b44 43595F42 		.ascii	"CY_BLE_SRVI_GAP\000"
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3849      5F524541 
  3850              	.LASF258:
  3851 0c39 53746174 		.ascii	"StatusLedOrangeTimerStart\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 101
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 101
 
 
  3851      75734C65 
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3873      53453200 
  3874              	.LASF34:
  3875 0d3c 494E5452 		.ascii	"INTR_CAUSE3\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 102
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 102
 
 
  3875      5F434155 
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3895      206C6F6E 
  3895      6720696E 
  3895      7400
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 103
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 103
 
 
  3896              	.LASF221:
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3915      4C455F45 
  3915      56545F47 
  3915      41545443 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 104
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 104
 
 
  3915      5F4C4F4E 
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3935      5343414E 
  3936              	.LASF185:
  3937 1069 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CBFC_CONN_IND\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 105
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 105
 
 
  3937      4C455F45 
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3957 1186 43595F42 		.ascii	"CY_BLE_DIS_FIRMWARE_REV\000"
  3957      4C455F44 
  3957      49535F46 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 106
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 106
 
 
  3957      49524D57 
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3977      41545443 
  3977      5F455252 
  3978              	.LASF162:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 107
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 107
 
 
  3979 127f 43595F42 		.ascii	"CY_BLE_EVT_GATTC_READ_BY_GROUP_TYPE_RSP\000"
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  3999 1377 43595F42 		.ascii	"CY_BLE_DIS_HARDWARE_REV\000"
  3999      4C455F44 
  3999      49535F48 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 108
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 108
 
 
  3999      41524457 
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  4021 147a 4346475F 		.ascii	"CFG_IN_GPIO5V\000"
  4021      494E5F47 
  4021      50494F35 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 109
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 109
 
 
  4021      5600
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  4043      4C455F48 
  4043      54535F43 
  4043      43434400 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 110
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 110
 
 
  4044              	.LASF113:
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  4063      00
  4064              	.LASF8:
  4065 166b 6C6F6E67 		.ascii	"long unsigned int\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 111
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 111
 
 
  4065      20756E73 
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  4087      7200
  4088              	.LASF178:
  4089 173e 43595F42 		.ascii	"CY_BLE_EVT_GATTS_DATA_SIGNED_CMD_REQ\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 112
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 112
 
 
  4089      4C455F45 
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  4109      6F6E7465 
  4110              	.LASF183:
  4111 1845 43595F42 		.ascii	"CY_BLE_EVT_L2CAP_CONN_PARAM_UPDATE_RSP\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 113
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 113
 
 
  4111      4C455F45 
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  4131 1946 7369676E 		.ascii	"signed char\000"
  4131      65642063 
  4131      68617200 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 114
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 114
 
 
  4132              	.LASF262:
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  4153      7574696E 
  4153      6700
  4154              	.LASF280:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 115
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 115
 
 
  4155 1a2e 7854696D 		.ascii	"xTimer_StatusLedOrange\000"
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 1
  4173      746100
  4174              	.LASF50:
  4175 1b3b 72784275 		.ascii	"rxBufSize\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cctvd9FP.s 			page 116
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccdRhxXa.s 			page 116
 
 
  4175      6653697A 

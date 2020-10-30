@@ -140,8 +140,10 @@
 #include "BLE_config.h"
 #include "CY_EINK_SPIM.h"
 #include "ADC.h"
+#include "DEBUG_UART.h"
 #include "CY_EINK_SPIM_SCBCLK.h"
 #include "ADC_intSarClock.h"
+#include "DEBUG_UART_SCBCLK.h"
 
 /*[]*/
 

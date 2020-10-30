@@ -26,6 +26,12 @@
         .intrPriority = isr_gpio__INTC_CORTEXM4_PRIORITY
     };
 
+    /* DEBUG_UART_SCB_IRQ */
+    const cy_stc_sysint_t DEBUG_UART_SCB_IRQ_cfg = {
+        .intrSrc = (IRQn_Type)DEBUG_UART_SCB_IRQ__INTC_NUMBER,
+        .intrPriority = DEBUG_UART_SCB_IRQ__INTC_CORTEXM4_PRIORITY
+    };
+
     /* CY_EINK_SPIM_SCB_IRQ */
     const cy_stc_sysint_t CY_EINK_SPIM_SCB_IRQ_cfg = {
         .intrSrc = (IRQn_Type)CY_EINK_SPIM_SCB_IRQ__INTC_NUMBER,
@@ -48,6 +54,13 @@
         .intrSrc = (IRQn_Type)BLE_bless_isr__INTC_CORTEXM0P_MUX,
         .cm0pSrc = (cy_en_intr_t)BLE_bless_isr__INTC_NUMBER,
         .intrPriority = BLE_bless_isr__INTC_CORTEXM0P_PRIORITY
+    };
+
+    /* DEBUG_UART_SCB_IRQ */
+    const cy_stc_sysint_t DEBUG_UART_SCB_IRQ_cfg = {
+        .intrSrc = (IRQn_Type)DEBUG_UART_SCB_IRQ__INTC_CORTEXM0P_MUX,
+        .cm0pSrc = (cy_en_intr_t)DEBUG_UART_SCB_IRQ__INTC_NUMBER,
+        .intrPriority = DEBUG_UART_SCB_IRQ__INTC_CORTEXM0P_PRIORITY
     };
 
 #endif /* ((__CORTEX_M == 0) && (CY_CORE_ID == 0)) */

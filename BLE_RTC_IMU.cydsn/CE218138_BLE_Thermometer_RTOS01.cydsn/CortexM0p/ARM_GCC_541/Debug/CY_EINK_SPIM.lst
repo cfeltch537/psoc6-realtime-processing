@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
   28:Generated_Source\PSoC6/CY_EINK_SPIM.c **** /** CY_EINK_SPIM_initVar indicates whether the CY_EINK_SPIM
   29:Generated_Source\PSoC6/CY_EINK_SPIM.c **** *  component has been initialized. The variable is initialized to 0
   30:Generated_Source\PSoC6/CY_EINK_SPIM.c **** *  and set to 1 the first time CY_EINK_SPIM_Start() is called.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 2
 
 
   31:Generated_Source\PSoC6/CY_EINK_SPIM.c **** *  This allows  the component to restart without reinitialization
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
   85:Generated_Source\PSoC6/CY_EINK_SPIM.c **** * Function Name: CY_EINK_SPIM_Start
   86:Generated_Source\PSoC6/CY_EINK_SPIM.c **** ****************************************************************************//**
   87:Generated_Source\PSoC6/CY_EINK_SPIM.c **** *
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 3
 
 
   88:Generated_Source\PSoC6/CY_EINK_SPIM.c **** * Invokes CY_EINK_SPIM_Init() and CY_EINK_SPIM_Enable().
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
   16:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * \addtogroup group_scb_spi
   17:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * \{
   18:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * Driver API for SPI Bus Peripheral.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 4
 
 
   19:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
   73:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * \snippet SCB_CompDatasheet_sut_01_revA.cydsn\spi_snippets.c SPI_CFG_ASSIGN_CLOCK
   74:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *
   75:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * \subsection group_scb_spi_data_rate Configure Data Rate
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 5
 
 
   76:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * To get the SPI slave to operate with the desired data rate, the source clock must be
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  130:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *   \ref Cy_SCB_SPI_WriteArrayBlocking.
  131:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *   Note that in the master mode, putting data into the TX FIFO starts a
  132:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *   transfer. Due to the SPI nature, the received data is put into the RX FIFO.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 6
 
 
  133:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  187:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *   with 7 data elements (note that after the first TX load operation, the data 
  188:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *   element goes to the shift register and TX FIFO remains empty).</em>
  189:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 7
 
 
  190:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * To route SCB TX or RX trigger signals to the DMA controller, use \ref group_trigmux
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  244:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *     <td>11.4</td>
  245:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *     <td>A</td>
  246:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *     <td>A cast should not be performed between a pointer to object type and
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 8
 
 
  247:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *         a different pointer to object type.</td>
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  301:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *   <tr>
  302:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *     <td rowspan="4"> 2.0</td>
  303:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *     <td>Fixed SPI callback notification when error event occurred.</td>
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 9
 
 
  304:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *     <td>The SPI callback passed incorrect event value if error event occurred.</td>
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  358:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** typedef enum
  359:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** {
  360:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     /** Operation completed successfully */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 10
 
 
  361:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     CY_SCB_SPI_SUCCESS = 0U,
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  415:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** typedef enum
  416:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** {
  417:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     CY_SCB_SPI_SLAVE_SELECT0 = 0U,   /**< Master will use Slave Select 0 */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 11
 
 
  418:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     CY_SCB_SPI_SLAVE_SELECT1 = 1U,   /**< Master will use Slave Select 1 */
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  472:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     */
  473:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     uint32_t    oversample;
  474:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 12
 
 
  475:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     /**
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  529:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     * datasheet to determine which SCBs support wake from Deep Sleep.
  530:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     */
  531:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     bool        enableWakeFromSleep;
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 13
 
 
  532:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  586:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     void    *txBuf;                 /**< The pointer to the transmit buffer */
  587:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     uint32_t txBufSize;             /**< The transmit buffer size */
  588:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****     uint32_t volatile txBufIdx;     /**< The current location in the transmit buffer */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 14
 
 
  589:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  643:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** __STATIC_INLINE uint32_t Cy_SCB_SPI_Read     (CySCB_Type const *base);
  644:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** __STATIC_INLINE uint32_t Cy_SCB_SPI_ReadArray(CySCB_Type const *base, void *buffer, uint32_t size);
  645:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 15
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 15
 
 
  646:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** __STATIC_INLINE uint32_t Cy_SCB_SPI_Write     (CySCB_Type *base, uint32_t data);
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  700:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * \{
  701:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** */
  702:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** /** The number of entries in the TX FIFO is less than the TX FIFO trigger level
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 16
 
 
  703:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * value
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  757:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * \{
  758:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** */
  759:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** /** The slave was deselected at the wrong time */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 17
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 17
 
 
  760:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** #define CY_SCB_SPI_SLAVE_ERR       (SCB_INTR_S_SPI_BUS_ERROR_Msk)
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  814:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * An error occurred during the transfer. This includes overflow, underflow
  815:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * and a transfer error. Check \ref Cy_SCB_SPI_GetTransferStatus.
  816:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 18
 
 
  817:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** #define CY_SCB_SPI_TRANSFER_ERR_EVENT      (0x04U)
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  871:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****                                                                  (false == ((NULL == (txBuffer)) &&
  872:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** 
  873:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** #define CY_SCB_SPI_IS_BOTH_DATA_WIDTH_VALID(subMode, rxWidth, txWidth)  ( (CY_SCB_SPI_NATIONAL != (
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 19
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 19
 
 
  874:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h ****                                                                                     ((rxWidth) == (
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  928:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *   is considered idle.
  929:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** * * If the SPI master is configured to separate a data elements transfer,
  930:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *   the bus is busy during each element transfer and is free between them.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 20
 
 
  931:Generated_Source\PSoC6\pdl\drivers/peripheral/scb/cy_scb_spi.h **** *
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
   63              	.L2:
   64              	.LVL2:
   65              	.LBB8:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 21
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 21
 
 
   66              	.LBB9:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  110 0013 00       		.byte	0
  111 0014 00       		.byte	0
  112 0015 000000   		.space	3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 22
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 22
 
 
  113 0018 00000000 		.word	0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  167 0048 8A030000 		.4byte	.LASF3
  168 004c 02       		.uleb128 0x2
  169 004d 04       		.byte	0x4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 23
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 23
 
 
  170 004e 05       		.byte	0x5
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  224 00bd C8000000 		.4byte	0xc8
  225 00c1 08       		.uleb128 0x8
  226 00c2 97000000 		.4byte	0x97
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 24
 
 
  227 00c6 7F       		.byte	0x7f
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  281 0141 08       		.uleb128 0x8
  282 0142 97000000 		.4byte	0x97
  283 0146 2E       		.byte	0x2e
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 25
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 25
 
 
  284 0147 00       		.byte	0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  338 01b4 24       		.byte	0x24
  339 01b5 0A       		.uleb128 0xa
  340 01b6 CD050000 		.4byte	.LASF21
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 26
 
 
  341 01ba 05       		.byte	0x5
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  395 0226 05       		.byte	0x5
  396 0227 32       		.byte	0x32
  397 0228 9E000000 		.4byte	0x9e
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 27
 
 
  398 022c 68       		.byte	0x68
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  452 029d 0C02     		.2byte	0x20c
  453 029f 0B       		.uleb128 0xb
  454 02a0 1D020000 		.4byte	.LASF40
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 28
 
 
  455 02a4 05       		.byte	0x5
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  509 0319 05       		.byte	0x5
  510 031a 45       		.byte	0x45
  511 031b A3000000 		.4byte	0xa3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 29
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 29
 
 
  512 031f 4403     		.2byte	0x344
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  566 0394 8C0E     		.2byte	0xe8c
  567 0396 0B       		.uleb128 0xb
  568 0397 49010000 		.4byte	.LASF59
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 30
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 30
 
 
  569 039b 05       		.byte	0x5
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  623 0410 05       		.byte	0x5
  624 0411 58       		.byte	0x58
  625 0412 A3000000 		.4byte	0xa3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 31
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 31
 
 
  626 0416 0C0F     		.2byte	0xf0c
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  680 048b 880F     		.2byte	0xf88
  681 048d 0B       		.uleb128 0xb
  682 048e C0000000 		.4byte	.LASF78
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 32
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 32
 
 
  683 0492 05       		.byte	0x5
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  737 050a 05       		.uleb128 0x5
  738 050b FA040000 		.4byte	0x4fa
  739 050f 06       		.uleb128 0x6
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 33
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 33
 
 
  740 0510 0A050000 		.4byte	0x50a
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  794 0598 05       		.uleb128 0x5
  795 0599 08010000 		.4byte	0x108
  796 059d 06       		.uleb128 0x6
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 34
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 34
 
 
  797 059e 98050000 		.4byte	0x598
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  851 060b 84050000 		.4byte	.LASF93
  852 060f 00       		.byte	0
  853 0610 10       		.uleb128 0x10
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 35
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 35
 
 
  854 0611 AB010000 		.4byte	.LASF94
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  908 0681 07080000 		.4byte	.LASF106
  909 0685 03       		.byte	0x3
  910 0686 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 36
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 36
 
 
  911 0687 0D       		.uleb128 0xd
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  965 06fd 02       		.byte	0x2
  966 06fe 15       		.uleb128 0x15
  967 06ff 00000000 		.4byte	.LASF114
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 37
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 37
 
 
  968 0703 02       		.byte	0x2
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1022 0778 02       		.byte	0x2
  1023 0779 1302     		.2byte	0x213
  1024 077b C2070000 		.4byte	0x7c2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 38
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 38
 
 
  1025 077f 1C       		.byte	0x1c
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1079 07f0 68080000 		.4byte	.LASF134
  1080 07f4 02       		.byte	0x2
  1081 07f5 4602     		.2byte	0x246
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 39
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 39
 
 
  1082 07f7 D5050000 		.4byte	0x5d5
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1136 086c 03       		.byte	0x3
  1137 086d 8A080000 		.4byte	0x88a
  1138 0871 17       		.uleb128 0x17
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 40
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 40
 
 
  1139 0872 EB040000 		.4byte	.LASF143
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1193 08f4 02090000 		.4byte	0x902
  1194 08f8 1A       		.uleb128 0x1a
  1195 08f9 9D080000 		.4byte	0x89d
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 41
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 41
 
 
  1196 08fd 2C000000 		.4byte	.LLST2
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1250 0966 02       		.byte	0x2
  1251 0967 6502     		.2byte	0x265
  1252 0969 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 42
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 42
 
 
  1253              		.section	.debug_abbrev,"",%progbits
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1307 0034 00       		.byte	0
  1308 0035 00       		.byte	0
  1309 0036 05       		.uleb128 0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 43
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 43
 
 
  1310 0037 35       		.uleb128 0x35
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1364 006d 13       		.uleb128 0x13
  1365 006e 38       		.uleb128 0x38
  1366 006f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 44
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 44
 
 
  1367 0070 00       		.byte	0
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1421 00a6 0B       		.uleb128 0xb
  1422 00a7 3B       		.uleb128 0x3b
  1423 00a8 05       		.uleb128 0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 45
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 45
 
 
  1424 00a9 01       		.uleb128 0x1
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1478 00df 0D       		.uleb128 0xd
  1479 00e0 00       		.byte	0
  1480 00e1 03       		.uleb128 0x3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 46
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 46
 
 
  1481 00e2 0E       		.uleb128 0xe
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1535 0118 11       		.uleb128 0x11
  1536 0119 01       		.uleb128 0x1
  1537 011a 12       		.uleb128 0x12
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 47
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 47
 
 
  1538 011b 06       		.uleb128 0x6
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1592 0157 34       		.uleb128 0x34
  1593 0158 00       		.byte	0
  1594 0159 03       		.uleb128 0x3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 48
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 48
 
 
  1595 015a 0E       		.uleb128 0xe
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1649 0036 0C       		.byte	0xc
  1650 0037 00006740 		.4byte	0x40670000
  1651 003b 9F       		.byte	0x9f
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 49
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 49
 
 
  1652 003c 00000000 		.4byte	0
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1686      00
  1687              	.LASF29:
  1688 0050 4932435F 		.ascii	"I2C_STATUS\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 50
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 50
 
 
  1688      53544154 
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1711              	.LASF111:
  1712 0102 7370694D 		.ascii	"spiMode\000"
  1712      6F646500 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 51
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 51
 
 
  1713              	.LASF110:
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1738      43425F53 
  1738      50495F54 
  1738      495F434F 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 52
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 52
 
 
  1738      494E4349 
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1762      43425F53 
  1762      50495F53 
  1762      4C415645 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 53
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 53
 
 
  1762      5F53454C 
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1785              	.LASF83:
  1786 0327 494E5452 		.ascii	"INTR_RX_MASKED\000"
  1786      5F52585F 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 54
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 54
 
 
  1786      4D41534B 
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1807              	.LASF51:
  1808 03d1 455A5F44 		.ascii	"EZ_DATA\000"
  1808      41544100 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 55
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 55
 
 
  1809              	.LASF131:
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1828 04eb 62617365 		.ascii	"base\000"
  1828      00
  1829              	.LASF68:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 56
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 56
 
 
  1830 04f0 494E5452 		.ascii	"INTR_M_MASKED\000"
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1850      4F4C4100 
  1851              	.LASF22:
  1852 0598 55415254 		.ascii	"UART_CTRL\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 57
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 57
 
 
  1852      5F435452 
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1878      656C00
  1879              	.LASF118:
  1880 0630 656E6162 		.ascii	"enableFreeRunSclk\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 58
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 58
 
 
  1880      6C654672 
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1902 06f6 494E5452 		.ascii	"INTR_I2C_EC\000"
  1902      5F493243 
  1902      5F454300 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 59
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 59
 
 
  1903              	.LASF148:
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1926      4D41534B 
  1926      00
  1927              	.LASF76:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 60
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 60
 
 
  1928 07a8 494E5452 		.ascii	"INTR_TX_SET\000"
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1952 084f 494E5452 		.ascii	"INTR_SPI_EC\000"
  1952      5F535049 
  1952      5F454300 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 61
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 61
 
 
  1953              	.LASF14:
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 1
  1978      41534B45 
  1978      4400
  1979              	.LASF97:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccIm2ahg.s 			page 62
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccNx5Z1I.s 			page 62
 
 
  1980 08f4 63795F65 		.ascii	"cy_en_scb_spi_sub_mode_t\000"

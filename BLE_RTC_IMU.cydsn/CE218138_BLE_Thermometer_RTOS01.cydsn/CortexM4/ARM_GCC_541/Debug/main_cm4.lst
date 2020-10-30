@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
   27:main_cm4.c    **** * Any reproduction, modification, translation, compilation, or representation
   28:main_cm4.c    **** * of this Software except as specified above is prohibited without the express
   29:main_cm4.c    **** * written permission of Cypress.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 2
 
 
   30:main_cm4.c    **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
   84:main_cm4.c    **** * Function Name: main
   85:main_cm4.c    **** ********************************************************************************
   86:main_cm4.c    **** * Summary:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 3
 
 
   87:main_cm4.c    **** *  System entrance point. This function enables interrupts and then calls the
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  107:main_cm4.c    ****     statusLedDataQ      = xQueueCreate(STATUS_LED_QUEUE_LEN,
   63              		.loc 1 107 0
   64 002e 0022     		movs	r2, #0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 4
 
 
   65 0030 0221     		movs	r1, #2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  108 0082 0F49     		ldr	r1, .L4+40
  109 0084 0F48     		ldr	r0, .L4+44
  110 0086 FFF7FEFF 		bl	xTaskCreate
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 5
 
 
  111              	.LVL7:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  135:main_cm4.c    ****     {
  136:main_cm4.c    ****     }	
  137:main_cm4.c    **** }
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 6
 
 
  138:main_cm4.c    **** 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  168:main_cm4.c    **** *  TaskHandle_t  : Handle to the task
  169:main_cm4.c    **** *  signed char   : Name of the task
  170:main_cm4.c    **** *
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 7
 
 
  171:main_cm4.c    **** * Return:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  193:main_cm4.c    **** *
  194:main_cm4.c    **** * Summary:
  195:main_cm4.c    **** *  This function is called when a memory allocation operation by the RTOS
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 8
 
 
  196:main_cm4.c    **** *  has failed
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  235      45442054 
  235      61736B00 
  236              	.LC3:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 9
 
 
  237 0030 44697370 		.ascii	"Display task\000"
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  286 003e 02       		.uleb128 0x2
  287 003f 01       		.byte	0x1
  288 0040 08       		.byte	0x8
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 10
 
 
  289 0041 40040000 		.4byte	.LASF2
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  343 00ad 02       		.uleb128 0x2
  344 00ae 04       		.byte	0x4
  345 00af 07       		.byte	0x7
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 11
 
 
  346 00b0 8F000000 		.4byte	.LASF15
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  400 011b BF01     		.2byte	0x1bf
  401 011d 04010000 		.4byte	0x104
  402 0121 0D       		.uleb128 0xd
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 12
 
 
  403 0122 63060000 		.4byte	.LASF105
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  457 0197 7F030000 		.4byte	.LASF33
  458 019b 05       		.byte	0x5
  459 019c 5502     		.2byte	0x255
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 13
 
 
  460 019e A2000000 		.4byte	0xa2
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  514 0211 08       		.byte	0x8
  515 0212 0E       		.uleb128 0xe
  516 0213 40070000 		.4byte	.LASF43
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 14
 
 
  517 0217 07       		.byte	0x7
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  571 028c 07       		.byte	0x7
  572 028d 0205     		.2byte	0x502
  573 028f A2000000 		.4byte	0xa2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 15
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 15
 
 
  574 0293 6C       		.byte	0x6c
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  628 0303 20030000 		.4byte	0x320
  629 0307 08       		.uleb128 0x8
  630 0308 27040000 		.4byte	.LASF59
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 16
 
 
  631 030c 00       		.byte	0
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  685 0375 0A       		.byte	0xa
  686 0376 3B       		.byte	0x3b
  687 0377 B8030000 		.4byte	0x3b8
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 17
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 17
 
 
  688 037b 14       		.uleb128 0x14
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  742 03ea 61       		.byte	0x61
  743 03eb 7E000000 		.4byte	0x7e
  744 03ef 00000000 		.4byte	.LFB522
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 18
 
 
  745 03f3 CC000000 		.4byte	.LFE522-.LFB522
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  799 044a 01       		.uleb128 0x1
  800 044b 51       		.byte	0x51
  801 044c 01       		.uleb128 0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 19
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 19
 
 
  802 044d 34       		.byte	0x34
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  856 0499 44       		.byte	0x44
  857 049a 18       		.uleb128 0x18
  858 049b 02       		.uleb128 0x2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 20
 
 
  859 049c 7D       		.byte	0x7d
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  913 04ea 52       		.byte	0x52
  914 04eb 02       		.uleb128 0x2
  915 04ec 08       		.byte	0x8
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 21
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 21
 
 
  916 04ed 80       		.byte	0x80
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  970 0530 74       		.byte	0x74
  971 0531 00       		.sleb128 0
  972 0532 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 22
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 22
 
 
  973 0533 19       		.uleb128 0x19
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1027 059f 1C       		.uleb128 0x1c
  1028 05a0 00030000 		.4byte	.LASF84
  1029 05a4 01       		.byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 23
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 23
 
 
  1030 05a5 B0       		.byte	0xb0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1084 0608 0D       		.byte	0xd
  1085 0609 EA07     		.2byte	0x7ea
  1086 060b 0F060000 		.4byte	0x60f
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 24
 
 
  1087 060f 05       		.uleb128 0x5
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1141 068c 90060000 		.4byte	0x690
  1142 0690 15       		.uleb128 0x15
  1143 0691 6F060000 		.4byte	0x66f
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 25
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 25
 
 
  1144 0695 1E       		.uleb128 0x1e
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1198 0006 0B       		.uleb128 0xb
  1199 0007 03       		.uleb128 0x3
  1200 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 26
 
 
  1201 0009 1B       		.uleb128 0x1b
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1255 003f 00       		.byte	0
  1256 0040 03       		.uleb128 0x3
  1257 0041 0E       		.uleb128 0xe
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 27
 
 
  1258 0042 3A       		.uleb128 0x3a
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1312 0078 13       		.uleb128 0x13
  1313 0079 00       		.byte	0
  1314 007a 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 28
 
 
  1315 007b 0C       		.uleb128 0xc
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1369 00b1 13       		.uleb128 0x13
  1370 00b2 01       		.uleb128 0x1
  1371 00b3 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 29
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 29
 
 
  1372 00b4 00       		.byte	0
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1426 00ea 15       		.uleb128 0x15
  1427 00eb 26       		.uleb128 0x26
  1428 00ec 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 30
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 30
 
 
  1429 00ed 49       		.uleb128 0x49
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1483 012c 11       		.uleb128 0x11
  1484 012d 01       		.uleb128 0x1
  1485 012e 31       		.uleb128 0x31
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 31
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 31
 
 
  1486 012f 13       		.uleb128 0x13
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1540 0168 00       		.byte	0
  1541 0169 03       		.uleb128 0x3
  1542 016a 0E       		.uleb128 0xe
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 32
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 32
 
 
  1543 016b 3A       		.uleb128 0x3a
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1597 000b 06000000 		.4byte	.LVL13
  1598 000f 10000000 		.4byte	.LFE524
  1599 0013 0400     		.2byte	0x4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 33
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 33
 
 
  1600 0015 F3       		.byte	0xf3
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1652      00000201 
  1652      FB0E0D00 
  1652      01010101 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 34
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 34
 
 
  1653              	.LASF91:
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1675              	.LASF78:
  1676 00af 4144435F 		.ascii	"ADC_CONFIG_STRUCT\000"
  1676      434F4E46 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 35
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 35
 
 
  1676      49475F53 
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1695 01e7 63795F65 		.ascii	"cy_en_sar_range_detect_condition_t\000"
  1695      6E5F7361 
  1695      725F7261 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 36
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 36
 
 
  1695      6E67655F 
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1718              	.LASF64:
  1719 02e1 43595F42 		.ascii	"CY_BLE_CONN_STATE_DISCONNECTED\000"
  1719      4C455F43 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 37
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 37
 
 
  1719      4F4E4E5F 
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1744              	.LASF42:
  1745 0391 73616D70 		.ascii	"sampleTime01\000"
  1745      6C655469 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 38
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 38
 
 
  1745      6D653031 
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1766              	.LASF1:
  1767 0483 7369676E 		.ascii	"signed char\000"
  1767      65642063 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 39
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 39
 
 
  1767      68617200 
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1793 0523 6D757853 		.ascii	"muxSwitch\000"
  1793      77697463 
  1793      6800
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 40
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 40
 
 
  1794              	.LASF32:
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1815      54415445 
  1815      5F414456 
  1816              	.LASF21:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 41
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 41
 
 
  1817 061f 43595F53 		.ascii	"CY_SYSPM_WAIT_FOR_INTERRUPT\000"
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1837      436F6E66 
  1837      696700
  1838              	.LASF55:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 42
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 42
 
 
  1839 06f4 63795F73 		.ascii	"cy_stc_sar_config_t\000"
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 1
  1859      4661696C 
  1860              	.LASF98:
  1861 07b0 78546173 		.ascii	"xTaskCreate\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccF5qaSe.s 			page 43
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccfw5Tfz.s 			page 43
 
 
  1861      6B437265 

@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="PWR_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="R_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="R_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="LED9" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="CY_EINK_DispEn" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="CY_EINK_Discharge" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="LED8" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PWR_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PWR_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="R_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="CY_EINK_DispRst" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="CY_EINK_DispEn" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="R_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="LED8" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="GlobalSignal" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="THER_OUT_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="DEBUG_UART" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="rx_VM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="rx" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cts_VM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="SCB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="SCB_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="clock_VM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="SCBCLK" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="ZeroTerminal_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="tx" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="or_sclk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  </block>
   <block name="Pin_Advertise" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="isr_gpio" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="GND_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="PWR_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="THER_GND" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="THER_VDD" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="GND_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="THER_OUT_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="THER_GND" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="CY_EINK_Discharge" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Pin_LED_Orange" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Pin_LED_Red" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="ADC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">

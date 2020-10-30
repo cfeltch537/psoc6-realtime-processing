@@ -1,4 +1,4 @@
-Loading plugins phase: Elapsed time ==> 1s.193ms
+Loading plugins phase: Elapsed time ==> 0s.125ms
 <CYPRESSTAG name="CyDsfit arguments...">
 cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\CE218138_BLE_Thermometer_RTOS01.cyprj -d CY8C6347BZI-BLD53 -s C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\Generated_Source\PSoC6 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 </CYPRESSTAG>
@@ -6,11 +6,14 @@ ADD: fit.M0067: information: Clock Information: (The WCO is enabled. Chip startu
  * C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\CE218138_BLE_Thermometer_RTOS01.cydwr (WCO)
 
 <CYPRESSTAG name="Design elaboration results...">
+ADD: fit.M0052: information: Interrupt "DEBUG_UART_SCB_IRQ" is currently mapped to multiple cores on the device.
+ * C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\CE218138_BLE_Thermometer_RTOS01.cydwr (DEBUG_UART_SCB_IRQ)
+
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 5s.836ms
+Elaboration phase: Elapsed time ==> 3s.521ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
-HDL generation phase: Elapsed time ==> 0s.118ms
+HDL generation phase: Elapsed time ==> 0s.132ms
 <CYPRESSTAG name="Synthesis results...">
 
      | | | | | | |
@@ -44,7 +47,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Fri Oct 23 12:28:49 2020
+Thu Oct 29 21:49:58 2020
 
 
 ======================================================================
@@ -54,7 +57,7 @@ Options  :    -yv2 -q10 CE218138_BLE_Thermometer_RTOS01.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Fri Oct 23 12:28:49 2020
+Thu Oct 29 21:49:58 2020
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_virtualmux_v1_0\cy_virtualmux_v1_0.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\ZeroTerminal\ZeroTerminal.v'
@@ -92,7 +95,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Fri Oct 23 12:28:51 2020
+Thu Oct 29 21:49:59 2020
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -125,7 +128,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Fri Oct 23 12:28:52 2020
+Thu Oct 29 21:50:00 2020
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -164,9 +167,16 @@ Detecting unused logic.
 	\ADC:Net_34\
 	\ADC:Net_33\
 	Net_2672
+	\DEBUG_UART:Net_22\
+	\DEBUG_UART:Net_23\
+	Net_2676
+	Net_2677
+	Net_2678
+	Net_2683
+	Net_2684
 
 
-Deleted 11 User equations/components.
+Deleted 18 User equations/components.
 Deleted 0 Synthesized equations/components.
 
 ------------------------------------------------------
@@ -182,6 +192,7 @@ Aliasing \ADC:Net_43\ to zero
 Aliasing \ADC:st_sel_1\ to zero
 Aliasing \ADC:st_sel_0\ to zero
 Aliasing \ADC:Net_29\ to zero
+Aliasing \DEBUG_UART:cts_wire\ to zero
 Removing Lhs of wire \CY_EINK_SPIM:clock_wire\[8] = \CY_EINK_SPIM:Net_847\[7]
 Removing Lhs of wire \CY_EINK_SPIM:sclk_s_wire\[19] = zero[12]
 Removing Lhs of wire \CY_EINK_SPIM:select_s_wire\[24] = zero[12]
@@ -198,9 +209,12 @@ Removing Lhs of wire \ADC:st_sel_0\[93] = zero[12]
 Removing Lhs of wire \ADC:sarClock\[94] = \ADC:Net_428\[75]
 Removing Lhs of wire \ADC:Net_415\[95] = zero[12]
 Removing Lhs of wire \ADC:Net_29\[96] = zero[12]
+Removing Lhs of wire \DEBUG_UART:clock_wire\[756] = \DEBUG_UART:Net_847\[755]
+Removing Lhs of wire \DEBUG_UART:rx_wire\[768] = \DEBUG_UART:Net_1172\[765]
+Removing Lhs of wire \DEBUG_UART:cts_wire\[769] = zero[12]
 
 ------------------------------------------------------
-Aliased 0 equations, 16 wires.
+Aliased 0 equations, 19 wires.
 ------------------------------------------------------
 
 ----------------------------------------------------------
@@ -224,20 +238,21 @@ CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\wa
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\bin\warp.exe
 Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\CE218138_BLE_Thermometer_RTOS01.cyprj -dcpsoc3 CE218138_BLE_Thermometer_RTOS01.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 4s.240ms
+Warp synthesis phase: Elapsed time ==> 4s.702ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Friday, 23 October 2020 12:28:53
+cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Thursday, 29 October 2020 21:50:02
 Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\CE218138_BLE_Thermometer_RTOS01.cyprj -d CY8C6347BZI-BLD53 CE218138_BLE_Thermometer_RTOS01.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.929ms
+Design parsing phase: Elapsed time ==> 0s.967ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech Mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
 <CYPRESSTAG name="Global Clock Selection" icon="FILE_RPT_TECHM">
     Fixed Function Clock 0: Automatic-assigning  clock 'CY_EINK_SPIM_SCBCLK'. Signal=\CY_EINK_SPIM:Net_847_ff0\
     Fixed Function Clock 49: Automatic-assigning  clock 'ADC_intSarClock'. Signal=\ADC:Net_428_ff49\
+    Fixed Function Clock 1: Automatic-assigning  clock 'DEBUG_UART_SCBCLK'. Signal=\DEBUG_UART:Net_847_ff1\
 <CYPRESSTAG name="UDB Clock/Enable Remapping Results">
 </CYPRESSTAG>
 </CYPRESSTAG>
@@ -1062,6 +1077,86 @@ Design Equations
         {
         }
 
+    Pin : Name = \DEBUG_UART:tx(0)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: AUTO
+            Out Sync Option: NOSYNC
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: CMOS_OUT
+            VTrip: CMOS
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: INP_DIS_HI_Z
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO Multiplier Index: 0
+            SIO RefSel: VCC_IO
+            Required Capabilities: DIGITAL
+            Initial Value: 1
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => \DEBUG_UART:tx(0)\__PA ,
+            pin_input => \DEBUG_UART:tx_wire\ ,
+            pad => \DEBUG_UART:tx(0)_PAD\ );
+        Properties:
+        {
+        }
+
+    Pin : Name = \DEBUG_UART:rx(0)\
+        Attributes:
+            In Group/Port: True
+            In Sync Option: NOSYNC
+            Out Sync Option: AUTO
+            Interrupt generated: False
+            Interrupt mode: NONE
+            Drive mode: HI_Z_ANALOG
+            VTrip: CMOS
+            Slew: FAST
+            Input Sync needed: False
+            Output Sync needed: False
+            SC shield enabled: False
+            POR State: INP_DIS_HI_Z
+            LCD Mode: COMMON
+            Register Mode: RegComb
+            CaSense Mode: NEITHER
+            Treat as pin: True
+            Is OE Registered: False
+            Uses Analog: False
+            Can contain Digital: True
+            Is SIO: False
+            SIO Output Buf: NONREGULATED
+            SIO Input Buf: SINGLE_ENDED
+            SIO HiFreq: LOW
+            SIO Hyst: DISABLED
+            SIO Vtrip: MULTIPLIER_0_5
+            SIO Multiplier Index: 0
+            SIO RefSel: VCC_IO
+            Required Capabilities: DIGITAL
+            Initial Value: 1
+            IO Voltage: 0
+        PORT MAP (
+            pa_out => \DEBUG_UART:rx(0)\__PA ,
+            fb => \DEBUG_UART:Net_1172\ ,
+            pad => \DEBUG_UART:rx(0)_PAD\ );
+        Properties:
+        {
+        }
+
     Pin : Name = Pin_Advertise(0)
         Attributes:
             In Group/Port: True
@@ -1154,6 +1249,16 @@ Design Equations
             int_type = "10"
         }
 
+    interrupt: Name =\DEBUG_UART:SCB_IRQ\
+        PORT MAP (
+            interrupt => \DEBUG_UART:intr_wire\ );
+        Properties:
+        {
+            cy_registers = ""
+            deepsleep_required = 0
+            int_type = "10"
+        }
+
     interrupt: Name =isr_gpio
         PORT MAP (
             interrupt => INDIVIDUAL_PICU_OUT_0 );
@@ -1175,9 +1280,9 @@ Resource Type                 : Used : Free :  Max :  % Used
 ============================================================
 Digital Clocks                :    0 :    8 :    8 :  0.00 %
 Crypto Accelerator            :    0 :    1 :    1 :  0.00 %
-Interrupts [CM0+]             :    6 :   26 :   32 : 18.75 %
-Interrupts [CM4]              :    3 :  144 :  147 :  2.04 %
-IO                            :   21 :   57 :   78 : 26.92 %
+Interrupts [CM0+]             :    7 :   25 :   32 : 21.88 %
+Interrupts [CM4]              :    4 :  143 :  147 :  2.72 %
+IO                            :   23 :   55 :   78 : 29.49 %
 Interprocessor Communication  :    0 :   16 :   16 :  0.00 %
 MCWDT                         :    0 :    2 :    2 :  0.00 %
 CapSense                      :    0 :    1 :    1 :  0.00 %
@@ -1186,7 +1291,7 @@ Real Time Clock               :    0 :    1 :    1 :  0.00 %
 Bluetooth Low Energy          :    1 :    0 :    1 : 100.00 %
 I2S                           :    0 :    1 :    1 :  0.00 %
 PDM/PCM                       :    0 :    1 :    1 :  0.00 %
-SCB                           :    1 :    8 :    9 : 11.11 %
+SCB                           :    2 :    7 :    9 : 22.22 %
 Serial Memory Interface       :    0 :    1 :    1 :  0.00 %
 DMA Channels                  :    0 :   32 :   32 :  0.00 %
 LCD                           :    0 :    1 :    1 :  0.00 %
@@ -1207,8 +1312,8 @@ Sample and Hold               :    0 :    1 :    1 :  0.00 %
 SAR ADC                       :    1 :    0 :    1 : 100.00 %
 DieTemp Sensor                :    0 :    1 :    1 :  0.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.149ms
-Tech Mapping phase: Elapsed time ==> 0s.228ms
+Technology Mapping: Elapsed time ==> 0s.141ms
+Tech Mapping phase: Elapsed time ==> 0s.211ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 <CYPRESSTAG name="FFB & IO Pre Placement">
@@ -1236,6 +1341,8 @@ CY_EINK_DispRst(0)                  : [IOP=(5)][IoId=(2)]
 THER_VDD(0)                         : [IOP=(10)][IoId=(0)]               
 THER_GND(0)                         : [IOP=(10)][IoId=(3)]               
 THER_OUT_2(0)                       : [IOP=(10)][IoId=(2)]               
+\DEBUG_UART:tx(0)\                  : [IOP=(5)][IoId=(1)]                
+\DEBUG_UART:rx(0)\                  : [IOP=(5)][IoId=(0)]                
 Pin_Advertise(0)                    : [IOP=(0)][IoId=(4)]                
 ClockGenBlock                       : CLK_GEN_[FFB(CLK_GEN,0)]           
 SRSS                                : SRSS_[FFB(SRSS,0)]                 
@@ -1243,6 +1350,7 @@ CPUSS                               : CPUSS_[FFB(CPUSS,0)]
 \BLE:cy_mxs40_ble\                  : BLE_[FFB(BLE,0)]                   
 \CY_EINK_SPIM:SCB\                  : SCB_[FFB(SCB,6)]                   
 \ADC:SAR\                           : SARADC_[FFB(SARADC,0)]             
+\DEBUG_UART:SCB\                    : SCB_[FFB(SCB,5)]                   
 IOSS                                : IOSS_[FFB(IOSS,0)]                 
 \ADC:vRef_4\                        : Vref_[FFB(Vref,0)]                 
 \ADC:vRef_8\                        : Vref_[FFB(Vref,1)]                 
@@ -1250,15 +1358,15 @@ IOSS                                : IOSS_[FFB(IOSS,0)]
 </CYPRESSTAG>
 </CYPRESSTAG>
 <CYPRESSTAG name="Real Analog Placement">
-Elapsed time ==> 0.2574994s
+Elapsed time ==> 0.2550499s
 </CYPRESSTAG>
-Analog Placement phase: Elapsed time ==> 1s.387ms
+Analog Placement phase: Elapsed time ==> 1s.604ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 <CYPRESSTAG name="Analog Routing">
-Route success=True, Iterations=1 Elapsed=0.0240497 secs
+Route success=True, Iterations=1 Elapsed=0.0238583 secs
 </CYPRESSTAG>
-Analog Routing phase: Elapsed time ==> 0s.024ms
+Analog Routing phase: Elapsed time ==> 0s.023ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Code Generation">
 ============ Analog Final Answer Routes ============
@@ -1377,12 +1485,12 @@ Mux Info {
     }
   }
 }
-Analog Code Generation phase: Elapsed time ==> 0s.039ms
+Analog Code Generation phase: Elapsed time ==> 0s.024ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
 I2659: No Constrained paths were found. The placer will run in non-timing driven mode.
-I2076: Total run-time: 0.5 sec.
+I2076: Total run-time: 0.4 sec.
 
 </CYPRESSTAG>
 Warning: placer did not place the following components:
@@ -1398,7 +1506,7 @@ PLD Packing: Elapsed time ==> 0s.000ms
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.021ms
+Partitioning: Elapsed time ==> 0s.032ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Final Placement Summary">
 
@@ -1446,6 +1554,16 @@ Intr container @ [IntrContainer=(0)]:
         {
             cy_registers = ""
             deepsleep_required = 1
+            int_type = "10"
+        }
+  Intr@ [IntrContainer=(0)][IntrId=(46)] 
+    interrupt: Name =\DEBUG_UART:SCB_IRQ\
+        PORT MAP (
+            interrupt => \DEBUG_UART:intr_wire\ );
+        Properties:
+        {
+            cy_registers = ""
+            deepsleep_required = 0
             int_type = "10"
         }
   Intr@ [IntrContainer=(0)][IntrId=(47)] 
@@ -1706,6 +1824,88 @@ Pin : Name = Pin_LED_Orange(0)
     }
 
 Port 5 contains the following IO cells:
+[IoId=0]: 
+Pin : Name = \DEBUG_UART:rx(0)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: NOSYNC
+        Out Sync Option: AUTO
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: HI_Z_ANALOG
+        VTrip: CMOS
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: INP_DIS_HI_Z
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: DIGITAL
+        Initial Value: 1
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => \DEBUG_UART:rx(0)\__PA ,
+        fb => \DEBUG_UART:Net_1172\ ,
+        pad => \DEBUG_UART:rx(0)_PAD\ );
+    Properties:
+    {
+    }
+
+[IoId=1]: 
+Pin : Name = \DEBUG_UART:tx(0)\
+    Attributes:
+        In Group/Port: True
+        In Sync Option: AUTO
+        Out Sync Option: NOSYNC
+        Interrupt generated: False
+        Interrupt mode: NONE
+        Drive mode: CMOS_OUT
+        VTrip: CMOS
+        Slew: FAST
+        Input Sync needed: False
+        Output Sync needed: False
+        SC shield enabled: False
+        POR State: INP_DIS_HI_Z
+        LCD Mode: COMMON
+        Register Mode: RegComb
+        CaSense Mode: NEITHER
+        Treat as pin: True
+        Is OE Registered: False
+        Uses Analog: False
+        Can contain Digital: True
+        Is SIO: False
+        SIO Output Buf: NONREGULATED
+        SIO Input Buf: SINGLE_ENDED
+        SIO HiFreq: LOW
+        SIO Hyst: DISABLED
+        SIO Vtrip: MULTIPLIER_0_5
+        SIO Multiplier Index: 0
+        SIO RefSel: VCC_IO
+        Required Capabilities: DIGITAL
+        Initial Value: 1
+        IO Voltage: 0
+    PORT MAP (
+        pa_out => \DEBUG_UART:tx(0)\__PA ,
+        pin_input => \DEBUG_UART:tx_wire\ ,
+        pad => \DEBUG_UART:tx(0)_PAD\ );
+    Properties:
+    {
+    }
+
 [IoId=2]: 
 Pin : Name = CY_EINK_DispRst(0)
     Attributes:
@@ -2397,7 +2597,8 @@ Clock group 0:
             wco => ClockBlock_WCO ,
             lfclk => ClockBlock_LFClk ,
             ff_div_0 => \CY_EINK_SPIM:Net_847_ff0\ ,
-            ff_div_49 => \ADC:Net_428_ff49\ );
+            ff_div_49 => \ADC:Net_428_ff49\ ,
+            ff_div_1 => \DEBUG_UART:Net_847_ff1\ );
         Properties:
         {
         }
@@ -2427,6 +2628,24 @@ Vref group 0:
         }
 LPCOMP group 0: empty
 SCB group 0: 
+    SCB @ F(SCB,5): 
+    SCB: Name =\DEBUG_UART:SCB\
+        PORT MAP (
+            clock => \DEBUG_UART:Net_847_ff1\ ,
+            uart_rx => \DEBUG_UART:Net_1172\ ,
+            uart_tx => \DEBUG_UART:tx_wire\ ,
+            uart_rts => \DEBUG_UART:rts_wire\ ,
+            interrupt => \DEBUG_UART:intr_wire\ ,
+            tr_tx_req => Net_2681 ,
+            tr_rx_req => Net_2680 ,
+            tr_i2c_scl_filtered => \DEBUG_UART:Net_161\ );
+        Properties:
+        {
+            cy_registers = ""
+            master = 0
+            mode = 2
+            requires_io_preconfigure = 0
+        }
     SCB @ F(SCB,6): 
     SCB: Name =\CY_EINK_SPIM:SCB\
         PORT MAP (
@@ -2575,65 +2794,67 @@ Port Configuration report
 ------------------------------------------------------------
      |     |       | Interrupt |                  |                            | 
 Port | Pin | Fixed |      Type |       Drive Mode |                       Name | Connections
------+-----+-------+-----------+------------------+----------------------------+-------------------------
+-----+-----+-------+-----------+------------------+----------------------------+--------------------------
    0 |   0 |     * |      NONE |      HI_Z_ANALOG |          CY_SRSS_WCO_IN(0) | Analog(SRSS_wco_in)
      |   1 |     * |      NONE |      HI_Z_ANALOG |         CY_SRSS_WCO_OUT(0) | Analog(SRSS_wco_out)
      |   2 |     * |      NONE |         CMOS_OUT |        CY_EINK_DispIoEn(0) | 
      |   4 |     * |   FALLING |      RES_PULL_UP |           Pin_Advertise(0) | 
------+-----+-------+-----------+------------------+----------------------------+-------------------------
+-----+-----+-------+-----------+------------------+----------------------------+--------------------------
    1 |   5 |     * |      NONE |         CMOS_OUT |          Pin_LED_Orange(0) | 
------+-----+-------+-----------+------------------+----------------------------+-------------------------
-   5 |   2 |     * |      NONE |         CMOS_OUT |         CY_EINK_DispRst(0) | 
+-----+-----+-------+-----------+------------------+----------------------------+--------------------------
+   5 |   0 |     * |      NONE |      HI_Z_ANALOG |         \DEBUG_UART:rx(0)\ | FB(\DEBUG_UART:Net_1172\)
+     |   1 |     * |      NONE |         CMOS_OUT |         \DEBUG_UART:tx(0)\ | In(\DEBUG_UART:tx_wire\)
+     |   2 |     * |      NONE |         CMOS_OUT |         CY_EINK_DispRst(0) | 
      |   3 |     * |      NONE |      HI_Z_ANALOG |        CY_EINK_DispBusy(0) | 
      |   4 |     * |      NONE |         CMOS_OUT |          CY_EINK_DispEn(0) | 
      |   5 |     * |      NONE |         CMOS_OUT |       CY_EINK_Discharge(0) | 
      |   6 |     * |      NONE |         CMOS_OUT |          CY_EINK_Border(0) | 
------+-----+-------+-----------+------------------+----------------------------+-------------------------
+-----+-----+-------+-----------+------------------+----------------------------+--------------------------
    6 |   6 |     * |      NONE |      RES_PULL_UP |  CY_CPUSS_SWJ_SWDIO_TMS(0) | FB(CPUSS_swj_swdio_tms)
      |   7 |     * |      NONE |    RES_PULL_DOWN | CY_CPUSS_SWJ_SWCLK_TCLK(0) | FB(CPUSS_swj_swclk_tclk)
------+-----+-------+-----------+------------------+----------------------------+-------------------------
+-----+-----+-------+-----------+------------------+----------------------------+--------------------------
   10 |   0 |     * |      NONE |         CMOS_OUT |                THER_VDD(0) | Analog(Net_409)
      |   1 |     * |      NONE |      HI_Z_ANALOG |              THER_OUT_1(0) | Analog(Net_163)
      |   2 |     * |      NONE |      HI_Z_ANALOG |              THER_OUT_2(0) | Analog(Net_401)
      |   3 |     * |      NONE |         CMOS_OUT |                THER_GND(0) | Analog(Net_407)
------+-----+-------+-----------+------------------+----------------------------+-------------------------
+-----+-----+-------+-----------+------------------+----------------------------+--------------------------
   12 |   0 |     * |      NONE |         CMOS_OUT |            CY_EINK_Mosi(0) | In(Net_2658)
      |   1 |     * |      NONE |      HI_Z_ANALOG |            CY_EINK_Miso(0) | In(Net_376)
      |   2 |     * |      NONE |         CMOS_OUT |            CY_EINK_Sclk(0) | In(Net_2659)
      |   3 |     * |      NONE |         CMOS_OUT |            CY_EINK_Ssel(0) | 
------+-----+-------+-----------+------------------+----------------------------+-------------------------
+-----+-----+-------+-----------+------------------+----------------------------+--------------------------
   13 |   7 |     * |      NONE |         CMOS_OUT |             Pin_LED_Red(0) | 
----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
 </CYPRESSTAG>
 </CYPRESSTAG>
 </CYPRESSTAG>
-Digital component placer commit/Report: Elapsed time ==> 0s.032ms
-Digital Placement phase: Elapsed time ==> 5s.520ms
+Digital component placer commit/Report: Elapsed time ==> 0s.041ms
+Digital Placement phase: Elapsed time ==> 5s.123ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\bin/sjrouter.exe" --xml-path "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc6/0/route_arch-rrg.cydata" --vh2-path "CE218138_BLE_Thermometer_RTOS01_r.vh2" --pcf-path "CE218138_BLE_Thermometer_RTOS01.pco" --des-name "CE218138_BLE_Thermometer_RTOS01" --dsf-path "CE218138_BLE_Thermometer_RTOS01.dsf" --sdc-path "CE218138_BLE_Thermometer_RTOS01.sdc" --lib-path "CE218138_BLE_Thermometer_RTOS01_r.lib"
 Routing successful.
-Digital Routing phase: Elapsed time ==> 0s.918ms
+Digital Routing phase: Elapsed time ==> 0s.851ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Generation">
-Bitstream Generation phase: Elapsed time ==> 0s.669ms
+Bitstream Generation phase: Elapsed time ==> 0s.485ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Verification">
 Bitstream Verification phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in CE218138_BLE_Thermometer_RTOS01_timing.html.
-Static timing analysis phase: Elapsed time ==> 7s.808ms
+Static timing analysis phase: Elapsed time ==> 7s.625ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.170ms
+Design database save phase: Elapsed time ==> 0s.191ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 17s.739ms
+cydsfit: Elapsed time ==> 17s.162ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 17s.740ms
-API generation phase: Elapsed time ==> 1s.359ms
-Dependency generation phase: Elapsed time ==> 0s.030ms
+Fitter phase: Elapsed time ==> 17s.164ms
+API generation phase: Elapsed time ==> 1s.417ms
+Dependency generation phase: Elapsed time ==> 0s.024ms
 Cleanup phase: Elapsed time ==> 0s.000ms

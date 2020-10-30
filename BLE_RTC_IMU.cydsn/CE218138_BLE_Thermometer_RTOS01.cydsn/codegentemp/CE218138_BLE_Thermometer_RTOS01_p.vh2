@@ -1,5 +1,5 @@
 -- Project:   CE218138_BLE_Thermometer_RTOS01
--- Generated: 10/23/2020 12:29:01
+-- Generated: 10/29/2020 21:50:10
 -- PSoC Creator  4.2
 
 ENTITY CE218138_BLE_Thermometer_RTOS01 IS
@@ -16,6 +16,8 @@ ENTITY CE218138_BLE_Thermometer_RTOS01 IS
         CY_EINK_Discharge(0)_PAD : OUT std_ulogic;
         CY_EINK_DispEn(0)_PAD : OUT std_ulogic;
         CY_EINK_DispRst(0)_PAD : OUT std_ulogic;
+        \DEBUG_UART:tx(0)_PAD\ : OUT std_ulogic;
+        \DEBUG_UART:rx(0)_PAD\ : IN std_ulogic;
         Pin_Advertise(0)_PAD : IN std_ulogic);
     ATTRIBUTE voltage_VBACKUP OF __DEFAULT__ : ENTITY IS 3.3e0;
     ATTRIBUTE voltage_VDD_NS OF __DEFAULT__ : ENTITY IS 3.3e0;
@@ -95,6 +97,8 @@ ARCHITECTURE __DEFAULT__ OF CE218138_BLE_Thermometer_RTOS01 IS
     SIGNAL Net_2670_7 : bit;
     SIGNAL Net_2670_8 : bit;
     SIGNAL Net_2670_9 : bit;
+    SIGNAL Net_2680 : bit;
+    SIGNAL Net_2681 : bit;
     SIGNAL Net_376 : bit;
     SIGNAL Pin_Advertise(0)__PA : bit;
     SIGNAL Pin_LED_Orange(0)__PA : bit;
@@ -113,6 +117,15 @@ ARCHITECTURE __DEFAULT__ OF CE218138_BLE_Thermometer_RTOS01 IS
     SIGNAL \CY_EINK_SPIM:Net_847_ff0\ : bit;
     ATTRIBUTE global_signal OF \CY_EINK_SPIM:Net_847_ff0\ : SIGNAL IS true;
     SIGNAL \CY_EINK_SPIM:intr_wire\ : bit;
+    SIGNAL \DEBUG_UART:Net_1172\ : bit;
+    SIGNAL \DEBUG_UART:Net_161\ : bit;
+    SIGNAL \DEBUG_UART:Net_847_ff1\ : bit;
+    ATTRIBUTE global_signal OF \DEBUG_UART:Net_847_ff1\ : SIGNAL IS true;
+    SIGNAL \DEBUG_UART:intr_wire\ : bit;
+    SIGNAL \DEBUG_UART:rts_wire\ : bit;
+    SIGNAL \\\DEBUG_UART:rx(0)\\__PA\ : bit;
+    SIGNAL \\\DEBUG_UART:tx(0)\\__PA\ : bit;
+    SIGNAL \DEBUG_UART:tx_wire\ : bit;
     SIGNAL __ONE__ : bit;
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
     SIGNAL __ZERO__ : bit;
@@ -164,7 +177,11 @@ ARCHITECTURE __DEFAULT__ OF CE218138_BLE_Thermometer_RTOS01 IS
     ATTRIBUTE Location OF THER_GND(0) : LABEL IS "P10[3]";
     ATTRIBUTE lib_model OF THER_OUT_2(0) : LABEL IS "iocell20";
     ATTRIBUTE Location OF THER_OUT_2(0) : LABEL IS "P10[2]";
-    ATTRIBUTE lib_model OF Pin_Advertise(0) : LABEL IS "iocell21";
+    ATTRIBUTE lib_model OF \DEBUG_UART:tx(0)\ : LABEL IS "iocell21";
+    ATTRIBUTE Location OF \DEBUG_UART:tx(0)\ : LABEL IS "P5[1]";
+    ATTRIBUTE lib_model OF \DEBUG_UART:rx(0)\ : LABEL IS "iocell22";
+    ATTRIBUTE Location OF \DEBUG_UART:rx(0)\ : LABEL IS "P5[0]";
+    ATTRIBUTE lib_model OF Pin_Advertise(0) : LABEL IS "iocell23";
     ATTRIBUTE Location OF Pin_Advertise(0) : LABEL IS "P0[4]";
     ATTRIBUTE Location OF \ADC:SAR\ : LABEL IS "F(SARADC,0)";
     COMPONENT BLE
@@ -619,6 +636,7 @@ BEGIN
             lfclk => ClockBlock_LFClk,
             ff_div_0 => \CY_EINK_SPIM:Net_847_ff0\,
             ff_div_49 => \ADC:Net_428_ff49\,
+            ff_div_1 => \DEBUG_UART:Net_847_ff1\,
             periclk_App => periclk_App);
 
     SRSS:SRSS;
@@ -1705,6 +1723,117 @@ BEGIN
             out_clock_en => open,
             out_reset => open);
 
+    \DEBUG_UART:tx\:logicalport
+        GENERIC MAP(
+            cy_registers => "",
+            drive_mode => "110",
+            drive_strength => "0",
+            hotswap_needed => "0",
+            i2c_mode => "0",
+            ibuf_enabled => "0",
+            id => "9355880a-b929-4a30-9bef-01e8b834368b/65f3af6c-759b-4ccb-8c66-5c95ba1f5f4f",
+            init_dr_st => "1",
+            input_sync => "0",
+            intr_mode => "00",
+            io_voltage => "",
+            max_frequency => "100",
+            oe_conn => "0",
+            oe_sync => "0",
+            output_conn => "1",
+            output_current_cap => "8",
+            output_sync => "0",
+            pin_aliases => "",
+            pin_mode => "B",
+            sio_grp_cnt => 0,
+            slew_rate => "0",
+            use_annotation => "0",
+            vtrip => "00",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0);
+
+    \DEBUG_UART:tx(0)\:iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "\DEBUG_UART:tx\",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+        PORT MAP(
+            pa_out => \\\DEBUG_UART:tx(0)\\__PA\,
+            oe => open,
+            pin_input => \DEBUG_UART:tx_wire\,
+            pad_out => \DEBUG_UART:tx(0)_PAD\,
+            pad_in => \DEBUG_UART:tx(0)_PAD\,
+            in_clock => open,
+            in_clock_en => open,
+            in_reset => open,
+            out_clock => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    \DEBUG_UART:rx\:logicalport
+        GENERIC MAP(
+            cy_registers => "",
+            drive_mode => "000",
+            drive_strength => "0",
+            hotswap_needed => "0",
+            i2c_mode => "0",
+            ibuf_enabled => "1",
+            id => "9355880a-b929-4a30-9bef-01e8b834368b/b7e8018e-1ef7-49c0-b5a5-61641a03e31c",
+            init_dr_st => "1",
+            input_sync => "0",
+            intr_mode => "00",
+            io_voltage => "",
+            max_frequency => "100",
+            oe_conn => "0",
+            oe_sync => "0",
+            output_conn => "0",
+            output_current_cap => "8",
+            output_sync => "0",
+            pin_aliases => "",
+            pin_mode => "B",
+            sio_grp_cnt => 0,
+            slew_rate => "0",
+            use_annotation => "0",
+            vtrip => "00",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0);
+
+    \DEBUG_UART:rx(0)\:iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "\DEBUG_UART:rx\",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+        PORT MAP(
+            pa_out => \\\DEBUG_UART:rx(0)\\__PA\,
+            oe => open,
+            fb => \DEBUG_UART:Net_1172\,
+            pad_in => \DEBUG_UART:rx(0)_PAD\,
+            in_clock => open,
+            in_clock_en => open,
+            in_reset => open,
+            out_clock => open,
+            out_clock_en => open,
+            out_reset => open);
+
     Pin_Advertise:logicalport
         GENERIC MAP(
             cy_registers => "",
@@ -1861,6 +1990,39 @@ BEGIN
             tr_sar_in => open,
             clock => \ADC:Net_428_ff49\,
             interrupt => \ADC:Net_423\);
+
+    \DEBUG_UART:SCB_IRQ\:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "10")
+        PORT MAP(
+            interrupt => \DEBUG_UART:intr_wire\,
+            clock => ClockBlock_PeriClk);
+
+    \DEBUG_UART:SCB\:SCB
+        GENERIC MAP(
+            cy_registers => "",
+            master => 0,
+            mode => 2,
+            requires_io_preconfigure => 0)
+        PORT MAP(
+            clock => \DEBUG_UART:Net_847_ff1\,
+            uart_rx => \DEBUG_UART:Net_1172\,
+            uart_tx => \DEBUG_UART:tx_wire\,
+            uart_rts => \DEBUG_UART:rts_wire\,
+            uart_cts => open,
+            spi_clk => open,
+            spi_select_3 => open,
+            spi_select_2 => open,
+            spi_select_1 => open,
+            spi_select_0 => open,
+            spi_mosi => open,
+            spi_miso => open,
+            interrupt => \DEBUG_UART:intr_wire\,
+            tr_tx_req => Net_2681,
+            tr_rx_req => Net_2680,
+            tr_i2c_scl_filtered => \DEBUG_UART:Net_161\);
 
     isr_gpio:interrupt
         GENERIC MAP(

@@ -79,7 +79,7 @@
    enabling debug reduces performance, power efficiency and increases 
    code size. Make sure to enable the UART_DEBUG component in TopDesign 
    schematic if debug is enabled */    
-#define UART_DEBUG_ENABLE    (false)
+#define UART_DEBUG_ENABLE    (true)
     
 /* Declare the macros used for UART based debug. Make sure to enable the
     UART_DEBUG component in TopDesign schematic if debug is enabled */    
