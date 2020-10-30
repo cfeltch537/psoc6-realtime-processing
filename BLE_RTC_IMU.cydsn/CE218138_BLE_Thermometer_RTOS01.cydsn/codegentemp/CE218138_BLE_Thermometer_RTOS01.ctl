@@ -1,6 +1,6 @@
 -- ======================================================================
 -- CE218138_BLE_Thermometer_RTOS01.ctl generated from CE218138_BLE_Thermometer_RTOS01
--- 10/29/2020 at 22:05
+-- 10/29/2020 at 22:46
 -- This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 -- ======================================================================
 

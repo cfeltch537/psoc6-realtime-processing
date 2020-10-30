@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
   27:main_cm4.c    **** * Any reproduction, modification, translation, compilation, or representation
   28:main_cm4.c    **** * of this Software except as specified above is prohibited without the express
   29:main_cm4.c    **** * written permission of Cypress.
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 2
 
 
   30:main_cm4.c    **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
   84:main_cm4.c    **** /*******************************************************************************
   85:main_cm4.c    **** * Function Name: main
   86:main_cm4.c    **** ********************************************************************************
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 3
 
 
   87:main_cm4.c    **** * Summary:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
   64 002e 0022     		movs	r2, #0
   65 0030 0221     		movs	r1, #2
   66 0032 0520     		movs	r0, #5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 4
 
 
   67 0034 FFF7FEFF 		bl	xQueueGenericCreate
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  111              	.LVL7:
  116:main_cm4.c    ****                 NULL, TASK_STATUS_LED_PRIORITY, NULL);
  117:main_cm4.c    ****     xTaskCreate(Task_Display, "Display task", TASK_DISPLAY_STACK_SIZE,
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 5
 
 
  112              		.loc 1 117 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
   43:uart_debug.h  **** * indemnify Cypress against all liability.
   44:uart_debug.h  **** *******************************************************************************/
   45:uart_debug.h  **** /******************************************************************************
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 6
 
 
   46:uart_debug.h  **** * This file contains the macros that are used for UART based debug. Note that 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  100:uart_debug.h  **** 	   information from RTOS Tasks */
  101:uart_debug.h  **** 	
  102:uart_debug.h  **** 	/* Initializes the underlying Task and Queue used for printing debug 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 7
 
 
  103:uart_debug.h  **** 	   messages */
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  143              	.LBE4:
  118:main_cm4.c    ****                 NULL, TASK_DISPLAY_PRIORITY, NULL);
  119:main_cm4.c    **** 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 8
 
 
  120:main_cm4.c    ****     /* Initialize thread-safe debug message printing. See uart_debug.h header 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  186              		.thumb
  187              		.thumb_func
  188              		.type	vApplicationIdleHook, %function
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 9
 
 
  189              	vApplicationIdleHook:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  160:main_cm4.c    ****                                                     signed char *pcTaskName)
  161:main_cm4.c    **** ********************************************************************************
  162:main_cm4.c    **** *
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 10
 
 
  163:main_cm4.c    **** * Summary:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  245              		.global	vApplicationMallocFailedHook
  246              		.thumb
  247              		.thumb_func
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 11
 
 
  248              		.type	vApplicationMallocFailedHook, %function
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  278              		.align	2
  279              	.LC0:
  280 0000 424C4520 		.ascii	"BLE Task\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 12
 
 
  280      5461736B 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  306      544F5320 
  306      2D204D65 
  307              		.text
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 13
 
 
  308              	.Letext0:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  362 003a 3E000000 		.4byte	0x3e
  363 003e 02       		.uleb128 0x2
  364 003f 01       		.byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 14
 
 
  365 0040 08       		.byte	0x8
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  419 00a9 5E000000 		.4byte	0x5e
  420 00ad 02       		.uleb128 0x2
  421 00ae 04       		.byte	0x4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 15
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 15
 
 
  422 00af 07       		.byte	0x7
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  476 0118 04020000 		.4byte	.LASF25
  477 011c 01       		.byte	0x1
  478 011d 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 16
 
 
  479 011e 06       		.uleb128 0x6
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  533 0190 07       		.byte	0x7
  534 0191 E501     		.2byte	0x1e5
  535 0193 B2010000 		.4byte	0x1b2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 17
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 17
 
 
  536 0197 0B       		.uleb128 0xb
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  590 0206 0D       		.uleb128 0xd
  591 0207 FB070000 		.4byte	.LASF42
  592 020b 08       		.byte	0x8
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 18
 
 
  593 020c 34       		.byte	0x34
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  647 0278 41       		.byte	0x41
  648 0279 A2000000 		.4byte	0xa2
  649 027d 38       		.byte	0x38
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 19
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 19
 
 
  650 027e 0D       		.uleb128 0xd
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  704 02f0 00       		.byte	0
  705 02f1 0B       		.uleb128 0xb
  706 02f2 0A090000 		.4byte	.LASF61
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 20
 
 
  707 02f6 09       		.byte	0x9
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  761 036b 0A       		.byte	0xa
  762 036c AB01     		.2byte	0x1ab
  763 036e BA020000 		.4byte	0x2ba
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 21
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 21
 
 
  764 0372 11       		.uleb128 0x11
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  818 03e7 0B       		.uleb128 0xb
  819 03e8 2A030000 		.4byte	.LASF63
  820 03ec 0A       		.byte	0xa
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 22
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 22
 
 
  821 03ed 5402     		.2byte	0x254
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  875 0461 08       		.uleb128 0x8
  876 0462 E6090000 		.4byte	.LASF83
  877 0466 03       		.byte	0x3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 23
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 23
 
 
  878 0467 00       		.byte	0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  932 04d9 57040000 		.4byte	.LASF92
  933 04dd 0B       		.byte	0xb
  934 04de FD04     		.2byte	0x4fd
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 24
 
 
  935 04e0 41050000 		.4byte	0x541
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  989 0556 0B       		.byte	0xb
  990 0557 0505     		.2byte	0x505
  991 0559 74040000 		.4byte	0x474
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 25
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 25
 
 
  992 055d 14       		.uleb128 0x14
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1046 05ca FF050000 		.4byte	0x5ff
  1047 05ce 08       		.uleb128 0x8
  1048 05cf 16090000 		.4byte	.LASF109
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 26
 
 
  1049 05d3 00       		.byte	0
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1103 063c 40       		.byte	0x40
  1104 063d A2000000 		.4byte	0xa2
  1105 0641 0C       		.byte	0xc
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 27
 
 
  1106 0642 0D       		.uleb128 0xd
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1160 06ba 1A       		.uleb128 0x1a
  1161 06bb A6000000 		.4byte	.LVL9
  1162 06bf C00A0000 		.4byte	0xac0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 28
 
 
  1163 06c3 D8060000 		.4byte	0x6d8
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1217 0705 1A       		.uleb128 0x1a
  1218 0706 0E000000 		.4byte	.LVL0
  1219 070a C00A0000 		.4byte	0xac0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 29
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 29
 
 
  1220 070e 22070000 		.4byte	0x722
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1274 0759 01       		.uleb128 0x1
  1275 075a 30       		.byte	0x30
  1276 075b 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 30
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 30
 
 
  1277 075c 1A       		.uleb128 0x1a
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1331 07a8 00       		.sleb128 0
  1332 07a9 00       		.byte	0
  1333 07aa 1A       		.uleb128 0x1a
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 31
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 31
 
 
  1334 07ab 66000000 		.4byte	.LVL5
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1388 07fa 53       		.byte	0x53
  1389 07fb 02       		.uleb128 0x2
  1390 07fc 74       		.byte	0x74
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 32
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 32
 
 
  1391 07fd 00       		.sleb128 0
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1445 0845 6E080000 		.4byte	0x86e
  1446 0849 1B       		.uleb128 0x1b
  1447 084a 01       		.uleb128 0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 33
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 33
 
 
  1448 084b 51       		.byte	0x51
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1502 08a0 1B       		.uleb128 0x1b
  1503 08a1 01       		.uleb128 0x1
  1504 08a2 51       		.byte	0x51
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 34
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 34
 
 
  1505 08a3 02       		.uleb128 0x2
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1559 0912 8C000000 		.4byte	.LC8
  1560 0916 1B       		.uleb128 0x1b
  1561 0917 01       		.uleb128 0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 35
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 35
 
 
  1562 0918 51       		.byte	0x51
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1616 097b 50       		.byte	0x50
  1617 097c 05       		.uleb128 0x5
  1618 097d 03       		.byte	0x3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 36
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 36
 
 
  1619 097e 80000000 		.4byte	.LC7
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1673 09f4 20       		.uleb128 0x20
  1674 09f5 18040000 		.4byte	.LASF136
  1675 09f9 0D       		.byte	0xd
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 37
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 37
 
 
  1676 09fa 2D02     		.2byte	0x22d
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1730 0a75 FD000000 		.4byte	0xfd
  1731 0a79 21       		.uleb128 0x21
  1732 0a7a 19000000 		.4byte	.LASF145
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 38
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 38
 
 
  1733 0a7e 18       		.byte	0x18
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1787 0afc 05       		.byte	0x5
  1788 0afd 2A03     		.2byte	0x32a
  1789 0aff 22       		.uleb128 0x22
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 39
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 39
 
 
  1790 0b00 DB080000 		.4byte	.LASF155
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1844 002a 00       		.byte	0
  1845 002b 04       		.uleb128 0x4
  1846 002c 24       		.uleb128 0x24
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 40
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 40
 
 
  1847 002d 00       		.byte	0
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1901 0063 0F       		.uleb128 0xf
  1902 0064 00       		.byte	0
  1903 0065 0B       		.uleb128 0xb
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 41
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 41
 
 
  1904 0066 0B       		.uleb128 0xb
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  1958 009c 0B       		.uleb128 0xb
  1959 009d 49       		.uleb128 0x49
  1960 009e 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 42
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 42
 
 
  1961 009f 38       		.uleb128 0x38
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2015 00d5 21       		.uleb128 0x21
  2016 00d6 00       		.byte	0
  2017 00d7 49       		.uleb128 0x49
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 43
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 43
 
 
  2018 00d8 13       		.uleb128 0x13
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2072 010e 2E       		.uleb128 0x2e
  2073 010f 01       		.byte	0x1
  2074 0110 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 44
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 44
 
 
  2075 0111 19       		.uleb128 0x19
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2129 014d 02       		.uleb128 0x2
  2130 014e 18       		.uleb128 0x18
  2131 014f 9142     		.uleb128 0x2111
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 45
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 45
 
 
  2132 0151 18       		.uleb128 0x18
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2186 018c 0B       		.uleb128 0xb
  2187 018d 49       		.uleb128 0x49
  2188 018e 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 46
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 46
 
 
  2189 018f 02       		.uleb128 0x2
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2243 01c5 00       		.byte	0
  2244 01c6 23       		.uleb128 0x23
  2245 01c7 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 47
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 47
 
 
  2246 01c8 00       		.byte	0
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2300 0029 0100     		.2byte	0x1
  2301 002b 51       		.byte	0x51
  2302 002c 07000000 		.4byte	.LVL17-1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 48
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 48
 
 
  2303 0030 1C000000 		.4byte	.LFE716
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2349      6500
  2350              	.LASF145:
  2351 0019 5254435F 		.ascii	"RTC_dstConfig\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 49
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 49
 
 
  2351      64737443 
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2373      6720756E 
  2373      7369676E 
  2373      65642069 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 50
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 50
 
 
  2374              	.LASF38:
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2395      6E67655F 
  2395      64657465 
  2396              	.LASF122:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 51
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 51
 
 
  2397 019a 636C6B44 		.ascii	"clkDivider\000"
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2417 025f 5461736B 		.ascii	"TaskHandle_t\000"
  2417      48616E64 
  2417      6C655F74 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 52
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 52
 
 
  2417      00
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2439      67507269 
  2439      6E746600 
  2440              	.LASF63:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 53
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 53
 
 
  2441 032a 72784275 		.ascii	"rxBufIdx\000"
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2465      6C696361 
  2465      74696F6E 
  2465      53746163 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 54
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 54
 
 
  2465      6B4F7665 
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2487      745F666F 
  2487      726D6174 
  2488              	.LASF54:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 55
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 55
 
 
  2489 04ab 636F756E 		.ascii	"countInputMode\000"
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2513      6967526F 
  2513      7574696E 
  2513      6700
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 56
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 56
 
 
  2514              	.LASF73:
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2533              	.LASF29:
  2534 0686 6461794F 		.ascii	"dayOfMonth\000"
  2534      664D6F6E 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 57
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 57
 
 
  2534      746800
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2557              	.LASF142:
  2558 0740 54696D65 		.ascii	"Timer_PPG_config\000"
  2558      725F5050 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 58
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 58
 
 
  2558      475F636F 
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2580      61726530 
  2580      00
  2581              	.LASF43:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 59
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 59
 
 
  2582 0804 636F6D70 		.ascii	"compare1\000"
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2604      7400
  2605              	.LASF21:
  2606 08b1 43595F53 		.ascii	"CY_SYSPM_WAIT_FOR_INTERRUPT\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 60
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 60
 
 
  2606      5953504D 
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2628      44565F53 
  2628      54415445 
  2628      5F414456 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 61
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 61
 
 
  2629              	.LASF86:
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2652 0a2e 62644861 		.ascii	"bdHandle\000"
  2652      6E646C65 
  2652      00
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 62
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 62
 
 
  2653              	.LASF35:
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 1
  2674 0b39 7964736E 		.ascii	"ydsn\000"
  2674      00
  2675              	.LASF66:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83CG7s.s 			page 63
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cc83HDKN.s 			page 63
 
 
  2676 0b3e 74784275 		.ascii	"txBufIdx\000"

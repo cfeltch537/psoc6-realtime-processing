@@ -37,6 +37,8 @@ extern "C" {
 #define CY_BLE_HTS_SERVER
 #define CY_BLE_DIS
 #define CY_BLE_DIS_SERVER
+#define CY_BLE_CUSTOM
+#define CY_BLE_CUSTOM_SERVER
 
 /***************************************
 * API Constants
@@ -280,7 +282,7 @@ extern "C" {
 
 /** The GATT Maximum attribute length. */
 #define CY_BLE_CONFIG_GATT_DB_MAX_VALUE_LEN         (0x0015u)
-#define CY_BLE_GATT_DB_INDEX_COUNT                  (0x002Bu)
+#define CY_BLE_GATT_DB_INDEX_COUNT                  (0x0030u)
 
 /** The number of characteristics supporting the Reliable Write property. */
 #define CY_BLE_CONFIG_GATT_RELIABLE_CHAR_COUNT      (0x0000u)
@@ -311,7 +313,7 @@ extern "C" {
     #define CY_BLE_CONFIG_L2CAP_PSM_COUNT               (1u)
 #endif  /* CY_BLE_L2CAP_ENABLE != 0u */
 
-#define CY_BLE_CONFIG_GATT_DB_ATT_VAL_COUNT         (0x16u)
+#define CY_BLE_CONFIG_GATT_DB_ATT_VAL_COUNT         (0x1Bu)
 
 /** Max Tx payload size. */
 #define CY_BLE_CONFIG_LL_MAX_TX_PAYLOAD_SIZE        (0xFBu)
@@ -321,10 +323,10 @@ extern "C" {
 
 /** GATT Role. */
 #define CY_BLE_CONFIG_GATT_ROLE                     (0x03u)
-#define CY_BLE_CONFIG_GATT_DB_CCCD_COUNT            (0x08u)
+#define CY_BLE_CONFIG_GATT_DB_CCCD_COUNT            (0x0Au)
 
 /** Max unique services in the project. */
-#define CY_BLE_MAX_SRVI                             (0x02u)
+#define CY_BLE_MAX_SRVI                             (0x03u)
 
 /***************************************
 * API Constants for BLE services
@@ -367,21 +369,32 @@ extern "C" {
 
 /* CUSTOM */
 /** The maximum supported count of Custom services for the GATT Server role. */
-#define CY_BLE_CONFIG_CUSTOMS_SERVICE_COUNT         (0x00u)
+#define CY_BLE_CONFIG_CUSTOMS_SERVICE_COUNT         (0x01u)
 
 /** The maximum supported count of Custom services for the GATT Client role. */
 #define CY_BLE_CONFIG_CUSTOMC_SERVICE_COUNT         (0x00u)
 
 /** The maximum supported count of the Custom Service characteristics. */
-#define CY_BLE_CONFIG_CUSTOM_SERVICE_CHAR_COUNT     (0x00u)
+#define CY_BLE_CONFIG_CUSTOM_SERVICE_CHAR_COUNT     (0x01u)
 
 /** The maximum supported count of the Custom Service descriptors in one characteristic. */
-#define CY_BLE_CONFIG_CUSTOM_SERVICE_CHAR_DESCRIPTORS_COUNT  (0x00u)
+#define CY_BLE_CONFIG_CUSTOM_SERVICE_CHAR_DESCRIPTORS_COUNT  (0x02u)
 
 /**
  * Below are the indexes and handles of the defined Custom Services and 
  * their characteristics.
  */
+#define CY_BLE_IMU_SERVICE_INDEX   (0x00u) /* Index of IMU service in the cy_ble_customs array */
+#define CY_BLE_IMU_ACC_CHAR_INDEX   (0x00u) /* Index of Acc characteristic */
+#define CY_BLE_IMU_ACC_CLIENT_CHARACTERISTIC_CONFIGURATION_DESC_INDEX   (0x00u) /* Index of Client Characteristic Configuration descriptor */
+#define CY_BLE_IMU_ACC_CHARACTERISTIC_USER_DESCRIPTION_DESC_INDEX   (0x01u) /* Index of Characteristic User Description descriptor */
+
+
+#define CY_BLE_IMU_SERVICE_HANDLE   (0x002Cu) /* Handle of IMU service */
+#define CY_BLE_IMU_ACC_DECL_HANDLE   (0x002Du) /* Handle of Acc characteristic declaration */
+#define CY_BLE_IMU_ACC_CHAR_HANDLE   (0x002Eu) /* Handle of Acc characteristic */
+#define CY_BLE_IMU_ACC_CLIENT_CHARACTERISTIC_CONFIGURATION_DESC_HANDLE   (0x002Fu) /* Handle of Client Characteristic Configuration descriptor */
+#define CY_BLE_IMU_ACC_CHARACTERISTIC_USER_DESCRIPTION_DESC_HANDLE   (0x0030u) /* Handle of Characteristic User Description descriptor */
 
 
 

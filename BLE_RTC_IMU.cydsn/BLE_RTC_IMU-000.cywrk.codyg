@@ -18,7 +18,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\imu_task.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\TopDesign">
 <ExpandedNodeIds>
 <v>BLE_RTC_IMU-000</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU</v>
@@ -190,6 +190,12 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\cyfitter_cfg.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\cymetadata.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\project.h</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\TopDesign</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CE218138_BLE_Thermometer_RTOS01.cydwr</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CE218138_BLE_Thermometer_RTOS01.cydwr\Pins</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CE218138_BLE_Thermometer_RTOS01.cydwr\Analog</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CE218138_BLE_Thermometer_RTOS01.cydwr\DMA</v>
@@ -236,12 +242,6 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\main_cm4.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\screen_contents.c</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CM4 (Core 1)\Source Files\system_psoc63_cm4.c</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\cy_ble_config.h</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\cy_ipc_config.c</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\cy_ipc_config.h</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\cyapicallbacks.h</v>
-<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\Shared Files\stdio_user.c</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -397,6 +397,7 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM0p\ARM_GCC_541\Debug\Listing Files\ADC_PM.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_config.lst</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_custom_config.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_dis_config.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM0p\ARM_GCC_541\Debug\Listing Files\BLE_hts_config.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM0p\ARM_GCC_541\Debug\Listing Files\Counter_ms.lst</v>
@@ -496,6 +497,7 @@
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\ADC_PM.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\BLE.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\BLE_config.lst</v>
+<v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\BLE_custom_config.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\BLE_dis_config.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\BLE_hts_config.lst</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS01\CortexM4\ARM_GCC_541\Debug\Listing Files\ble_task.lst</v>
@@ -611,6 +613,56 @@
 <VisibleNodeIds>
 <v>BLE_RTC_IMU-000</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\Counter_ms.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ble_clk.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_efuse.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_flash.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_gpio.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ipc_config.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ipc_drv.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ipc_pipe.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_ipc_sema.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_lvd.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_profile.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_prot.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_rtc.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_scb_common.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_scb_ezi2c.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_scb_i2c.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_scb_spi.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_scb_uart.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_sysanalog.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_sysclk.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_sysint.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_syslib.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_syslib_gcc.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_syspm.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_systick.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_tcpwm_counter.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_tcpwm_pwm.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_tcpwm_quaddec.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_trigmux.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_wdt.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cyfitter_sysint_cfg.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\I2C_1.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\main_cm0p.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\retarget.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\RTC.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\startup_psoc63_cm0plus.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\stdio_user.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\system_psoc63_cm0plus.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\Timer_IMU.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\Timer_PPG.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\Listing Files\UART_1.lst</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\BLE_RTC_IMU.elf</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\BLE_RTC_IMU.hex</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CortexM0p\ARM_GCC_541\Debug\BLE_RTC_IMU.map</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>

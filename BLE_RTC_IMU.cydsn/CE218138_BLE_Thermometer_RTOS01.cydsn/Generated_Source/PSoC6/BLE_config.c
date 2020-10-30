@@ -123,23 +123,11 @@ cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo[0x01u] = {
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
-            0x00u /* CRC */
-        },
-        {
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u /* CRC */
         },
         {
             0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u /* CRC */
-        },
-        {
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
@@ -151,23 +139,11 @@ cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo[0x01u] = {
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
-            0x00u /* CRC */
-        },
-        {
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u /* CRC */
         },
         {
             0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u /* CRC */
-        },
-        {
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
@@ -179,23 +155,11 @@ cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo[0x01u] = {
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
-            0x00u /* CRC */
-        },
-        {
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u /* CRC */
         },
         {
             0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u /* CRC */
-        },
-        {
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
@@ -207,12 +171,6 @@ cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo[0x01u] = {
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
-            0x00u /* CRC */
-        },
-        {
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
-            0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u /* CRC */
         },
@@ -221,6 +179,15 @@ cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo[0x01u] = {
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u /* CRC */
+        },
+        {
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
             0x00u /* CRC */
         },
         {
@@ -228,16 +195,66 @@ cy_stc_ble_gapp_disc_mode_info_t cy_ble_discoveryModeInfo[0x01u] = {
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
+            0x00u, 0x00u, 
             0x00u /* CRC */
         },
         {
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u /* CRC */
+        },
+        {
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u /* CRC */
+        },
+        {
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u /* CRC */
+        },
+        {
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u /* CRC */
+        },
+        {
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u /* CRC */
+        },
+        {
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u, 0x00u, 
+            0x00u /* CRC */
+        },
+        {
+            0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u, 0x00u, 
             0x00u /* CRC */
         }}, 
-        0x08u, /* CY_BLE_GATT_DB_CCCD_COUNT */ 
+        0x0Au, /* CY_BLE_GATT_DB_CCCD_COUNT */ 
         0x11u, 
     };
 #endif /* (CY_BLE_MODE_PROFILE) */
@@ -260,7 +277,7 @@ static const cy_stc_ble_gaps_t cy_ble_gaps =
     CY_BLE_GATT_INVALID_ATTR_HANDLE_VALUE, /* Handle of the Central Address Resolution characteristic */
     CY_BLE_GATT_INVALID_ATTR_HANDLE_VALUE, /* Handle of the Resolvable Private Address Only characteristic */
 };
-static uint8_t cy_ble_attValues[0x7Au] = {
+static uint8_t cy_ble_attValues[0x92u] = {
     /* Device Name */
     (uint8_t)'B', (uint8_t)'L', (uint8_t)'E', (uint8_t)' ', (uint8_t)'T', (uint8_t)'h', (uint8_t)'e', (uint8_t)'r',
 (uint8_t)'m', (uint8_t)'o', (uint8_t)'m', (uint8_t)'e', (uint8_t)'t', (uint8_t)'e', (uint8_t)'r', 
@@ -320,12 +337,27 @@ static uint8_t cy_ble_attValues[0x7Au] = {
     /* PnP ID */
     0x01u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 0x00u, 
 
+    /* Acc */
+    0x00u, 0x00u, 0x00u, 0x00u, 
+
+    /* Characteristic User Description */
+    (uint8_t)'A', (uint8_t)'c', (uint8_t)'c', (uint8_t)' ', (uint8_t)'a', (uint8_t)'n', (uint8_t)'d', (uint8_t)' ',
+(uint8_t)'G', (uint8_t)'y', (uint8_t)'r', (uint8_t)'o', (uint8_t)' ', (uint8_t)'(', (uint8_t)'X', (uint8_t)',',
+(uint8_t)'Y', (uint8_t)',', (uint8_t)'Z', (uint8_t)')', 
+
 };
 #if(CY_BLE_GATT_DB_CCCD_COUNT != 0u)
 static uint8_t cy_ble_attValuesCCCD[CY_BLE_GATT_DB_CCCD_COUNT];
 #endif /* CY_BLE_GATT_DB_CCCD_COUNT != 0u */
 
-static cy_stc_ble_gatts_att_gen_val_len_t cy_ble_attValuesLen[0x16u] = {
+static const uint8_t cy_ble_attUuid128[][16u] = {
+    /* IMU */
+    { 0x3Au, 0x37u, 0xC7u, 0x23u, 0x39u, 0x3Fu, 0x9Fu, 0x9Fu, 0x26u, 0x4Bu, 0xCAu, 0x6Fu, 0x57u, 0xE5u, 0xDEu, 0xB6u },
+    /* Acc */
+    { 0x2Eu, 0x65u, 0xE6u, 0x7Eu, 0xD5u, 0xCBu, 0x19u, 0xAFu, 0x14u, 0x46u, 0x28u, 0xD7u, 0xB7u, 0x0Cu, 0xE2u, 0x28u },
+};
+
+static cy_stc_ble_gatts_att_gen_val_len_t cy_ble_attValuesLen[0x1Bu] = {
     { 0x000Fu, (void *)&cy_ble_attValues[0] }, /* Device Name */
     { 0x0002u, (void *)&cy_ble_attValues[15] }, /* Appearance */
     { 0x0008u, (void *)&cy_ble_attValues[17] }, /* Peripheral Preferred Connection Parameters */
@@ -348,9 +380,14 @@ static cy_stc_ble_gatts_att_gen_val_len_t cy_ble_attValuesLen[0x16u] = {
     { 0x0008u, (void *)&cy_ble_attValues[106] }, /* System ID */
     { 0x0001u, (void *)&cy_ble_attValues[114] }, /* IEEE 11073-20601 Regulatory Certification Data List */
     { 0x0007u, (void *)&cy_ble_attValues[115] }, /* PnP ID */
+    { 0x0010u, (void *)&cy_ble_attUuid128[0] }, /* IMU UUID */
+    { 0x0010u, (void *)&cy_ble_attUuid128[1] }, /* Acc UUID */
+    { 0x0004u, (void *)&cy_ble_attValues[122] }, /* Acc */
+    { 0x0002u, (void *)&cy_ble_attValuesCCCD[8] }, /* Client Characteristic Configuration */
+    { 0x0014u, (void *)&cy_ble_attValues[126] }, /* Characteristic User Description */
 };
 
-static const cy_stc_ble_gatts_db_t cy_ble_gattDB[0x2Bu] = {
+static const cy_stc_ble_gatts_db_t cy_ble_gattDB[0x30u] = {
     { 0x0001u, 0x2800u /* Primary service                     */, 0x00000001u /*       */, 0x0007u, {{0x1800u, NULL}}                           },
     { 0x0002u, 0x2803u /* Characteristic                      */, 0x00020001u /* rd    */, 0x0003u, {{0x2A00u, NULL}}                           },
     { 0x0003u, 0x2A00u /* Device Name                         */, 0x01020001u /* rd    */, 0x0003u, {{0x000Fu, (void *)&cy_ble_attValuesLen[0]}} },
@@ -394,6 +431,11 @@ static const cy_stc_ble_gatts_db_t cy_ble_gattDB[0x2Bu] = {
     { 0x0029u, 0x2A2Au /* IEEE 11073-20601 Regulatory Certifi */, 0x01020001u /* rd    */, 0x0029u, {{0x0001u, (void *)&cy_ble_attValuesLen[20]}} },
     { 0x002Au, 0x2803u /* Characteristic                      */, 0x00020001u /* rd    */, 0x002Bu, {{0x2A50u, NULL}}                           },
     { 0x002Bu, 0x2A50u /* PnP ID                              */, 0x01020001u /* rd    */, 0x002Bu, {{0x0007u, (void *)&cy_ble_attValuesLen[21]}} },
+    { 0x002Cu, 0x2800u /* Primary service                     */, 0x08000001u /*       */, 0x0030u, {{0x0010u, (void *)&cy_ble_attValuesLen[22]}} },
+    { 0x002Du, 0x2803u /* Characteristic                      */, 0x00200001u /* ind   */, 0x0030u, {{0x0010u, (void *)&cy_ble_attValuesLen[23]}} },
+    { 0x002Eu, 0x0CB7u /* Acc                                 */, 0x09200000u /* ind   */, 0x0030u, {{0x0004u, (void *)&cy_ble_attValuesLen[24]}} },
+    { 0x002Fu, 0x2902u /* Client Characteristic Configuration */, 0x030A0101u /* rd,wr */, 0x002Fu, {{0x0002u, (void *)&cy_ble_attValuesLen[25]}} },
+    { 0x0030u, 0x2901u /* Characteristic User Description     */, 0x01020001u /* rd    */, 0x0030u, {{0x0014u, (void *)&cy_ble_attValuesLen[26]}} },
 };
 
 #endif /* (CY_BLE_GATT_ROLE_SERVER) */
@@ -427,7 +469,7 @@ static const cy_stc_ble_params_t cy_ble_params =
     
         .siliconDeviceAddressEnabled        = 0x00u,
     
-        .gattDbIndexCount                   = 0x002Bu,
+        .gattDbIndexCount                   = 0x0030u,
 };
 #endif  /* (CY_BLE_GAP_ROLE_CENTRAL || CY_BLE_GAP_ROLE_PERIPHERAL) */
 
