@@ -1,10 +1,14 @@
 dont_use_location p4usbcell -1 -1 0
 dont_use_location USB -1 -1 0
 dont_use_location usbcell -1 -1 0
+set_location "\RTC:RTC\" RTC -1 -1 0
 set_location "\ADC:IRQ\" interrupt -1 -1 138
 set_location "\DEBUG_UART:SCB_IRQ\" interrupt -1 -1 46
+set_location "SysInt_TimerPPG_INT" interrupt -1 -1 91
+set_location "\RTC:RTC_IRQ\" interrupt -1 -1 21
 set_location "\BLE:bless_isr\" interrupt -1 -1 24
 set_location "\CY_EINK_SPIM:SCB_IRQ\" interrupt -1 -1 47
+set_location "SysInt_TimerIMU_INT" interrupt -1 -1 92
 set_io "Pin_Advertise(0)" iocell 0 4
 set_location "IOSS" IOSS -1 -1 0
 set_io "\DEBUG_UART:tx(0)\" iocell 5 1
@@ -15,14 +19,17 @@ set_location "ClockGenBlock" CLK_GEN -1 -1 0
 #set_location "\ADC:SARMUX\" SARMUX -1 -1 -1 -1
 set_location "\CY_EINK_SPIM:SCB\" SCB -1 -1 6
 set_location "\BLE:cy_mxs40_ble\" BLE -1 -1 0
+set_location "\Counter_ms:TCPWM\" TCPWM -1 -1 0
 set_io "CY_EINK_Sclk(0)" iocell 12 2
 set_location "\DEBUG_UART:SCB\" SCB -1 -1 5
 set_io "CY_EINK_DispBusy(0)" iocell 5 3
+set_location "\Timer_PPG:TCPWM\" TCPWM -1 -1 1
 set_io "CY_CPUSS_SWJ_SWCLK_TCLK(0)" iocell 6 7
-set_location "ClockBlock" Clock -1 -1 0
+set_location "\Timer_IMU:TCPWM\" TCPWM -1 -1 2
 set_location "SRSS" SRSS -1 -1 0
 set_io "CY_EINK_Mosi(0)" iocell 12 0
 set_io "CY_CPUSS_SWJ_SWDIO_TMS(0)" iocell 6 6
+set_location "ClockBlock" Clock -1 -1 0
 set_io "CY_SRSS_WCO_IN(0)" iocell 0 0
 set_io "CY_SRSS_WCO_OUT(0)" iocell 0 1
 set_io "Pin_LED_Red(0)" iocell 13 7

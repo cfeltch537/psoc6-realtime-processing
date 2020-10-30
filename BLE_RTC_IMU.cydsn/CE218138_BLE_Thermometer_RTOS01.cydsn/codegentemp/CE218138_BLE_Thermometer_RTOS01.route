@@ -33,6 +33,16 @@ net Net_2659
 	switch ":ioport12:smartio_mux_in2.smartio_mux_in==>:ioport12:pin2.pin_input"
 	term   ":ioport12:pin2.pin_input"
 end Net_2659
+net Net_2695
+	term   ":TCPWMcontainer:TCPWM[1].interrupt"
+	switch ":TCPWMcontainer:TCPWM[1].interrupt==>:intc_0:interrupt91.interrupt"
+	term   ":intc_0:interrupt91.interrupt"
+end Net_2695
+net Net_2704
+	term   ":TCPWMcontainer:TCPWM[2].interrupt"
+	switch ":TCPWMcontainer:TCPWM[2].interrupt==>:intc_0:interrupt92.interrupt"
+	term   ":intc_0:interrupt92.interrupt"
+end Net_2704
 net Net_376
 	term   ":SCBcontainer:SCB[6].spi_miso"
 	switch ":SCBcontainer:SCB[6].spi_miso==>:ioport12:hsiomOut1.fixedIn1_ACT_8"
@@ -40,6 +50,24 @@ net Net_376
 	switch ":ioport12:smartio_mux_in1.smartio_mux_in==>:ioport12:pin1.pin_input"
 	term   ":ioport12:pin1.pin_input"
 end Net_376
+net Net_66_ff11
+	term   ":Clockcontainer:Clock[0].ff_div_11"
+	switch ":Clockcontainer:Clock[0].ff_div_11==>:Clockcontainer:ff_permute.ff_div_11"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_19==>:TCPWMcontainer:TCPWM[0].clock"
+	term   ":TCPWMcontainer:TCPWM[0].clock"
+end Net_66_ff11
+net Net_66_ff12
+	term   ":Clockcontainer:Clock[0].ff_div_13"
+	switch ":Clockcontainer:Clock[0].ff_div_13==>:Clockcontainer:ff_permute.ff_div_13"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_21==>:TCPWMcontainer:TCPWM[2].clock"
+	term   ":TCPWMcontainer:TCPWM[2].clock"
+end Net_66_ff12
+net Net_66_ff13
+	term   ":Clockcontainer:Clock[0].ff_div_12"
+	switch ":Clockcontainer:Clock[0].ff_div_12==>:Clockcontainer:ff_permute.ff_div_12"
+	switch ":Clockcontainer:ff_permute.Clock[0]ff_div_20==>:TCPWMcontainer:TCPWM[1].clock"
+	term   ":TCPWMcontainer:TCPWM[1].clock"
+end Net_66_ff13
 net \ADC:Net_423\
 	term   ":SARADCcontainer:SARADC[0].interrupt"
 	switch ":SARADCcontainer:SARADC[0].interrupt==>:intc_0:interrupt138.interrupt"
@@ -93,3 +121,8 @@ net \DEBUG_UART:tx_wire\
 	switch ":ioport5:smartio_mux_in1.smartio_mux_in==>:ioport5:pin1.pin_input"
 	term   ":ioport5:pin1.pin_input"
 end \DEBUG_UART:tx_wire\
+net \RTC:Net_3\
+	term   ":RTCcontainer:RTC[0].interrupt"
+	switch ":RTCcontainer:RTC[0].interrupt==>:intc_0:interrupt21.interrupt"
+	term   ":intc_0:interrupt21.interrupt"
+end \RTC:Net_3\

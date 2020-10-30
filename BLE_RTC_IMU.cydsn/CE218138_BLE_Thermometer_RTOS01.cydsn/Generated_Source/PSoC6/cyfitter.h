@@ -42,6 +42,29 @@
 #define BLE_cy_mxs40_ble__HW BLE
 #define BLE_cy_mxs40_ble__IDX 0
 
+/* Timer_IMU */
+#define Timer_IMU_TCPWM__CNT_HW TCPWM0_CNT2
+#define Timer_IMU_TCPWM__CNT_IDX 2u
+#define Timer_IMU_TCPWM__HW TCPWM0
+#define Timer_IMU_TCPWM__IDX 0u
+
+/* Timer_PPG */
+#define Timer_PPG_TCPWM__CNT_HW TCPWM0_CNT1
+#define Timer_PPG_TCPWM__CNT_IDX 1u
+#define Timer_PPG_TCPWM__HW TCPWM0
+#define Timer_PPG_TCPWM__IDX 0u
+
+/* Clock_1khz */
+#define Clock_1khz__DIV_IDX 8
+#define Clock_1khz__DIV_NUM 0
+#define Clock_1khz__DIV_TYPE CY_SYSCLK_DIV_16_BIT
+
+/* Counter_ms */
+#define Counter_ms_TCPWM__CNT_HW TCPWM0_CNT0
+#define Counter_ms_TCPWM__CNT_IDX 0u
+#define Counter_ms_TCPWM__HW TCPWM0
+#define Counter_ms_TCPWM__IDX 0u
+
 /* DEBUG_UART */
 #define DEBUG_UART_SCB__HW SCB5
 #define DEBUG_UART_SCB__IDX 5

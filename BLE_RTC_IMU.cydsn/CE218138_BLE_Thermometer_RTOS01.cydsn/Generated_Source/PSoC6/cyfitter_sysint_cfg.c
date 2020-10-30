@@ -26,6 +26,12 @@
         .intrPriority = isr_gpio__INTC_CORTEXM4_PRIORITY
     };
 
+    /* RTC_RTC_IRQ */
+    const cy_stc_sysint_t RTC_RTC_IRQ_cfg = {
+        .intrSrc = (IRQn_Type)RTC_RTC_IRQ__INTC_NUMBER,
+        .intrPriority = RTC_RTC_IRQ__INTC_CORTEXM4_PRIORITY
+    };
+
     /* DEBUG_UART_SCB_IRQ */
     const cy_stc_sysint_t DEBUG_UART_SCB_IRQ_cfg = {
         .intrSrc = (IRQn_Type)DEBUG_UART_SCB_IRQ__INTC_NUMBER,
@@ -36,6 +42,18 @@
     const cy_stc_sysint_t CY_EINK_SPIM_SCB_IRQ_cfg = {
         .intrSrc = (IRQn_Type)CY_EINK_SPIM_SCB_IRQ__INTC_NUMBER,
         .intrPriority = CY_EINK_SPIM_SCB_IRQ__INTC_CORTEXM4_PRIORITY
+    };
+
+    /* SysInt_TimerPPG_INT */
+    const cy_stc_sysint_t SysInt_TimerPPG_INT_cfg = {
+        .intrSrc = (IRQn_Type)SysInt_TimerPPG_INT__INTC_NUMBER,
+        .intrPriority = SysInt_TimerPPG_INT__INTC_CORTEXM4_PRIORITY
+    };
+
+    /* SysInt_TimerIMU_INT */
+    const cy_stc_sysint_t SysInt_TimerIMU_INT_cfg = {
+        .intrSrc = (IRQn_Type)SysInt_TimerIMU_INT__INTC_NUMBER,
+        .intrPriority = SysInt_TimerIMU_INT__INTC_CORTEXM4_PRIORITY
     };
 
     /* ADC_IRQ */

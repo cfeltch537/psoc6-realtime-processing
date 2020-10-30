@@ -2,7 +2,7 @@
 --	Conversion of CE218138_BLE_Thermometer_RTOS01.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Oct 29 21:50:02 2020
+--	Thu Oct 29 22:06:01 2020
 --
 
 USE cypress.cypress.all;
@@ -479,6 +479,41 @@ SIGNAL Net_54 : bit;
 SIGNAL tmpFB_0__Pin_Advertise_net_0 : bit;
 SIGNAL tmpIO_0__Pin_Advertise_net_0 : bit;
 TERMINAL tmpSIOVREF__Pin_Advertise_net_0 : bit;
+SIGNAL Net_66 : bit;
+SIGNAL \Counter_ms:capture\ : bit;
+SIGNAL \Counter_ms:count\ : bit;
+SIGNAL \Counter_ms:reload\ : bit;
+SIGNAL \Counter_ms:stop\ : bit;
+SIGNAL \Counter_ms:start\ : bit;
+SIGNAL Net_2693 : bit;
+SIGNAL Net_2694 : bit;
+SIGNAL Net_2692 : bit;
+SIGNAL \Counter_ms:Net_1\ : bit;
+SIGNAL \Counter_ms:Net_2\ : bit;
+SIGNAL Net_2691 : bit;
+SIGNAL Net_2695 : bit;
+SIGNAL \Timer_PPG:capture\ : bit;
+SIGNAL \Timer_PPG:count\ : bit;
+SIGNAL \Timer_PPG:reload\ : bit;
+SIGNAL \Timer_PPG:stop\ : bit;
+SIGNAL \Timer_PPG:start\ : bit;
+SIGNAL Net_2702 : bit;
+SIGNAL Net_2703 : bit;
+SIGNAL Net_2701 : bit;
+SIGNAL \Timer_PPG:Net_1\ : bit;
+SIGNAL \Timer_PPG:Net_2\ : bit;
+SIGNAL Net_2704 : bit;
+SIGNAL \Timer_IMU:capture\ : bit;
+SIGNAL \Timer_IMU:count\ : bit;
+SIGNAL \Timer_IMU:reload\ : bit;
+SIGNAL \Timer_IMU:stop\ : bit;
+SIGNAL \Timer_IMU:start\ : bit;
+SIGNAL Net_2711 : bit;
+SIGNAL Net_2712 : bit;
+SIGNAL Net_2710 : bit;
+SIGNAL \Timer_IMU:Net_1\ : bit;
+SIGNAL \Timer_IMU:Net_2\ : bit;
+SIGNAL \RTC:Net_3\ : bit;
 BEGIN
 
 zero <=  ('0') ;
@@ -2321,5 +2356,81 @@ Pin_Advertise:cy_mxs40_gpio_v1_0
 		io=>(tmpIO_0__Pin_Advertise_net_0),
 		annotation=>Net_1843,
 		siovref=>(tmpSIOVREF__Pin_Advertise_net_0));
+Clock_1khz:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"c7fa5914-9695-4556-b765-e6469a51b7f4",
+		source_clock_id=>"2FB4EC85-8328-4C5A-9ED9-8B63060178EB",
+		divisor=>0,
+		period=>"1000000000000",
+		is_direct=>'0',
+		is_digital=>'0')
+	PORT MAP(clock_out=>Net_66,
+		dig_domain_out=>open);
+\Counter_ms:TCPWM\:cy_mxs40_tcpwm_v1_0
+	GENERIC MAP(cy_registers=>"",
+		width=>16,
+		exact_width=>'0')
+	PORT MAP(clock=>Net_66,
+		capture=>zero,
+		count=>one,
+		reload=>zero,
+		stop=>zero,
+		start=>zero,
+		tr_underflow=>Net_2693,
+		tr_compare_match=>Net_2694,
+		tr_overflow=>Net_2692,
+		line_compl=>\Counter_ms:Net_1\,
+		line=>\Counter_ms:Net_2\,
+		interrupt=>Net_2691);
+SysInt_TimerPPG_INT:cy_mxs40_isr_v1_0
+	GENERIC MAP(cy_registers=>"",
+		deepsleep_required=>'0',
+		int_type=>"10")
+	PORT MAP(int_signal=>Net_2695);
+\Timer_PPG:TCPWM\:cy_mxs40_tcpwm_v1_0
+	GENERIC MAP(cy_registers=>"",
+		width=>16,
+		exact_width=>'0')
+	PORT MAP(clock=>Net_66,
+		capture=>zero,
+		count=>one,
+		reload=>zero,
+		stop=>zero,
+		start=>zero,
+		tr_underflow=>Net_2702,
+		tr_compare_match=>Net_2703,
+		tr_overflow=>Net_2701,
+		line_compl=>\Timer_PPG:Net_1\,
+		line=>\Timer_PPG:Net_2\,
+		interrupt=>Net_2695);
+SysInt_TimerIMU_INT:cy_mxs40_isr_v1_0
+	GENERIC MAP(cy_registers=>"",
+		deepsleep_required=>'0',
+		int_type=>"10")
+	PORT MAP(int_signal=>Net_2704);
+\Timer_IMU:TCPWM\:cy_mxs40_tcpwm_v1_0
+	GENERIC MAP(cy_registers=>"",
+		width=>16,
+		exact_width=>'0')
+	PORT MAP(clock=>Net_66,
+		capture=>zero,
+		count=>one,
+		reload=>zero,
+		stop=>zero,
+		start=>zero,
+		tr_underflow=>Net_2711,
+		tr_compare_match=>Net_2712,
+		tr_overflow=>Net_2710,
+		line_compl=>\Timer_IMU:Net_1\,
+		line=>\Timer_IMU:Net_2\,
+		interrupt=>Net_2704);
+\RTC:RTC\:cy_mxs40_rtc_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(interrupt=>\RTC:Net_3\);
+\RTC:RTC_IRQ\:cy_mxs40_isr_v1_0
+	GENERIC MAP(cy_registers=>"",
+		deepsleep_required=>'0',
+		int_type=>"10")
+	PORT MAP(int_signal=>\RTC:Net_3\);
 
 END R_T_L;

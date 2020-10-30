@@ -24,11 +24,20 @@
     #define isr_gpio__INTC_ASSIGNED 1u
     extern const cy_stc_sysint_t isr_gpio_cfg;
 
+    #define RTC_RTC_IRQ__INTC_ASSIGNED 1u
+    extern const cy_stc_sysint_t RTC_RTC_IRQ_cfg;
+
     #define DEBUG_UART_SCB_IRQ__INTC_ASSIGNED 1u
     extern const cy_stc_sysint_t DEBUG_UART_SCB_IRQ_cfg;
 
     #define CY_EINK_SPIM_SCB_IRQ__INTC_ASSIGNED 1u
     extern const cy_stc_sysint_t CY_EINK_SPIM_SCB_IRQ_cfg;
+
+    #define SysInt_TimerPPG_INT__INTC_ASSIGNED 1u
+    extern const cy_stc_sysint_t SysInt_TimerPPG_INT_cfg;
+
+    #define SysInt_TimerIMU_INT__INTC_ASSIGNED 1u
+    extern const cy_stc_sysint_t SysInt_TimerIMU_INT_cfg;
 
     #define ADC_IRQ__INTC_ASSIGNED 1u
     extern const cy_stc_sysint_t ADC_IRQ_cfg;

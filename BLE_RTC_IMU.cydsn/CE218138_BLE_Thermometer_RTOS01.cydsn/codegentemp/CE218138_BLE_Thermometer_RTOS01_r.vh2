@@ -1,5 +1,5 @@
 -- Project:   CE218138_BLE_Thermometer_RTOS01
--- Generated: 10/29/2020 21:50:10
+-- Generated: 10/29/2020 22:06:09
 -- PSoC Creator  4.2
 
 ENTITY CE218138_BLE_Thermometer_RTOS01 IS
@@ -99,7 +99,25 @@ ARCHITECTURE __DEFAULT__ OF CE218138_BLE_Thermometer_RTOS01 IS
     SIGNAL Net_2670_9 : bit;
     SIGNAL Net_2680 : bit;
     SIGNAL Net_2681 : bit;
+    SIGNAL Net_2691 : bit;
+    SIGNAL Net_2692 : bit;
+    SIGNAL Net_2693 : bit;
+    SIGNAL Net_2694 : bit;
+    SIGNAL Net_2695 : bit;
+    SIGNAL Net_2701 : bit;
+    SIGNAL Net_2702 : bit;
+    SIGNAL Net_2703 : bit;
+    SIGNAL Net_2704 : bit;
+    SIGNAL Net_2710 : bit;
+    SIGNAL Net_2711 : bit;
+    SIGNAL Net_2712 : bit;
     SIGNAL Net_376 : bit;
+    SIGNAL Net_66_ff11 : bit;
+    ATTRIBUTE global_signal OF Net_66_ff11 : SIGNAL IS true;
+    SIGNAL Net_66_ff12 : bit;
+    ATTRIBUTE global_signal OF Net_66_ff12 : SIGNAL IS true;
+    SIGNAL Net_66_ff13 : bit;
+    ATTRIBUTE global_signal OF Net_66_ff13 : SIGNAL IS true;
     SIGNAL Pin_Advertise(0)__PA : bit;
     SIGNAL Pin_LED_Orange(0)__PA : bit;
     SIGNAL Pin_LED_Red(0)__PA : bit;
@@ -117,6 +135,8 @@ ARCHITECTURE __DEFAULT__ OF CE218138_BLE_Thermometer_RTOS01 IS
     SIGNAL \CY_EINK_SPIM:Net_847_ff0\ : bit;
     ATTRIBUTE global_signal OF \CY_EINK_SPIM:Net_847_ff0\ : SIGNAL IS true;
     SIGNAL \CY_EINK_SPIM:intr_wire\ : bit;
+    SIGNAL \Counter_ms:Net_1\ : bit;
+    SIGNAL \Counter_ms:Net_2\ : bit;
     SIGNAL \DEBUG_UART:Net_1172\ : bit;
     SIGNAL \DEBUG_UART:Net_161\ : bit;
     SIGNAL \DEBUG_UART:Net_847_ff1\ : bit;
@@ -126,6 +146,11 @@ ARCHITECTURE __DEFAULT__ OF CE218138_BLE_Thermometer_RTOS01 IS
     SIGNAL \\\DEBUG_UART:rx(0)\\__PA\ : bit;
     SIGNAL \\\DEBUG_UART:tx(0)\\__PA\ : bit;
     SIGNAL \DEBUG_UART:tx_wire\ : bit;
+    SIGNAL \RTC:Net_3\ : bit;
+    SIGNAL \Timer_IMU:Net_1\ : bit;
+    SIGNAL \Timer_IMU:Net_2\ : bit;
+    SIGNAL \Timer_PPG:Net_1\ : bit;
+    SIGNAL \Timer_PPG:Net_2\ : bit;
     SIGNAL __ONE__ : bit;
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
     SIGNAL __ZERO__ : bit;
@@ -194,6 +219,13 @@ ARCHITECTURE __DEFAULT__ OF CE218138_BLE_Thermometer_RTOS01 IS
     ATTRIBUTE Location OF \DEBUG_UART:SCB_IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(46)]";
     ATTRIBUTE Location OF \DEBUG_UART:SCB\ : LABEL IS "F(SCB,5)";
     ATTRIBUTE Location OF isr_gpio : LABEL IS "[IntrContainer=(0)][IntrId=(0)]";
+    ATTRIBUTE Location OF \Counter_ms:TCPWM\ : LABEL IS "F(TCPWM,0)";
+    ATTRIBUTE Location OF SysInt_TimerPPG_INT : LABEL IS "[IntrContainer=(0)][IntrId=(91)]";
+    ATTRIBUTE Location OF \Timer_PPG:TCPWM\ : LABEL IS "F(TCPWM,1)";
+    ATTRIBUTE Location OF SysInt_TimerIMU_INT : LABEL IS "[IntrContainer=(0)][IntrId=(92)]";
+    ATTRIBUTE Location OF \Timer_IMU:TCPWM\ : LABEL IS "F(TCPWM,2)";
+    ATTRIBUTE Location OF \RTC:RTC\ : LABEL IS "F(RTC,0)";
+    ATTRIBUTE Location OF \RTC:RTC_IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(21)]";
     ATTRIBUTE Location OF IOSS : LABEL IS "F(IOSS,0)";
     COMPONENT BLE
         PORT (
@@ -551,6 +583,10 @@ ARCHITECTURE __DEFAULT__ OF CE218138_BLE_Thermometer_RTOS01 IS
             out_clock_en : IN std_ulogic;
             out_reset : IN std_ulogic);
     END COMPONENT;
+    COMPONENT RTC
+        PORT (
+            interrupt : OUT std_ulogic);
+    END COMPONENT;
     COMPONENT SARADC
         PORT (
             dsi_sar_sample_done : OUT std_ulogic;
@@ -622,6 +658,21 @@ ARCHITECTURE __DEFAULT__ OF CE218138_BLE_Thermometer_RTOS01 IS
             pmic_wakeup_out : OUT std_ulogic;
             hibernate_wakeup : IN std_ulogic);
     END COMPONENT;
+    COMPONENT TCPWM
+        PORT (
+            clock : IN std_ulogic;
+            capture : IN std_ulogic;
+            count : IN std_ulogic;
+            reload : IN std_ulogic;
+            stop : IN std_ulogic;
+            start : IN std_ulogic;
+            tr_underflow : OUT std_ulogic;
+            tr_compare_match : OUT std_ulogic;
+            tr_overflow : OUT std_ulogic;
+            line_compl : OUT std_ulogic;
+            line : OUT std_ulogic;
+            interrupt : OUT std_ulogic);
+    END COMPONENT;
 BEGIN
 
     ClockGenBlock:CLK_GEN;
@@ -648,6 +699,9 @@ BEGIN
             ff_div_0 => open,
             ff_div_49 => \ADC:Net_428_ff49\,
             ff_div_1 => open,
+            ff_div_11 => Net_66_ff11,
+            ff_div_12 => Net_66_ff13,
+            ff_div_13 => Net_66_ff12,
             ff_div_5 => \DEBUG_UART:Net_847_ff1\,
             ff_div_6 => \CY_EINK_SPIM:Net_847_ff0\,
             periclk_App => periclk_App);
@@ -2044,6 +2098,96 @@ BEGIN
             int_type => "10")
         PORT MAP(
             interrupt => INDIVIDUAL_PICU_OUT_0,
+            clock => ClockBlock_PeriClk);
+
+    \Counter_ms:TCPWM\:TCPWM
+        GENERIC MAP(
+            cy_registers => "",
+            exact_width => 0,
+            width => 16)
+        PORT MAP(
+            clock => Net_66_ff11,
+            capture => '0',
+            count => '1',
+            reload => '0',
+            stop => '0',
+            start => '0',
+            tr_underflow => Net_2693,
+            tr_compare_match => Net_2694,
+            tr_overflow => Net_2692,
+            line_compl => \Counter_ms:Net_1\,
+            line => \Counter_ms:Net_2\,
+            interrupt => Net_2691);
+
+    SysInt_TimerPPG_INT:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_2695,
+            clock => ClockBlock_PeriClk);
+
+    \Timer_PPG:TCPWM\:TCPWM
+        GENERIC MAP(
+            cy_registers => "",
+            exact_width => 0,
+            width => 16)
+        PORT MAP(
+            clock => Net_66_ff13,
+            capture => '0',
+            count => '1',
+            reload => '0',
+            stop => '0',
+            start => '0',
+            tr_underflow => Net_2702,
+            tr_compare_match => Net_2703,
+            tr_overflow => Net_2701,
+            line_compl => \Timer_PPG:Net_1\,
+            line => \Timer_PPG:Net_2\,
+            interrupt => Net_2695);
+
+    SysInt_TimerIMU_INT:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_2704,
+            clock => ClockBlock_PeriClk);
+
+    \Timer_IMU:TCPWM\:TCPWM
+        GENERIC MAP(
+            cy_registers => "",
+            exact_width => 0,
+            width => 16)
+        PORT MAP(
+            clock => Net_66_ff12,
+            capture => '0',
+            count => '1',
+            reload => '0',
+            stop => '0',
+            start => '0',
+            tr_underflow => Net_2711,
+            tr_compare_match => Net_2712,
+            tr_overflow => Net_2710,
+            line_compl => \Timer_IMU:Net_1\,
+            line => \Timer_IMU:Net_2\,
+            interrupt => Net_2704);
+
+    \RTC:RTC\:RTC
+        GENERIC MAP(
+            cy_registers => "")
+        PORT MAP(
+            interrupt => \RTC:Net_3\);
+
+    \RTC:RTC_IRQ\:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "10")
+        PORT MAP(
+            interrupt => \RTC:Net_3\,
             clock => ClockBlock_PeriClk);
 
     IOSS:IOSS
