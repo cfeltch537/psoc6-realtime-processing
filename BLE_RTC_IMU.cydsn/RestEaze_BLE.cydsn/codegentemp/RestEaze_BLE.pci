@@ -1,0 +1,32 @@
+# RestEaze_BLE
+# 2020-11-02 17:53:37Z
+
+dont_use_location p4usbcell -1 -1 0
+dont_use_location USB -1 -1 0
+dont_use_location usbcell -1 -1 0
+set_location "ClockGenBlock" CLK_GEN -1 -1 0
+set_location "SRSS" SRSS -1 -1 0
+set_io "CY_SRSS_WCO_IN(0)" iocell 0 0
+set_io "CY_SRSS_WCO_OUT(0)" iocell 0 1
+set_io "CY_CPUSS_SWJ_SWCLK_TCLK(0)" iocell 6 7
+set_io "CY_CPUSS_SWJ_SWDIO_TMS(0)" iocell 6 6
+set_io "CY_EINK_Sclk(0)" iocell 12 2
+set_io "CY_EINK_Mosi(0)" iocell 12 0
+set_io "Pin_LED_Red(0)" iocell 13 7
+set_io "Pin_LED_Orange(0)" iocell 1 5
+set_io "CY_EINK_Miso(0)" iocell 12 1
+set_io "THER_OUT_1(0)" iocell 10 1
+set_io "CY_EINK_Ssel(0)" iocell 12 3
+set_io "CY_EINK_DispBusy(0)" iocell 5 3
+set_io "CY_EINK_DispIoEn(0)" iocell 0 2
+set_io "CY_EINK_Border(0)" iocell 5 6
+set_io "CY_EINK_Discharge(0)" iocell 5 5
+set_io "CY_EINK_DispEn(0)" iocell 5 4
+set_io "CY_EINK_DispRst(0)" iocell 5 2
+set_io "THER_VDD(0)" iocell 10 0
+set_io "THER_GND(0)" iocell 10 3
+set_io "THER_OUT_2(0)" iocell 10 2
+set_io "\DEBUG_UART:tx(0)\" iocell 5 1
+set_io "\DEBUG_UART:rx(0)\" iocell 5 0
+set_io "Pin_Advertise(0)" iocell 0 4
+set_location "\ADC:SAR\" SARADC -1 -1 0

@@ -1,0 +1,694 @@
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.syntax unified
+  16              		.file	"cy_ble_plxs.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              	.Letext0:
+  21              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+  22              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+  23              		.file 3 "Generated_Source\\PSoC6\\pdl\\middleware\\ble\\cy_ble_stack_host_main.h"
+  24              		.file 4 "Generated_Source\\PSoC6\\pdl\\middleware\\ble\\cy_ble_gap.h"
+  25              		.file 5 "Generated_Source\\PSoC6\\pdl\\cmsis/include/core_cm4.h"
+  26              		.section	.debug_info,"",%progbits
+  27              	.Ldebug_info0:
+  28 0000 B3010000 		.4byte	0x1b3
+  29 0004 0400     		.2byte	0x4
+  30 0006 00000000 		.4byte	.Ldebug_abbrev0
+  31 000a 04       		.byte	0x4
+  32 000b 01       		.uleb128 0x1
+  33 000c 2D020000 		.4byte	.LASF40
+  34 0010 0C       		.byte	0xc
+  35 0011 D7030000 		.4byte	.LASF41
+  36 0015 05030000 		.4byte	.LASF42
+  37 0019 00000000 		.4byte	.Ldebug_line0
+  38 001d 02       		.uleb128 0x2
+  39 001e 04       		.byte	0x4
+  40 001f 05       		.byte	0x5
+  41 0020 696E7400 		.ascii	"int\000"
+  42 0024 03       		.uleb128 0x3
+  43 0025 04       		.byte	0x4
+  44 0026 07       		.byte	0x7
+  45 0027 9C010000 		.4byte	.LASF0
+  46 002b 03       		.uleb128 0x3
+  47 002c 08       		.byte	0x8
+  48 002d 05       		.byte	0x5
+  49 002e F7020000 		.4byte	.LASF1
+  50 0032 03       		.uleb128 0x3
+  51 0033 08       		.byte	0x8
+  52 0034 04       		.byte	0x4
+  53 0035 0F040000 		.4byte	.LASF2
+  54 0039 03       		.uleb128 0x3
+  55 003a 01       		.byte	0x1
+  56 003b 06       		.byte	0x6
+  57 003c 1B040000 		.4byte	.LASF3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 2
+
+
+  58 0040 04       		.uleb128 0x4
+  59 0041 05000000 		.4byte	.LASF7
+  60 0045 01       		.byte	0x1
+  61 0046 1D       		.byte	0x1d
+  62 0047 4B000000 		.4byte	0x4b
+  63 004b 03       		.uleb128 0x3
+  64 004c 01       		.byte	0x1
+  65 004d 08       		.byte	0x8
+  66 004e FF000000 		.4byte	.LASF4
+  67 0052 03       		.uleb128 0x3
+  68 0053 02       		.byte	0x2
+  69 0054 05       		.byte	0x5
+  70 0055 76030000 		.4byte	.LASF5
+  71 0059 03       		.uleb128 0x3
+  72 005a 02       		.byte	0x2
+  73 005b 07       		.byte	0x7
+  74 005c 1F010000 		.4byte	.LASF6
+  75 0060 04       		.uleb128 0x4
+  76 0061 75000000 		.4byte	.LASF8
+  77 0065 01       		.byte	0x1
+  78 0066 3F       		.byte	0x3f
+  79 0067 6B000000 		.4byte	0x6b
+  80 006b 03       		.uleb128 0x3
+  81 006c 04       		.byte	0x4
+  82 006d 05       		.byte	0x5
+  83 006e CE030000 		.4byte	.LASF9
+  84 0072 03       		.uleb128 0x3
+  85 0073 04       		.byte	0x4
+  86 0074 07       		.byte	0x7
+  87 0075 0D010000 		.4byte	.LASF10
+  88 0079 03       		.uleb128 0x3
+  89 007a 08       		.byte	0x8
+  90 007b 07       		.byte	0x7
+  91 007c CD010000 		.4byte	.LASF11
+  92 0080 03       		.uleb128 0x3
+  93 0081 04       		.byte	0x4
+  94 0082 07       		.byte	0x7
+  95 0083 EE020000 		.4byte	.LASF12
+  96 0087 03       		.uleb128 0x3
+  97 0088 01       		.byte	0x1
+  98 0089 08       		.byte	0x8
+  99 008a 00000000 		.4byte	.LASF13
+ 100 008e 04       		.uleb128 0x4
+ 101 008f 91000000 		.4byte	.LASF14
+ 102 0093 02       		.byte	0x2
+ 103 0094 18       		.byte	0x18
+ 104 0095 40000000 		.4byte	0x40
+ 105 0099 04       		.uleb128 0x4
+ 106 009a E0020000 		.4byte	.LASF15
+ 107 009e 02       		.byte	0x2
+ 108 009f 2C       		.byte	0x2c
+ 109 00a0 60000000 		.4byte	0x60
+ 110 00a4 03       		.uleb128 0x3
+ 111 00a5 04       		.byte	0x4
+ 112 00a6 04       		.byte	0x4
+ 113 00a7 D9000000 		.4byte	.LASF16
+ 114 00ab 03       		.uleb128 0x3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 3
+
+
+ 115 00ac 08       		.byte	0x8
+ 116 00ad 04       		.byte	0x4
+ 117 00ae 95010000 		.4byte	.LASF17
+ 118 00b2 05       		.uleb128 0x5
+ 119 00b3 02       		.byte	0x2
+ 120 00b4 03       		.byte	0x3
+ 121 00b5 5B01     		.2byte	0x15b
+ 122 00b7 D6000000 		.4byte	0xd6
+ 123 00bb 06       		.uleb128 0x6
+ 124 00bc 28000000 		.4byte	.LASF18
+ 125 00c0 03       		.byte	0x3
+ 126 00c1 6501     		.2byte	0x165
+ 127 00c3 8E000000 		.4byte	0x8e
+ 128 00c7 00       		.byte	0
+ 129 00c8 06       		.uleb128 0x6
+ 130 00c9 E8020000 		.4byte	.LASF19
+ 131 00cd 03       		.byte	0x3
+ 132 00ce 6901     		.2byte	0x169
+ 133 00d0 8E000000 		.4byte	0x8e
+ 134 00d4 01       		.byte	0x1
+ 135 00d5 00       		.byte	0
+ 136 00d6 07       		.uleb128 0x7
+ 137 00d7 5C000000 		.4byte	.LASF20
+ 138 00db 03       		.byte	0x3
+ 139 00dc 6B01     		.2byte	0x16b
+ 140 00de B2000000 		.4byte	0xb2
+ 141 00e2 08       		.uleb128 0x8
+ 142 00e3 01       		.byte	0x1
+ 143 00e4 4B000000 		.4byte	0x4b
+ 144 00e8 04       		.byte	0x4
+ 145 00e9 7E       		.byte	0x7e
+ 146 00ea 07010000 		.4byte	0x107
+ 147 00ee 09       		.uleb128 0x9
+ 148 00ef 0F000000 		.4byte	.LASF21
+ 149 00f3 00       		.byte	0
+ 150 00f4 09       		.uleb128 0x9
+ 151 00f5 0E020000 		.4byte	.LASF22
+ 152 00f9 01       		.byte	0x1
+ 153 00fa 09       		.uleb128 0x9
+ 154 00fb 80030000 		.4byte	.LASF23
+ 155 00ff 02       		.byte	0x2
+ 156 0100 09       		.uleb128 0x9
+ 157 0101 DF000000 		.4byte	.LASF24
+ 158 0105 03       		.byte	0x3
+ 159 0106 00       		.byte	0
+ 160 0107 04       		.uleb128 0x4
+ 161 0108 C3000000 		.4byte	.LASF25
+ 162 010c 04       		.byte	0x4
+ 163 010d 83       		.byte	0x83
+ 164 010e E2000000 		.4byte	0xe2
+ 165 0112 08       		.uleb128 0x8
+ 166 0113 01       		.byte	0x1
+ 167 0114 4B000000 		.4byte	0x4b
+ 168 0118 04       		.byte	0x4
+ 169 0119 87       		.byte	0x87
+ 170 011a 4F010000 		.4byte	0x14f
+ 171 011e 09       		.uleb128 0x9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 4
+
+
+ 172 011f 57030000 		.4byte	.LASF26
+ 173 0123 00       		.byte	0
+ 174 0124 09       		.uleb128 0x9
+ 175 0125 9D030000 		.4byte	.LASF27
+ 176 0129 01       		.byte	0x1
+ 177 012a 09       		.uleb128 0x9
+ 178 012b 79010000 		.4byte	.LASF28
+ 179 012f 02       		.byte	0x2
+ 180 0130 09       		.uleb128 0x9
+ 181 0131 99000000 		.4byte	.LASF29
+ 182 0135 03       		.byte	0x3
+ 183 0136 09       		.uleb128 0x9
+ 184 0137 E4010000 		.4byte	.LASF30
+ 185 013b 04       		.byte	0x4
+ 186 013c 09       		.uleb128 0x9
+ 187 013d 32010000 		.4byte	.LASF31
+ 188 0141 05       		.byte	0x5
+ 189 0142 09       		.uleb128 0x9
+ 190 0143 31000000 		.4byte	.LASF32
+ 191 0147 06       		.byte	0x6
+ 192 0148 09       		.uleb128 0x9
+ 193 0149 A9010000 		.4byte	.LASF33
+ 194 014d 07       		.byte	0x7
+ 195 014e 00       		.byte	0
+ 196 014f 04       		.uleb128 0x4
+ 197 0150 3E040000 		.4byte	.LASF34
+ 198 0154 04       		.byte	0x4
+ 199 0155 90       		.byte	0x90
+ 200 0156 12010000 		.4byte	0x112
+ 201 015a 03       		.uleb128 0x3
+ 202 015b 01       		.byte	0x1
+ 203 015c 02       		.byte	0x2
+ 204 015d 27040000 		.4byte	.LASF35
+ 205 0161 0A       		.uleb128 0xa
+ 206 0162 5C010000 		.4byte	.LASF36
+ 207 0166 05       		.byte	0x5
+ 208 0167 EA07     		.2byte	0x7ea
+ 209 0169 6D010000 		.4byte	0x16d
+ 210 016d 0B       		.uleb128 0xb
+ 211 016e 99000000 		.4byte	0x99
+ 212 0172 0A       		.uleb128 0xa
+ 213 0173 69010000 		.4byte	.LASF37
+ 214 0177 04       		.byte	0x4
+ 215 0178 2202     		.2byte	0x222
+ 216 017a 07010000 		.4byte	0x107
+ 217 017e 0C       		.uleb128 0xc
+ 218 017f D6000000 		.4byte	0xd6
+ 219 0183 8E010000 		.4byte	0x18e
+ 220 0187 0D       		.uleb128 0xd
+ 221 0188 80000000 		.4byte	0x80
+ 222 018c 00       		.byte	0
+ 223 018d 00       		.byte	0
+ 224 018e 0A       		.uleb128 0xa
+ 225 018f 7F000000 		.4byte	.LASF38
+ 226 0193 04       		.byte	0x4
+ 227 0194 2C02     		.2byte	0x22c
+ 228 0196 7E010000 		.4byte	0x17e
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 5
+
+
+ 229 019a 0C       		.uleb128 0xc
+ 230 019b 4F010000 		.4byte	0x14f
+ 231 019f AA010000 		.4byte	0x1aa
+ 232 01a3 0D       		.uleb128 0xd
+ 233 01a4 80000000 		.4byte	0x80
+ 234 01a8 00       		.byte	0
+ 235 01a9 00       		.byte	0
+ 236 01aa 0A       		.uleb128 0xa
+ 237 01ab 2D040000 		.4byte	.LASF39
+ 238 01af 04       		.byte	0x4
+ 239 01b0 2D02     		.2byte	0x22d
+ 240 01b2 9A010000 		.4byte	0x19a
+ 241 01b6 00       		.byte	0
+ 242              		.section	.debug_abbrev,"",%progbits
+ 243              	.Ldebug_abbrev0:
+ 244 0000 01       		.uleb128 0x1
+ 245 0001 11       		.uleb128 0x11
+ 246 0002 01       		.byte	0x1
+ 247 0003 25       		.uleb128 0x25
+ 248 0004 0E       		.uleb128 0xe
+ 249 0005 13       		.uleb128 0x13
+ 250 0006 0B       		.uleb128 0xb
+ 251 0007 03       		.uleb128 0x3
+ 252 0008 0E       		.uleb128 0xe
+ 253 0009 1B       		.uleb128 0x1b
+ 254 000a 0E       		.uleb128 0xe
+ 255 000b 10       		.uleb128 0x10
+ 256 000c 17       		.uleb128 0x17
+ 257 000d 00       		.byte	0
+ 258 000e 00       		.byte	0
+ 259 000f 02       		.uleb128 0x2
+ 260 0010 24       		.uleb128 0x24
+ 261 0011 00       		.byte	0
+ 262 0012 0B       		.uleb128 0xb
+ 263 0013 0B       		.uleb128 0xb
+ 264 0014 3E       		.uleb128 0x3e
+ 265 0015 0B       		.uleb128 0xb
+ 266 0016 03       		.uleb128 0x3
+ 267 0017 08       		.uleb128 0x8
+ 268 0018 00       		.byte	0
+ 269 0019 00       		.byte	0
+ 270 001a 03       		.uleb128 0x3
+ 271 001b 24       		.uleb128 0x24
+ 272 001c 00       		.byte	0
+ 273 001d 0B       		.uleb128 0xb
+ 274 001e 0B       		.uleb128 0xb
+ 275 001f 3E       		.uleb128 0x3e
+ 276 0020 0B       		.uleb128 0xb
+ 277 0021 03       		.uleb128 0x3
+ 278 0022 0E       		.uleb128 0xe
+ 279 0023 00       		.byte	0
+ 280 0024 00       		.byte	0
+ 281 0025 04       		.uleb128 0x4
+ 282 0026 16       		.uleb128 0x16
+ 283 0027 00       		.byte	0
+ 284 0028 03       		.uleb128 0x3
+ 285 0029 0E       		.uleb128 0xe
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 6
+
+
+ 286 002a 3A       		.uleb128 0x3a
+ 287 002b 0B       		.uleb128 0xb
+ 288 002c 3B       		.uleb128 0x3b
+ 289 002d 0B       		.uleb128 0xb
+ 290 002e 49       		.uleb128 0x49
+ 291 002f 13       		.uleb128 0x13
+ 292 0030 00       		.byte	0
+ 293 0031 00       		.byte	0
+ 294 0032 05       		.uleb128 0x5
+ 295 0033 13       		.uleb128 0x13
+ 296 0034 01       		.byte	0x1
+ 297 0035 0B       		.uleb128 0xb
+ 298 0036 0B       		.uleb128 0xb
+ 299 0037 3A       		.uleb128 0x3a
+ 300 0038 0B       		.uleb128 0xb
+ 301 0039 3B       		.uleb128 0x3b
+ 302 003a 05       		.uleb128 0x5
+ 303 003b 01       		.uleb128 0x1
+ 304 003c 13       		.uleb128 0x13
+ 305 003d 00       		.byte	0
+ 306 003e 00       		.byte	0
+ 307 003f 06       		.uleb128 0x6
+ 308 0040 0D       		.uleb128 0xd
+ 309 0041 00       		.byte	0
+ 310 0042 03       		.uleb128 0x3
+ 311 0043 0E       		.uleb128 0xe
+ 312 0044 3A       		.uleb128 0x3a
+ 313 0045 0B       		.uleb128 0xb
+ 314 0046 3B       		.uleb128 0x3b
+ 315 0047 05       		.uleb128 0x5
+ 316 0048 49       		.uleb128 0x49
+ 317 0049 13       		.uleb128 0x13
+ 318 004a 38       		.uleb128 0x38
+ 319 004b 0B       		.uleb128 0xb
+ 320 004c 00       		.byte	0
+ 321 004d 00       		.byte	0
+ 322 004e 07       		.uleb128 0x7
+ 323 004f 16       		.uleb128 0x16
+ 324 0050 00       		.byte	0
+ 325 0051 03       		.uleb128 0x3
+ 326 0052 0E       		.uleb128 0xe
+ 327 0053 3A       		.uleb128 0x3a
+ 328 0054 0B       		.uleb128 0xb
+ 329 0055 3B       		.uleb128 0x3b
+ 330 0056 05       		.uleb128 0x5
+ 331 0057 49       		.uleb128 0x49
+ 332 0058 13       		.uleb128 0x13
+ 333 0059 00       		.byte	0
+ 334 005a 00       		.byte	0
+ 335 005b 08       		.uleb128 0x8
+ 336 005c 04       		.uleb128 0x4
+ 337 005d 01       		.byte	0x1
+ 338 005e 0B       		.uleb128 0xb
+ 339 005f 0B       		.uleb128 0xb
+ 340 0060 49       		.uleb128 0x49
+ 341 0061 13       		.uleb128 0x13
+ 342 0062 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 7
+
+
+ 343 0063 0B       		.uleb128 0xb
+ 344 0064 3B       		.uleb128 0x3b
+ 345 0065 0B       		.uleb128 0xb
+ 346 0066 01       		.uleb128 0x1
+ 347 0067 13       		.uleb128 0x13
+ 348 0068 00       		.byte	0
+ 349 0069 00       		.byte	0
+ 350 006a 09       		.uleb128 0x9
+ 351 006b 28       		.uleb128 0x28
+ 352 006c 00       		.byte	0
+ 353 006d 03       		.uleb128 0x3
+ 354 006e 0E       		.uleb128 0xe
+ 355 006f 1C       		.uleb128 0x1c
+ 356 0070 0B       		.uleb128 0xb
+ 357 0071 00       		.byte	0
+ 358 0072 00       		.byte	0
+ 359 0073 0A       		.uleb128 0xa
+ 360 0074 34       		.uleb128 0x34
+ 361 0075 00       		.byte	0
+ 362 0076 03       		.uleb128 0x3
+ 363 0077 0E       		.uleb128 0xe
+ 364 0078 3A       		.uleb128 0x3a
+ 365 0079 0B       		.uleb128 0xb
+ 366 007a 3B       		.uleb128 0x3b
+ 367 007b 05       		.uleb128 0x5
+ 368 007c 49       		.uleb128 0x49
+ 369 007d 13       		.uleb128 0x13
+ 370 007e 3F       		.uleb128 0x3f
+ 371 007f 19       		.uleb128 0x19
+ 372 0080 3C       		.uleb128 0x3c
+ 373 0081 19       		.uleb128 0x19
+ 374 0082 00       		.byte	0
+ 375 0083 00       		.byte	0
+ 376 0084 0B       		.uleb128 0xb
+ 377 0085 35       		.uleb128 0x35
+ 378 0086 00       		.byte	0
+ 379 0087 49       		.uleb128 0x49
+ 380 0088 13       		.uleb128 0x13
+ 381 0089 00       		.byte	0
+ 382 008a 00       		.byte	0
+ 383 008b 0C       		.uleb128 0xc
+ 384 008c 01       		.uleb128 0x1
+ 385 008d 01       		.byte	0x1
+ 386 008e 49       		.uleb128 0x49
+ 387 008f 13       		.uleb128 0x13
+ 388 0090 01       		.uleb128 0x1
+ 389 0091 13       		.uleb128 0x13
+ 390 0092 00       		.byte	0
+ 391 0093 00       		.byte	0
+ 392 0094 0D       		.uleb128 0xd
+ 393 0095 21       		.uleb128 0x21
+ 394 0096 00       		.byte	0
+ 395 0097 49       		.uleb128 0x49
+ 396 0098 13       		.uleb128 0x13
+ 397 0099 2F       		.uleb128 0x2f
+ 398 009a 0B       		.uleb128 0xb
+ 399 009b 00       		.byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 8
+
+
+ 400 009c 00       		.byte	0
+ 401 009d 00       		.byte	0
+ 402              		.section	.debug_aranges,"",%progbits
+ 403 0000 14000000 		.4byte	0x14
+ 404 0004 0200     		.2byte	0x2
+ 405 0006 00000000 		.4byte	.Ldebug_info0
+ 406 000a 04       		.byte	0x4
+ 407 000b 00       		.byte	0
+ 408 000c 0000     		.2byte	0
+ 409 000e 0000     		.2byte	0
+ 410 0010 00000000 		.4byte	0
+ 411 0014 00000000 		.4byte	0
+ 412              		.section	.debug_line,"",%progbits
+ 413              	.Ldebug_line0:
+ 414 0000 A3010000 		.section	.debug_str,"MS",%progbits,1
+ 414      02009D01 
+ 414      00000201 
+ 414      FB0E0D00 
+ 414      01010101 
+ 415              	.LASF13:
+ 416 0000 63686172 		.ascii	"char\000"
+ 416      00
+ 417              	.LASF7:
+ 418 0005 5F5F7569 		.ascii	"__uint8_t\000"
+ 418      6E74385F 
+ 418      7400
+ 419              	.LASF21:
+ 420 000f 43595F42 		.ascii	"CY_BLE_ADV_STATE_STOPPED\000"
+ 420      4C455F41 
+ 420      44565F53 
+ 420      54415445 
+ 420      5F53544F 
+ 421              	.LASF18:
+ 422 0028 62644861 		.ascii	"bdHandle\000"
+ 422      6E646C65 
+ 422      00
+ 423              	.LASF32:
+ 424 0031 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_DESCR_DISCOVERING\000"
+ 424      4C455F43 
+ 424      4F4E4E5F 
+ 424      53544154 
+ 424      455F434C 
+ 425              	.LASF20:
+ 426 005c 63795F73 		.ascii	"cy_stc_ble_conn_handle_t\000"
+ 426      74635F62 
+ 426      6C655F63 
+ 426      6F6E6E5F 
+ 426      68616E64 
+ 427              	.LASF8:
+ 428 0075 5F5F696E 		.ascii	"__int32_t\000"
+ 428      7433325F 
+ 428      7400
+ 429              	.LASF38:
+ 430 007f 63795F62 		.ascii	"cy_ble_connHandle\000"
+ 430      6C655F63 
+ 430      6F6E6E48 
+ 430      616E646C 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 9
+
+
+ 430      6500
+ 431              	.LASF14:
+ 432 0091 75696E74 		.ascii	"uint8_t\000"
+ 432      385F7400 
+ 433              	.LASF29:
+ 434 0099 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_SRVC_DISCOVERING\000"
+ 434      4C455F43 
+ 434      4F4E4E5F 
+ 434      53544154 
+ 434      455F434C 
+ 435              	.LASF25:
+ 436 00c3 63795F65 		.ascii	"cy_en_ble_adv_state_t\000"
+ 436      6E5F626C 
+ 436      655F6164 
+ 436      765F7374 
+ 436      6174655F 
+ 437              	.LASF16:
+ 438 00d9 666C6F61 		.ascii	"float\000"
+ 438      7400
+ 439              	.LASF24:
+ 440 00df 43595F42 		.ascii	"CY_BLE_ADV_STATE_STOP_INITIATED\000"
+ 440      4C455F41 
+ 440      44565F53 
+ 440      54415445 
+ 440      5F53544F 
+ 441              	.LASF4:
+ 442 00ff 756E7369 		.ascii	"unsigned char\000"
+ 442      676E6564 
+ 442      20636861 
+ 442      7200
+ 443              	.LASF10:
+ 444 010d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 444      20756E73 
+ 444      69676E65 
+ 444      6420696E 
+ 444      7400
+ 445              	.LASF6:
+ 446 011f 73686F72 		.ascii	"short unsigned int\000"
+ 446      7420756E 
+ 446      7369676E 
+ 446      65642069 
+ 446      6E7400
+ 447              	.LASF31:
+ 448 0132 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_CHAR_DISCOVERING\000"
+ 448      4C455F43 
+ 448      4F4E4E5F 
+ 448      53544154 
+ 448      455F434C 
+ 449              	.LASF36:
+ 450 015c 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 450      52784275 
+ 450      66666572 
+ 450      00
+ 451              	.LASF37:
+ 452 0169 63795F62 		.ascii	"cy_ble_advState\000"
+ 452      6C655F61 
+ 452      64765374 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 10
+
+
+ 452      61746500 
+ 453              	.LASF28:
+ 454 0179 43595F42 		.ascii	"CY_BLE_CONN_STATE_CONNECTED\000"
+ 454      4C455F43 
+ 454      4F4E4E5F 
+ 454      53544154 
+ 454      455F434F 
+ 455              	.LASF17:
+ 456 0195 646F7562 		.ascii	"double\000"
+ 456      6C6500
+ 457              	.LASF0:
+ 458 019c 756E7369 		.ascii	"unsigned int\000"
+ 458      676E6564 
+ 458      20696E74 
+ 458      00
+ 459              	.LASF33:
+ 460 01a9 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_DISCOVERED\000"
+ 460      4C455F43 
+ 460      4F4E4E5F 
+ 460      53544154 
+ 460      455F434C 
+ 461              	.LASF11:
+ 462 01cd 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 462      206C6F6E 
+ 462      6720756E 
+ 462      7369676E 
+ 462      65642069 
+ 463              	.LASF30:
+ 464 01e4 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_INCL_DISCOVERING\000"
+ 464      4C455F43 
+ 464      4F4E4E5F 
+ 464      53544154 
+ 464      455F434C 
+ 465              	.LASF22:
+ 466 020e 43595F42 		.ascii	"CY_BLE_ADV_STATE_ADV_INITIATED\000"
+ 466      4C455F41 
+ 466      44565F53 
+ 466      54415445 
+ 466      5F414456 
+ 467              	.LASF40:
+ 468 022d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 468      43313120 
+ 468      352E342E 
+ 468      31203230 
+ 468      31363036 
+ 469 0260 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m4 -mfloat-abi=s"
+ 469      20726576 
+ 469      6973696F 
+ 469      6E203233 
+ 469      37373135 
+ 470 0293 6F667466 		.ascii	"oftfp -mfpu=fpv4-sp-d16 -mthumb -g -Og -ffunction-s"
+ 470      70202D6D 
+ 470      6670753D 
+ 470      66707634 
+ 470      2D73702D 
+ 471 02c6 65637469 		.ascii	"ections -ffat-lto-objects\000"
+ 471      6F6E7320 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 11
+
+
+ 471      2D666661 
+ 471      742D6C74 
+ 471      6F2D6F62 
+ 472              	.LASF15:
+ 473 02e0 696E7433 		.ascii	"int32_t\000"
+ 473      325F7400 
+ 474              	.LASF19:
+ 475 02e8 61747449 		.ascii	"attId\000"
+ 475      6400
+ 476              	.LASF12:
+ 477 02ee 73697A65 		.ascii	"sizetype\000"
+ 477      74797065 
+ 477      00
+ 478              	.LASF1:
+ 479 02f7 6C6F6E67 		.ascii	"long long int\000"
+ 479      206C6F6E 
+ 479      6720696E 
+ 479      7400
+ 480              	.LASF42:
+ 481 0305 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\psoc6-realtime-processing\\B"
+ 481      73657273 
+ 481      5C636F64 
+ 481      79675C67 
+ 481      69745C70 
+ 482 0333 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\\RestEaze_BLE.cydsn\000"
+ 482      54435F49 
+ 482      4D552E63 
+ 482      7964736E 
+ 482      5C526573 
+ 483              	.LASF26:
+ 484 0357 43595F42 		.ascii	"CY_BLE_CONN_STATE_DISCONNECTED\000"
+ 484      4C455F43 
+ 484      4F4E4E5F 
+ 484      53544154 
+ 484      455F4449 
+ 485              	.LASF5:
+ 486 0376 73686F72 		.ascii	"short int\000"
+ 486      7420696E 
+ 486      7400
+ 487              	.LASF23:
+ 488 0380 43595F42 		.ascii	"CY_BLE_ADV_STATE_ADVERTISING\000"
+ 488      4C455F41 
+ 488      44565F53 
+ 488      54415445 
+ 488      5F414456 
+ 489              	.LASF27:
+ 490 039d 43595F42 		.ascii	"CY_BLE_CONN_STATE_CLIENT_DISCONNECTED_DISCOVERED\000"
+ 490      4C455F43 
+ 490      4F4E4E5F 
+ 490      53544154 
+ 490      455F434C 
+ 491              	.LASF9:
+ 492 03ce 6C6F6E67 		.ascii	"long int\000"
+ 492      20696E74 
+ 492      00
+ 493              	.LASF41:
+ 494 03d7 47656E65 		.ascii	"Generated_Source\\PSoC6\\pdl\\middleware\\ble\\cy_b"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccvp2xR1.s 			page 12
+
+
+ 494      72617465 
+ 494      645F536F 
+ 494      75726365 
+ 494      5C50536F 
+ 495 0405 6C655F70 		.ascii	"le_plxs.c\000"
+ 495      6C78732E 
+ 495      6300
+ 496              	.LASF2:
+ 497 040f 6C6F6E67 		.ascii	"long double\000"
+ 497      20646F75 
+ 497      626C6500 
+ 498              	.LASF3:
+ 499 041b 7369676E 		.ascii	"signed char\000"
+ 499      65642063 
+ 499      68617200 
+ 500              	.LASF35:
+ 501 0427 5F426F6F 		.ascii	"_Bool\000"
+ 501      6C00
+ 502              	.LASF39:
+ 503 042d 63795F62 		.ascii	"cy_ble_connState\000"
+ 503      6C655F63 
+ 503      6F6E6E53 
+ 503      74617465 
+ 503      00
+ 504              	.LASF34:
+ 505 043e 63795F65 		.ascii	"cy_en_ble_conn_state_t\000"
+ 505      6E5F626C 
+ 505      655F636F 
+ 505      6E6E5F73 
+ 505      74617465 
+ 506              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
