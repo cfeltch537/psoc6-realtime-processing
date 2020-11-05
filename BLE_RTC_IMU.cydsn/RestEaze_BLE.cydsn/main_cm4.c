@@ -82,6 +82,7 @@
 #define BLE_COMMAND_QUEUE_LEN       (10u)
 #define TEMP_COMMAND_QUEUE_LEN      (1u)
 #define TEMP_DATA_QUEUE_LEN         (1u)
+#define RTC_DATA_QUEUE_LEN          (2u)
 #define STATUS_LED_QUEUE_LEN        (5u)
 
 /*******************************************************************************
@@ -107,6 +108,7 @@ int main()
     temperatureDataQ    = xQueueCreate(TEMP_DATA_QUEUE_LEN, sizeof(float));
     imuCommandQ         = xQueueCreate(TEMP_COMMAND_QUEUE_LEN, sizeof(imu_command_t));
     imuDataQ            = xQueueCreate(TEMP_DATA_QUEUE_LEN, sizeof(float));
+    rtcCommandQ         = xQueueCreate(RTC_DATA_QUEUE_LEN, sizeof(rtc_command_t));
     statusLedDataQ      = xQueueCreate(STATUS_LED_QUEUE_LEN, sizeof(status_led_data_t));
          
     /* Create the user Tasks. See the respective Task definition for more

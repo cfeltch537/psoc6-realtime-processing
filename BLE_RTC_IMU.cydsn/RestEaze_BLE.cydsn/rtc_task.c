@@ -11,7 +11,9 @@
 */
 
 #include "project.h"
+#include "rtc_task.h"
 #include "FreeRTOS.h"
+#include "uart_debug.h"
 #include "task.h"
 #include "semphr.h"
 #include <stdio.h>
@@ -27,6 +29,8 @@
 #define USE_SECONDS         (1u)    /* set to one to use, set to zero to not use */
 #define USE_MINUTES         (0u)    /* use seconds OR minutes, not both  */
 
+/* Queue handles used for imu commands and data */
+QueueHandle_t rtcCommandQ;
 
 /* 
     If an En field is set to CY_RTC_ALARM_DISABLE, the alarm
@@ -55,7 +59,9 @@ cy_stc_rtc_alarm_t alarmConfig =
 /*******************************************************************************/
 /*                      Function Prototypes                                    */
 /*******************************************************************************/
+void RtcStart(void);
 cy_en_rtc_status_t RtcInit(void);
+void RtcStop(void);
 cy_en_rtc_status_t RtcAlarmConfig(void);
 void RtcInterruptHandler(void);
 void RtcStepAlarm(void);
@@ -70,7 +76,61 @@ uint64_t getCurrentTimeMillis(){
     return unixTimeMillis + Cy_TCPWM_Counter_GetCounter(TCPWM0, Counter_ms_CNT_NUM);
 }
 
-void rtcStart(){
+void Task_RTC(void *arg)
+{
+    /* Variable that stores commands received  */
+    rtc_command_t rtcCommand;
+    
+    /* Variable used to store the return values of RTOS APIs */
+    BaseType_t rtosApiResult;
+    
+    (void)arg;
+    printf("Starting RTC Queue Read Task\r\n");
+    
+    RtcStart();
+    isMsCounterRunning = true;
+    
+    while(1)
+    {
+        /* Block until a command has been received over imuCommandQ */
+        rtosApiResult = xQueueReceive(rtcCommandQ, &rtcCommand, portMAX_DELAY);
+        
+         /* Command has been received from imuCommandQ */ 
+        if(rtosApiResult == pdTRUE)
+        {   
+            /* Take an action based on the command received */
+            switch (rtcCommand.command)
+            {
+                /* IMU data need to be sent */
+                case START_MS_TIMEKEEPING:
+                    isMsCounterRunning = true;
+                    break;
+                /* No imu data need to be sent */
+                case STOP_MS_TIMEKEEPING:
+                    isMsCounterRunning = false;
+                    break;
+                /* Process imu data from CapSense widgets */
+                case SET_RTC_TIME:
+                    // Update the RTC Time
+                    unixTimeMillis = rtcCommand.timestamp;
+                    break;
+                /* Invalid task notification value received */    
+                default:
+                    Task_DebugPrintf("Error!   : IMU - Invalid command "\
+                                "received .Error Code:", rtcCommand.command);
+                    break;
+            }
+        }            
+        /* Task has timed out and received no commands during an interval of 
+        portMAXDELAY ticks */
+        else
+        {
+            Task_DebugPrintf("Warning! : IMU - Task Timed out ", 0u);   
+        }
+    }
+}
+
+void RtcStart(){
     printf("Enabbling RTC Alarm and ms counter\r\n");
     
     /* Init RTC - Configure the time and date */
@@ -132,28 +192,6 @@ void rtcStop(){
     NVIC_DisableIRQ(RTC_RTC_IRQ_cfg.intrSrc);
     Counter_ms_Disable();
 }
-
-void Task_RTC(void *arg)
-{
-    (void)arg;
-    printf("Starting RTC Queue Read Task\r\n");
-    
-    rtcStart();
-    
-    while(1)
-    {
-        /* Wait here until the semaphore is given (i.e. set) by the ISR */
-        xSemaphoreTake(rtcAlarmSemaphore,portMAX_DELAY);
-        
-    	/* A custom processing - toggle the LED (RED) */
-    	//Cy_GPIO_Inv(LED_R_0_PORT, LED_R_0_NUM);		
-        
-        cy_stc_rtc_config_t rtc_time;
-        Cy_RTC_GetDateAndTime(&rtc_time);
-        printf("%u/%02u/%02u %02u:%02u:%02u %.0f\r\n",rtc_time.year, rtc_time.month, rtc_time.date, rtc_time.hour, rtc_time.min, rtc_time.sec, unixTimeMillis/1.0);
-    }
-}
-
 
 /******************************************************************************
 * Function Name: RtcInit

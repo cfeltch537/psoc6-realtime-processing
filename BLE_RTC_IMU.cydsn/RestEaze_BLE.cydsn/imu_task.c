@@ -5,8 +5,6 @@
 *
 * Description: This file contains the task that handles imu sensing
 *
-* Related Document: CE218138_BLE_Thermometer_RTOS.pdf
-*
 * Hardware Dependency: CY8CKIT-062-BLE PSoC 6 BLE Pioneer Kit
 *
 *******************************************************************************
