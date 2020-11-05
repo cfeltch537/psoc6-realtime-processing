@@ -1,5 +1,5 @@
 -- Project:   RestEaze_BLE
--- Generated: 11/02/2020 12:53:37
+-- Generated: 11/05/2020 08:56:14
 -- PSoC Creator  4.2
 
 ENTITY RestEaze_BLE IS
@@ -99,18 +99,18 @@ ARCHITECTURE __DEFAULT__ OF RestEaze_BLE IS
     SIGNAL Net_2670_9 : bit;
     SIGNAL Net_2680 : bit;
     SIGNAL Net_2681 : bit;
-    SIGNAL Net_2691 : bit;
-    SIGNAL Net_2692 : bit;
-    SIGNAL Net_2693 : bit;
-    SIGNAL Net_2694 : bit;
-    SIGNAL Net_2695 : bit;
-    SIGNAL Net_2701 : bit;
-    SIGNAL Net_2702 : bit;
-    SIGNAL Net_2703 : bit;
-    SIGNAL Net_2704 : bit;
-    SIGNAL Net_2710 : bit;
-    SIGNAL Net_2711 : bit;
-    SIGNAL Net_2712 : bit;
+    SIGNAL Net_2786 : bit;
+    SIGNAL Net_2787 : bit;
+    SIGNAL Net_2788 : bit;
+    SIGNAL Net_2789 : bit;
+    SIGNAL Net_2790 : bit;
+    SIGNAL Net_2796 : bit;
+    SIGNAL Net_2797 : bit;
+    SIGNAL Net_2798 : bit;
+    SIGNAL Net_2799 : bit;
+    SIGNAL Net_2805 : bit;
+    SIGNAL Net_2806 : bit;
+    SIGNAL Net_2807 : bit;
     SIGNAL Net_376 : bit;
     SIGNAL Net_66_ff11 : bit;
     ATTRIBUTE global_signal OF Net_66_ff11 : SIGNAL IS true;
@@ -219,13 +219,13 @@ ARCHITECTURE __DEFAULT__ OF RestEaze_BLE IS
     ATTRIBUTE Location OF \DEBUG_UART:SCB_IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(46)]";
     ATTRIBUTE Location OF \DEBUG_UART:SCB\ : LABEL IS "F(SCB,5)";
     ATTRIBUTE Location OF isr_gpio : LABEL IS "[IntrContainer=(0)][IntrId=(0)]";
-    ATTRIBUTE Location OF \Counter_ms:TCPWM\ : LABEL IS "F(TCPWM,0)";
-    ATTRIBUTE Location OF SysInt_TimerPPG_INT : LABEL IS "[IntrContainer=(0)][IntrId=(91)]";
-    ATTRIBUTE Location OF \Timer_PPG:TCPWM\ : LABEL IS "F(TCPWM,1)";
-    ATTRIBUTE Location OF SysInt_TimerIMU_INT : LABEL IS "[IntrContainer=(0)][IntrId=(92)]";
-    ATTRIBUTE Location OF \Timer_IMU:TCPWM\ : LABEL IS "F(TCPWM,2)";
     ATTRIBUTE Location OF \RTC:RTC\ : LABEL IS "F(RTC,0)";
     ATTRIBUTE Location OF \RTC:RTC_IRQ\ : LABEL IS "[IntrContainer=(0)][IntrId=(21)]";
+    ATTRIBUTE Location OF \Timer_IMU:TCPWM\ : LABEL IS "F(TCPWM,2)";
+    ATTRIBUTE Location OF SysInt_TimerIMU_INT : LABEL IS "[IntrContainer=(0)][IntrId=(92)]";
+    ATTRIBUTE Location OF \Timer_PPG:TCPWM\ : LABEL IS "F(TCPWM,1)";
+    ATTRIBUTE Location OF SysInt_TimerPPG_INT : LABEL IS "[IntrContainer=(0)][IntrId=(91)]";
+    ATTRIBUTE Location OF \Counter_ms:TCPWM\ : LABEL IS "F(TCPWM,0)";
     ATTRIBUTE Location OF IOSS : LABEL IS "F(IOSS,0)";
     COMPONENT BLE
         PORT (
@@ -2100,81 +2100,6 @@ BEGIN
             interrupt => INDIVIDUAL_PICU_OUT_0,
             clock => ClockBlock_PeriClk);
 
-    \Counter_ms:TCPWM\:TCPWM
-        GENERIC MAP(
-            cy_registers => "",
-            exact_width => 0,
-            width => 16)
-        PORT MAP(
-            clock => Net_66_ff11,
-            capture => '0',
-            count => '1',
-            reload => '0',
-            stop => '0',
-            start => '0',
-            tr_underflow => Net_2693,
-            tr_compare_match => Net_2694,
-            tr_overflow => Net_2692,
-            line_compl => \Counter_ms:Net_1\,
-            line => \Counter_ms:Net_2\,
-            interrupt => Net_2691);
-
-    SysInt_TimerPPG_INT:interrupt
-        GENERIC MAP(
-            cy_registers => "",
-            deepsleep_required => 0,
-            int_type => "10")
-        PORT MAP(
-            interrupt => Net_2695,
-            clock => ClockBlock_PeriClk);
-
-    \Timer_PPG:TCPWM\:TCPWM
-        GENERIC MAP(
-            cy_registers => "",
-            exact_width => 0,
-            width => 16)
-        PORT MAP(
-            clock => Net_66_ff13,
-            capture => '0',
-            count => '1',
-            reload => '0',
-            stop => '0',
-            start => '0',
-            tr_underflow => Net_2702,
-            tr_compare_match => Net_2703,
-            tr_overflow => Net_2701,
-            line_compl => \Timer_PPG:Net_1\,
-            line => \Timer_PPG:Net_2\,
-            interrupt => Net_2695);
-
-    SysInt_TimerIMU_INT:interrupt
-        GENERIC MAP(
-            cy_registers => "",
-            deepsleep_required => 0,
-            int_type => "10")
-        PORT MAP(
-            interrupt => Net_2704,
-            clock => ClockBlock_PeriClk);
-
-    \Timer_IMU:TCPWM\:TCPWM
-        GENERIC MAP(
-            cy_registers => "",
-            exact_width => 0,
-            width => 16)
-        PORT MAP(
-            clock => Net_66_ff12,
-            capture => '0',
-            count => '1',
-            reload => '0',
-            stop => '0',
-            start => '0',
-            tr_underflow => Net_2711,
-            tr_compare_match => Net_2712,
-            tr_overflow => Net_2710,
-            line_compl => \Timer_IMU:Net_1\,
-            line => \Timer_IMU:Net_2\,
-            interrupt => Net_2704);
-
     \RTC:RTC\:RTC
         GENERIC MAP(
             cy_registers => "")
@@ -2189,6 +2114,81 @@ BEGIN
         PORT MAP(
             interrupt => \RTC:Net_3\,
             clock => ClockBlock_PeriClk);
+
+    \Timer_IMU:TCPWM\:TCPWM
+        GENERIC MAP(
+            cy_registers => "",
+            exact_width => 0,
+            width => 16)
+        PORT MAP(
+            clock => Net_66_ff12,
+            capture => '0',
+            count => '1',
+            reload => '0',
+            stop => '0',
+            start => '0',
+            tr_underflow => Net_2806,
+            tr_compare_match => Net_2807,
+            tr_overflow => Net_2805,
+            line_compl => \Timer_IMU:Net_1\,
+            line => \Timer_IMU:Net_2\,
+            interrupt => Net_2799);
+
+    SysInt_TimerIMU_INT:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_2799,
+            clock => ClockBlock_PeriClk);
+
+    \Timer_PPG:TCPWM\:TCPWM
+        GENERIC MAP(
+            cy_registers => "",
+            exact_width => 0,
+            width => 16)
+        PORT MAP(
+            clock => Net_66_ff13,
+            capture => '0',
+            count => '1',
+            reload => '0',
+            stop => '0',
+            start => '0',
+            tr_underflow => Net_2797,
+            tr_compare_match => Net_2798,
+            tr_overflow => Net_2796,
+            line_compl => \Timer_PPG:Net_1\,
+            line => \Timer_PPG:Net_2\,
+            interrupt => Net_2790);
+
+    SysInt_TimerPPG_INT:interrupt
+        GENERIC MAP(
+            cy_registers => "",
+            deepsleep_required => 0,
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_2790,
+            clock => ClockBlock_PeriClk);
+
+    \Counter_ms:TCPWM\:TCPWM
+        GENERIC MAP(
+            cy_registers => "",
+            exact_width => 0,
+            width => 16)
+        PORT MAP(
+            clock => Net_66_ff11,
+            capture => '0',
+            count => '1',
+            reload => '0',
+            stop => '0',
+            start => '0',
+            tr_underflow => Net_2788,
+            tr_compare_match => Net_2789,
+            tr_overflow => Net_2787,
+            line_compl => \Counter_ms:Net_1\,
+            line => \Counter_ms:Net_2\,
+            interrupt => Net_2786);
 
     IOSS:IOSS
         PORT MAP(

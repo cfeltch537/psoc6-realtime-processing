@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
   27:cy_eink_library/cy_eink_library.c **** * written permission of Cypress.
   28:cy_eink_library/cy_eink_library.c **** *
   29:cy_eink_library/cy_eink_library.c **** * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND, 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 2
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 2
 
 
   30:cy_eink_library/cy_eink_library.c **** * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
   84:cy_eink_library/cy_eink_library.c **** *
   85:cy_eink_library/cy_eink_library.c **** *******************************************************************************/
   86:cy_eink_library/cy_eink_library.c **** cy_eink_api_result Cy_EINK_Start(int8_t temperature,
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 3
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 3
 
 
   87:cy_eink_library/cy_eink_library.c ****                                  cy_eink_delay_function_t delayFunction)
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  107:cy_eink_library/cy_eink_library.c ****     else
  108:cy_eink_library/cy_eink_library.c ****     {
  109:cy_eink_library/cy_eink_library.c ****         /* Return failure */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 4
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 4
 
 
  110:cy_eink_library/cy_eink_library.c ****         returnValue = CY_EINK_FAILURE;
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  140:cy_eink_library/cy_eink_library.c ****     cy_eink_api_result returnValue;
  141:cy_eink_library/cy_eink_library.c ****     
  142:cy_eink_library/cy_eink_library.c ****     /* Turn on the E-INK power if powerCtrl is "true" */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 5
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 5
 
 
  143:cy_eink_library/cy_eink_library.c ****     if (powerCtrl == CY_EINK_ON)
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  166:cy_eink_library/cy_eink_library.c **** 
  167:cy_eink_library/cy_eink_library.c **** /*******************************************************************************
  168:cy_eink_library/cy_eink_library.c **** * Function Name: void Cy_EINK_Clear(bool background, bool powerCycle)
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 6
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 6
 
 
  169:cy_eink_library/cy_eink_library.c **** ********************************************************************************
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  138              		.loc 1 201 0
  139 000e 44B1     		cbz	r4, .L14
  202:cy_eink_library/cy_eink_library.c ****     {
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 7
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 7
 
 
  203:cy_eink_library/cy_eink_library.c ****         /* Two consecutive display updates to reduce ghosting */
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  175              		.align	2
  176              	.L18:
  177 0040 FFFF0F10 		.word	269484031
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 8
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 8
 
 
  178              		.cfi_endproc
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  194 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
  195              		.cfi_def_cfa_offset 24
  196              		.cfi_offset 3, -24
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 9
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 9
 
 
  197              		.cfi_offset 4, -20
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  278:cy_eink_library/cy_eink_library.c ****         
  279:cy_eink_library/cy_eink_library.c ****         /* Additional stages that reduce ghosting for a 4 stage full update */
  280:cy_eink_library/cy_eink_library.c ****         if (updateType == CY_EINK_FULL_4STAGE)
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 10
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 10
 
 
  233              		.loc 1 280 0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  268              		.thumb_func
  269              		.type	Cy_EINK_ImageToFrameBuffer, %function
  270              	Cy_EINK_ImageToFrameBuffer:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 11
 
 
  271              	.LFB712:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  340:cy_eink_library/cy_eink_library.c ****     /* Counter variable for horizontal pixel lines */
  341:cy_eink_library/cy_eink_library.c ****     uint16_t pixelLineCounter;
  342:cy_eink_library/cy_eink_library.c ****     
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 12
 
 
  343:cy_eink_library/cy_eink_library.c ****     /* Variable that stores the starting location of the current pixel line */
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  314 002a 1044     		add	r0, r0, r2
  315 002c 80B2     		uxth	r0, r0
  316              	.LVL32:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 13
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 13
 
 
  367:cy_eink_library/cy_eink_library.c ****                              imgCoordinates[CY_EINK_IMG_X1];
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  350 004e 0120     		movs	r0, #1
  351              	.LVL41:
  352 0050 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 14
 
 
  353              	.LVL42:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  417:cy_eink_library/cy_eink_library.c **** *
  418:cy_eink_library/cy_eink_library.c **** * Side Effects:
  419:cy_eink_library/cy_eink_library.c **** *  This is a blocking function that can take as many as 5808 RAM write cycles
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 15
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 15
 
 
  420:cy_eink_library/cy_eink_library.c **** *  to complete.
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  398              	.L51:
  451:cy_eink_library/cy_eink_library.c ****     {
  452:cy_eink_library/cy_eink_library.c ****         /* Check if X and Y coordinates are between the font's max limits */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 16
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 16
 
 
  453:cy_eink_library/cy_eink_library.c ****         if ((fontCor[CY_EINK_FONT_X] < (fontInfo->xSpan)) && 
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  433              	.LVL50:
  471:cy_eink_library/cy_eink_library.c ****                                ((fontInfo->ySize) * (fontInfo->xSize));
  472:cy_eink_library/cy_eink_library.c ****                 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 17
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 17
 
 
  473:cy_eink_library/cy_eink_library.c ****                 /* Vertical copying loop */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  461 007c 4455     		strb	r4, [r0, r5]
  462 007e 06E0     		b	.L42
  463              	.LVL55:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 18
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 18
 
 
  464              	.L41:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  474:cy_eink_library/cy_eink_library.c ****                      verticalCounter++)
  502              		.loc 1 474 0 discriminator 1
  503 00a6 D479     		ldrb	r4, [r2, #7]	@ zero_extendqisi2
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 19
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 19
 
 
  504 00a8 A645     		cmp	lr, r4
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  524              		.loc 1 543 0
  525 00cc 4FF0000E 		mov	lr, #0
  526 00d0 00F804E0 		strb	lr, [r0, r4]
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 20
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 20
 
 
  527              	.L46:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  552:cy_eink_library/cy_eink_library.c ****         
  553:cy_eink_library/cy_eink_library.c ****         /* Reset the X location and increment the Y location if the X span 
  554:cy_eink_library/cy_eink_library.c ****            is reached */
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 21
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 21
 
 
  555:cy_eink_library/cy_eink_library.c ****         if (fontCor[CY_EINK_FONT_X] >= (fontInfo->xSpan))
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  605              		.file 5 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/tcpwm/cy_tcpwm_counter.h"
  606              		.file 6 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/scb/cy_scb_spi.h"
  607              		.file 7 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/scb/cy_scb_uart.h"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 22
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 22
 
 
  608              		.file 8 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/sar/cy_sar.h"
@@ -1272,10 +1272,10 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  616              		.file 16 "Generated_Source\\PSoC6\\pdl\\cmsis/include/core_cm4.h"
  617              		.file 17 "Generated_Source\\PSoC6/CY_EINK_SPIM.h"
  618              		.file 18 "Generated_Source\\PSoC6/DEBUG_UART.h"
- 619              		.file 19 "Generated_Source\\PSoC6/Counter_ms.h"
- 620              		.file 20 "Generated_Source\\PSoC6/Timer_PPG.h"
- 621              		.file 21 "Generated_Source\\PSoC6/Timer_IMU.h"
- 622              		.file 22 "Generated_Source\\PSoC6/RTC.h"
+ 619              		.file 19 "Generated_Source\\PSoC6/RTC.h"
+ 620              		.file 20 "Generated_Source\\PSoC6/Timer_IMU.h"
+ 621              		.file 21 "Generated_Source\\PSoC6/Timer_PPG.h"
+ 622              		.file 22 "Generated_Source\\PSoC6/Counter_ms.h"
  623              		.section	.debug_info,"",%progbits
  624              	.Ldebug_info0:
  625 0000 FD0C0000 		.4byte	0xcfd
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  662 0056 2B       		.byte	0x2b
  663 0057 5B000000 		.4byte	0x5b
  664 005b 03       		.uleb128 0x3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 23
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 23
 
 
  665 005c 02       		.byte	0x2
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  719 00bf 02       		.uleb128 0x2
  720 00c0 A10B0000 		.4byte	.LASF17
  721 00c4 03       		.byte	0x3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 24
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 24
 
 
  722 00c5 14       		.byte	0x14
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  776 0136 0B       		.uleb128 0xb
  777 0137 18       		.byte	0x18
  778 0138 04       		.byte	0x4
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 25
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 25
 
 
  779 0139 CE01     		.2byte	0x1ce
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  833 01af 00       		.byte	0
  834 01b0 0C       		.uleb128 0xc
  835 01b1 690D0000 		.4byte	.LASF36
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 26
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 26
 
 
  836 01b5 04       		.byte	0x4
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  890 0223 05       		.byte	0x5
  891 0224 35       		.byte	0x35
  892 0225 EB000000 		.4byte	0xeb
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 27
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 27
 
 
  893 0229 18       		.byte	0x18
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  947 0295 3C       		.byte	0x3c
  948 0296 0E       		.uleb128 0xe
  949 0297 810B0000 		.4byte	.LASF54
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 28
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 28
 
 
  950 029b 05       		.byte	0x5
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1004 030b A9000000 		.4byte	0xa9
  1005 030f 04       		.byte	0x4
  1006 0310 0C       		.uleb128 0xc
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 29
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 29
 
 
  1007 0311 10000000 		.4byte	.LASF63
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1061 0389 38       		.byte	0x38
  1062 038a 07       		.byte	0x7
  1063 038b 4702     		.2byte	0x247
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 30
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 30
 
 
  1064 038d 48040000 		.4byte	0x448
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1118 0405 20       		.byte	0x20
  1119 0406 0C       		.uleb128 0xc
  1120 0407 6C010000 		.4byte	.LASF65
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 31
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 31
 
 
  1121 040b 07       		.byte	0x7
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1175 047b EE010000 		.4byte	.LASF85
  1176 047f 08       		.byte	0x8
  1177 0480 0A04     		.2byte	0x40a
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 32
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 32
 
 
  1178 0482 54040000 		.4byte	0x454
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1232 04f7 0C       		.uleb128 0xc
  1233 04f8 6A030000 		.4byte	.LASF94
  1234 04fc 08       		.byte	0x8
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 33
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 33
 
 
  1235 04fd FE04     		.2byte	0x4fe
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1289 0574 0B       		.uleb128 0xb
  1290 0575 02       		.byte	0x2
  1291 0576 09       		.byte	0x9
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 34
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 34
 
 
  1292 0577 5B01     		.2byte	0x15b
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1346 05e7 86040000 		.4byte	.LASF111
  1347 05eb 01       		.byte	0x1
  1348 05ec 09       		.uleb128 0x9
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 35
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 35
 
 
  1349 05ed 6A040000 		.4byte	.LASF112
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1403 0659 0B       		.byte	0xb
  1404 065a 45       		.byte	0x45
  1405 065b EB000000 		.4byte	0xeb
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 36
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 36
 
 
  1406 065f 10       		.byte	0x10
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1460 06c8 FD040000 		.4byte	.LASF131
  1461 06cc 0C       		.byte	0xc
  1462 06cd 4A       		.byte	0x4a
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 37
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 37
 
 
  1463 06ce CA000000 		.4byte	0xca
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1517 073d 15       		.uleb128 0x15
  1518 073e 01       		.byte	0x1
  1519 073f 42000000 		.4byte	0x42
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 38
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 38
 
 
  1520 0743 0E       		.byte	0xe
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1574 07af 00       		.byte	0
  1575 07b0 02       		.uleb128 0x2
  1576 07b1 0B040000 		.4byte	.LASF154
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 39
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 39
 
 
  1577 07b5 0F       		.byte	0xf
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1631 082d 00       		.sleb128 0
  1632 082e 00       		.byte	0
  1633 082f 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 40
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 40
 
 
  1634 0830 17       		.uleb128 0x17
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1688 08b1 C1       		.byte	0xc1
  1689 08b2 09010000 		.4byte	0x109
  1690 08b6 F3000000 		.4byte	.LLST6
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 41
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 41
 
 
  1691 08ba 1A       		.uleb128 0x1a
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1745 0914 33       		.byte	0x33
  1746 0915 00       		.byte	0
  1747 0916 1A       		.uleb128 0x1a
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 42
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 42
 
 
  1748 0917 36000000 		.4byte	.LVL18
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1802 098a 01       		.byte	0x1
  1803 098b 0201     		.2byte	0x102
  1804 098d 09010000 		.4byte	0x109
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 43
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 43
 
 
  1805 0991 71010000 		.4byte	.LLST10
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1859 09ee 1B       		.uleb128 0x1b
  1860 09ef 01       		.uleb128 0x1
  1861 09f0 51       		.byte	0x51
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 44
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 44
 
 
  1862 09f1 01       		.uleb128 0x1
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1916 0a4c 5A000000 		.4byte	.LFE712-.LFB712
  1917 0a50 01       		.uleb128 0x1
  1918 0a51 9C       		.byte	0x9c
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 45
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 45
 
 
  1919 0a52 CE0A0000 		.4byte	0xace
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  1973 0ade 24010000 		.4byte	.LFE713-.LFB713
  1974 0ae2 01       		.uleb128 0x1
  1975 0ae3 9C       		.byte	0x9c
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 46
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 46
 
 
  1976 0ae4 A50B0000 		.4byte	0xba5
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2030 0b6a B701     		.2byte	0x1b7
  2031 0b6c D5000000 		.4byte	0xd5
  2032 0b70 68030000 		.4byte	.LLST23
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 47
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 47
 
 
  2033 0b74 23       		.uleb128 0x23
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2087 0bf8 00       		.byte	0
  2088 0bf9 26       		.uleb128 0x26
  2089 0bfa FD0B0000 		.4byte	.LASF190
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 48
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 48
 
 
  2090 0bfe 0A       		.byte	0xa
@@ -2868,37 +2868,37 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2134 0c64 87       		.byte	0x87
  2135 0c65 48040000 		.4byte	0x448
  2136 0c69 27       		.uleb128 0x27
- 2137 0c6a BB030000 		.4byte	.LASF196
+ 2137 0c6a 34000000 		.4byte	.LASF196
  2138 0c6e 13       		.byte	0x13
- 2139 0c6f 1F       		.byte	0x1f
- 2140 0c70 740C0000 		.4byte	0xc74
- 2141 0c74 14       		.uleb128 0x14
- 2142 0c75 BB020000 		.4byte	0x2bb
- 2143 0c79 27       		.uleb128 0x27
- 2144 0c7a 98090000 		.4byte	.LASF197
- 2145 0c7e 14       		.byte	0x14
- 2146 0c7f 1F       		.byte	0x1f
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 49
+ 2139 0c6f 7C       		.byte	0x7c
+ 2140 0c70 09010000 		.4byte	0x109
+ 2141 0c74 27       		.uleb128 0x27
+ 2142 0c75 B8060000 		.4byte	.LASF197
+ 2143 0c79 13       		.byte	0x13
+ 2144 0c7a 7D       		.byte	0x7d
+ 2145 0c7b 7F0C0000 		.4byte	0xc7f
+ 2146 0c7f 14       		.uleb128 0x14
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 49
 
 
- 2147 0c80 740C0000 		.4byte	0xc74
+ 2147 0c80 BE010000 		.4byte	0x1be
  2148 0c84 27       		.uleb128 0x27
  2149 0c85 F7060000 		.4byte	.LASF198
- 2150 0c89 15       		.byte	0x15
+ 2150 0c89 14       		.byte	0x14
  2151 0c8a 1F       		.byte	0x1f
- 2152 0c8b 740C0000 		.4byte	0xc74
- 2153 0c8f 27       		.uleb128 0x27
- 2154 0c90 34000000 		.4byte	.LASF199
- 2155 0c94 16       		.byte	0x16
- 2156 0c95 7C       		.byte	0x7c
- 2157 0c96 09010000 		.4byte	0x109
- 2158 0c9a 27       		.uleb128 0x27
- 2159 0c9b B8060000 		.4byte	.LASF200
- 2160 0c9f 16       		.byte	0x16
- 2161 0ca0 7D       		.byte	0x7d
- 2162 0ca1 A50C0000 		.4byte	0xca5
- 2163 0ca5 14       		.uleb128 0x14
- 2164 0ca6 BE010000 		.4byte	0x1be
+ 2152 0c8b 8F0C0000 		.4byte	0xc8f
+ 2153 0c8f 14       		.uleb128 0x14
+ 2154 0c90 BB020000 		.4byte	0x2bb
+ 2155 0c94 27       		.uleb128 0x27
+ 2156 0c95 98090000 		.4byte	.LASF199
+ 2157 0c99 15       		.byte	0x15
+ 2158 0c9a 1F       		.byte	0x1f
+ 2159 0c9b 8F0C0000 		.4byte	0xc8f
+ 2160 0c9f 27       		.uleb128 0x27
+ 2161 0ca0 BB030000 		.4byte	.LASF200
+ 2162 0ca4 16       		.byte	0x16
+ 2163 0ca5 1F       		.byte	0x1f
+ 2164 0ca6 8F0C0000 		.4byte	0xc8f
  2165 0caa 28       		.uleb128 0x28
  2166 0cab 45000000 		.4byte	.LASF201
  2167 0caf 45000000 		.4byte	.LASF201
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2201 0cf8 03030000 		.4byte	.LASF211
  2202 0cfc 03030000 		.4byte	.LASF211
  2203 0d00 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 50
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 50
 
 
  2204              		.section	.debug_abbrev,"",%progbits
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2258 0034 00       		.byte	0
  2259 0035 00       		.byte	0
  2260 0036 05       		.uleb128 0x5
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 51
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 51
 
 
  2261 0037 0F       		.uleb128 0xf
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2315 006d 05       		.uleb128 0x5
  2316 006e 49       		.uleb128 0x49
  2317 006f 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 52
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 52
 
 
  2318 0070 00       		.byte	0
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2372 00a6 49       		.uleb128 0x49
  2373 00a7 13       		.uleb128 0x13
  2374 00a8 38       		.uleb128 0x38
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 53
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 53
 
 
  2375 00a9 0B       		.uleb128 0xb
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2429 00df 00       		.byte	0
  2430 00e0 49       		.uleb128 0x49
  2431 00e1 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 54
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 54
 
 
  2432 00e2 00       		.byte	0
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2486 0119 13       		.uleb128 0x13
  2487 011a 00       		.byte	0
  2488 011b 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 55
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 55
 
 
  2489 011c 18       		.uleb128 0x18
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2543 0159 01       		.uleb128 0x1
  2544 015a 31       		.uleb128 0x31
  2545 015b 13       		.uleb128 0x13
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 56
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 56
 
 
  2546 015c 00       		.byte	0
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2600 0195 3F       		.uleb128 0x3f
  2601 0196 19       		.uleb128 0x19
  2602 0197 03       		.uleb128 0x3
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 57
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 57
 
 
  2603 0198 0E       		.uleb128 0xe
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2657 01cf 18       		.uleb128 0x18
  2658 01d0 9742     		.uleb128 0x2117
  2659 01d2 19       		.uleb128 0x19
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 58
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 58
 
 
  2660 01d3 01       		.uleb128 0x1
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2714 0209 3A       		.uleb128 0x3a
  2715 020a 0B       		.uleb128 0xb
  2716 020b 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 59
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 59
 
 
  2717 020c 05       		.uleb128 0x5
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2771 0242 00       		.byte	0
  2772 0243 00       		.byte	0
  2773 0244 00       		.byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 60
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 60
 
 
  2774              		.section	.debug_loc,"",%progbits
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2828 007a 00000000 		.4byte	.LVL7
  2829 007e 07000000 		.4byte	.LVL8-1
  2830 0082 0100     		.2byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 61
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 61
 
 
  2831 0084 50       		.byte	0x50
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2885 0108 F3       		.byte	0xf3
  2886 0109 01       		.uleb128 0x1
  2887 010a 51       		.byte	0x51
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 62
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 62
 
 
  2888 010b 9F       		.byte	0x9f
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2942 0192 00000000 		.4byte	.LVL29
  2943 0196 24000000 		.4byte	.LVL31
  2944 019a 0100     		.2byte	0x1
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 63
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 63
 
 
  2945 019c 50       		.byte	0x50
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  2999 021c 0100     		.2byte	0x1
  3000 021e 51       		.byte	0x51
  3001 021f 24000000 		.4byte	.LVL31
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 64
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 64
 
 
  3002 0223 4A000000 		.4byte	.LVL38
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3056 02a4 22       		.byte	0x22
  3057 02a5 74       		.byte	0x74
  3058 02a6 00       		.sleb128 0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 65
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 65
 
 
  3059 02a7 22       		.byte	0x22
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3113 032e 57       		.byte	0x57
  3114 032f 00000000 		.4byte	0
  3115 0333 00000000 		.4byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 66
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 66
 
 
  3116              	.LLST21:
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3170 03a9 00       		.sleb128 0
  3171 03aa 1E       		.byte	0x1e
  3172 03ab 79       		.byte	0x79
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 67
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 67
 
 
  3173 03ac 00       		.sleb128 0
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3227 041f 0100     		.2byte	0x1
  3228 0421 56       		.byte	0x56
  3229 0422 00000000 		.4byte	0
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 68
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 68
 
 
  3230 0426 00000000 		.4byte	0
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3284 0028 00000000 		.4byte	.LFB711
  3285 002c 54000000 		.4byte	.LFE711-.LFB711
  3286 0030 00000000 		.4byte	.LFB712
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 69
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 69
 
 
  3287 0034 5A000000 		.4byte	.LFE712-.LFB712
@@ -4128,7 +4128,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3320 0028 73617449 		.ascii	"satIntrMask\000"
  3320      6E74724D 
  3320      61736B00 
- 3321              	.LASF199:
+ 3321              	.LASF196:
  3322 0034 5254435F 		.ascii	"RTC_rtcDstStatus\000"
  3322      72746344 
  3322      73745374 
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3324 0045 43795F45 		.ascii	"Cy_EINK_RegisterDelayFunction\000"
  3324      494E4B5F 
  3324      52656769 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 70
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 70
 
 
  3324      73746572 
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3347              	.LASF193:
  3348 010c 4144435F 		.ascii	"ADC_currentConfig\000"
  3348      63757272 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 71
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 71
 
 
  3348      656E7443 
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3371              	.LASF60:
  3372 01bd 63795F73 		.ascii	"cy_stc_scb_spi_context\000"
  3372      74635F73 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 72
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 72
 
 
  3372      63625F73 
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3392 0297 43595F53 		.ascii	"CY_SAR_RANGE_COND_BELOW\000"
  3392      41525F52 
  3392      414E4745 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 73
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 73
 
 
  3392      5F434F4E 
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3415              	.LASF155:
  3416 0346 74656D70 		.ascii	"temperature\000"
  3416      65726174 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 74
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 74
 
 
  3416      75726500 
@@ -4412,7 +4412,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3428      4F4E4E5F 
  3428      53544154 
  3428      455F434C 
- 3429              	.LASF196:
+ 3429              	.LASF200:
  3430 03bb 436F756E 		.ascii	"Counter_ms_config\000"
  3430      7465725F 
  3430      6D735F63 
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3438      46554C4C 
  3438      5F345354 
  3438      41474500 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 75
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 75
 
 
  3439              	.LASF154:
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3462      74655479 
  3462      706500
  3463              	.LASF133:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 76
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 76
 
 
  3464 04d2 63795F65 		.ascii	"cy_eink_font_t\000"
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3486      68616E6E 
  3486      656C7300 
  3487              	.LASF143:
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 77
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 77
 
 
  3488 057d 50565F45 		.ascii	"PV_EINK_STAGE1\000"
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3511              	.LASF126:
  3512 0626 784F6666 		.ascii	"xOffset\000"
  3512      73657400 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 78
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 78
 
 
  3513              	.LASF173:
@@ -4664,7 +4664,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3530      6967526F 
  3530      7574696E 
  3530      6700
- 3531              	.LASF200:
+ 3531              	.LASF197:
  3532 06b8 5254435F 		.ascii	"RTC_dstConfig\000"
  3532      64737443 
  3532      6F6E6669 
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3536 06d3 43795F45 		.ascii	"Cy_EINK_ImageToFrameBuffer\000"
  3536      494E4B5F 
  3536      496D6167 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 79
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 79
 
 
  3536      65546F46 
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3555      7400
  3556              	.LASF30:
  3557 0806 6461794F 		.ascii	"dayOfMonth\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 80
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 80
 
 
  3557      664D6F6E 
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3577      455F434C 
  3578              	.LASF51:
  3579 08d3 73746172 		.ascii	"startInputMode\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 81
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 81
 
 
  3579      74496E70 
@@ -4848,7 +4848,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3596      50617274 
  3596      69616C53 
  3596      74616765 
- 3597              	.LASF197:
+ 3597              	.LASF199:
  3598 0998 54696D65 		.ascii	"Timer_PPG_config\000"
  3598      725F5050 
  3598      475F636F 
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3600 09a9 63795F65 		.ascii	"cy_eink_library\\cy_eink_library.c\000"
  3600      696E6B5F 
  3600      6C696272 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 82
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 82
 
 
  3600      6172795C 
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3624      00
  3625              	.LASF44:
  3626 0a79 636F6D70 		.ascii	"compare1\000"
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 83
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 83
 
 
  3626      61726531 
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3651              	.LASF77:
  3652 0b0d 72785269 		.ascii	"rxRingBufHead\000"
  3652      6E674275 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 84
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 84
 
 
  3652      66486561 
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3677              	.LASF110:
  3678 0bd4 43595F42 		.ascii	"CY_BLE_CONN_STATE_DISCONNECTED\000"
  3678      4C455F43 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 85
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 85
 
 
  3678      4F4E4E5F 
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3700 0c9c 50765F45 		.ascii	"Pv_EINK_FullStageHandler\000"
  3700      494E4B5F 
  3700      46756C6C 
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 86
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 86
 
 
  3700      53746167 
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 1
  3722 0d60 62644861 		.ascii	"bdHandle\000"
  3722      6E646C65 
  3722      00
-ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccg8CDab.s 			page 87
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\ccxnt48Q.s 			page 87
 
 
  3723              	.LASF36:

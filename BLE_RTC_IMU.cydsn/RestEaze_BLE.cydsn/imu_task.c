@@ -51,6 +51,7 @@
 #include "ble_task.h"
 #include "task.h" 
 #include "timers.h"
+#include "frame.h"
 
 #define TIMER_PERIOD_MSEC   40U   /* Timer period in milliseconds */
 
@@ -135,26 +136,43 @@ void Task_IMU(void *pvParameters){
                 /* Process imu data from CapSense widgets */
                 case HANDLE_IMU_INTERRUPT:
                     {
-                        /* Read the latest available data time and sample*/
-                        // struct SampleIMU sample;
-                        // sample.time = 0; // getCurrentTimeMillis();
-                        // sample.accX = numSamplesIMU % 2;
-                    	// sample.accY = numSamplesIMU % 4;
-                    	// sample.accZ = numSamplesIMU % 8;
-                        // sample.gyroX = numSamplesIMU % 16;
-                    	// sample.gyroY = numSamplesIMU % 32;
-                    	// sample.gyroZ = numSamplesIMU % 64;
+                        struct _data_frame_t dataframe;
+                        
+                        /* Control fields */
+                        dataframe.sensor_status = 0;
+                        dataframe.battery_status = 0;
+                        dataframe.field_hdr = FRAME_FIELD_TIME | FRAME_FIELD_CAP | FRAME_FIELD_ACCEL | FRAME_FIELD_GYRO;
+                        dataframe.seq = numSamplesIMU;
+                        dataframe.session = 0;
+
+                        /* Data fields */
+                        // FRAME_FIELD_TIME
+                        dataframe.time_sec = lastInterruptMillis/1000;
+                        dataframe.time_msec = lastInterruptMillis%1000;
+                        dataframe.last_tick_usec = 0;
+                        dataframe.fuel = 99;
+                        // FRAME_FIELD_CAP
+                        dataframe.cap[0] = 1;
+                        dataframe.cap[1] = 2;
+                        dataframe.cap[2] = 3;
+                        // FRAME_FIELD_ACCEL
+                        dataframe.accel[0] = numSamplesIMU % 2;
+                        dataframe.accel[1] = numSamplesIMU % 4;
+                        dataframe.accel[2] = numSamplesIMU % 8;
+                        // FRAME_FIELD_GYRO
+                        dataframe.gyro[0] = numSamplesIMU % 16;
+                        dataframe.gyro[1] = numSamplesIMU % 32;
+                        dataframe.gyro[2] = numSamplesIMU % 64;
+                        
                         numSamplesIMU++;
                        
                         /* Send the processed imu data */
                         if(notifyDataIMU)
                         {
-                            Task_DebugPrintf("Info     : IMU - Queueing IMU Sample ", 0u);
                             /* Pack the imu data, respective command and send 
                                to the queue */
-                            
                             bleCommandAndData.command = SEND_IMU_NOTIFICATION;
-                            bleCommandAndData.imuData = 6;
+                            bleCommandAndData.dataframe = dataframe;
                             //xQueueSend(bleCommandQ, &bleCommandAndData, 0u);
                             if( xQueueSend( bleCommandQ, ( void * ) &bleCommandAndData, ( TickType_t ) 0 ) != pdPASS )
                             {

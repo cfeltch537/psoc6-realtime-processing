@@ -54,7 +54,8 @@
 #include "ble_thermometer_config.h"
 #include "uart_debug.h"
 #include "task.h"  
-#include "timers.h"    
+#include "timers.h"
+#include "encode.h"
 
 /* These static functions are used by the BLE Task. These are not available 
    outside this file. See the respective function definitions for more 
@@ -65,7 +66,7 @@ void static StackEventHandler(uint32_t eventType, void *eventParam);
 void static DisconnectEventHandler(void);
 void static AdvertisementEventHandler(void);
 void static SendTemperatureIndication (float temperature);
-void static SendIMUNotification (uint32 accX);
+void static SendIMUNotification (data_frame_t dataframe);
 void static SendBleNotification (cy_ble_gatt_db_attr_handle_t charHandle, uint8_t* value, uint16_t len);
 void CallBackHts(uint32 event, void *eventParam);
 
@@ -164,7 +165,7 @@ void Task_Ble(void *pvParameters)
             /*~~~~~~~~~~~~~~ Command to send temperature indication ~~~~~~~~~~*/            
                 case SEND_IMU_NOTIFICATION:
                     /* Send temperature data over BLE HTS notification */
-                    SendIMUNotification(bleCommand.imuData);
+                    SendIMUNotification(bleCommand.dataframe);
                     break;    
                     
             /*~~~~~~~~~~~~~~ Command to process GPIO interrupt ~~~~~~~~~~~~~~~*/               
@@ -361,7 +362,7 @@ void static StackEventHandler(uint32_t eventType, void *eventParam)
         {
             writeReqParameter = (cy_stc_ble_gatts_write_cmd_req_param_t *) eventParam;
 
-            if(writeReqParameter->handleValPair.attrHandle == CY_BLE_SENSOR_DATA_IMU_CCCD_DESC_HANDLE){
+            if(writeReqParameter->handleValPair.attrHandle == CY_BLE_DATAFRAMES_REALTIME_CCCD_DESC_HANDLE){
                 
                 /* Store data in the database */
                  cy_en_ble_gatt_err_code_t gattErr = Cy_BLE_GATTS_WriteAttributeValuePeer( &writeReqParameter->connHandle, &writeReqParameter->handleValPair);
@@ -401,8 +402,7 @@ void static StackEventHandler(uint32_t eventType, void *eventParam)
            advertising */
         case CY_BLE_EVT_GAPP_ADVERTISEMENT_START_STOP:
         {    
-            Task_DebugPrintf("Info     : BLE - Advertisement start/stop event",
-                              0u);
+            Task_DebugPrintf("Info     : BLE - Advertisement start/stop event", 0u);
             AdvertisementEventHandler();
             break;                 
         }
@@ -689,16 +689,16 @@ void static SendTemperatureIndication (float temperature)
 *  void
 *
 *******************************************************************************/
-void static SendIMUNotification (uint32_t accX)
+void static SendIMUNotification(data_frame_t dataframe)
 {   
-    /* Check if BLE is in connected state and the HTS indication is
-       enabled */
-	if((Cy_BLE_GetConnectionState(connectionHandle) == CY_BLE_CONN_STATE_CONNECTED) && requestImuNotification)
-	{      
-        //uint8_t* tempArray;
-        //memcpy(tempArray, &accX, sizeof(accX));
-
-        SendBleNotification (CY_BLE_SENSOR_DATA_IMU_CHAR_HANDLE, (uint8 *)&accX, sizeof(accX));
+    /* Check if BLE is in connected state and the HTS indication is enabled */
+	if((Cy_BLE_GetConnectionState(connectionHandle) == CY_BLE_CONN_STATE_CONNECTED) 
+        && requestImuNotification)
+	{   
+        uint8_t frame[FRAME_DATA_MTU] = { 0 };
+		size_t len_frame = 0;
+		len_frame = encode_data_frame(&dataframe, frame);
+        SendBleNotification (CY_BLE_DATAFRAMES_REALTIME_CHAR_HANDLE, frame, FRAME_DATA_MTU);
 
     }else{
         Task_DebugPrintf("Warning!  : BLE - Sending IMU Notification when not connected or requested", 0u); 
@@ -723,6 +723,7 @@ void static SendIMUNotification (uint32_t accX)
 void static SendBleNotification (cy_ble_gatt_db_attr_handle_t charHandle,
                                  uint8_t* value, uint16_t len)
 {
+    
     /* Flag used to check if the characteristics handle is valid */
     bool handleValid = true;
     

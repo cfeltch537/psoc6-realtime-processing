@@ -27,14 +27,14 @@
    The array index definitions are located in the BLE_custom.h file. */
 static const cy_stc_ble_customs_t cy_ble_customs[0x01u] = {
 
-    /* Sensor Data service */
+    /* Dataframes service */
     {
-        0x002Cu, /* Handle of the Sensor Data service */ 
+        0x002Cu, /* Handle of the Dataframes service */ 
         {
 
-            /* IMU characteristic */
+            /* Realtime characteristic */
             {
-                0x002Eu, /* Handle of the IMU characteristic */ 
+                0x002Eu, /* Handle of the Realtime characteristic */ 
                 
                 /* Array of Descriptors handles */
                 {

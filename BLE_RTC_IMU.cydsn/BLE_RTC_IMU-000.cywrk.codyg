@@ -18,7 +18,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\status_led_task..c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\simulateIMUTask.c">
 <ExpandedNodeIds>
 <v>BLE_RTC_IMU-000</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU</v>
@@ -95,7 +95,6 @@
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\system_psoc63.h</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source</v>
 <v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01</v>
 <v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\TopDesign</v>
 <v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CE218137_BLE_Proximity_RTOS01.cydwr</v>
 <v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CE218137_BLE_Proximity_RTOS01.cydwr\Pins</v>
@@ -196,6 +195,7 @@
 <v>BLE_RTC_IMU-000\RestEaze_BLE\RestEaze_BLE.cydwr\Interrupts</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\RestEaze_BLE.cydwr\System</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\RestEaze_BLE.cydwr\Directives</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\ARM GCC Generic</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\ARM GCC Generic\cy8c6xx7_cm0plus.ld</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\ARM IAR Generic</v>
@@ -203,7 +203,6 @@
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\ARM MDK Generic</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\ARM MDK Generic\cy8c6xx7_cm0plus.scat</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\Header Files</v>
-<v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\Source Files</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\Source Files\ARM GCC Generic</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\Source Files\ARM GCC Generic\startup_psoc63_cm0plus.S</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM0p (Core 0)\Source Files\ARM IAR Generic</v>
@@ -239,6 +238,10 @@
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\CY EINK Library\PSoC Interface Files\Source Files\cy_eink_psoc_interface.c</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\CY EINK Library\PSoC Interface Files\Source Files\status_led_task.h</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Header Files</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Header Files\Codec</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Header Files\Codec\decode.h</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Header Files\Codec\encode.h</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Header Files\Codec\frame.h</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Header Files\RTOS and Task Files</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Header Files\RTOS and Task Files\ble_task.h</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Header Files\RTOS and Task Files\display_task.h</v>
@@ -257,6 +260,10 @@
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\ARM IAR Generic\startup_psoc63_cm4.s</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\ARM MDK Generic</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\ARM MDK Generic\startup_psoc63_cm4.s</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\Codec</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\Codec\decode.c</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\Codec\encode.c</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\Codec\frame.c</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\RTOS and Task Files</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\RTOS and Task Files\ble_task.c</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CM4 (Core 1)\Source Files\RTOS and Task Files\display_task.c</v>
@@ -276,63 +283,64 @@
 <v>BLE_RTC_IMU-000\RestEaze_BLE\Shared Files\stdio_user.c</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\Shared Files\stdio_user.h</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\Shared Files\system_psoc63.h</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\Generated_Source</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\Generated_Source\PSoC6</v>
 <v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS.pdf</v>
 <v>BLE_RTC_IMU-000\CE218138_BLE_Thermometer_RTOS.pdf</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\ARM IAR Generic</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\ARM IAR Generic\cy8c6xx7_cm4_dual.icf</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\ARM MDK Generic</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\ARM MDK Generic\cy8c6xx7_cm4_dual.scat</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Library Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Library Files\Header Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Library Files\Header Files\cy_eink_fonts.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Library Files\Header Files\cy_eink_library.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Library Files\Source Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Library Files\Source Files\cy_eink_fonts.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Library Files\Source Files\cy_eink_library.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Pervasive Displays Driver Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Pervasive Displays Driver Files\Header Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Pervasive Displays Driver Files\Header Files\pervasive_eink_configuration.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Pervasive Displays Driver Files\Header Files\pervasive_eink_hardware_driver.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Pervasive Displays Driver Files\Source Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\Pervasive Displays Driver Files\Source Files\pervasive_eink_hardware_driver.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\PSoC Interface Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\PSoC Interface Files\Header Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\PSoC Interface Files\Header Files\cy_eink_psoc_interface.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\PSoC Interface Files\Source Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\CY EINK Library\PSoC Interface Files\Source Files\cy_eink_psoc_interface.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\ble_task.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\display_task.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\FreeRTOSConfig.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\proximity_task.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\status_led_task.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\RTOS and Task Files\uart_debug.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\ble_proximity_config.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\screen_contents.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Header Files\temperature_eink.h</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\ARM GCC Generic</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\ARM GCC Generic\startup_psoc63_cm4.S</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\ARM IAR Generic</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\ARM IAR Generic\startup_psoc63_cm4.s</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\ARM MDK Generic</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\ARM MDK Generic\startup_psoc63_cm4.s</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\ble_task.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\display_task.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\proximity_task.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\status_led_task..c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\RTOS and Task Files\uart_debug.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\main_cm4.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\screen_contents.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\system_psoc63_cm4.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\CM4 (Core 1)\Source Files\temperature_eink.c</v>
-<v>BLE_RTC_IMU-000\CE218137_BLE_Proximity_RTOS01\Shared Files</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\ARM MDK Generic</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\ARM MDK Generic\cy8c6xx7_cm4_dual.scat</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch\bmi160.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch\bmi160.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Bosch\bmi160_defs.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\decode.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\decode.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\encode.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\encode.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\frame.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Codec\frame.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\bmi160Task.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\FreeRTOSConfig.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\rtcTask.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\simulateIMUTask.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Header Files\simulatePPGTask.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM GCC Generic</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM GCC Generic\startup_psoc63_cm4.S</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM IAR Generic</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM IAR Generic\startup_psoc63_cm4.s</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM MDK Generic</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\ARM MDK Generic\startup_psoc63_cm4.s</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\bmi160Task.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\main_cm4.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\rtcTask.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\simulateIMUTask.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\simulatePPGTask.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\CM4 (Core 1)\Source Files\system_psoc63_cm4.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\cy_ble_config.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\cy_ipc_config.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\cy_ipc_config.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\cyapicallbacks.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\stdio_user.c</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\stdio_user.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Shared Files\system_psoc63.h</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\pdl</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\Clock_1khz</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\Counter_ms</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\I2C_1</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\I2C_1_SCBCLK</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\Pins and Interrupts</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\RTC</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\Timer_IMU</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\Timer_PPG</v>
+<v>BLE_RTC_IMU-000\BLE_RTC_IMU\Generated_Source\PSoC6\UART_1</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -893,8 +901,11 @@
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\cyfitter_sysint_cfg.lst</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\DEBUG_UART.lst</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\decode.lst</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\display_task.lst</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\encode.lst</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\event_groups.lst</v>
+<v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\frame.lst</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\heap_4.lst</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\imu_task.lst</v>
 <v>BLE_RTC_IMU-000\RestEaze_BLE\CortexM4\ARM_GCC_541\Debug\Listing Files\list.lst</v>
@@ -1119,12 +1130,16 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\CE218138_BLE_Thermometer_RTOS01.cydsn\main_cm4.c" />
-<name v=".\CE218138_BLE_Thermometer_RTOS01.cydsn\motion_task.c" />
-<name v=".\CE218138_BLE_Thermometer_RTOS01.cydsn\temperature_task.c" />
-<name v=".\CE218138_BLE_Thermometer_RTOS01.cydsn\temperature_task01.c" />
-<name v=".\CE218138_BLE_Thermometer_RTOS01.cydsn\temperature_task.h" />
-<name v=".\CE218138_BLE_Thermometer_RTOS01.cydsn\motion_task.h" />
+<name v=".\RestEaze_BLE.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\RestEaze_BLE.cydsn\imu_task.h" />
+<name v=".\RestEaze_BLE.cydsn\imu_task.c" />
+<name v=".\RestEaze_BLE.cydsn\ble_task.c" />
+<name v=".\RestEaze_BLE.cydsn\main_cm4.c" />
+<name v=".\RestEaze_BLE.cydsn\Generated_Source\PSoC6\pdl\middleware\ble\cy_ble_stack.h" />
+<name v=".\RestEaze_BLE.cydsn\Generated_Source\PSoC6\pdl\middleware\ble\cy_ble_stack_gatt.h" />
+<name v=".\RestEaze_BLE.cydsn\Generated_Source\PSoC6\pdl\drivers\peripheral\syspm\cy_syspm.c" />
+<name v=".\RestEaze_BLE.cydsn\main_cm0p.c" />
+<name v=".\RestEaze_BLE.cydsn\Generated_Source\PSoC6\BLE_config.h" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -1132,7 +1147,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical"><TabbedMdiContainer Size="533, 487" SelectedTabbedMdiWindow="c476d255-1720-492c-879b-344b6ede4e47"><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\main_cm4.c" Guid="9cabd7a2-9b5e-45aa-9957-b444a2185698" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\motion_task.c" Guid="c28a2a78-8528-4505-b75c-a0353d313fd6" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\temperature_task.c" Guid="c476d255-1720-492c-879b-344b6ede4e47" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\temperature_task01.c" Guid="ef1ce8da-435e-4dc5-869e-23ea31301382" /></TabbedMdiContainer><TabbedMdiContainer Size="531, 487" SelectedTabbedMdiWindow="586ed020-08ae-4439-8594-29e0b536a6a7"><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\temperature_task.h" Guid="586ed020-08ae-4439-8594-29e0b536a6a7" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\CE218138_BLE_Thermometer_RTOS01.cydsn\motion_task.h" Guid="e7e20dbe-1ad7-421b-9815-bd7ce9304793" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical"><TabbedMdiContainer Size="1635, 638" SelectedTabbedMdiWindow="a00af0b2-b5c4-42e6-8926-77a033faace0"><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\TopDesign\TopDesign.cysch" Guid="a00af0b2-b5c4-42e6-8926-77a033faace0" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\imu_task.h" Guid="fc70ad21-438b-4c79-b417-88d0269abd22" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\imu_task.c" Guid="defd33be-7c7b-4b08-a613-301dd732f695" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\ble_task.c" Guid="61f1df43-cb30-4ae2-92d4-42276f1af166" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\main_cm4.c" Guid="ee3420ca-d525-4569-8e0a-35359f0edae3" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\Generated_Source\PSoC6\pdl\middleware\ble\cy_ble_stack.h" Guid="2cb00585-e0c4-4541-a2fa-4974d66ee534" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\Generated_Source\PSoC6\pdl\middleware\ble\cy_ble_stack_gatt.h" Guid="849ed532-37b6-4413-9798-b1aebcb44a25" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\Generated_Source\PSoC6\pdl\drivers\peripheral\syspm\cy_syspm.c" Guid="a4ea7e99-b524-497c-8ddf-a3f7aa5257b2" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\main_cm0p.c" Guid="e4a33f6d-d674-42db-ae90-080d040fdb76" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="15a4c005-e75b-472d-aee9-c5ebc1005e0f" /><DocumentWindow Key="C:\Users\codyg\git\psoc6-realtime-processing\BLE_RTC_IMU.cydsn\RestEaze_BLE.cydsn\Generated_Source\PSoC6\BLE_config.h" Guid="8165b732-6b24-43d1-9ca9-ca82238976c1" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>

@@ -1,0 +1,1014 @@
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.eabi_attribute 27, 1
+   4              		.fpu fpv4-sp-d16
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 1
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.thumb
+  15              		.syntax unified
+  16              		.file	"frame.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.bytes_parity,"ax",%progbits
+  21              		.align	2
+  22              		.global	bytes_parity
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	bytes_parity, %function
+  26              	bytes_parity:
+  27              	.LFB0:
+  28              		.file 1 "frame.c"
+   1:frame.c       **** /**
+   2:frame.c       ****  * Copyright (c) 2019 Tanzen Medical, Inc.
+   3:frame.c       ****  *
+   4:frame.c       ****  * @file frame.c
+   5:frame.c       ****  * @author Nicholas Haltmeyer <hanicho1@umbc.edu>
+   6:frame.c       ****  * @date 13 Jan 2019
+   7:frame.c       ****  * @brief Common definitions for RestEaZe frames.
+   8:frame.c       ****  */
+   9:frame.c       **** 
+  10:frame.c       **** #include "frame.h"
+  11:frame.c       **** 
+  12:frame.c       **** /**
+  13:frame.c       ****  * @brief Computes the parity bit for a byte array.
+  14:frame.c       ****  * @param enc Encoded frame.
+  15:frame.c       ****  * @param len Number of bytes in the frame.
+  16:frame.c       ****  * @return Parity
+  17:frame.c       ****  * @warning When computing the parity of an encoded frame, the Parity bitfield
+  18:frame.c       ****  * *will* change the result if set.
+  19:frame.c       ****  * @see http://www.graphics.stanford.edu/~seander/bithacks.html
+  20:frame.c       ****  */
+  21:frame.c       **** bool bytes_parity(const uint8_t *enc, size_t len) {
+  29              		.loc 1 21 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 256
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              	.LVL0:
+  34 0000 30B5     		push	{r4, r5, lr}
+  35              		.cfi_def_cfa_offset 12
+  36              		.cfi_offset 4, -12
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 2
+
+
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 14, -4
+  39 0002 C1B0     		sub	sp, sp, #260
+  40              		.cfi_def_cfa_offset 272
+  41 0004 0446     		mov	r4, r0
+  42 0006 0D46     		mov	r5, r1
+  22:frame.c       **** #define P2(n) (n), (n) ^ 1, (n) ^ 1, (n)
+  23:frame.c       **** #define P4(n) P2((n)), P2((n) ^ 1), P2((n) ^ 1), P2((n))
+  24:frame.c       **** #define P6(n) P4((n)), P4((n) ^ 1), P4((n) ^ 1), P4((n))
+  25:frame.c       **** 
+  26:frame.c       **** 	const bool ParityTable256[256] = { P6(0), P6(1), P6(1), P6(0) };
+  43              		.loc 1 26 0
+  44 0008 4FF48072 		mov	r2, #256
+  45 000c 0749     		ldr	r1, .L5
+  46              	.LVL1:
+  47 000e 6846     		mov	r0, sp
+  48              	.LVL2:
+  49 0010 FFF7FEFF 		bl	memcpy
+  50              	.LVL3:
+  27:frame.c       **** 
+  28:frame.c       **** #undef P2
+  29:frame.c       **** #undef P4
+  30:frame.c       **** #undef P6
+  31:frame.c       **** 
+  32:frame.c       **** 	size_t i;
+  33:frame.c       **** 	uint8_t xor = enc[0];
+  51              		.loc 1 33 0
+  52 0014 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
+  53              	.LVL4:
+  34:frame.c       **** 
+  35:frame.c       **** 	for (i = 1; i < len; i++) {
+  54              		.loc 1 35 0
+  55 0016 0123     		movs	r3, #1
+  56 0018 02E0     		b	.L2
+  57              	.LVL5:
+  58              	.L3:
+  36:frame.c       **** 	xor ^= enc[i];
+  59              		.loc 1 36 0 discriminator 3
+  60 001a E15C     		ldrb	r1, [r4, r3]	@ zero_extendqisi2
+  61 001c 4A40     		eors	r2, r2, r1
+  62              	.LVL6:
+  35:frame.c       **** 	xor ^= enc[i];
+  63              		.loc 1 35 0 discriminator 3
+  64 001e 0133     		adds	r3, r3, #1
+  65              	.LVL7:
+  66              	.L2:
+  35:frame.c       **** 	xor ^= enc[i];
+  67              		.loc 1 35 0 is_stmt 0 discriminator 1
+  68 0020 AB42     		cmp	r3, r5
+  69 0022 FAD3     		bcc	.L3
+  37:frame.c       **** }
+  38:frame.c       **** 
+  39:frame.c       **** return ParityTable256[xor];
+  40:frame.c       **** }
+  70              		.loc 1 40 0 is_stmt 1
+  71 0024 1DF80200 		ldrb	r0, [sp, r2]	@ zero_extendqisi2
+  72 0028 41B0     		add	sp, sp, #260
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 3
+
+
+  73              		.cfi_def_cfa_offset 12
+  74              		@ sp needed
+  75 002a 30BD     		pop	{r4, r5, pc}
+  76              	.LVL8:
+  77              	.L6:
+  78              		.align	2
+  79              	.L5:
+  80 002c 00000000 		.word	.LANCHOR0
+  81              		.cfi_endproc
+  82              	.LFE0:
+  83              		.size	bytes_parity, .-bytes_parity
+  84              		.section	.rodata
+  85              		.align	2
+  86              		.set	.LANCHOR0,. + 0
+  87              	.LC0:
+  88 0000 00       		.byte	0
+  89 0001 01       		.byte	1
+  90 0002 01       		.byte	1
+  91 0003 00       		.byte	0
+  92 0004 01       		.byte	1
+  93 0005 00       		.byte	0
+  94 0006 00       		.byte	0
+  95 0007 01       		.byte	1
+  96 0008 01       		.byte	1
+  97 0009 00       		.byte	0
+  98 000a 00       		.byte	0
+  99 000b 01       		.byte	1
+ 100 000c 00       		.byte	0
+ 101 000d 01       		.byte	1
+ 102 000e 01       		.byte	1
+ 103 000f 00       		.byte	0
+ 104 0010 01       		.byte	1
+ 105 0011 00       		.byte	0
+ 106 0012 00       		.byte	0
+ 107 0013 01       		.byte	1
+ 108 0014 00       		.byte	0
+ 109 0015 01       		.byte	1
+ 110 0016 01       		.byte	1
+ 111 0017 00       		.byte	0
+ 112 0018 00       		.byte	0
+ 113 0019 01       		.byte	1
+ 114 001a 01       		.byte	1
+ 115 001b 00       		.byte	0
+ 116 001c 01       		.byte	1
+ 117 001d 00       		.byte	0
+ 118 001e 00       		.byte	0
+ 119 001f 01       		.byte	1
+ 120 0020 01       		.byte	1
+ 121 0021 00       		.byte	0
+ 122 0022 00       		.byte	0
+ 123 0023 01       		.byte	1
+ 124 0024 00       		.byte	0
+ 125 0025 01       		.byte	1
+ 126 0026 01       		.byte	1
+ 127 0027 00       		.byte	0
+ 128 0028 00       		.byte	0
+ 129 0029 01       		.byte	1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 4
+
+
+ 130 002a 01       		.byte	1
+ 131 002b 00       		.byte	0
+ 132 002c 01       		.byte	1
+ 133 002d 00       		.byte	0
+ 134 002e 00       		.byte	0
+ 135 002f 01       		.byte	1
+ 136 0030 00       		.byte	0
+ 137 0031 01       		.byte	1
+ 138 0032 01       		.byte	1
+ 139 0033 00       		.byte	0
+ 140 0034 01       		.byte	1
+ 141 0035 00       		.byte	0
+ 142 0036 00       		.byte	0
+ 143 0037 01       		.byte	1
+ 144 0038 01       		.byte	1
+ 145 0039 00       		.byte	0
+ 146 003a 00       		.byte	0
+ 147 003b 01       		.byte	1
+ 148 003c 00       		.byte	0
+ 149 003d 01       		.byte	1
+ 150 003e 01       		.byte	1
+ 151 003f 00       		.byte	0
+ 152 0040 01       		.byte	1
+ 153 0041 00       		.byte	0
+ 154 0042 00       		.byte	0
+ 155 0043 01       		.byte	1
+ 156 0044 00       		.byte	0
+ 157 0045 01       		.byte	1
+ 158 0046 01       		.byte	1
+ 159 0047 00       		.byte	0
+ 160 0048 00       		.byte	0
+ 161 0049 01       		.byte	1
+ 162 004a 01       		.byte	1
+ 163 004b 00       		.byte	0
+ 164 004c 01       		.byte	1
+ 165 004d 00       		.byte	0
+ 166 004e 00       		.byte	0
+ 167 004f 01       		.byte	1
+ 168 0050 00       		.byte	0
+ 169 0051 01       		.byte	1
+ 170 0052 01       		.byte	1
+ 171 0053 00       		.byte	0
+ 172 0054 01       		.byte	1
+ 173 0055 00       		.byte	0
+ 174 0056 00       		.byte	0
+ 175 0057 01       		.byte	1
+ 176 0058 01       		.byte	1
+ 177 0059 00       		.byte	0
+ 178 005a 00       		.byte	0
+ 179 005b 01       		.byte	1
+ 180 005c 00       		.byte	0
+ 181 005d 01       		.byte	1
+ 182 005e 01       		.byte	1
+ 183 005f 00       		.byte	0
+ 184 0060 00       		.byte	0
+ 185 0061 01       		.byte	1
+ 186 0062 01       		.byte	1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 5
+
+
+ 187 0063 00       		.byte	0
+ 188 0064 01       		.byte	1
+ 189 0065 00       		.byte	0
+ 190 0066 00       		.byte	0
+ 191 0067 01       		.byte	1
+ 192 0068 01       		.byte	1
+ 193 0069 00       		.byte	0
+ 194 006a 00       		.byte	0
+ 195 006b 01       		.byte	1
+ 196 006c 00       		.byte	0
+ 197 006d 01       		.byte	1
+ 198 006e 01       		.byte	1
+ 199 006f 00       		.byte	0
+ 200 0070 01       		.byte	1
+ 201 0071 00       		.byte	0
+ 202 0072 00       		.byte	0
+ 203 0073 01       		.byte	1
+ 204 0074 00       		.byte	0
+ 205 0075 01       		.byte	1
+ 206 0076 01       		.byte	1
+ 207 0077 00       		.byte	0
+ 208 0078 00       		.byte	0
+ 209 0079 01       		.byte	1
+ 210 007a 01       		.byte	1
+ 211 007b 00       		.byte	0
+ 212 007c 01       		.byte	1
+ 213 007d 00       		.byte	0
+ 214 007e 00       		.byte	0
+ 215 007f 01       		.byte	1
+ 216 0080 01       		.byte	1
+ 217 0081 00       		.byte	0
+ 218 0082 00       		.byte	0
+ 219 0083 01       		.byte	1
+ 220 0084 00       		.byte	0
+ 221 0085 01       		.byte	1
+ 222 0086 01       		.byte	1
+ 223 0087 00       		.byte	0
+ 224 0088 00       		.byte	0
+ 225 0089 01       		.byte	1
+ 226 008a 01       		.byte	1
+ 227 008b 00       		.byte	0
+ 228 008c 01       		.byte	1
+ 229 008d 00       		.byte	0
+ 230 008e 00       		.byte	0
+ 231 008f 01       		.byte	1
+ 232 0090 00       		.byte	0
+ 233 0091 01       		.byte	1
+ 234 0092 01       		.byte	1
+ 235 0093 00       		.byte	0
+ 236 0094 01       		.byte	1
+ 237 0095 00       		.byte	0
+ 238 0096 00       		.byte	0
+ 239 0097 01       		.byte	1
+ 240 0098 01       		.byte	1
+ 241 0099 00       		.byte	0
+ 242 009a 00       		.byte	0
+ 243 009b 01       		.byte	1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 6
+
+
+ 244 009c 00       		.byte	0
+ 245 009d 01       		.byte	1
+ 246 009e 01       		.byte	1
+ 247 009f 00       		.byte	0
+ 248 00a0 00       		.byte	0
+ 249 00a1 01       		.byte	1
+ 250 00a2 01       		.byte	1
+ 251 00a3 00       		.byte	0
+ 252 00a4 01       		.byte	1
+ 253 00a5 00       		.byte	0
+ 254 00a6 00       		.byte	0
+ 255 00a7 01       		.byte	1
+ 256 00a8 01       		.byte	1
+ 257 00a9 00       		.byte	0
+ 258 00aa 00       		.byte	0
+ 259 00ab 01       		.byte	1
+ 260 00ac 00       		.byte	0
+ 261 00ad 01       		.byte	1
+ 262 00ae 01       		.byte	1
+ 263 00af 00       		.byte	0
+ 264 00b0 01       		.byte	1
+ 265 00b1 00       		.byte	0
+ 266 00b2 00       		.byte	0
+ 267 00b3 01       		.byte	1
+ 268 00b4 00       		.byte	0
+ 269 00b5 01       		.byte	1
+ 270 00b6 01       		.byte	1
+ 271 00b7 00       		.byte	0
+ 272 00b8 00       		.byte	0
+ 273 00b9 01       		.byte	1
+ 274 00ba 01       		.byte	1
+ 275 00bb 00       		.byte	0
+ 276 00bc 01       		.byte	1
+ 277 00bd 00       		.byte	0
+ 278 00be 00       		.byte	0
+ 279 00bf 01       		.byte	1
+ 280 00c0 00       		.byte	0
+ 281 00c1 01       		.byte	1
+ 282 00c2 01       		.byte	1
+ 283 00c3 00       		.byte	0
+ 284 00c4 01       		.byte	1
+ 285 00c5 00       		.byte	0
+ 286 00c6 00       		.byte	0
+ 287 00c7 01       		.byte	1
+ 288 00c8 01       		.byte	1
+ 289 00c9 00       		.byte	0
+ 290 00ca 00       		.byte	0
+ 291 00cb 01       		.byte	1
+ 292 00cc 00       		.byte	0
+ 293 00cd 01       		.byte	1
+ 294 00ce 01       		.byte	1
+ 295 00cf 00       		.byte	0
+ 296 00d0 01       		.byte	1
+ 297 00d1 00       		.byte	0
+ 298 00d2 00       		.byte	0
+ 299 00d3 01       		.byte	1
+ 300 00d4 00       		.byte	0
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 7
+
+
+ 301 00d5 01       		.byte	1
+ 302 00d6 01       		.byte	1
+ 303 00d7 00       		.byte	0
+ 304 00d8 00       		.byte	0
+ 305 00d9 01       		.byte	1
+ 306 00da 01       		.byte	1
+ 307 00db 00       		.byte	0
+ 308 00dc 01       		.byte	1
+ 309 00dd 00       		.byte	0
+ 310 00de 00       		.byte	0
+ 311 00df 01       		.byte	1
+ 312 00e0 01       		.byte	1
+ 313 00e1 00       		.byte	0
+ 314 00e2 00       		.byte	0
+ 315 00e3 01       		.byte	1
+ 316 00e4 00       		.byte	0
+ 317 00e5 01       		.byte	1
+ 318 00e6 01       		.byte	1
+ 319 00e7 00       		.byte	0
+ 320 00e8 00       		.byte	0
+ 321 00e9 01       		.byte	1
+ 322 00ea 01       		.byte	1
+ 323 00eb 00       		.byte	0
+ 324 00ec 01       		.byte	1
+ 325 00ed 00       		.byte	0
+ 326 00ee 00       		.byte	0
+ 327 00ef 01       		.byte	1
+ 328 00f0 00       		.byte	0
+ 329 00f1 01       		.byte	1
+ 330 00f2 01       		.byte	1
+ 331 00f3 00       		.byte	0
+ 332 00f4 01       		.byte	1
+ 333 00f5 00       		.byte	0
+ 334 00f6 00       		.byte	0
+ 335 00f7 01       		.byte	1
+ 336 00f8 01       		.byte	1
+ 337 00f9 00       		.byte	0
+ 338 00fa 00       		.byte	0
+ 339 00fb 01       		.byte	1
+ 340 00fc 00       		.byte	0
+ 341 00fd 01       		.byte	1
+ 342 00fe 01       		.byte	1
+ 343 00ff 00       		.byte	0
+ 344              		.text
+ 345              	.Letext0:
+ 346              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 347              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 348              		.file 4 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 349              		.section	.debug_info,"",%progbits
+ 350              	.Ldebug_info0:
+ 351 0000 54010000 		.4byte	0x154
+ 352 0004 0400     		.2byte	0x4
+ 353 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 354 000a 04       		.byte	0x4
+ 355 000b 01       		.uleb128 0x1
+ 356 000c DF000000 		.4byte	.LASF17
+ 357 0010 0C       		.byte	0xc
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 8
+
+
+ 358 0011 D0010000 		.4byte	.LASF18
+ 359 0015 23000000 		.4byte	.LASF19
+ 360 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 361 001d 00000000 		.4byte	0
+ 362 0021 00000000 		.4byte	.Ldebug_line0
+ 363 0025 02       		.uleb128 0x2
+ 364 0026 01       		.byte	0x1
+ 365 0027 06       		.byte	0x6
+ 366 0028 A5010000 		.4byte	.LASF0
+ 367 002c 03       		.uleb128 0x3
+ 368 002d 9E000000 		.4byte	.LASF9
+ 369 0031 02       		.byte	0x2
+ 370 0032 1D       		.byte	0x1d
+ 371 0033 37000000 		.4byte	0x37
+ 372 0037 02       		.uleb128 0x2
+ 373 0038 01       		.byte	0x1
+ 374 0039 08       		.byte	0x8
+ 375 003a 15000000 		.4byte	.LASF1
+ 376 003e 02       		.uleb128 0x2
+ 377 003f 02       		.byte	0x2
+ 378 0040 05       		.byte	0x5
+ 379 0041 C6010000 		.4byte	.LASF2
+ 380 0045 02       		.uleb128 0x2
+ 381 0046 02       		.byte	0x2
+ 382 0047 07       		.byte	0x7
+ 383 0048 92010000 		.4byte	.LASF3
+ 384 004c 02       		.uleb128 0x2
+ 385 004d 04       		.byte	0x4
+ 386 004e 05       		.byte	0x5
+ 387 004f CF000000 		.4byte	.LASF4
+ 388 0053 02       		.uleb128 0x2
+ 389 0054 04       		.byte	0x4
+ 390 0055 07       		.byte	0x7
+ 391 0056 75000000 		.4byte	.LASF5
+ 392 005a 02       		.uleb128 0x2
+ 393 005b 08       		.byte	0x8
+ 394 005c 05       		.byte	0x5
+ 395 005d 00000000 		.4byte	.LASF6
+ 396 0061 02       		.uleb128 0x2
+ 397 0062 08       		.byte	0x8
+ 398 0063 07       		.byte	0x7
+ 399 0064 87000000 		.4byte	.LASF7
+ 400 0068 04       		.uleb128 0x4
+ 401 0069 04       		.byte	0x4
+ 402 006a 05       		.byte	0x5
+ 403 006b 696E7400 		.ascii	"int\000"
+ 404 006f 02       		.uleb128 0x2
+ 405 0070 04       		.byte	0x4
+ 406 0071 07       		.byte	0x7
+ 407 0072 D8010000 		.4byte	.LASF8
+ 408 0076 03       		.uleb128 0x3
+ 409 0077 E5010000 		.4byte	.LASF10
+ 410 007b 03       		.byte	0x3
+ 411 007c 18       		.byte	0x18
+ 412 007d 2C000000 		.4byte	0x2c
+ 413 0081 03       		.uleb128 0x3
+ 414 0082 0E000000 		.4byte	.LASF11
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 9
+
+
+ 415 0086 04       		.byte	0x4
+ 416 0087 D8       		.byte	0xd8
+ 417 0088 6F000000 		.4byte	0x6f
+ 418 008c 02       		.uleb128 0x2
+ 419 008d 08       		.byte	0x8
+ 420 008e 04       		.byte	0x4
+ 421 008f B1010000 		.4byte	.LASF12
+ 422 0093 02       		.uleb128 0x2
+ 423 0094 04       		.byte	0x4
+ 424 0095 07       		.byte	0x7
+ 425 0096 BD010000 		.4byte	.LASF13
+ 426 009a 02       		.uleb128 0x2
+ 427 009b 01       		.byte	0x1
+ 428 009c 08       		.byte	0x8
+ 429 009d CA000000 		.4byte	.LASF14
+ 430 00a1 05       		.uleb128 0x5
+ 431 00a2 A8000000 		.4byte	.LASF20
+ 432 00a6 01       		.byte	0x1
+ 433 00a7 15       		.byte	0x15
+ 434 00a8 22010000 		.4byte	0x122
+ 435 00ac 00000000 		.4byte	.LFB0
+ 436 00b0 30000000 		.4byte	.LFE0-.LFB0
+ 437 00b4 01       		.uleb128 0x1
+ 438 00b5 9C       		.byte	0x9c
+ 439 00b6 22010000 		.4byte	0x122
+ 440 00ba 06       		.uleb128 0x6
+ 441 00bb 656E6300 		.ascii	"enc\000"
+ 442 00bf 01       		.byte	0x1
+ 443 00c0 15       		.byte	0x15
+ 444 00c1 29010000 		.4byte	0x129
+ 445 00c5 00000000 		.4byte	.LLST0
+ 446 00c9 06       		.uleb128 0x6
+ 447 00ca 6C656E00 		.ascii	"len\000"
+ 448 00ce 01       		.byte	0x1
+ 449 00cf 15       		.byte	0x15
+ 450 00d0 81000000 		.4byte	0x81
+ 451 00d4 2C000000 		.4byte	.LLST1
+ 452 00d8 07       		.uleb128 0x7
+ 453 00d9 B5000000 		.4byte	.LASF15
+ 454 00dd 01       		.byte	0x1
+ 455 00de 1A       		.byte	0x1a
+ 456 00df 49010000 		.4byte	0x149
+ 457 00e3 03       		.uleb128 0x3
+ 458 00e4 91       		.byte	0x91
+ 459 00e5 F07D     		.sleb128 -272
+ 460 00e7 08       		.uleb128 0x8
+ 461 00e8 6900     		.ascii	"i\000"
+ 462 00ea 01       		.byte	0x1
+ 463 00eb 20       		.byte	0x20
+ 464 00ec 81000000 		.4byte	0x81
+ 465 00f0 58000000 		.4byte	.LLST2
+ 466 00f4 09       		.uleb128 0x9
+ 467 00f5 786F7200 		.ascii	"xor\000"
+ 468 00f9 01       		.byte	0x1
+ 469 00fa 21       		.byte	0x21
+ 470 00fb 76000000 		.4byte	0x76
+ 471 00ff 01       		.uleb128 0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 10
+
+
+ 472 0100 52       		.byte	0x52
+ 473 0101 0A       		.uleb128 0xa
+ 474 0102 14000000 		.4byte	.LVL3
+ 475 0106 4E010000 		.4byte	0x14e
+ 476 010a 0B       		.uleb128 0xb
+ 477 010b 01       		.uleb128 0x1
+ 478 010c 50       		.byte	0x50
+ 479 010d 02       		.uleb128 0x2
+ 480 010e 7D       		.byte	0x7d
+ 481 010f 00       		.sleb128 0
+ 482 0110 0B       		.uleb128 0xb
+ 483 0111 01       		.uleb128 0x1
+ 484 0112 51       		.byte	0x51
+ 485 0113 05       		.uleb128 0x5
+ 486 0114 03       		.byte	0x3
+ 487 0115 00000000 		.4byte	.LANCHOR0
+ 488 0119 0B       		.uleb128 0xb
+ 489 011a 01       		.uleb128 0x1
+ 490 011b 52       		.byte	0x52
+ 491 011c 03       		.uleb128 0x3
+ 492 011d 0A       		.byte	0xa
+ 493 011e 0001     		.2byte	0x100
+ 494 0120 00       		.byte	0
+ 495 0121 00       		.byte	0
+ 496 0122 02       		.uleb128 0x2
+ 497 0123 01       		.byte	0x1
+ 498 0124 02       		.byte	0x2
+ 499 0125 C4000000 		.4byte	.LASF16
+ 500 0129 0C       		.uleb128 0xc
+ 501 012a 04       		.byte	0x4
+ 502 012b 2F010000 		.4byte	0x12f
+ 503 012f 0D       		.uleb128 0xd
+ 504 0130 76000000 		.4byte	0x76
+ 505 0134 0E       		.uleb128 0xe
+ 506 0135 44010000 		.4byte	0x144
+ 507 0139 44010000 		.4byte	0x144
+ 508 013d 0F       		.uleb128 0xf
+ 509 013e 93000000 		.4byte	0x93
+ 510 0142 FF       		.byte	0xff
+ 511 0143 00       		.byte	0
+ 512 0144 0D       		.uleb128 0xd
+ 513 0145 22010000 		.4byte	0x122
+ 514 0149 0D       		.uleb128 0xd
+ 515 014a 34010000 		.4byte	0x134
+ 516 014e 10       		.uleb128 0x10
+ 517 014f D8000000 		.4byte	.LASF21
+ 518 0153 D8000000 		.4byte	.LASF21
+ 519 0157 00       		.byte	0
+ 520              		.section	.debug_abbrev,"",%progbits
+ 521              	.Ldebug_abbrev0:
+ 522 0000 01       		.uleb128 0x1
+ 523 0001 11       		.uleb128 0x11
+ 524 0002 01       		.byte	0x1
+ 525 0003 25       		.uleb128 0x25
+ 526 0004 0E       		.uleb128 0xe
+ 527 0005 13       		.uleb128 0x13
+ 528 0006 0B       		.uleb128 0xb
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 11
+
+
+ 529 0007 03       		.uleb128 0x3
+ 530 0008 0E       		.uleb128 0xe
+ 531 0009 1B       		.uleb128 0x1b
+ 532 000a 0E       		.uleb128 0xe
+ 533 000b 55       		.uleb128 0x55
+ 534 000c 17       		.uleb128 0x17
+ 535 000d 11       		.uleb128 0x11
+ 536 000e 01       		.uleb128 0x1
+ 537 000f 10       		.uleb128 0x10
+ 538 0010 17       		.uleb128 0x17
+ 539 0011 00       		.byte	0
+ 540 0012 00       		.byte	0
+ 541 0013 02       		.uleb128 0x2
+ 542 0014 24       		.uleb128 0x24
+ 543 0015 00       		.byte	0
+ 544 0016 0B       		.uleb128 0xb
+ 545 0017 0B       		.uleb128 0xb
+ 546 0018 3E       		.uleb128 0x3e
+ 547 0019 0B       		.uleb128 0xb
+ 548 001a 03       		.uleb128 0x3
+ 549 001b 0E       		.uleb128 0xe
+ 550 001c 00       		.byte	0
+ 551 001d 00       		.byte	0
+ 552 001e 03       		.uleb128 0x3
+ 553 001f 16       		.uleb128 0x16
+ 554 0020 00       		.byte	0
+ 555 0021 03       		.uleb128 0x3
+ 556 0022 0E       		.uleb128 0xe
+ 557 0023 3A       		.uleb128 0x3a
+ 558 0024 0B       		.uleb128 0xb
+ 559 0025 3B       		.uleb128 0x3b
+ 560 0026 0B       		.uleb128 0xb
+ 561 0027 49       		.uleb128 0x49
+ 562 0028 13       		.uleb128 0x13
+ 563 0029 00       		.byte	0
+ 564 002a 00       		.byte	0
+ 565 002b 04       		.uleb128 0x4
+ 566 002c 24       		.uleb128 0x24
+ 567 002d 00       		.byte	0
+ 568 002e 0B       		.uleb128 0xb
+ 569 002f 0B       		.uleb128 0xb
+ 570 0030 3E       		.uleb128 0x3e
+ 571 0031 0B       		.uleb128 0xb
+ 572 0032 03       		.uleb128 0x3
+ 573 0033 08       		.uleb128 0x8
+ 574 0034 00       		.byte	0
+ 575 0035 00       		.byte	0
+ 576 0036 05       		.uleb128 0x5
+ 577 0037 2E       		.uleb128 0x2e
+ 578 0038 01       		.byte	0x1
+ 579 0039 3F       		.uleb128 0x3f
+ 580 003a 19       		.uleb128 0x19
+ 581 003b 03       		.uleb128 0x3
+ 582 003c 0E       		.uleb128 0xe
+ 583 003d 3A       		.uleb128 0x3a
+ 584 003e 0B       		.uleb128 0xb
+ 585 003f 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 12
+
+
+ 586 0040 0B       		.uleb128 0xb
+ 587 0041 27       		.uleb128 0x27
+ 588 0042 19       		.uleb128 0x19
+ 589 0043 49       		.uleb128 0x49
+ 590 0044 13       		.uleb128 0x13
+ 591 0045 11       		.uleb128 0x11
+ 592 0046 01       		.uleb128 0x1
+ 593 0047 12       		.uleb128 0x12
+ 594 0048 06       		.uleb128 0x6
+ 595 0049 40       		.uleb128 0x40
+ 596 004a 18       		.uleb128 0x18
+ 597 004b 9742     		.uleb128 0x2117
+ 598 004d 19       		.uleb128 0x19
+ 599 004e 01       		.uleb128 0x1
+ 600 004f 13       		.uleb128 0x13
+ 601 0050 00       		.byte	0
+ 602 0051 00       		.byte	0
+ 603 0052 06       		.uleb128 0x6
+ 604 0053 05       		.uleb128 0x5
+ 605 0054 00       		.byte	0
+ 606 0055 03       		.uleb128 0x3
+ 607 0056 08       		.uleb128 0x8
+ 608 0057 3A       		.uleb128 0x3a
+ 609 0058 0B       		.uleb128 0xb
+ 610 0059 3B       		.uleb128 0x3b
+ 611 005a 0B       		.uleb128 0xb
+ 612 005b 49       		.uleb128 0x49
+ 613 005c 13       		.uleb128 0x13
+ 614 005d 02       		.uleb128 0x2
+ 615 005e 17       		.uleb128 0x17
+ 616 005f 00       		.byte	0
+ 617 0060 00       		.byte	0
+ 618 0061 07       		.uleb128 0x7
+ 619 0062 34       		.uleb128 0x34
+ 620 0063 00       		.byte	0
+ 621 0064 03       		.uleb128 0x3
+ 622 0065 0E       		.uleb128 0xe
+ 623 0066 3A       		.uleb128 0x3a
+ 624 0067 0B       		.uleb128 0xb
+ 625 0068 3B       		.uleb128 0x3b
+ 626 0069 0B       		.uleb128 0xb
+ 627 006a 49       		.uleb128 0x49
+ 628 006b 13       		.uleb128 0x13
+ 629 006c 02       		.uleb128 0x2
+ 630 006d 18       		.uleb128 0x18
+ 631 006e 00       		.byte	0
+ 632 006f 00       		.byte	0
+ 633 0070 08       		.uleb128 0x8
+ 634 0071 34       		.uleb128 0x34
+ 635 0072 00       		.byte	0
+ 636 0073 03       		.uleb128 0x3
+ 637 0074 08       		.uleb128 0x8
+ 638 0075 3A       		.uleb128 0x3a
+ 639 0076 0B       		.uleb128 0xb
+ 640 0077 3B       		.uleb128 0x3b
+ 641 0078 0B       		.uleb128 0xb
+ 642 0079 49       		.uleb128 0x49
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 13
+
+
+ 643 007a 13       		.uleb128 0x13
+ 644 007b 02       		.uleb128 0x2
+ 645 007c 17       		.uleb128 0x17
+ 646 007d 00       		.byte	0
+ 647 007e 00       		.byte	0
+ 648 007f 09       		.uleb128 0x9
+ 649 0080 34       		.uleb128 0x34
+ 650 0081 00       		.byte	0
+ 651 0082 03       		.uleb128 0x3
+ 652 0083 08       		.uleb128 0x8
+ 653 0084 3A       		.uleb128 0x3a
+ 654 0085 0B       		.uleb128 0xb
+ 655 0086 3B       		.uleb128 0x3b
+ 656 0087 0B       		.uleb128 0xb
+ 657 0088 49       		.uleb128 0x49
+ 658 0089 13       		.uleb128 0x13
+ 659 008a 02       		.uleb128 0x2
+ 660 008b 18       		.uleb128 0x18
+ 661 008c 00       		.byte	0
+ 662 008d 00       		.byte	0
+ 663 008e 0A       		.uleb128 0xa
+ 664 008f 898201   		.uleb128 0x4109
+ 665 0092 01       		.byte	0x1
+ 666 0093 11       		.uleb128 0x11
+ 667 0094 01       		.uleb128 0x1
+ 668 0095 31       		.uleb128 0x31
+ 669 0096 13       		.uleb128 0x13
+ 670 0097 00       		.byte	0
+ 671 0098 00       		.byte	0
+ 672 0099 0B       		.uleb128 0xb
+ 673 009a 8A8201   		.uleb128 0x410a
+ 674 009d 00       		.byte	0
+ 675 009e 02       		.uleb128 0x2
+ 676 009f 18       		.uleb128 0x18
+ 677 00a0 9142     		.uleb128 0x2111
+ 678 00a2 18       		.uleb128 0x18
+ 679 00a3 00       		.byte	0
+ 680 00a4 00       		.byte	0
+ 681 00a5 0C       		.uleb128 0xc
+ 682 00a6 0F       		.uleb128 0xf
+ 683 00a7 00       		.byte	0
+ 684 00a8 0B       		.uleb128 0xb
+ 685 00a9 0B       		.uleb128 0xb
+ 686 00aa 49       		.uleb128 0x49
+ 687 00ab 13       		.uleb128 0x13
+ 688 00ac 00       		.byte	0
+ 689 00ad 00       		.byte	0
+ 690 00ae 0D       		.uleb128 0xd
+ 691 00af 26       		.uleb128 0x26
+ 692 00b0 00       		.byte	0
+ 693 00b1 49       		.uleb128 0x49
+ 694 00b2 13       		.uleb128 0x13
+ 695 00b3 00       		.byte	0
+ 696 00b4 00       		.byte	0
+ 697 00b5 0E       		.uleb128 0xe
+ 698 00b6 01       		.uleb128 0x1
+ 699 00b7 01       		.byte	0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 14
+
+
+ 700 00b8 49       		.uleb128 0x49
+ 701 00b9 13       		.uleb128 0x13
+ 702 00ba 01       		.uleb128 0x1
+ 703 00bb 13       		.uleb128 0x13
+ 704 00bc 00       		.byte	0
+ 705 00bd 00       		.byte	0
+ 706 00be 0F       		.uleb128 0xf
+ 707 00bf 21       		.uleb128 0x21
+ 708 00c0 00       		.byte	0
+ 709 00c1 49       		.uleb128 0x49
+ 710 00c2 13       		.uleb128 0x13
+ 711 00c3 2F       		.uleb128 0x2f
+ 712 00c4 0B       		.uleb128 0xb
+ 713 00c5 00       		.byte	0
+ 714 00c6 00       		.byte	0
+ 715 00c7 10       		.uleb128 0x10
+ 716 00c8 2E       		.uleb128 0x2e
+ 717 00c9 00       		.byte	0
+ 718 00ca 3F       		.uleb128 0x3f
+ 719 00cb 19       		.uleb128 0x19
+ 720 00cc 3C       		.uleb128 0x3c
+ 721 00cd 19       		.uleb128 0x19
+ 722 00ce 6E       		.uleb128 0x6e
+ 723 00cf 0E       		.uleb128 0xe
+ 724 00d0 03       		.uleb128 0x3
+ 725 00d1 0E       		.uleb128 0xe
+ 726 00d2 00       		.byte	0
+ 727 00d3 00       		.byte	0
+ 728 00d4 00       		.byte	0
+ 729              		.section	.debug_loc,"",%progbits
+ 730              	.Ldebug_loc0:
+ 731              	.LLST0:
+ 732 0000 00000000 		.4byte	.LVL0
+ 733 0004 10000000 		.4byte	.LVL2
+ 734 0008 0100     		.2byte	0x1
+ 735 000a 50       		.byte	0x50
+ 736 000b 10000000 		.4byte	.LVL2
+ 737 000f 2C000000 		.4byte	.LVL8
+ 738 0013 0100     		.2byte	0x1
+ 739 0015 54       		.byte	0x54
+ 740 0016 2C000000 		.4byte	.LVL8
+ 741 001a 30000000 		.4byte	.LFE0
+ 742 001e 0400     		.2byte	0x4
+ 743 0020 F3       		.byte	0xf3
+ 744 0021 01       		.uleb128 0x1
+ 745 0022 50       		.byte	0x50
+ 746 0023 9F       		.byte	0x9f
+ 747 0024 00000000 		.4byte	0
+ 748 0028 00000000 		.4byte	0
+ 749              	.LLST1:
+ 750 002c 00000000 		.4byte	.LVL0
+ 751 0030 0E000000 		.4byte	.LVL1
+ 752 0034 0100     		.2byte	0x1
+ 753 0036 51       		.byte	0x51
+ 754 0037 0E000000 		.4byte	.LVL1
+ 755 003b 2C000000 		.4byte	.LVL8
+ 756 003f 0100     		.2byte	0x1
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 15
+
+
+ 757 0041 55       		.byte	0x55
+ 758 0042 2C000000 		.4byte	.LVL8
+ 759 0046 30000000 		.4byte	.LFE0
+ 760 004a 0400     		.2byte	0x4
+ 761 004c F3       		.byte	0xf3
+ 762 004d 01       		.uleb128 0x1
+ 763 004e 51       		.byte	0x51
+ 764 004f 9F       		.byte	0x9f
+ 765 0050 00000000 		.4byte	0
+ 766 0054 00000000 		.4byte	0
+ 767              	.LLST2:
+ 768 0058 16000000 		.4byte	.LVL4
+ 769 005c 1A000000 		.4byte	.LVL5
+ 770 0060 0200     		.2byte	0x2
+ 771 0062 31       		.byte	0x31
+ 772 0063 9F       		.byte	0x9f
+ 773 0064 1A000000 		.4byte	.LVL5
+ 774 0068 30000000 		.4byte	.LFE0
+ 775 006c 0100     		.2byte	0x1
+ 776 006e 53       		.byte	0x53
+ 777 006f 00000000 		.4byte	0
+ 778 0073 00000000 		.4byte	0
+ 779              		.section	.debug_aranges,"",%progbits
+ 780 0000 1C000000 		.4byte	0x1c
+ 781 0004 0200     		.2byte	0x2
+ 782 0006 00000000 		.4byte	.Ldebug_info0
+ 783 000a 04       		.byte	0x4
+ 784 000b 00       		.byte	0
+ 785 000c 0000     		.2byte	0
+ 786 000e 0000     		.2byte	0
+ 787 0010 00000000 		.4byte	.LFB0
+ 788 0014 30000000 		.4byte	.LFE0-.LFB0
+ 789 0018 00000000 		.4byte	0
+ 790 001c 00000000 		.4byte	0
+ 791              		.section	.debug_ranges,"",%progbits
+ 792              	.Ldebug_ranges0:
+ 793 0000 00000000 		.4byte	.LFB0
+ 794 0004 30000000 		.4byte	.LFE0
+ 795 0008 00000000 		.4byte	0
+ 796 000c 00000000 		.4byte	0
+ 797              		.section	.debug_line,"",%progbits
+ 798              	.Ldebug_line0:
+ 799 0000 C7010000 		.section	.debug_str,"MS",%progbits,1
+ 799      02009D01 
+ 799      00000201 
+ 799      FB0E0D00 
+ 799      01010101 
+ 800              	.LASF6:
+ 801 0000 6C6F6E67 		.ascii	"long long int\000"
+ 801      206C6F6E 
+ 801      6720696E 
+ 801      7400
+ 802              	.LASF11:
+ 803 000e 73697A65 		.ascii	"size_t\000"
+ 803      5F7400
+ 804              	.LASF1:
+ 805 0015 756E7369 		.ascii	"unsigned char\000"
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 16
+
+
+ 805      676E6564 
+ 805      20636861 
+ 805      7200
+ 806              	.LASF19:
+ 807 0023 433A5C55 		.ascii	"C:\\Users\\codyg\\git\\psoc6-realtime-processing\\B"
+ 807      73657273 
+ 807      5C636F64 
+ 807      79675C67 
+ 807      69745C70 
+ 808 0051 4C455F52 		.ascii	"LE_RTC_IMU.cydsn\\RestEaze_BLE.cydsn\000"
+ 808      54435F49 
+ 808      4D552E63 
+ 808      7964736E 
+ 808      5C526573 
+ 809              	.LASF5:
+ 810 0075 6C6F6E67 		.ascii	"long unsigned int\000"
+ 810      20756E73 
+ 810      69676E65 
+ 810      6420696E 
+ 810      7400
+ 811              	.LASF7:
+ 812 0087 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 812      206C6F6E 
+ 812      6720756E 
+ 812      7369676E 
+ 812      65642069 
+ 813              	.LASF9:
+ 814 009e 5F5F7569 		.ascii	"__uint8_t\000"
+ 814      6E74385F 
+ 814      7400
+ 815              	.LASF20:
+ 816 00a8 62797465 		.ascii	"bytes_parity\000"
+ 816      735F7061 
+ 816      72697479 
+ 816      00
+ 817              	.LASF15:
+ 818 00b5 50617269 		.ascii	"ParityTable256\000"
+ 818      74795461 
+ 818      626C6532 
+ 818      353600
+ 819              	.LASF16:
+ 820 00c4 5F426F6F 		.ascii	"_Bool\000"
+ 820      6C00
+ 821              	.LASF14:
+ 822 00ca 63686172 		.ascii	"char\000"
+ 822      00
+ 823              	.LASF4:
+ 824 00cf 6C6F6E67 		.ascii	"long int\000"
+ 824      20696E74 
+ 824      00
+ 825              	.LASF21:
+ 826 00d8 6D656D63 		.ascii	"memcpy\000"
+ 826      707900
+ 827              	.LASF17:
+ 828 00df 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 828      43313120 
+ 828      352E342E 
+ARM GAS  C:\Users\codyg\AppData\Local\Temp\cckluwFd.s 			page 17
+
+
+ 828      31203230 
+ 828      31363036 
+ 829 0112 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m4 -mfloat-abi=s"
+ 829      20726576 
+ 829      6973696F 
+ 829      6E203233 
+ 829      37373135 
+ 830 0145 6F667466 		.ascii	"oftfp -mfpu=fpv4-sp-d16 -mthumb -g -Og -ffunction-s"
+ 830      70202D6D 
+ 830      6670753D 
+ 830      66707634 
+ 830      2D73702D 
+ 831 0178 65637469 		.ascii	"ections -ffat-lto-objects\000"
+ 831      6F6E7320 
+ 831      2D666661 
+ 831      742D6C74 
+ 831      6F2D6F62 
+ 832              	.LASF3:
+ 833 0192 73686F72 		.ascii	"short unsigned int\000"
+ 833      7420756E 
+ 833      7369676E 
+ 833      65642069 
+ 833      6E7400
+ 834              	.LASF0:
+ 835 01a5 7369676E 		.ascii	"signed char\000"
+ 835      65642063 
+ 835      68617200 
+ 836              	.LASF12:
+ 837 01b1 6C6F6E67 		.ascii	"long double\000"
+ 837      20646F75 
+ 837      626C6500 
+ 838              	.LASF13:
+ 839 01bd 73697A65 		.ascii	"sizetype\000"
+ 839      74797065 
+ 839      00
+ 840              	.LASF2:
+ 841 01c6 73686F72 		.ascii	"short int\000"
+ 841      7420696E 
+ 841      7400
+ 842              	.LASF18:
+ 843 01d0 6672616D 		.ascii	"frame.c\000"
+ 843      652E6300 
+ 844              	.LASF8:
+ 845 01d8 756E7369 		.ascii	"unsigned int\000"
+ 845      676E6564 
+ 845      20696E74 
+ 845      00
+ 846              	.LASF10:
+ 847 01e5 75696E74 		.ascii	"uint8_t\000"
+ 847      385F7400 
+ 848              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

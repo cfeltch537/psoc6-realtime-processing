@@ -54,6 +54,7 @@
 #include "project.h"
 #include "FreeRTOS.h"
 #include "queue.h"
+#include "frame.h"
 
 /* List of BLE commands */
 typedef enum
@@ -67,9 +68,9 @@ typedef enum
 /* Data-type of BLE commands and data */
 typedef struct
 {   
-    ble_commands_list_t command;
-    float               temperatureData;
-    uint32_t              imuData;
+    ble_commands_list_t     command;
+    float                   temperatureData;
+    struct _data_frame_t    dataframe;
 }   ble_command_t;
 
 /* Handle for the Queue that contains BLE commands */

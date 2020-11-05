@@ -24,22 +24,22 @@
   <block name="Timer_PPG" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="TCPWM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
-  <block name="SysInt_TimerPPG_INT" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="SysInt_TimerIMU_INT" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="RTC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
-    <block name="RTC_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="RTC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  </block>
-  <block name="Timer_IMU" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+  <block name="SysInt_TimerPPG_INT" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock_1khz" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Counter_ms" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="TCPWM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
   <block name="isr_gpio" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="GlobalSignal" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Pin_Advertise" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Counter_ms" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+  <block name="Timer_IMU" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="TCPWM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
-  <block name="Clock_1khz" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="RTC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="RTC_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="RTC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  </block>
   <block name="CY_EINK_Miso" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Pin_LED_Orange" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="ADC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">

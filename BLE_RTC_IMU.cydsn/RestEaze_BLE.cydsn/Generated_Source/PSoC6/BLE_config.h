@@ -278,10 +278,10 @@ extern "C" {
  * The valid range is from 23 to 512 bytes. 
  * This value is used to respond to an Exchange MTU request from the GATT Client.
  */
-#define CY_BLE_CONFIG_GATT_MTU                      (0x0017u)
+#define CY_BLE_CONFIG_GATT_MTU                      (0x0064u)
 
 /** The GATT Maximum attribute length. */
-#define CY_BLE_CONFIG_GATT_DB_MAX_VALUE_LEN         (0x0015u)
+#define CY_BLE_CONFIG_GATT_DB_MAX_VALUE_LEN         (0x0037u)
 #define CY_BLE_GATT_DB_INDEX_COUNT                  (0x0030u)
 
 /** The number of characteristics supporting the Reliable Write property. */
@@ -384,17 +384,17 @@ extern "C" {
  * Below are the indexes and handles of the defined Custom Services and 
  * their characteristics.
  */
-#define CY_BLE_SENSOR_DATA_SERVICE_INDEX   (0x00u) /* Index of Sensor Data service in the cy_ble_customs array */
-#define CY_BLE_SENSOR_DATA_IMU_CHAR_INDEX   (0x00u) /* Index of IMU characteristic */
-#define CY_BLE_SENSOR_DATA_IMU_CCCD_DESC_INDEX   (0x00u) /* Index of CCCD descriptor */
-#define CY_BLE_SENSOR_DATA_IMU_CHARACTERISTIC_USER_DESCRIPTION_DESC_INDEX   (0x01u) /* Index of Characteristic User Description descriptor */
+#define CY_BLE_DATAFRAMES_SERVICE_INDEX   (0x00u) /* Index of Dataframes service in the cy_ble_customs array */
+#define CY_BLE_DATAFRAMES_REALTIME_CHAR_INDEX   (0x00u) /* Index of Realtime characteristic */
+#define CY_BLE_DATAFRAMES_REALTIME_CCCD_DESC_INDEX   (0x00u) /* Index of CCCD descriptor */
+#define CY_BLE_DATAFRAMES_REALTIME_CHARACTERISTIC_USER_DESCRIPTION_DESC_INDEX   (0x01u) /* Index of Characteristic User Description descriptor */
 
 
-#define CY_BLE_SENSOR_DATA_SERVICE_HANDLE   (0x002Cu) /* Handle of Sensor Data service */
-#define CY_BLE_SENSOR_DATA_IMU_DECL_HANDLE   (0x002Du) /* Handle of IMU characteristic declaration */
-#define CY_BLE_SENSOR_DATA_IMU_CHAR_HANDLE   (0x002Eu) /* Handle of IMU characteristic */
-#define CY_BLE_SENSOR_DATA_IMU_CCCD_DESC_HANDLE   (0x002Fu) /* Handle of CCCD descriptor */
-#define CY_BLE_SENSOR_DATA_IMU_CHARACTERISTIC_USER_DESCRIPTION_DESC_HANDLE   (0x0030u) /* Handle of Characteristic User Description descriptor */
+#define CY_BLE_DATAFRAMES_SERVICE_HANDLE   (0x002Cu) /* Handle of Dataframes service */
+#define CY_BLE_DATAFRAMES_REALTIME_DECL_HANDLE   (0x002Du) /* Handle of Realtime characteristic declaration */
+#define CY_BLE_DATAFRAMES_REALTIME_CHAR_HANDLE   (0x002Eu) /* Handle of Realtime characteristic */
+#define CY_BLE_DATAFRAMES_REALTIME_CCCD_DESC_HANDLE   (0x002Fu) /* Handle of CCCD descriptor */
+#define CY_BLE_DATAFRAMES_REALTIME_CHARACTERISTIC_USER_DESCRIPTION_DESC_HANDLE   (0x0030u) /* Handle of Characteristic User Description descriptor */
 
 
 
