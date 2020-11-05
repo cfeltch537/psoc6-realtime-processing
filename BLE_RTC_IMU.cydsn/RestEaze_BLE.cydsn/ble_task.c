@@ -50,6 +50,7 @@
 #include "ble_task.h"
 #include "temperature_task.h"
 #include "imu_task.h"
+#include "ppg_task.h"
 #include "status_led_task.h"
 #include "ble_thermometer_config.h"
 #include "uart_debug.h"
@@ -66,7 +67,7 @@ void static StackEventHandler(uint32_t eventType, void *eventParam);
 void static DisconnectEventHandler(void);
 void static AdvertisementEventHandler(void);
 void static SendTemperatureIndication (float temperature);
-void static SendIMUNotification (data_frame_t dataframe);
+void static SendDataFrameNotification (data_frame_t dataframe);
 void static SendBleNotification (cy_ble_gatt_db_attr_handle_t charHandle, uint8_t* value, uint16_t len);
 void CallBackHts(uint32 event, void *eventParam);
 
@@ -164,8 +165,9 @@ void Task_Ble(void *pvParameters)
                     
             /*~~~~~~~~~~~~~~ Command to send temperature indication ~~~~~~~~~~*/            
                 case SEND_IMU_NOTIFICATION:
+                case SEND_PPG_NOTIFICATION:
                     /* Send temperature data over BLE HTS notification */
-                    SendIMUNotification(bleCommand.dataframe);
+                    SendDataFrameNotification(bleCommand.dataframe);
                     break;    
                     
             /*~~~~~~~~~~~~~~ Command to process GPIO interrupt ~~~~~~~~~~~~~~~*/               
@@ -382,13 +384,17 @@ void static StackEventHandler(uint32_t eventType, void *eventParam)
                     requestImuIndication = writeReqParameter->handleValPair.value.val[0] & 0x02;
                     Task_DebugPrintf("Info     : BLE - GATT Write Sensor Data IMU CCCD Notify: ", requestImuNotification);
                     Task_DebugPrintf("Info     : BLE - GATT Write Sensor Data IMU CCCD Indicate: ", requestImuIndication);
-                    imu_command_t command;
+                    imu_command_t commandIMU;
+                    ppg_command_t commandPPG;
                     if(requestImuNotification){
-                        command = SEND_IMU_START;
+                        commandIMU = SEND_IMU_START;
+                        commandPPG = SEND_PPG_START;
                     }else{
-                        command = SEND_IMU_STOP;
+                        commandIMU = SEND_IMU_STOP;
+                        commandPPG = SEND_PPG_STOP;
                     }
-                    xQueueOverwrite(imuCommandQ, &command);
+                    xQueueOverwrite(imuCommandQ, &commandIMU);
+                    xQueueOverwrite(ppgCommandQ, &commandPPG);
                     //Cy_BLE_GATTS_WriteRsp(writeReqParameter->connHandle);
                 }
             }
@@ -689,7 +695,7 @@ void static SendTemperatureIndication (float temperature)
 *  void
 *
 *******************************************************************************/
-void static SendIMUNotification(data_frame_t dataframe)
+void static SendDataFrameNotification(data_frame_t dataframe)
 {   
     /* Check if BLE is in connected state and the HTS indication is enabled */
 	if((Cy_BLE_GetConnectionState(connectionHandle) == CY_BLE_CONN_STATE_CONNECTED) 

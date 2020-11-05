@@ -56,6 +56,7 @@
 #include "status_led_task.h"  
 #include "temperature_task.h"
 #include "imu_task.h"
+#include "ppg_task.h"
 #include "display_task.h"
 #include "rtc_task.h"
 #include "uart_debug.h"  
@@ -66,8 +67,10 @@
 
 /* Priorities of user tasks in this project */
 #define TASK_BLE_PRIORITY           (20u)
+#define TASK_RTC_PRIORITY           (20u)
 #define TASK_TEMPERATURE_PRIORITY   (15u)
-#define TASK_IMU_PRIORITY   (15u)
+#define TASK_IMU_PRIORITY           (15u)
+#define TASK_PPG_PRIORITY           (15u)
 #define TASK_STATUS_LED_PRIORITY    (10u)
 #define TASK_DISPLAY_PRIORITY       (5u)
 
@@ -76,6 +79,7 @@
 #define TASK_STATUS_LED_STACK_SIZE  (configMINIMAL_STACK_SIZE)
 #define TASK_TEMPERATURE_STACK_SIZE (configMINIMAL_STACK_SIZE)
 #define TASK_IMU_STACK_SIZE         (configMINIMAL_STACK_SIZE)
+#define TASK_PPG_STACK_SIZE         (configMINIMAL_STACK_SIZE)
 #define TASK_DISPLAY_STACK_SIZE     (512u)
  
 /* Queue lengths of message queues used in this project */
@@ -104,11 +108,18 @@ int main()
     /* Create the queues. See the respective data-types for details of queue
        contents */
     bleCommandQ         = xQueueCreate(BLE_COMMAND_QUEUE_LEN, sizeof(ble_command_t));
+    /* TEMP */
     temperatureCommandQ = xQueueCreate(TEMP_COMMAND_QUEUE_LEN, sizeof(temperature_command_t));
     temperatureDataQ    = xQueueCreate(TEMP_DATA_QUEUE_LEN, sizeof(float));
+    /* IMU */
     imuCommandQ         = xQueueCreate(TEMP_COMMAND_QUEUE_LEN, sizeof(imu_command_t));
-    imuDataQ            = xQueueCreate(TEMP_DATA_QUEUE_LEN, sizeof(float));
+    imuDataQ            = xQueueCreate(TEMP_DATA_QUEUE_LEN, sizeof(data_frame_t));
+    /* PPG */
+    ppgCommandQ         = xQueueCreate(TEMP_COMMAND_QUEUE_LEN, sizeof(ppg_command_t));
+    ppgDataQ            = xQueueCreate(TEMP_DATA_QUEUE_LEN, sizeof(data_frame_t));
+    /* RTC */
     rtcCommandQ         = xQueueCreate(RTC_DATA_QUEUE_LEN, sizeof(rtc_command_t));
+    /* LEDs */
     statusLedDataQ      = xQueueCreate(STATUS_LED_QUEUE_LEN, sizeof(status_led_data_t));
          
     /* Create the user Tasks. See the respective Task definition for more
@@ -116,11 +127,13 @@ int main()
     xTaskCreate(Task_Ble, "BLE Task", TASK_BLE_STACK_SIZE,
                 NULL, TASK_BLE_PRIORITY, NULL);
     xTaskCreate(Task_RTC, "RTC task", 400,
-                NULL, TASK_DISPLAY_PRIORITY, NULL);
+                NULL, TASK_RTC_PRIORITY, NULL);
     xTaskCreate(Task_Temperature, "Temperature Task", TASK_TEMPERATURE_STACK_SIZE,
                 NULL, TASK_TEMPERATURE_PRIORITY, NULL);
     xTaskCreate(Task_IMU, "IMU Task", TASK_IMU_STACK_SIZE,
                 NULL, TASK_IMU_PRIORITY, NULL);
+    xTaskCreate(Task_PPG, "PPG Task", TASK_PPG_STACK_SIZE,
+                NULL, TASK_PPG_PRIORITY, NULL);
     xTaskCreate(Task_StatusLed, "Status LED Task", TASK_STATUS_LED_STACK_SIZE,
                 NULL, TASK_STATUS_LED_PRIORITY, NULL);
     xTaskCreate(Task_Display, "Display task", TASK_DISPLAY_STACK_SIZE,

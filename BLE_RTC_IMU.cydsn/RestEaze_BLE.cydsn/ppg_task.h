@@ -1,10 +1,9 @@
 /******************************************************************************
-* File Name: ble_task.h
+* File Name: imu_task.h
 *
 * Version: 1.00
 *
-* Description: This file is the public interface of ble_task.c source 
-*              file 
+* Description: This file is the public interface of imu_task.c source file
 *
 * Related Document: CE218138_BLE_Thermometer_RTOS.pdf
 *
@@ -42,43 +41,33 @@
 * indemnify Cypress against all liability.
 *******************************************************************************/
 /******************************************************************************
-* This file contains the declaration of task and functions used for the BLE
-* health thermometer (HTS) application
+* This file contains the declaration of task and used for imu sensing
 ********************************************************************************/
 
 /* Include guard */
-#ifndef BLE_TASK_H
-#define BLE_TASK_H
+#ifndef NAMESPACE_PPG_TASK
+#define NAMESPACE_PPG_TASK
 
 /* Header file includes */ 
 #include "project.h"
-#include "FreeRTOS.h"
-#include "queue.h"
-#include "frame.h"
+#include "FreeRTOS.h"     
+#include "queue.h"    
 
-/* List of BLE commands */
+/* Data-type that's used to send commands to temperature task */    
 typedef enum
 {
-    PROCESS_BLE_EVENTS,
-    HANDLE_GPIO_INTERRUPT,
-    SEND_TEMPERATURE_INDICATION,
-    SEND_IMU_NOTIFICATION,
-    SEND_PPG_NOTIFICATION
-}   ble_commands_list_t;
+    SEND_PPG_START, 
+    SEND_PPG_STOP,
+    HANDLE_PPG_INTERRUPT,
+}   ppg_command_t;    
 
-/* Data-type of BLE commands and data */
-typedef struct
-{   
-    ble_commands_list_t     command;
-    float                   temperatureData;
-    struct _data_frame_t    dataframe;
-}   ble_command_t;
+/* Handles for the Queues that contain temperature command and data */ 
+extern QueueHandle_t ppgCommandQ;
+extern QueueHandle_t ppgDataQ;
 
-/* Handle for the Queue that contains BLE commands */
-extern QueueHandle_t bleCommandQ;
+/* Task_IMU reads temperature from a thermistor circuit and sends it 
+   to Task_Ble */    
+void Task_PPG(void *pvParameters);    
 
-/* Task_Ble takes care of the BLE module in this code example */    
-void Task_Ble(void *pvParameters);
-
-#endif /* BLE_TASK_H */
+#endif
 /* [] END OF FILE */

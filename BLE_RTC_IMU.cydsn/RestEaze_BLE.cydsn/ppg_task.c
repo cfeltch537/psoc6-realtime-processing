@@ -1,9 +1,9 @@
 /******************************************************************************
-* File Name: imu_task.c
+* File Name: ppg_task.c
 *
 * Version: 1.00
 *
-* Description: This file contains the task that handles imu sensing
+* Description: This file contains the task that handles ppg sensing
 *
 * Hardware Dependency: CY8CKIT-062-BLE PSoC 6 BLE Pioneer Kit
 *
@@ -39,42 +39,42 @@
 * indemnify Cypress against all liability.
 *******************************************************************************/
 /******************************************************************************
-* This file contains the task that handles imu sensing 
+* This file contains the task that handles ppg sensing 
 *******************************************************************************/
 
 /* Header file includes */
 #include <math.h>
-#include "imu_task.h"
+#include "ppg_task.h"
 #include "uart_debug.h"
 #include "ble_task.h"
 #include "task.h" 
 #include "timers.h"
 #include "frame.h"
 
-#define TIMER_PERIOD_MSEC   40U   /* Timer period in milliseconds */
+#define TIMER_PERIOD_MSEC   8U   /* Timer period in milliseconds */
 
-/* Queue handles used for imu commands and data */
-QueueHandle_t imuCommandQ;
-QueueHandle_t imuDataQ;
+/* Queue handles used for ppg commands and data */
+QueueHandle_t ppgCommandQ;
+QueueHandle_t ppgDataQ;
 
 bool static processingComplete = false;
 
-/* Bool for IMU Write State */
-bool static indicateDataIMU = false;
-bool static notifyDataIMU = false;
+/* Bool for PPG Write State */
+bool static indicateDataPPG = false;
+bool static notifyDataPPG = false;
 
-uint32_t numSamplesIMU = 0;
+uint32_t numSamplesPPG = 0;
 uint64_t lastInterruptMillis;
 
 /* Local methods*/
-void static IMU_ISR(void);
-void static IMUTimerStart(void);
+void static PPG_ISR(void);
+void static PPGTimerStart(void);
 
 /*******************************************************************************
-* Function Name: void Task_IMU(void *pvParameters)   
+* Function Name: void Task_PPG(void *pvParameters)   
 ********************************************************************************
 * Summary:
-*  Task that reads imu data from thermistor circuit  
+*  Task that reads ppg data from thermistor circuit  
 *
 * Parameters:
 *  void *pvParameters : Task parameter defined during task creation (unused)                            
@@ -83,9 +83,9 @@ void static IMUTimerStart(void);
 *  void
 *
 *******************************************************************************/
-void Task_IMU(void *pvParameters){ 
+void Task_PPG(void *pvParameters){ 
     /* Variable that stores commands received  */
-    imu_command_t imuCommand;
+    ppg_command_t ppgCommand;
     
     /* Variable used to store the return values of RTOS APIs */
     BaseType_t rtosApiResult;
@@ -97,40 +97,40 @@ void Task_IMU(void *pvParameters){
     (void)pvParameters ;
     
     /* Start the timer that controls the processing interval */
-    IMUTimerStart();                    
+    PPGTimerStart();                    
     
     /* Repeatedly running part of the task */
     for(;;)
     {
         /* Block until a command has been received over 
-           imuCommandQ */
-        rtosApiResult = xQueueReceive(imuCommandQ, &imuCommand, portMAX_DELAY);
+           ppgCommandQ */
+        rtosApiResult = xQueueReceive(ppgCommandQ, &ppgCommand, portMAX_DELAY);
         
-         /* Command has been received from imuCommandQ */ 
+         /* Command has been received from ppgCommandQ */ 
         if(rtosApiResult == pdTRUE)
         {   
             /* Take an action based on the command received */
-            switch (imuCommand)
+            switch (ppgCommand)
             {
-                /* IMU data need to be sent */
-                case SEND_IMU_START:
-                    Task_DebugPrintf("Info     : IMU - Starting IMU Sampling ", 0u);
-                    notifyDataIMU = true;
+                /* PPG data need to be sent */
+                case SEND_PPG_START:
+                    Task_DebugPrintf("Info     : PPG - Starting PPG Sampling ", 0u);
+                    notifyDataPPG = true;
                     break;
-                /* No imu data need to be sent */
-                case SEND_IMU_STOP:
-                    notifyDataIMU = false;
+                /* No ppg data need to be sent */
+                case SEND_PPG_STOP:
+                    notifyDataPPG = false;
                     break;
-                /* Process imu data from CapSense widgets */
-                case HANDLE_IMU_INTERRUPT:
+                /* Process ppg data from CapSense widgets */
+                case HANDLE_PPG_INTERRUPT:
                     {
                         struct _data_frame_t dataframe;
                         
                         /* Control fields */
                         dataframe.sensor_status = 0;
                         dataframe.battery_status = 0;
-                        dataframe.field_hdr = FRAME_FIELD_TIME | FRAME_FIELD_CAP | FRAME_FIELD_ACCEL | FRAME_FIELD_GYRO;
-                        dataframe.seq = numSamplesIMU;
+                        dataframe.field_hdr = FRAME_FIELD_TIME | FRAME_FIELD_SENTINEL;
+                        dataframe.seq = numSamplesPPG;
                         dataframe.session = 0;
 
                         /* Data fields */
@@ -139,41 +139,39 @@ void Task_IMU(void *pvParameters){
                         dataframe.time_msec = lastInterruptMillis%1000;
                         dataframe.last_tick_usec = 0;
                         dataframe.fuel = 99;
-                        // FRAME_FIELD_CAP
-                        dataframe.cap[0] = 1;
-                        dataframe.cap[1] = 2;
-                        dataframe.cap[2] = 3;
-                        // FRAME_FIELD_ACCEL
-                        dataframe.accel[0] = numSamplesIMU % 2;
-                        dataframe.accel[1] = numSamplesIMU % 4;
-                        dataframe.accel[2] = numSamplesIMU % 8;
-                        // FRAME_FIELD_GYRO
-                        dataframe.gyro[0] = numSamplesIMU % 16;
-                        dataframe.gyro[1] = numSamplesIMU % 32;
-                        dataframe.gyro[2] = numSamplesIMU % 64;
+                        // Sentinel Fields
+                        dataframe.led_ir                    = numSamplesPPG % 2; 
+                        dataframe.led_red                   = numSamplesPPG % 4;   
+                        dataframe.led_green                 = numSamplesPPG % 8;
+                        dataframe.heart_rate                = numSamplesPPG % 2; 
+                        dataframe.blood_oxygen_level        = numSamplesPPG % 2; 
+                        dataframe.confidence_level          = numSamplesPPG % 2; 
+                        dataframe.finger_detected_status    = numSamplesPPG % 2; 
+                        dataframe.temperature               = numSamplesPPG % 2; 
+                        dataframe.sync                      = numSamplesPPG % 2; 
                         
-                        numSamplesIMU++;
+                        numSamplesPPG++;
                        
-                        /* Send the processed imu data */
-                        if(notifyDataIMU)
+                        /* Send the processed ppg data */
+                        if(notifyDataPPG)
                         {
-                            /* Pack the imu data, respective command and send 
+                            /* Pack the ppg data, respective command and send 
                                to the queue */
-                            bleCommandAndData.command = SEND_IMU_NOTIFICATION;
+                            bleCommandAndData.command = SEND_PPG_NOTIFICATION;
                             bleCommandAndData.dataframe = dataframe;
                             //xQueueSend(bleCommandQ, &bleCommandAndData, 0u);
                             if( xQueueSend( bleCommandQ, ( void * ) &bleCommandAndData, ( TickType_t ) 0 ) != pdPASS )
                             {
                                 // Failed to post the message
-                                Task_DebugPrintf("Warning!  : IMU - Failed to Queue IMU Sample", 0u);
+                                Task_DebugPrintf("Warning!  : PPG - Failed to Queue PPG Sample", 0u);
                             }else{
-                                Task_DebugPrintf("Info      : IMU - Queued IMU Sample ", 0u);
+                                Task_DebugPrintf("Info      : PPG - Queued PPG Sample ", 0u);
                             }
                         }
                         else
                         {
-                            /* Send imu sample to queue */
-                            //xQueueSend(imuDataQ, (void *) &sample, 0u);
+                            /* Send ppg sample to queue */
+                            //xQueueSend(ppgDataQ, (void *) &sample, 0u);
                             processingComplete = true;
                         }
                     }
@@ -181,8 +179,8 @@ void Task_IMU(void *pvParameters){
 
                 /* Invalid task notification value received */    
                 default:
-                    Task_DebugPrintf("Error!   : IMU - Invalid command "\
-                                "received .Error Code:", imuCommand);
+                    Task_DebugPrintf("Error!   : PPG - Invalid command "\
+                                "received .Error Code:", ppgCommand);
                     break;
             }
         }            
@@ -190,7 +188,7 @@ void Task_IMU(void *pvParameters){
         portMAXDELAY ticks */
         else
         {
-            Task_DebugPrintf("Warning! : IMU - Task Timed out ", 0u);   
+            Task_DebugPrintf("Warning! : PPG - Task Timed out ", 0u);   
         }
     }
 }
@@ -208,7 +206,7 @@ void Task_IMU(void *pvParameters){
 *  void
 *
 *******************************************************************************/
-void static IMU_ISR(void)
+void static PPG_ISR(void)
 {        
     /* Read the latest available data time and sample*/
     //lastInterruptMillis = getCurrentTimeMillis();
@@ -218,32 +216,32 @@ void static IMU_ISR(void)
     BaseType_t rtosApiResult;
     
     /* Clear any pending interrupts */
-    Cy_TCPWM_ClearInterrupt(Timer_IMU_HW, Timer_IMU_CNT_NUM, CY_TCPWM_INT_ON_TC );
-    NVIC_ClearPendingIRQ(SysInt_TimerIMU_INT_cfg.intrSrc);
+    Cy_TCPWM_ClearInterrupt(Timer_PPG_HW, Timer_PPG_CNT_NUM, CY_TCPWM_INT_ON_TC );
+    NVIC_ClearPendingIRQ(SysInt_TimerPPG_INT_cfg.intrSrc);
     
     /* Read interrupt status register to ensure write completed due to 
        buffered writes */
     (void)Cy_SAR_GetInterruptStatus(ADC_SAR__HW);
     
-    /* Send command to process imu */
-    imu_command_t imuCommand = HANDLE_IMU_INTERRUPT;
-    rtosApiResult = xQueueSendFromISR(imuCommandQ, &imuCommand,0u);
+    /* Send command to process ppg */
+    ppg_command_t ppgCommand = HANDLE_PPG_INTERRUPT;
+    rtosApiResult = xQueueSendFromISR(ppgCommandQ, &ppgCommand,0u);
     
     /* Check if the operation has been successful */
     if(rtosApiResult != pdTRUE)
     {
-        Task_DebugPrintf("Failure! : IMU  - Sending data to imu"\
+        Task_DebugPrintf("Failure! : PPG  - Sending data to ppg"\
                     "queue", 0u);    
     }  
 }
 
 
 /*******************************************************************************
-* Function Name: void static IMUTimerStart(void)                  
+* Function Name: void static PPGTimerStart(void)                  
 ********************************************************************************
 * Summary:
 *  This function starts the timer that provides timing to periodic
-*  imu processing
+*  ppg processing
 *
 * Parameters:
 *  void
@@ -252,31 +250,31 @@ void static IMU_ISR(void)
 *  void
 *
 *******************************************************************************/
-void static IMUTimerStart(void)
+void static PPGTimerStart(void)
 {
     /* Configure the ISR for the TCPWM peripheral*/
-    Cy_SysInt_Init(&SysInt_TimerIMU_INT_cfg, IMU_ISR);
+    Cy_SysInt_Init(&SysInt_TimerPPG_INT_cfg, PPG_ISR);
 
     /* Enable interrupt in NVIC */ 
-    NVIC_EnableIRQ(SysInt_TimerIMU_INT_cfg.intrSrc);
+    NVIC_EnableIRQ(SysInt_TimerPPG_INT_cfg.intrSrc);
     
     /* Start the TCPWM component in timer/counter mode. The return value of the
      * function indicates whether the arguments are valid or not. It is not used
      * here for simplicity. 
      */
-    (void)Cy_TCPWM_Counter_Init(Timer_IMU_HW, Timer_IMU_CNT_NUM, &Timer_IMU_config); 
-    Cy_TCPWM_Enable_Multiple(Timer_IMU_HW, Timer_IMU_CNT_MASK); /* Enable the counter instance */
+    (void)Cy_TCPWM_Counter_Init(Timer_PPG_HW, Timer_PPG_CNT_NUM, &Timer_PPG_config); 
+    Cy_TCPWM_Enable_Multiple(Timer_PPG_HW, Timer_PPG_CNT_MASK); /* Enable the counter instance */
     
     /* Set the timer period in milliseconds. To count N cycles, period should be
      * set to N-1.
      */
-    Cy_TCPWM_Counter_SetPeriod(Timer_IMU_HW, Timer_IMU_CNT_NUM, TIMER_PERIOD_MSEC - 1);
+    Cy_TCPWM_Counter_SetPeriod(Timer_PPG_HW, Timer_PPG_CNT_NUM, TIMER_PERIOD_MSEC - 1);
     
     /* Trigger a software start on the counter instance. This is required when 
      * no other hardware input signal is connected to the component to act as
      * a trigger source. 
      */
-    Cy_TCPWM_TriggerStart(Timer_IMU_HW, Timer_IMU_CNT_MASK);   
+    Cy_TCPWM_TriggerStart(Timer_PPG_HW, Timer_PPG_CNT_MASK);   
 }
 
 /* [] END OF FILE */

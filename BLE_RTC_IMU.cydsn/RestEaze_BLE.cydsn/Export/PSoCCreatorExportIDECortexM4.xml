@@ -46,6 +46,7 @@
           <File BuildType="BUILD" Toolchain="">..\..\..\psoc6-realtime-processing - Copy\CE218138_BLE_Thermometer_RTOS01.cydsn\status_led_task.h</File>
           <File BuildType="BUILD" Toolchain="">rtc_task.h</File>
           <File BuildType="BUILD" Toolchain="">imu_task.h</File>
+          <File BuildType="BUILD" Toolchain="">ppg_task.h</File>
           <File BuildType="BUILD" Toolchain="">decode.h</File>
           <File BuildType="BUILD" Toolchain="">encode.h</File>
           <File BuildType="BUILD" Toolchain="">frame.h</File>
@@ -58,6 +59,7 @@
           <File BuildType="BUILD" Toolchain="">status_led_task.c</File>
           <File BuildType="BUILD" Toolchain="">rtc_task.c</File>
           <File BuildType="BUILD" Toolchain="">imu_task.c</File>
+          <File BuildType="BUILD" Toolchain="">ppg_task.c</File>
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">armgcc\startup\startup_psoc63_cm4.S</File>
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">iar\startup\startup_psoc63_cm4.s</File>
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">mdk\startup\startup_psoc63_cm4.s</File>
